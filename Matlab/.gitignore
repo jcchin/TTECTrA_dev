@@ -1,0 +1,9 @@
+/*.asv
+/*.config
+/hs_err_pid9800.log
+/*.r2010a
+hs_err*.log
+*.mdl.autosave
+*.mat
+/trans.m
+set_paths.m
