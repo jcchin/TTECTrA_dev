@@ -1,0 +1,679 @@
+//-------------------------------------------------------------------------------------------------
+//                                                                       												   |
+//   File Name:     High_BPR_150pax.mdl                                  						   |
+//   Date(s):       May 08, 2014                                        									   |
+//   Author:        Metin F. Ozcan                                       									   |
+//                                                                       												   |
+//   Description:   Separate Flow High BPR Turbofan Engine for 150 PAX   		   |
+//                                                                       												   |
+//-------------------------------------------------------------------------------------------------
+
+// The design variables are overwritten in the design_point_150pax.int file. 
+// You can change the design variables in the 150PAX.run file after 
+// including the design_point_150pax.int file in the run file.
+
+//-------------------------------------------------------------------------------------------------
+// Model Definition 
+//-------------------------------------------------------------------------------------------------
+// Defining the variables for the guess logic and setting their default values
+real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=3.93086, far=0.0219794, EPR=2.55849;
+
+// Guess logic element
+Element Guess { 
+
+#include <Guess.ins> 
+
+}
+
+// Defining the Ambient element
+Element FlightConditions Ambient  {
+	alt = 0.;
+	MN = 0.00;
+	dTs = 27.;
+	W = 759.56;
+}
+
+// Defining the inlet element
+Element Inlet Inlet  {
+    Fl_O.MN = 0.5;
+    eRamBase = 1.0; 
+}
+
+// Defining the fan element
+Element Compressor Fan  {
+   
+   // Including the file for the fan map
+   #include <FAN.map> 
+
+   S_map.S_eff.TB_Wc.NcorrMap.extrap = "linear" ;
+   S_map.S_eff.TB_eff.NcorrMap.extrap = "linear" ;
+   S_map.S_eff.TB_PR.NcorrMap.extrap = "linear" ;
+   S_map.S_eff.TB_Wc.RlineMap.extrap = "linear" ;
+   S_map.S_eff.TB_eff.RlineMap.extrap = "linear" ;
+   S_map.S_eff.TB_PR.RlineMap.extrap = "linear" ;
+
+   Fl_O.MN = 0.45; 
+   S_map.alpha = 0.00;
+   S_map.RlineMap = 2.0000;
+   S_map.NcDes = 1.0;
+   S_map.PRdes = 1.658;
+   S_map.effDes = 0.875371;
+
+   real spec_flow_dsn = 42.0;
+   real hub_to_tip = 0.3;
+
+}
+
+// Defining the splitter element
+Element Splitter Splitter  {
+   BPR = 5.2;
+   Fl_01.MN = 0.45; 
+   Fl_02.MN = 0.45; 
+}
+
+// Defining the element for the duct between the splitter and LPC
+Element Duct Duct4  {
+   dPqPbase = 0.010;
+   Fl_O.MN = 0.40; 
+}
+
+// Defining the LPC element
+Element Compressor LPC  {
+
+   // Including the file for the LPC map
+   #include <LPC.map> 
+
+   Fl_O.MN = 0.40; 
+   S_map.alpha = 0.00;
+   S_map.RlineMap = 1.8000;
+   S_map.NcDes = 1.0;
+   S_map.PRdes = 1.9103;
+   S_map.effDes = 0.875588;
+
+   real spec_flow_dsn = 32.83;
+   real hub_to_tip = 0.8; 
+
+}
+
+// Defining the duct element between LPC and HPC
+Element Duct Duct6  {
+   dPqPbase = 0.015;
+   Fl_O.MN = 0.45; 
+}
+
+// Defining the element for HPC
+Element Compressor HPC  {
+   
+   // Including the file for HPC map
+   #include <HPC.map> 
+
+   Fl_O.MN = 0.30; 
+   S_map.alpha = 0.00;
+   real BleedFlow = 3.930;            // Customer Bleed fixed mass flow
+   S_map.RlineMap = 2.000;
+   S_map.NcDes = 0.95;
+   S_map.PRdes = 8.085;
+   S_map.effDes = 0.915061;
+
+   real spec_flow_dsn = 26.7;
+
+   InterStageBleedOutPort ATD {    
+     fracBldWork = 1.0000;
+     fracBldP = 1.0000;
+     fracBldW = 0.005;
+   } 
+
+   InterStageBleedOutPort Cool1 {    // LPT inlet cooling flow
+     fracBldWork = 0.5000;
+     fracBldP = 0.5000;
+     fracBldW = 0.087;
+   } 
+
+   InterStageBleedOutPort Cool2 {    // LPT exit cooling flow
+     fracBldWork = 0.5000;
+     fracBldP = 0.5500;
+     fracBldW = 0.051;
+   } 
+
+   InterStageBleedOutPort CustBld {    
+     fracBldWork = 0.5000;
+     fracBldP = 0.5000;
+     fracBldW = 0.02;
+   } 
+	
+	void preexecute() { 
+		
+        CustBld.fracBldW = BleedFlow / Fl_I.W ;  // calc fracW to give fixed flow
+	
+    } 
+
+}
+
+Element Bleed Bld3  {
+   Fl_O.MN = 0.30; 
+
+   BleedOutPort Cool1 {	              // HPT cooling flow
+     fracW = 0.087+0.051;
+   } 
+
+}
+
+// Defining the element for fuel flow start   
+Element FuelStart FUEL36  {
+   LHV = 18580.; 
+}
+
+// Defining the burner element
+Element Burner Burner  {
+   real meanRadius31 = 7;
+   real meanRadius40 = 14;
+   effBase = 0.999;
+   switchHotLoss = "input";
+   dPqPBase = 0.045;
+   Fl_O.MN = 0.10;
+
+   switchBurn = "FAR";
+   FAR = 0.0286;
+   TtCombOut = 3130.0;
+
+   // Subelement ThermalMass S_Qhx {
+	
+		// switchForm = "ADD_SOLVER";
+		// switchLagIn = "PHYSICAL";
+	
+		// Wdes = ;
+		// kcDes = ;
+		// muDes = ;
+		// ChxDes = ;
+		
+		// Ahx = ;
+		
+		// massMat = ;
+		// CpMat = ;
+		// kcMat = ;
+		// thMat = ;
+		// Tmat = ;
+		
+		// tau = 100;
+		// expChx = 1;
+		// wtdAvg_Fl = 0.5;
+	
+	// }
+   
+}
+
+// Defining the HPT element
+Element Turbine HPT  {
+   
+   // Including the file for HPT map
+   #include <HPT.map>
+
+   FlowStation FS_41;
+   Fl_O.MN = 0.30;
+
+   S_map.effDes = 0.9288;
+   S_map.parmMap = 3.290;
+   S_map.parmGeomDes  = 1.0;
+   S_map.parmMapDes = 6.000;
+   S_map.parmNcDes = 100.0;
+
+   InterStageBleedInPort Non_ChargeableBld { 
+         Pfract  = 1.0;
+         diaPump = 0.0;
+   } 
+
+   // InterStageBleedInPort ChargeableBld { 
+         // Pfract  = 0.0;
+         // diaPump = 0.0;
+   // } 
+
+   real delta_eff = 0.0; 
+
+   /*Subelement CoolIt Cool { 
+     cool1 = "Non_ChargeableBld";
+     cool2 = "ChargeableBld";
+     desBladeTemp[1] = 2200;
+     desVaneTemp[1] = 2200;
+     desBladeTemp[2] = 2200;
+     desVaneTemp[2] = 2200;
+     nStages = 1;
+     xFactor =1.95; //1.95; 
+     xFactor1 =1.70; //2.38; 
+
+   }*/ 
+
+   /*void postexecute() { 
+     FS_41.copyFlow("Fl_I");
+     FS_41.add("Non_ChargeableBld");
+     Cool.run(); 
+
+     delta_eff = 0.0;
+   }*/
+
+	// Subelement ThermalMass S_Qhx {
+	
+		// switchForm = "ADD_SOLVER";
+		// switchLagIn = "PHYSICAL";
+		// switchLagIn = "CONTROLCHAR";
+	
+		// Wdes = 39.85;
+		// kcDes = 9.30555e-6;
+		// muDes = 3.94e-5;
+		// ChxDes = 0.795;
+		// ChxDes = 0.467;
+		// expChx = 1;
+		
+		// Ahx = 1254.53*0.001;
+		
+		// massMat = 537.79;
+		// CpMat = 0.106045;
+		// kcMat = ;
+		// thMat = ;
+		// Tmat = 1486.319;
+		
+		// tau = 70;
+		// leadLagRatio = 0.0;
+		
+		// wtdAvg_Fl = 0.5;
+	
+	// }
+   
+}
+
+// Defining the bleed input element
+Element Bleed ATD_Bleed  {
+   Fl_O.MN = 0.30;
+   BleedInPort ATDbld; 
+}
+
+// Defining the duct element between HPT and LPT
+Element Duct Duct11  {
+   dPqPbase = 0.005;
+   Fl_O.MN = 0.30; 
+
+}
+
+// Defining the LPT element
+Element Turbine LPT  {
+   
+   // Including the file for LPT map
+   #include <LPT.map>
+
+   FlowStation FS_49;
+   Fl_O.MN = 0.35;
+
+   S_map.effDes = 0.9276;
+   S_map.parmMap = 4.890;
+   S_map.parmGeomDes  = 1.0;
+   S_map.parmMapDes = 6.3200;
+   S_map.parmNcDes = 100.0;
+
+   InterStageBleedInPort Non_ChargeableBld { 
+         Pfract  = 1.0;
+         diaPump = 0.0;
+   } 
+
+   InterStageBleedInPort ChargeableBld { 
+         Pfract  = 0.0;
+         diaPump = 0.0;
+   }
+
+   real delta_eff = 0.0; 
+
+   /*Subelement CoolIt Cool { 
+     cool1 = "Non_ChargeableBld";
+     cool2 = "ChargeableBld";
+     desBladeTemp[1] = 2060;
+     desVaneTemp[1] = 2060;
+     desBladeTemp[2] = 2060;
+     desVaneTemp[2] = 2060;
+     desBladeTemp[3] = 2060;
+     desVaneTemp[3] = 2060;
+     nStages = 3;
+     xFactor =.425; //1.55; 
+     xFactor1 =0.63; //2.99; 
+
+   }*/ 
+
+   /*void postexecute() { 
+     FS_49.copyFlow("Fl_I");
+     FS_49.add("Non_ChargeableBld");
+     Cool.run(); 
+
+     delta_eff = 0.0;
+   }*/
+
+	// Subelement ThermalMass S_Qhx {
+	
+		// switchForm = "ADD_SOLVER";
+		// switchLagIn = "PHYSICAL";
+		// switchLagIn = "CONTROLCHAR";
+	
+		// Wdes = 47.69;
+		// kcDes = 9.01851e-6;
+		// muDes = 3.18e-5;
+		// ChxDes = 0.467;
+		// ChxDes = 0.795;
+		// expChx = 1;
+		
+		// Ahx = 7831.79*0.001;
+		
+		// massMat = 619.80;
+		// CpMat = 0.106045;
+		// kcMat = ;
+		// thMat = ;
+		// Tmat = 1139.721;
+		
+		// tau = 100;
+		// leadLagRatio = 0.0;
+		
+		// wtdAvg_Fl = 0.5;
+	
+	// }
+   
+}
+
+// Defining the element between LPT and core nozzle
+Element Duct Duct13  {
+   dPqPbase = 0.010;
+   Fl_O.MN = 0.25; 
+
+}
+
+// Defining the core nozzle element
+Element LowPR_Nozzle Core_Nozz  {
+   switchType = "CONIC";
+   switchCoef = "CV";
+//   Cv = 0.9999;
+//   CdTh = 0.995;
+
+   Table DischargeCoeff( real PR ) { 
+        PR =   {1.0, 1.08, 1.25, 1.6, 2, 2.25,  2.5,   3.0,  4.0, 5.0, 7.0}
+        CdTh = {0.89, 0.907, 0.922, 0.945, 0.96, 0.966, 0.968, 0.97, 0.9725, 0.974, 0.975}
+        PR.interp = "linear";
+   }
+
+   Table VelCoeff( real PR ) { 
+       PR = {1.0,  2.1, 2.6444, 3.1889, 3.7333, 4.2778, 4.8222, 5.3667, 5.9111, 6.4556, 7.0}
+       Cv = {0.9962, 0.9952, 0.9936, 0.9886, 0.9825, 0.9757, 0.9691, 0.9631, 0.9574, 0.952, 0.947}
+     PR.interp = "linear";
+     }
+
+   Table CangScalar( real alt ) {       //scalar on Cang
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		cang = { 1, 1, 1, 1 }
+		alt.interp = "linear";
+	}
+    CangScalar.s_rtn = 1;
+	
+	Table CvScalarLowAlt( real alt ) {       //scalar on Cv at low altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		cv = { 1, 1, 1, 1 }
+		alt.interp = "linear";
+	}
+    CvScalarLowAlt.s_rtn = 1;	
+	
+	Table CvScalarHighAlt( real alt ) {       //scalar on Cv at high altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		cv = { 1, 1, 1, 1 }
+		alt.interp = "linear";
+	}
+    CvScalarHighAlt.s_rtn = 1;		
+
+   PsExhName = "Ambient.Ps"; 
+
+   void preexecute() { 
+		VelCoeff.s_rtn = 1;
+		if (Ambient.alt < 18000) {  
+		    VelCoeff.s_rtn *= CvScalarLowAlt(Ambient.alt);
+		}			
+		else {			
+		    VelCoeff.s_rtn *= CvScalarHighAlt(Ambient.alt);
+		}	
+		Cang = 0.997*CangScalar(Ambient.alt);
+		//VelCoeff.s_rtn = CvScalarLowAlt(Ambient.alt)*CvScalarHighAlt(Ambient.alt);	 // scales Cv if technology changes map 
+   }
+
+}
+
+Element FlowEnd  Core_NozzEnd  {
+}
+
+// Defining the bypass bleed out element
+Element Bleed BypBld { 
+    BleedOutPort Lkg; 
+    Lkg.fracW = 0.0050;
+    Fl_O.MN = 0.45;
+} 
+
+// Defining the duct element between the splitter and bypass nozzle    
+Element Duct Duct15  {
+   dPqPbase = 0.015;
+   Fl_O.MN = 0.45; 
+
+}
+
+// Defining the bypass nozzle element
+Element LowPR_Nozzle Byp_Nozz  {
+   switchType = "CONIC";
+   switchCoef = "CV";
+//   Cv = 0.9999;
+//   CdTh = 0.995;
+   Cang = 0.997;
+   real ADP_Ath;
+   real s_Ath = 1;
+
+   Table DischargeCoeff( real PR ) { 
+        PR =   {1.0, 1.08, 1.25, 1.6, 2, 2.25,  2.5,   3.0,  4.0, 5.0, 7.0}
+        CdTh = {0.89, 0.907, 0.922, 0.945, 0.96, 0.966, 0.968, 0.97, 0.9725, 0.974, 0.975}
+        PR.interp = "linear";
+   }
+
+   Table VelCoeff( real PR ) { 
+       PR = {1.0,  2.1, 2.6444, 3.1889, 3.7333, 4.2778, 4.8222, 5.3667, 5.9111, 6.4556, 7.0}
+       Cv = {0.9962, 0.9952, 0.9936, 0.9886, 0.9825, 0.9757, 0.9691, 0.9631, 0.9574, 0.952, 0.947}
+     PR.interp = "linear";
+     } 
+
+    Table CvScalarLowAlt( real alt ) {       //scalar on Cv at low altitudes
+        alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+        cv = { 1, 1, 1, 1 }
+        alt.interp = "linear";
+    }
+    CvScalarLowAlt.s_rtn = 1;	
+    
+    Table CvScalarHighAlt( real alt ) {       //scalar on Cv at high altitudes
+        alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+        cv = { 1, 1, 1, 1 }
+        alt.interp = "linear";
+    }
+    CvScalarHighAlt.s_rtn = 1;	
+
+   PsExhName = "Ambient.Ps"; 
+
+   void preexecute() { 
+   
+        VelCoeff.s_rtn = 1;
+        if (Ambient.alt < 18000) {  
+            VelCoeff.s_rtn *= CvScalarLowAlt(Ambient.alt);
+        }			
+        else {			
+            VelCoeff.s_rtn *= CvScalarHighAlt(Ambient.alt);
+        }	
+ 
+        AthCold = ADP_Ath*s_Ath;
+
+   } 
+}
+
+Element FlowEnd Byp_NozzEnd  {
+}
+	
+Element Shaft HP_Shaft  {
+	
+	ShaftInputPort HPC, HPT;
+
+	real HPXBase;
+	real HPInstall = 1;
+
+	HPX = 100.0;
+	Nmech=10000;
+	inertia=5.3;
+
+	Table HPXLowAlt( real alt ) {       //horsepower extraction at low altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		hpx = { 1, 1, 0, 0 }
+		alt.interp = "linear";
+	}
+	HPXLowAlt.s_rtn = 0;
+
+	Table HPXHighAlt( real alt ) {       //horsepower extraction at high altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		hpx = { 0, 0, 1, 1 }
+		alt.interp = "linear";
+	}
+	HPXHighAlt.s_rtn = 0;	
+
+	void preexecute() { 
+	 HPX = (HPXBase + HPXLowAlt(Ambient.alt) + HPXHighAlt(Ambient.alt))*HPInstall;
+	}
+
+	 real dNcqdt;
+
+	void postexecute(){
+
+		dNcqdt = HP_Shaft.dNqdt / (HPC.Fl_I.Pt / Ambient.Fl_O.Ps);
+
+	}
+   
+}
+
+Element Shaft LP_Shaft  {
+
+   ShaftInputPort FAN, LPC, LPT;
+	
+   Nmech=2450;
+   fracLoss=0.0;
+   inertia=20.5;
+   
+   real dNcqdt;
+
+	void postexecute(){
+   
+		dNcqdt = dNqdt / (LPC.Fl_I.Pt / Ambient.Fl_O.Ps);
+   
+   }
+
+}
+
+Element FlowEnd OverBrd1  {
+}
+
+
+Element FlowEnd OverBrd2  {
+}
+
+Element EngPerf Perf  {
+   real Nozzle_Atot, VjetRatio, OPR_Jon, myOPR, ThrustPct,myEPR;
+   real delta_KE, Thrml_Eff, Prop_Eff;
+   FlowStation FS_A, FS_B, PT_exit_ideal;
+   real myFn, myTSFC, myFg, myWfuelHr;
+   real theta, theta_n;
+   real exp_theta = 0.84;
+
+   void postexecute() {   
+        Nozzle_Atot = Core_Nozz.Ath + Byp_Nozz.Ath; 
+        VjetRatio = Core_Nozz.Vactual / Byp_Nozz.Vactual;
+        OPR_Jon = Fan.PR * LPC.PR * HPC.PR;				
+        myFg = (Core_Nozz.Fg + Byp_Nozz.Fg);
+        myOPR = HPC.Fl_O.Pt/Fan.Fl_I.Pt;
+        theta = Fan.Fl_I.Tt/518.67;					
+		myFn = myFg - Inlet.Fram ;
+		myWfuelHr = Burner.Wfuel*3600.0;
+		myTSFC = myWfuelHr/myFn;
+		myEPR = FS_5.Pt / FS_2.Pt;
+
+		// calculations for core thermal efficiency and propulsive efficiency
+		//
+		FS_A.copyFlow( "HPC.Fl_I" ); 
+		FS_B.copyFlow( "HPT.Fl_O" ); 
+		FS_A.setStaticPs(Ambient.Ps);  // expand to Pamb to get ideal velocity
+		FS_B.setStaticPs(Ambient.Ps);  // expand to Pamb to get ideal velocity
+		delta_KE = (0.5*FS_B.W/C_GRAVITY)*FS_B.V**2.0 - 
+				(0.5*FS_A.W/C_GRAVITY)*FS_A.V**2.0 ; 
+		Thrml_Eff = delta_KE / (Burner.Wfuel*FUEL36.LHV*C_BTUtoFT_LBF); 
+		Prop_Eff = myFn*Ambient.Fl_O.V / delta_KE; 
+
+		theta_n = theta**exp_theta;
+
+   }
+
+}
+
+//-------------------------------------------------------------------------------------------------
+// Component Linkages
+//-------------------------------------------------------------------------------------------------
+linkPorts( "Ambient.Fl_O"    , "Inlet.Fl_I"       , "FS_1"  ) ;
+linkPorts( "Inlet.Fl_O"      , "Fan.Fl_I"         , "FS_2"  ) ;
+linkPorts( "Fan.Fl_O"        , "Splitter.Fl_I"    , "FS_21" ) ;
+linkPorts( "Splitter.Fl_01"  , "Duct4.Fl_I"       , "FS_22" ) ;
+linkPorts( "Duct4.Fl_O"      , "LPC.Fl_I"         , "FS_23" ) ;
+linkPorts( "LPC.Fl_O"        , "Duct6.Fl_I"       , "FS_24" ) ;
+linkPorts( "Duct6.Fl_O"      , "HPC.Fl_I"         , "FS_25" ) ;	
+linkPorts( "HPC.Fl_O"        , "Bld3.Fl_I"        , "FS_3"  ) ;
+linkPorts( "Bld3.Fl_O"       , "Burner.Fl_I"      , "FS_36" ) ;  
+linkPorts( "FUEL36.Fu_O"     , "Burner.Fu_I"      , "FuelIn") ;
+linkPorts( "Burner.Fl_O"     , "HPT.Fl_I"         , "FS_4"  ) ;
+linkPorts( "HPT.Fl_O"        , "ATD_Bleed.Fl_I"   , "FS_45" ) ;
+linkPorts( "ATD_Bleed.Fl_O"  , "Duct11.Fl_I"      , "FS_46" ) ;
+linkPorts( "Duct11.Fl_O"     , "LPT.Fl_I"         , "FS_48" ) ;
+linkPorts( "LPT.Fl_O"        , "Duct13.Fl_I"      , "FS_5"  ) ;
+linkPorts( "Duct13.Fl_O"     , "Core_Nozz.Fl_I"   , "FS_7"  ) ;
+linkPorts( "Core_Nozz.Fl_O"  , "Core_NozzEnd.Fl_I", "FS_9"  ) ;
+
+linkPorts( "Splitter.Fl_02"  , "BypBld.Fl_I"      , "FS_13" ) ;
+linkPorts( "BypBld.Fl_O"     , "Duct15.Fl_I"      , "FS_15" ) ;
+linkPorts( "Duct15.Fl_O"     , "Byp_Nozz.Fl_I"    , "FS_17" ) ;
+linkPorts( "Byp_Nozz.Fl_O"   , "Byp_NozzEnd.Fl_I" , "FS_19" ) ;
+
+//-------------------------------------------------------------------------------------------------
+// Bleed Connections
+//-------------------------------------------------------------------------------------------------
+linkPorts( "Bld3.Cool1"      , "HPT.Non_ChargeableBld",  "C_HPTinlt" );
+linkPorts( "HPC.Cool1"       , "LPT.Non_ChargeableBld",  "C_LPTinlt" );
+linkPorts( "HPC.Cool2"       , "LPT.ChargeableBld"    ,  "C_LPTexit" );
+
+linkPorts( "HPC.CustBld"     , "OverBrd2.Fl_I"        ,  "CstmrBld"  ) ;
+linkPorts( "BypBld.Lkg"      , "OverBrd1.Fl_I"        ,  "Duct15Lk"  ) ;
+linkPorts( "HPC.ATD"         , "ATD_Bleed.ATDbld"     ,  "ATDbleed"  ) ;
+
+//-------------------------------------------------------------------------------------------------
+// Shaft Connections
+//-------------------------------------------------------------------------------------------------
+linkPorts( "HPC.Sh_O"  , "HP_Shaft.HPC" ,  "HPCworkin"   ) ;
+linkPorts( "HPT.Sh_O"  , "HP_Shaft.HPT" ,  "HPTworkout"  ) ;
+linkPorts( "Fan.Sh_O"  , "LP_Shaft.FAN" ,  "FANworkin"   ) ;
+linkPorts( "LPC.Sh_O"  , "LP_Shaft.LPC" ,  "LPCworkin"   ) ;
+linkPorts( "LPT.Sh_O"  , "LP_Shaft.LPT" ,  "LPTworkout"  ) ;
+
+// Linear model generator
+LinearModelGenerator lin_mod {
+
+	// Declaring model variables for the input and output variables
+	inputVars = {"Burner.Wfuel"}
+	outputVars = {"LP_Shaft.Nmech", "HP_Shaft.Nmech", "FS_3.Ps", "FS_5.Pt", "FS_5.Tt", "HPC.Nc", "Perf.myEPR", "Burner.FAR", "FS_25.Tt", "FS_2.Tt", "FS_2.Pt"}
+
+	// Adding the states to the linear model
+	addState("LP_Shaft.Nmech", "LP_Shaft.dNqdt", 0.005, "FRACTIONAL", 0.0);
+	addState("HP_Shaft.Nmech", "HP_Shaft.dNqdt", 0.005, "FRACTIONAL", 0.0);
+	
+	// Setting the perturbation percentage for fuel flow rate
+	setPerturb("Burner.Wfuel", 0.005);
+	
+	// Default perturbation percentage for all of the variables 
+	defaultPerturbation = 0.005;
+	
+	// Setting the repeatablility test flag
+	repeatabilityCheck = TRUE;
+	
+}

@@ -1,0 +1,116 @@
+// This is the case file for creating setpoint values 
+// throughout the entire flight envelope
+
+setOption( "switchGuess", "ON" );
+setOption( "switchGuessType", "PC" );
+
+//-------------------------------------------------------------------------------------------------
+// Power Management Runs
+//-------------------------------------------------------------------------------------------------
+cout << "PC \t P2 (psia) \t Fn (lbf) \t Wf (lbm/s) \t Nf (RPM) \t Nc (RPM) \t EPR \t NcR25 (RPM) \t Ps30 (psia) \t FAR" <<endl;
+
+//----------------------------------------------------------------------------------
+// Maximum thrust at SLS
+//----------------------------------------------------------------------------------
+Ambient.alt = 0.0;
+Ambient.MN = 0.0;
+Ambient.dTs = 0.0;
+
+PC = 50;
+RunMaxPower();
+
+cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+
+//----------------------------------------------------------------------------------
+// Idle at SLS
+//----------------------------------------------------------------------------------
+PC = 21;
+RunIdle();
+
+cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+
+//----------------------------------------------------------------------------------
+// Maximum power at SL, MN = 0.25, and dTs = 50 F
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.25;
+Ambient.dTs = 50.0;
+
+PC = 50;
+RunMaxPower();
+
+cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+
+//----------------------------------------------------------------------------------
+// Idle at SL, MN = 0.25, and dTs = 50 F
+//----------------------------------------------------------------------------------
+PC = 21;
+RunIdle();
+
+cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+
+//----------------------------------------------------------------------------------
+// Maximum power at 15,000 ft and Mach number 0.4
+//----------------------------------------------------------------------------------
+Ambient.alt = 15000;
+Ambient.MN = 0.40;
+Ambient.dTs = 0.0;
+
+PC = 50;
+RunMaxPower();
+
+cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+
+//----------------------------------------------------------------------------------
+// Idle at 15,000 ft and Mach number 0.4
+//----------------------------------------------------------------------------------
+PC = 21;
+RunIdle();
+
+cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+
+//----------------------------------------------------------------------------------
+// Maximum power at 20,000 ft and Mach number 0.60
+//----------------------------------------------------------------------------------
+Ambient.alt = 20000;
+Ambient.MN = 0.6;
+
+PC = 50;
+RunMaxPower();
+
+cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+
+//----------------------------------------------------------------------------------
+// Idle at 20,000 ft and Mach number 0.60
+//----------------------------------------------------------------------------------
+PC = 21;
+RunIdle();
+
+cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+
+//----------------------------------------------------------------------------------
+// Maximum power at 40,000 ft and Mach number 0.80
+//----------------------------------------------------------------------------------
+Ambient.alt = 40000;
+Ambient.MN = 0.8;
+
+PC = 50;
+RunMaxPower();
+
+cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+
+//----------------------------------------------------------------------------------
+// Idle at 40,000 ft and Mach number 0.80
+//----------------------------------------------------------------------------------
+PC = 21;
+RunIdle();
+
+cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+
+// Returning back to SLS maximum thrust condition
+setOption( "switchGuess", "ON" );
+setOption( "switchGuessType", "PC" );
+PC = 50;
+Ambient.alt = 0.0;
+Ambient.MN = 0.0;
+Ambient.dTs = 0.0;
+RunMaxPower();

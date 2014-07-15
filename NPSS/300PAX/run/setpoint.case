@@ -1,0 +1,32 @@
+// This is the case file for creating Matlab formatted setpoint values
+// at a flight condition 
+
+// Input the flight condition where you want to create the Matlab
+// formatted setpoint output
+Ambient.alt = 0.00;
+Ambient.MN = 0.00;
+Ambient.dTs = 0.00;
+
+// Set the guess logic as you want
+setOption( "switchGuess", "ON" );
+setOption( "switchGuessType", "PC" );
+PC = 50;
+RunMaxPower();
+
+// Setpoint function which creates the Matlab formatted output 
+SetPoint();
+
+if(solver.converged == 1 && errHandler.numErrors == 0) {
+
+	cout << "\nSet point generation at altitude" << Ambient.alt << " ft, " << "MN = " << Ambient.MN << ", and dTs = " << Ambient.dTs << " degF is successful!" << endl;
+
+}
+
+// Returning back to SLS maximum thrust condition
+setOption( "switchGuess", "ON" );
+setOption( "switchGuessType", "PC" );
+PC = 50;
+Ambient.alt = 0.0;
+Ambient.MN = 0.0;
+Ambient.dTs = 0.0;
+RunMaxPower();

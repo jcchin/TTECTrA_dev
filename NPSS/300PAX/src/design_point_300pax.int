@@ -1,0 +1,171 @@
+//-------------------------------------------------------------------------------------------------
+//                                                                                              						   |
+//  This file overwrites the design settings in the model file with the correct	   |
+// design values.																								   |
+//                                                                                              						   |
+//  Please do not change the values in this file for consistency in results.		   |
+//                                                                                              						   |
+//-------------------------------------------------------------------------------------------------
+
+// Design mass flow rate
+Ambient.W   		           = 1243.941821;
+
+// Inlet design variable values
+Inlet.eRamBase 		           = 0.9990200007;
+Inlet.Fl_O.Aphy    	           = 10824.55728;
+
+// Fan design variable values
+Fan.NcDes   		           = 2647.339461;
+Fan.S_map.NcDes		           = 1;
+Fan.S_map.WcDes		           = 3213.683266;
+Fan.S_map.ReDes		           = 388967;
+Fan.Fl_O.Aphy      	           = 9680.39011;
+Fan.S_map.s_effDes 	           = 0.9999824484;
+Fan.S_map.s_NcDes  	           = 0.0003777377306;
+Fan.S_map.s_PRdes  	           = 1;
+Fan.S_map.s_WcDes  	           = 0.986094896;
+
+// Splitter design variable values
+Splitter.Fl_01.Aphy	           = 1234.265211;
+Splitter.Fl_02.Aphy	           = 8446.124899;
+
+// Duct 4 (duct between the splitter and LPC) design variable values
+Duct4.Fl_O.Aphy    	           = 1234.265211;
+
+// LPC design variable values
+LPC.NcDes                      = 2466.64;
+LPC.S_map.NcDes  	           = 1;
+LPC.S_map.WcDes   	           = 225.4873971;
+LPC.S_map.ReDes   	           = 388967;
+LPC.Fl_O.Aphy      	           = 920.3718194;
+LPC.S_map.s_effDes 	           = 1.000013335;
+LPC.S_map.s_NcDes  	           = 0.0004060045447;
+LPC.S_map.s_PRdes  	           = 0.999923136;
+LPC.S_map.s_WcDes  	           = 0.9395308211;
+
+// Duct 6 (duct between LPC and HPC) design variable values
+Duct6.Fl_O.Aphy    	           = 858.8227793;
+
+// HPC design variable values
+HPC.NcDes                      = 9689.7;
+HPC.S_map.NcDes  	           = 0.966216;
+HPC.S_map.WcDes   	           = 187.0873856;
+HPC.S_map.ReDes   	           = 311926;
+HPC.Fl_O.Aphy      	           = 93.01308347;
+HPC.S_map.s_effDes 	           = 0.9999336938;
+HPC.S_map.s_NcDes  	           = 9.628995768e-005;
+HPC.S_map.s_PRdes  	           = 1.000108119;
+HPC.S_map.s_WcDes  	           = 1.201378556;
+HPC.Cool1.fracBldW 	           = 0.03615607486;
+HPC.Cool2.fracBldW 	           = 0.0179421706;
+HPC.BleedFlow		           = 3.93;
+
+// Bleed from the HPC design variable values
+Bld3.Fl_O.Aphy     	           = 67.35614134;
+Bld3.Cool1.fracW   	           = 0.1245132214;
+Bld3.Cool2.fracW   	           = 0.04021390334;
+
+// Burner design variable values
+Burner.Fl_O.Aphy   	           = 337.3581899;
+Burner.effBase		           = 0.997;
+
+// HPT design variable values
+HPT.Fl_O.Aphy      	           = 445.9958668;
+HPT.S_map.PtMap		           = 197.8952949;
+HPT.S_map.s_eff    	           = 0.9918929062;
+HPT.S_map.s_Np     	           = 0.02349635912;
+HPT.S_map.s_dPqP   	           = 1.125701678;
+HPT.S_map.s_Wp     	           = 0.5760100858;
+
+// Bleed from HPC design variable values
+ATD_Bleed.Fl_O.Aphy	           = 445.9958668;
+
+// Duct 11 (duct between HPT and LPT) design variable values
+Duct11.Fl_O.Aphy   	           = 684.9709246;
+
+// LPT design variable values
+LPT.Fl_O.Aphy      	           = 2303.823484;
+LPT.S_map.PtMap		           = 44.79846496;
+LPT.S_map.s_eff    	           = 1.00523641;
+LPT.S_map.s_Np     	           = 0.07913119313;
+LPT.S_map.s_dPqP   	           = 0.9175861021;
+LPT.S_map.s_Wp     	           = 0.503401211;
+
+// Duct 13 (duct between LPT and core nozzle) design variable values
+Duct13.Fl_O.Aphy   	           = 2188.63231;
+
+// Core nozzle design variable values
+Core_Nozz.AthCold  	           = 1171.2556;
+Core_Nozz.DischargeCoeff.a_rtn = -0.21899475;
+Core_Nozz.DischargeCoeff.s_rtn = 1.22461;
+
+// Bypass after splitter design variable values
+BypBld.Fl_O.Aphy   	           = 8446.124899;
+
+// Duct 15 (duct between splitter and bypass nozzle) design variable values
+Duct15.Fl_O.Aphy   	           = 8446.124899;
+
+// Bypass nozzle design variable values
+Byp_Nozz.AthCold   	           = 5984.566306;
+Byp_Nozz.DischargeCoeff.a_rtn  = -0.20475;
+Byp_Nozz.DischargeCoeff.s_rtn  = 1.21;
+
+// High pressure shaft design variable values
+HP_Shaft.HPX                   = 250;
+
+// real Rating		           = 1;
+
+// real PNT1_MN   		       = 0.8;
+// real PNT1_Alt  		       = 35000;
+// real PNT1_dTs  		       = 0;
+// real PNT2_MN   		       = 0.85;
+// real PNT2_Alt  		       = 35000;
+// real PNT2_dTs  		       = 0;
+// real PNT3_MN   		       = 0.25;
+// real PNT3_Alt  		       = 0;
+// real PNT3_dTs  		       = 27;
+// real PNT4_MN   		       = 0;
+// real PNT4_Alt  		       = 0;
+// real PNT4_dTs  		       = 27;
+// real Flat_dTs  		       = 27;
+
+// Max_T4.eq_rhs		       = "3450";
+// con_maxcontinousT4.eq_rhs   = "3279";
+// con_maxTOthrust.eq_rhs      = "97300";
+// con_T4SLS.eq_rhs            = "3450";
+// real tempT4margin           = -171;
+// real tempMCTT4              = -171;
+
+// Inlet.S_install.Acapture    = 12612.12982;
+
+// real Fan_NcDes2   	       = 1.081460343;
+// real Fan_NcDes3   	       = 1.014025659;
+// real Fan_NcDes4   	       = 1.009557878;
+// Fan.S_map.RNI_des	       = 0.4376700857;
+
+// Duct4.dPqP_dmd		       = 0.0102;
+
+// LPC.S_map.RNI_des	       = 0.5678646292;
+
+// Duct6.dPqP_dmd		       = 0.008299;
+
+// HPC.S_map.RNI_des	       = 0.6471863612;
+
+// Burner.dPqP_dmd		       = 0.039872;
+// Burner.Emissions.PCT_NOx    = 0;
+
+// HPT.S_map.RNImap	           = 2.056063466;
+// HPT.S_map.TtMap		       = 2863.46759;
+// HPT.Cool.xFactor	           = 0.40954;
+// HPT.Cool.xFactor1	       = 1.8651;
+
+// Duct11.dPqP_dmd		       = 0.009459;
+
+// LPT.S_map.RNImap	           = 0.7104525562;
+// LPT.S_map.TtMap		       = 1949.479739;
+// LPT.Cool.xFactor	           = 0.8838;
+// LPT.Cool.xFactor1	       = 1.43;
+
+// Duct13.dPqP_dmd		       = 0.007858;
+
+// Duct15.dPqP_dmd		       = 0.018;

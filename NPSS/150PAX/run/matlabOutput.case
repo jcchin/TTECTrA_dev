@@ -1,0 +1,71 @@
+// Creating the output file stream for Matlab formatted output
+OutFileStream MatlabLimitReport {
+	filename = "TTECTrA_Default_TransLimiter.m";
+	append = FALSE;
+}
+
+// Printing the title in the Matlab output file
+MatlabLimitReport << "%---------------------------------------------------------" << endl;
+MatlabLimitReport << "% Transient Limiter Set up" << endl;
+MatlabLimitReport << "%---------------------------------------------------------" << endl;
+
+// Number of points in the acceleration schedule vectors - default: 10
+real NcPct[10], dNcqdt[10]; 
+
+real i;
+
+int j=0;
+
+// Reading the acceleration schedule values from the table
+for(i=90.0; i<102.0; i=i+(101.0-90.0)/(NcPct.entries()-1)){
+
+	NcPct[j]=i;
+	dNcqdt[j]=accelSchedule(i);
+	
+	j = j+1;
+
+}
+
+// Printing the NcR25 vector to the output file for the acceleration schedule
+MatlabLimitReport << "ttectra_in.Limiter.NcR25_sched=[";
+
+for(j=0;j<=NcPct.entries()-1;j=j+1){
+		
+		if(j < NcPct.entries()-1){
+		
+			MatlabLimitReport << NcPct[j] << " ";
+		
+		}
+	
+		if(j == NcPct.entries()-1){
+		
+			MatlabLimitReport << NcPct[j] << "];" << endl;
+			
+		}
+	
+}
+
+// Printing the Ncdot vector to the output file for the acceleration schedule
+MatlabLimitReport << "ttectra_in.Limiter.Ncdot_sched=[";
+
+for(j=0;j<=dNcqdt.entries()-1;j=j+1){
+		
+		if(j < dNcqdt.entries()-1){
+		
+			MatlabLimitReport << dNcqdt[j] << " ";
+		
+		}
+	
+		if(j == dNcqdt.entries()-1){
+		
+			MatlabLimitReport << dNcqdt[j] << "];" << endl;
+			
+		}
+	
+}
+
+// Running the minimum limit case file to get the minimum RU limit 
+#include <minLimit.case>
+
+// Printing the minimum RU limit to the output file
+MatlabLimitReport << "ttectra_in.Limiter.WfPs3min = " << min_RU_limit << ";" << endl;

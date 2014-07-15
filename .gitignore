@@ -1,0 +1,9 @@
+*.DS_Store
+*.mat
+*.out
+linearModels.m
+*.asv
+*.viewOut
+150PAX_Sfunction.config
+300PAX_Sfunction.config
+CMAPSS40K_Sfunction.config
