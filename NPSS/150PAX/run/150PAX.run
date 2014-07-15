@@ -1,33 +1,38 @@
 //-------------------------------------------------------------------------------------------------
-//                                                                       												   |
-//   File Name:    150PAX.run                                 					        				   |
-//   Date(s):       May 1, 2014           																   |
-//   Author:        Metin F. Ozcan                                       									   |
-//                                                                       												   |
-//   Description:   File to run 150 PAX high BPR SFTF model     						   |
-//                                                                       												   |
+//                                                                       						  |
+//   File Name:    150PAX.run                                 					        		  |
+//   Date(s):      May 28, 2014           														  |
+//   Author:       Metin F. Ozcan																  |
+//   Modified by:  Jeffrey C. Chin                                       						  |
+//                                                                       					      |
+//   Description:   File to run 150 PAX high BPR SFTF model     						          |
+//                                                                       						  |
 //-------------------------------------------------------------------------------------------------
-
-// Defining the thermodynamics package
-setThermoPackage("GasTbl");
 
 //-------------------------------------------------------------------------------------------------
 //                            Model Definition 
 //-------------------------------------------------------------------------------------------------
 MODELNAME = "150 PAX High BPR SFTF Model"; 
-AUTHOR = "Metin F. Ozcan"; 
+AUTHOR = "Metin F. Ozcan";
+
+// Defining the thermodynamics package
+setThermoPackage("GasTbl");
+
+//Defining output routes
+#include <output_paths.fnc>
+set_output(); // view/output_paths.fnc
 
 // Including the model and model design point
 #include <High_BPR_150pax.mdl>
 #include <design_point_150pax.int>
 
-// Including view out file and print pride function
+// Including view out files
 #include <npss.page.view>
 #include <print_macros.fnc>
 
 // Including necessary custom functions
-#include <output_setup.fnc>
 #include <solver_setup.fnc>
+#include <output_setup.fnc>
 #include <independents_dependents_constraints.fnc>
 #include <transientDriver.fnc>
 #include <accelSchedule.fnc>
@@ -59,10 +64,6 @@ setOption( "switchGuessType", "FanNcPct" );
 
 // Running the steady state case
 RunMaxPower();
-// page.display();
-// CaseView_SS.update();
-// CaseView_SS.display();
-// printPride();
 
 // The case file for cycle maximum limits
 #ifdef MAXLIMITSCHEDULE

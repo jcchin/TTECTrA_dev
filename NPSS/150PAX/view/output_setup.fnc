@@ -1,6 +1,6 @@
 // Creating steady state output stream
 OutFileStream caseRow_SS {
-filename = "steadystateRuns.out";
+    filename = OutputPath + "steadystateRuns.out";
 }
 
 // Declaring the type of the output stream for steady state operation
@@ -11,7 +11,7 @@ showHeaders = 0;
 
 // Creating transient output stream
 OutFileStream caseRow {
-filename = "transientRuns.out";
+filename = OutputPath +"transientRuns.out";
 }
 
 // Declaring the type of the output stream for transient operation
@@ -909,23 +909,3 @@ else if(!Fan.S_Qhx.isEmpty() || !LPC.S_Qhx.isEmpty() || !HPC.S_Qhx.isEmpty() || 
 
 }
 
-// Creating the setpoint output file stream
-OutFileStream MatlabSetpointsReport {
-	filename = "setpoints.m";
-	append = FALSE;
-}
-
-// Printing the title for the setpoint output file 
-void setpoint_output_setup(){
-
-	MatlabSetpointsReport << "output = [];" << endl;
-
-}
-
-// This function creates the output for a setpoint in Matlab format 
-void setpoint_output() {
-		
-		MatlabSetpointsReport << "a.('Fn')=" << Perf.myFn << ";" << "a.('Wf')=" << Burner.Wfuel << ";" << "a.('Nf')=" << LP_Shaft.Nmech << ";" << "a.('Nc')=" << HP_Shaft.Nmech << ";" << "a.('EPR')=" << Perf.myEPR << ";" << "a.('NCR25')=" << HPC.Nc << ";" << "a.('Ps30')=" << FS_3.Ps << ";" << "a.('FAR')=" << Burner.FAR << ";" << endl;
-		MatlabSetpointsReport << "output = [output a]; clear a;" << endl;
-		
-}

@@ -9,16 +9,11 @@ real T4Target, T41Target;
 // Function for setting up the solver for steady state
 void SS_Setup(){
 
-	// Turning on the guess logic
-	setOption( "switchGuess", "ON" );
+    solver.clear();
 
 	// Switching to off-design mode
 	setOption( "switchDes", "OFFDESIGN" );
 	setOption( "solutionMode", "STEADY_STATE" );
-	
-	// Switching heat soak effects for steady state - remember to comment out if you are not modelling them
-	// HPT.S_Qhx.switchForm = "STEP";
-	// LPT.S_Qhx.switchForm = "STEP";
 	
 	// Switching the burner input to fuel to air ratio
     Burner.switchBurn = "FAR";
@@ -26,10 +21,14 @@ void SS_Setup(){
 	// Automatically setting up the solver
     autoSolverSetup();
 	
-	// Adding fuel-air ratio and the steady state power code to the solver
-    // solver.addIndependent("FAR");
-    // solver.addDependent("Run_Condition");
-	
+}
+
+void SP_Setup(){
+    solver.removeIndependent("FAR");
+    solver.removeDependent("Run_Condition");
+
+    solver.addIndependent("FAR");
+    solver.addDependent("Run_Condition_jtc");
 }
 
 // This function sets up the solver for transient operation
@@ -38,55 +37,12 @@ void transient_setup() {
 	// Switching burner input variable to fuel flow rate
     Burner.switchBurn = "FUEL";
 	
-	// Switches which add metal temperatures to the solver if they are being modelled
-	// HPT.S_Qhx.switchForm = "ADD_SOLVER";
-	// LPT.S_Qhx.switchForm = "ADD_SOLVER";
-	
 	// Automatically setting up the solver
     autoSolverSetup();
 	
-	// Transient constraints - experiment with different constraints
-	// trans_Condition.addConstraint("Wfuel_Min_Limit","MIN",1,1);
-	// trans_Condition.addConstraint("Wfuel_Max_Limit","MAX",1,1);
-	
-	// trans_Condition.addConstraint("Fan_SMN_Limit","MAX",1,-1);
-    // trans_Condition.addConstraint("Fan_SMW_Limit","MAX",1,-1);
-	// trans_Condition.addConstraint("Fan_Rline_Min_Limit","MAX",1,1);
-	// trans_Condition.addConstraint("Fan_Rline_Max_Limit","MAX",1,1);
-	
-	// trans_Condition.addConstraint("LPC_SMN_Limit","MAX",3,-1);
-    // trans_Condition.addConstraint("LPC_SMW_Limit","MIN", 1, 1);
-	// trans_Condition.addConstraint("LPC_Rline_Min_Limit","MAX",1,1);
-	// trans_Condition.addConstraint("LPC_Rline_Max_Limit","MAX",1,1);
-	
-	// trans_Condition.addConstraint("HPC_SMN_Limit","MAX",1,-1);
-    // trans_Condition.addConstraint("HPC_SMW_Limit","MIN",1,1);
-	// trans_Condition.addConstraint("HPC_Rline_Min_Limit","MAX",1,1);
-	// trans_Condition.addConstraint("HPC_Rline_Max_Limit","MAX",1,1);
-	
-    // trans_Condition.addConstraint("Tt3_Max_Limit","MAX");
-    // trans_Condition.addConstraint("Tt4_Max_Limit","MAX");
-
-	// trans_Condition.addConstraint("Min_FAR","MIN",1,1);
-	// trans_Condition.addConstraint("Stoich_Limit","MAX");
-	
-	// trans_Condition.addConstraint("HPT_parm_Min_Limit","MIN",4,1); 
-	// trans_Condition.addConstraint("HPT_parm_Max_Limit","MIN",1,-1);
-	
-	// trans_Condition.addConstraint("LPT_parm_Min_Limit","MIN",4,1); 
-	// trans_Condition.addConstraint("LPT_parm_Max_Limit","MIN",1,-1);
-	
-    // trans_Condition.addConstraint("Core_Nozzle_Min_PR_Limit","MAX",3,-1);
-    // trans_Condition.addConstraint("Bypass_Nozzle_Min_PR_Limit","MAX",2,-1);
-	
-	// trans_Condition.addConstraint("HP_Shaft_Acceleration_Limit","MAX",1,1);
-	// trans_Condition.addConstraint("HP_Shaft_Deceleration_Limit","MIN",1,1);
-	// trans_Condition.addConstraint("LP_Shaft_Acceleration_Limit","MAX",1,1);
-	// trans_Condition.addConstraint("LP_Shaft_Deceleration_Limit","MIN",1,1);
-    
-	// trans_Condition.useConstraints = TRUE;
-	
-    // solver.resolveMinMaxConflict = "MIN";
+    // Adding transient demand variable to the solver
+    //solver.addDependent("trans_Condition2");
+    //solver.addIndependent("trans_indep2");
 
 	// Turning on the guess logic for the initialization run
 	setOption( "switchGuess", "ON" );
@@ -96,20 +52,11 @@ void transient_setup() {
 	setOption( "switchGuessType", "FanNcPct" );
 	FanNcPct = transientDriver(0);
 	
-	// setOption( "switchGuessType", "LPCNcPct" );
-	// LPCNcPct = transientDriver(0);
-	
-	// setOption( "switchGuessType", "LPCNcPct" );
-	// LPCNcPct = transientDriver(0);
-	
 	// setOption( "switchGuessType", "Wfuel" );    
 	
 	// solver.forceNewJacobian = TRUE;
 	time = 0.;
 	run();
-	// page.display();
-	// CaseView_SS.display();
-	// CaseView.display();
 	
 	// Adding transient demand variable to the solver
     solver.addIndependent("trans_indep"); 
@@ -136,56 +83,16 @@ void transient_setup() {
 
 	}
 	
-	// printPride();
-	
 	// Turning off the guess logic
 	setOption( "switchGuess", "OFF" );
 	
 	setOption( "solutionMode", "TRANSIENT" );
 	
     transient.integrationType = "GEAR_2ND_ORDER";
-		
-	// solver.firstNewJacobian = "CALCULATE";
-	
-	// transient.toleranceScaleFactor=10.0;
 	
 	initializeHistory();
 
     transient.baseTimeStep = 0.015;
-    
-    // cout << "Independents are as follows. \n" << endl;
-    // cout << solver.list("Independent", FALSE) << endl;
-
-    // cout << "Dependents are as follows. \n" << endl;
-    // cout << solver.list("Dependent", FALSE) << endl;
-
-	// Solver independent settings - for experimentation
-    // Ambient.ind_W.dxLimitType = "ABSOLUTE";
-    // Splitter.ind_BPR.dxLimitType = "ABSOLUTE";
-    // Fan.S_map.ind_RlineMap.dxLimitType = "ABSOLUTE";
-    // HPC.S_map.ind_RlineMap.dxLimitType = "ABSOLUTE";
-    // LPC.S_map.ind_RlineMap.dxLimitType = "ABSOLUTE";
-    // HPT.S_map.ind_parmMap.dxLimitType = "ABSOLUTE";
-	// HPT.S_Qhx.ind_Tmat.dxLimitType = "ABSOLUTE";
-    // LPT.S_map.ind_parmMap.dxLimitType = "ABSOLUTE";
-	// LPT.S_Qhx.ind_Tmat.dxLimitType = "ABSOLUTE";
-    // HP_Shaft.ind_Nmech.dxLimitType = "ABSOLUTE";
-    // LP_Shaft.ind_Nmech.dxLimitType = "ABSOLUTE";
-	// trans_indep.dxLimitType = "ABSOLUTE";
-
-	// Solver independent settings - for experimentation	
-    // Ambient.ind_W.dxLimit = 750.0;
-    // Splitter.ind_BPR.dxLimit = 3.0;
-    // Fan.S_map.ind_RlineMap.dxLimit = 1.0;
-    // HPC.S_map.ind_RlineMap.dxLimit = 0.5;
-    // LPC.S_map.ind_RlineMap.dxLimit = 0.5;
-    // HPT.S_map.ind_parmMap.dxLimit = 0.1;
-	// HPT.S_Qhx.ind_Tmat.dxLimit = 200;
-    // LPT.S_map.ind_parmMap.dxLimit = 0.1;
-	// LPT.S_Qhx.ind_Tmat.dxLimit = 200;
-    // HP_Shaft.ind_Nmech.dxLimit = 1500;
-    // LP_Shaft.ind_Nmech.dxLimit = 1500;
-    // trans_indep.dxLimit = 0.1;
     
 }
 
@@ -287,77 +194,26 @@ void RunIdle(){
 
 }
 
-// This function runs a power hook at a given flight condition and 
-// outputs the results as set points in Matlab format
-void SetPoint() {
+// This function runs a steady state case at the point it is called in the code
+// and this is particularly useful for running the guess logic points
+// without using the part power function. If the part power function is used, the percent
+// thrust setting must be matched with the used guess logic setting to have the solver
+// converge on the required steady state point. The matching is unnecessary with this
+// function.
+void run_current_point() {
 
-	setpoint_output_setup();
-	
-	//----------------------------------------------------------------------------------
-	// Maximum power
-	//----------------------------------------------------------------------------------
-	RunMaxPower();
-	
-	setpoint_output();
-	
-	//----------------------------------------------------------------------------------
-	// Decreasing percent thrust
-	//----------------------------------------------------------------------------------
-	RunPartPower(90);
-	
-	setpoint_output();
+ // Switching the solver to steady state
+ setOption( "switchDes", "OFFDESIGN" );
+ setOption( "solutionMode", "STEADY_STATE" );
 
-	RunPartPower(80);
+ // Switching the burner independent to FAR
+ Burner.switchBurn = "FAR";
 
-	setpoint_output();
-	
-	RunPartPower(70);
+ // Setting up the solver
+ autoSolverSetup();
 
-	setpoint_output();
-	
-	RunPartPower(60);
-
-	setpoint_output();
-	
-	RunPartPower(50);
-
-	setpoint_output();
-	
-	RunPartPower(40);
-	
-	setpoint_output();
-
-	RunPartPower(30);
-	
-	setpoint_output();
-
-	//----------------------------------------------------------------------------------
-	// Minimum power
-	//----------------------------------------------------------------------------------
-	RunIdle();
-	
-	setpoint_output();
-	
-	//----------------------------------------------------------------------------------
-	// Increasing percent thrust
-	//----------------------------------------------------------------------------------
-	RunPartPower(30);
-	
-	RunPartPower(40);
-	
-	RunPartPower(50);
-	
-	RunPartPower(60);
-	
-	RunPartPower(70);
-	
-	RunPartPower(80);
-	
-	RunPartPower(90);
-	
-	//----------------------------------------------------------------------------------
-	// Running to max power
-	//----------------------------------------------------------------------------------
-	RunMaxPower();
+ // Running the model
+ run();
 
 }
+

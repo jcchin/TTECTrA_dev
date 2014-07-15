@@ -1,6 +1,6 @@
 // Creating the output file stream for Matlab formatted output
 OutFileStream MatlabLimitReport {
-	filename = "TTECTrA_Default_TransLimiter.m";
+	filename = OutputPath + "TTECTrA_Default_TransLimiter.m";
 	append = FALSE;
 }
 

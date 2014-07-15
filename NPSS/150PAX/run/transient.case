@@ -7,6 +7,25 @@ solver.maxIterations = 500;
 solver.maxJacobians = 250;
 solver.maxConvergeFailures = 250;
 
+// Turning off the guess logic
+setOption( "switchGuess", "OFF" );
+
+// Inputting the flight condition
+//Ambient.alt = 30000.0;
+//Ambient.MN = 0.8;
+//Ambient.dTs = 0.0;
+
+// Switching the guess logic type to PC
+//setOption( "switchGuessType", "PC" );
+
+// Inputting the power setting 
+//PC = 35;
+
+// Running the model
+//run();
+
+setOption( "switchGuessType", "Wfuel" );
+
 // Setting the fuel flow rate as the independent for the burner
 Burner.switchBurn = "FUEL";
 
@@ -26,7 +45,7 @@ transient.integrationType = "GEAR_2ND_ORDER";
 initializeHistory();
 
 // Setting up the transient simulation time step
-transient.baseTimeStep = 0.015;
+transient.baseTimeStep = 0.02;
 
 // Running the model in transient mode
 run();

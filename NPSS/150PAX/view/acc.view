@@ -1,0 +1,8 @@
+void accel_disp(){
+    AccPt << "a.('t')=" << time << ";a.('Fn')=" << Perf.myFn << ";a.('Wf')=" << Burner.Wfuel << ";a.('Nf')=" <<  LP_Shaft.Nmech << ";a.('Nc')=" << HP_Shaft.Nmech << ";a.('EPR')=" << Perf.myEPR << ";a.('NCR25')=" << HP_Shaft.Nmech/(HPC.Fl_I.Tt/518.67)**0.5 << ";" << endl;
+    AccPt << "output = [output a];" << endl;
+}
+
+void accel_disp_final(){
+	AccPt << "figure(); \nsubplot(2,1,1); \nplot([output.t]',[output.Wf]') \nsubplot(2,1,2); \nplot([output.t]',[output.Fn]')"  << endl;
+}

@@ -5,14 +5,14 @@ IF EXIST Z:\Documents\2014\RHC\GT_sfun\NPSS.nt.sfunction2\ (
     set NPSS_TOP=Z:\Documents\2014\RHC\GT_sfun\NPSS.nt.sfunction2\
 )
 
-IF EXIST C:\SIMULATIONS\DSA_NPSS\NPSS.nt.sfunction2\ (
+IF EXIST C:\PROJECTS\DSA\Simulations\DSA_NPSS\NPSS.nt.sfunction2\ (
     REM Run file for Jeffrey Csank
-    set NPSS_TOP=C:\SIMULATIONS\DSA_NPSS\NPSS.nt.sfunction2\
+    set NPSS_TOP=C:\PROJECTS\DSA\Simulations\DSA_NPSS\NPSS.nt.sfunction2\
 )
 
-IF EXIST C:\NPSS\ (
+IF EXIST C:\AZfiles\git\nsfcn\NPSS.nt.sfunction2\ (
     REM Run file for Alicia Zinnecker
-    set NPSS_TOP=C:\NPSS\
+    set NPSS_TOP=C:\AZfiles\git\nsfcn\NPSS.nt.sfunction2\
 )
 
 set NPSS_CONFIG=nt

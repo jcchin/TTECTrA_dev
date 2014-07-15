@@ -1,8 +1,8 @@
 //-------------------------------------------------------------------------------------------------
 //                                                                       												   |
 //   File Name:     High_BPR_150pax.mdl                                  						   |
-//   Date(s):       May 08, 2014                                        									   |
-//   Author:        Metin F. Ozcan                                       									   |
+//   Date(s):       May 20, 2014                                        									   |
+//   Author:        Metin F. Ozcan modified by Jeff Chin                                      									   |
 //                                                                       												   |
 //   Description:   Separate Flow High BPR Turbofan Engine for 150 PAX   		   |
 //                                                                       												   |
@@ -11,7 +11,7 @@
 // The design variables are overwritten in the design_point_150pax.int file. 
 // You can change the design variables in the 150PAX.run file after 
 // including the design_point_150pax.int file in the run file.
-
+#include <transientDriver.fnc>
 //-------------------------------------------------------------------------------------------------
 // Model Definition 
 //-------------------------------------------------------------------------------------------------
@@ -197,7 +197,9 @@ Element Burner Burner  {
 		// tau = 100;
 		// expChx = 1;
 		// wtdAvg_Fl = 0.5;
-	
+   void preexecute() { 
+	   //Burner.Wfuel = transientDriver2(time);
+   }
 	// }
    
 }
@@ -580,6 +582,8 @@ Element EngPerf Perf  {
    real myFn, myTSFC, myFg, myWfuelHr;
    real theta, theta_n;
    real exp_theta = 0.84;
+   real WfuelTarget;
+   real NcR25;
 
    void postexecute() {   
         Nozzle_Atot = Core_Nozz.Ath + Byp_Nozz.Ath; 
@@ -592,6 +596,7 @@ Element EngPerf Perf  {
 		myWfuelHr = Burner.Wfuel*3600.0;
 		myTSFC = myWfuelHr/myFn;
 		myEPR = FS_5.Pt / FS_2.Pt;
+    NcR25 = HP_Shaft.Nmech/(HPC.Fl_I.Tt/518.67)**0.5;
 
 		// calculations for core thermal efficiency and propulsive efficiency
 		//
@@ -661,7 +666,12 @@ LinearModelGenerator lin_mod {
 
 	// Declaring model variables for the input and output variables
 	inputVars = {"Burner.Wfuel"}
-	outputVars = {"LP_Shaft.Nmech", "HP_Shaft.Nmech", "FS_3.Ps", "FS_5.Pt", "FS_5.Tt", "HPC.Nc", "Perf.myEPR", "Burner.FAR", "FS_25.Tt", "FS_2.Tt", "FS_2.Pt"}
+  //outputVars = {"LP_Shaft.Nmech","HP_Shaft.Nmech","Perf.myFn","FS_3.Ps", "FS_5.Pt", "FS_5.Tt", "Perf.myEPR"}
+  //outputVars = {"LP_Shaft.Nmech","HP_Shaft.Nmech","FS_2.Pt","FS_2.Tt","FS_25.Pt","FS_25.Tt","FS_3.Ps","FS_3.Tt","FS_5.Pt","FS_5.Tt","FS_4.Tt","Perf.myEPR","Perf.myFn","Burner.FAR","Burner.Wfuel","HPC.SMN","HPC.SMW","LPC.SMN","LPC.SMW","Perf.NcR25"}
+  
+  //JTC - these are the required outputs to match with the PWLM
+  outputVars = {"LP_Shaft.Nmech","HP_Shaft.Nmech","FS_2.Pt","FS_2.Tt","FS_25.Pt","FS_25.Tt","FS_3.Ps","FS_3.Tt","FS_5.Pt", "FS_5.Tt","FS_4.Tt","Perf.myEPR","Perf.myFn","Perf.Wfuel","HPC.SMN","HPC.SMW","LPC.SMN","LPC.SMW","Burner.FAR"}
+	//outputVars = {"LP_Shaft.Nmech", "HP_Shaft.Nmech", "FS_3.Ps", "FS_5.Pt", "FS_5.Tt", "HPC.Nc", "Perf.myEPR", "Burner.FAR", "FS_25.Tt", "FS_2.Tt", "FS_2.Pt"}
 
 	// Adding the states to the linear model
 	addState("LP_Shaft.Nmech", "LP_Shaft.dNqdt", 0.005, "FRACTIONAL", 0.0);

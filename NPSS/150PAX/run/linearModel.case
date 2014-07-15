@@ -1,337 +1,71 @@
 // This case file runs the model throughout the flight envelope and
 // generates linear models about points of interest
 
-// Setting up the guess logic
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-
-// Entering flight conditions for SLS
-Ambient.alt = 0.0;
-Ambient.MN = 0.0;
-Ambient.dTs = 0.0;
-
-// Initial run at SLS for maximum thrust
-PC = 50;
-RunMaxPower();
-
-//-------------------------------------------------------------------------------------------------
-//  Creating linear models
-//-------------------------------------------------------------------------------------------------
-// Creating linear models at SLS for several power settings
-PC = 50;
-RunMaxPower();
-linear_model();
-
-RunPartPower(90);
-linear_model();
-
-RunPartPower(80);
-linear_model();
-
-RunPartPower(70);
-linear_model();
-
-RunPartPower(60);
-linear_model();
-
-RunPartPower(50);
-linear_model();
-
-RunPartPower(40);
-linear_model();
-
-RunPartPower(30);
-linear_model();
-
-PC = 21;
-RunIdle();
-linear_model();
-
-//-------------------------------------------------------------------------------------------------
-// Creating several linear models at hot day take off
-// SL, MN = 0.25, and dTs = 50F
-//-------------------------------------------------------------------------------------------------
-Ambient.MN = 0.25;
-Ambient.dTs = 50;
-
-PC = 50;
-RunMaxPower();
-linear_model();
-
-RunPartPower(90);
-linear_model();
-
-RunPartPower(80);
-linear_model();
-
-RunPartPower(70);
-linear_model();
-
-RunPartPower(60);
-linear_model();
-
-RunPartPower(50);
-linear_model();
-
-RunPartPower(40);
-linear_model();
-
-RunPartPower(30);
-linear_model();
-
-PC = 21;
-RunIdle();
-linear_model();
-
-//-------------------------------------------------------------------------------------------------
-// Creating several linear models at 5,000 ft, MN = 0.4, and dTs = 0
-//-------------------------------------------------------------------------------------------------
-Ambient.alt = 5000;
-Ambient.MN = 0.40;
-Ambient.dTs = 0.0;
-
-PC =50;
-RunMaxPower();
-linear_model();
-
-RunPartPower(90);
-linear_model();
-
-RunPartPower(80);
-linear_model();
-
-RunPartPower(70);
-linear_model();
-
-RunPartPower(60);
-linear_model();
-
-RunPartPower(50);
-linear_model();
-
-RunPartPower(40);
-linear_model();
-
-RunPartPower(30);
-linear_model();
-
-PC = 21;
-RunIdle();
-linear_model();
-
-//-------------------------------------------------------------------------------------------------
-// Creating several linear models at 10,000 ft, MN = 0.5, and dTs = 0
-//-------------------------------------------------------------------------------------------------
-Ambient.alt = 10000;
-Ambient.MN = 0.50;
-
-PC = 50;
-RunMaxPower();
-linear_model();
-
-RunPartPower(90);
-linear_model();
-
-RunPartPower(80);
-linear_model();
-
-RunPartPower(70);
-linear_model();
-
-RunPartPower(60);
-linear_model();
-
-RunPartPower(50);
-linear_model();
-
-RunPartPower(40);
-linear_model();
-
-RunPartPower(30);
-linear_model();
-
-PC = 21;
-RunIdle();
-linear_model();
-
-//-------------------------------------------------------------------------------------------------
-// Creating several linear models at 15,000 ft, MN = 0.65, and dTs = 0
-//-------------------------------------------------------------------------------------------------
-Ambient.alt = 15000;
-Ambient.MN = 0.65;
-
-PC = 50;
-RunMaxPower();
-linear_model();
-
-RunPartPower(90);
-linear_model();
-
-RunPartPower(80);
-linear_model();
-
-RunPartPower(70);
-linear_model();
-
-RunPartPower(60);
-linear_model();
-
-RunPartPower(50);
-linear_model();
-
-RunPartPower(40);
-linear_model();
-
-RunPartPower(30);
-linear_model();
-
-PC = 21;
-RunIdle();
-linear_model();
-
-//-------------------------------------------------------------------------------------------------
-// Creating several linear models at 20,000 ft, MN = 0.65, and dTs = 0
-//-------------------------------------------------------------------------------------------------
-Ambient.alt = 20000;
-
-PC = 50;
-RunMaxPower();
-linear_model();
-
-RunPartPower(90);
-linear_model();
-
-RunPartPower(80);
-linear_model();
-
-RunPartPower(70);
-linear_model();
-
-RunPartPower(60);
-linear_model();
-
-RunPartPower(50);
-linear_model();
-
-RunPartPower(40);
-linear_model();
-
-RunPartPower(30);
-linear_model();
-
-PC = 21;
-RunIdle();
-linear_model();
-
-//-------------------------------------------------------------------------------------------------
-// Creating several linear models at 25,000 ft, MN = 0.65, and dTs = 0
-//-------------------------------------------------------------------------------------------------
-Ambient.alt = 25000;
-
-PC = 50;
-RunMaxPower();
-linear_model();
-
-RunPartPower(90);
-linear_model();
-
-RunPartPower(80);
-linear_model();
-
-RunPartPower(70);
-linear_model();
-
-RunPartPower(60);
-linear_model();
-
-RunPartPower(50);
-linear_model();
-
-RunPartPower(40);
-linear_model();
-
-RunPartPower(30);
-linear_model();
-
-PC = 21;
-RunIdle();
-linear_model();
-
-//-------------------------------------------------------------------------------------------------
-// Creating several linear models at 30,000 ft, MN = 0.75, and dTs = 0
-//-------------------------------------------------------------------------------------------------
-Ambient.alt = 30000;
-Ambient.MN = 0.75;
-
-PC = 50;
-RunMaxPower();
-linear_model();
-
-RunPartPower(90);
-linear_model();
-
-RunPartPower(80);
-linear_model();
-
-RunPartPower(70);
-linear_model();
-
-RunPartPower(60);
-linear_model();
-
-RunPartPower(50);
-linear_model();
-
-RunPartPower(40);
-linear_model();
-
-RunPartPower(30);
-linear_model();
-
-PC = 21;
-RunIdle();
-linear_model();
-
-//-------------------------------------------------------------------------------------------------
-// Creating several linear models at 35,000 ft, MN = 0.80, and dTs = 0
-//-------------------------------------------------------------------------------------------------
-Ambient.alt = 35000;
-Ambient.MN = 0.80;
-
-PC = 50;
-RunMaxPower();
-linear_model();
-
-RunPartPower(90);
-linear_model();
-
-RunPartPower(80);
-linear_model();
-
-RunPartPower(70);
-linear_model();
-
-RunPartPower(60);
-linear_model();
-
-RunPartPower(50);
-linear_model();
-
-RunPartPower(40);
-linear_model();
-
-RunPartPower(30);
-linear_model();
-
-PC = 21;
-RunIdle();
-linear_model();
-
-// Returning back to SLS maximum thrust condition
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-PC = 50;
-Ambient.alt = 0.0;
-Ambient.MN = 0.0;
-Ambient.dTs = 0.0;
-RunMaxPower();
+#ifdef CSANK //NASA Method
+	
+	//----------------------------------------------------------------------------------
+	// CSANK PWLM - Linearization at each point requested from Matlab
+	//----------------------------------------------------------------------------------
+	real Fan_NcPct_targets[]={100, 90, 80, 70, 60, 50, 40, 30, 20}; 
+	int z;
+	for ( z=0; z < Fan_NcPct_targets.entries(); ++z ) { //loop through Fan_NcPct_targets
+	    Fan_NcPct_target = Fan_NcPct_targets[z];
+	    CASE++;
+	    run();
+	    CaseView_SS.display();
+	    page.display();
+
+	    run_linear();
+	}
+
+#endif
+
+#ifndef CSANK  //Georgia Tech Method
+
+	//----------------------------------------------------------------------------------
+	//  Refactored GT Method - Linearization at power hook at multiple flight conditions
+	//                 SLS  HTKO  TKO ----------------------------------> Cruise
+	//----------------------------------------------------------------------------------
+
+	// Setting up the guess logic
+	setOption( "switchGuess", "ON" );
+	setOption( "switchGuessType", "PC" );
+
+	real alt_targets[]={0,    0, 5000, 10000, 15000, 20000, 25000, 30000, 35000};
+	real MN_targets[]= {0, 0.25, 0.40,  0.50,  0.65,  0.65,  0.65,  0.75,  0.80};
+	real dTs_targets[]={0,   50,    0,     0,     0,     0,     0,     0,     0};
+
+	real Pwr_targets[]={90, 80, 70, 60, 50, 40, 30};
+	real PC_targets[]={48,44,40,38,35,30,28,25}; 
+	int y,z;
+
+	for ( y=0; y < alt_targets.entries(); ++y ) {
+		Ambient.alt = alt_targets[y];
+		Ambient.MN = MN_targets[y];
+		Ambient.dTs = dTs_targets[y];
+
+		PC = 50;
+		RunMaxPower();
+		linear_model();
+		
+		for ( z=0; z < PC_targets.entries(); ++z ) { //loop through Fan_NcPct_targets
+		    //RunPartPower(Pwr_targets[z]);
+		    PC = PC_targets[z];
+		    run_current_point();
+			linear_model();
+		}
+
+		PC = 21;
+		RunIdle();
+		linear_model();
+	}
+	// Returning back to SLS maximum thrust condition
+	setOption( "switchGuess", "ON" );
+	setOption( "switchGuessType", "PC" );
+	PC = 50;
+	Ambient.alt = 0.0;
+	Ambient.MN = 0.0;
+	Ambient.dTs = 0.0;
+	RunMaxPower();
+	
+#endif

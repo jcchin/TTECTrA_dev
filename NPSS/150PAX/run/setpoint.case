@@ -1,32 +1,56 @@
 // This is the case file for creating Matlab formatted setpoint values
 // at a flight condition 
+#include <setpoint_display.fnc>
+#ifdef CSANK  //NASA Method
+	#include <TTECTrA_SP.input>	//Input from Matlab
+	
+	// Set the guess logic as you want
+	setOption( "switchGuess", "ON" );
+	setOption( "switchGuessType", "FanNcPct" );
 
-// Input the flight condition where you want to create the Matlab
-// formatted setpoint output
-Ambient.alt = 0.00;
-Ambient.MN = 0.00;
-Ambient.dTs = 0.00;
+	//Setup up steady state solver
+	real myFn_target = 20000;
+	RunMaxPower();
+	run(); // Running the steady state case
 
-// Set the guess logic as you want
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-PC = 50;
-RunMaxPower();
 
-// Setpoint function which creates the Matlab formatted output 
-SetPoint();
+	int z;
+	for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
+	    myFn_target = myFn_targets[z];
+	    run();
+	    setpoint_display(z);
+	}	
+#endif
 
-if(solver.converged == 1 && errHandler.numErrors == 0) {
 
-	cout << "\nSet point generation at altitude" << Ambient.alt << " ft, " << "MN = " << Ambient.MN << ", and dTs = " << Ambient.dTs << " degF is successful!" << endl;
+#ifndef CSANK  //GT's method (hardcoded power hook)
+	// Input the flight condition where you want to create the Matlab
+	// formatted setpoint output
+	Ambient.alt = 0.00;
+	Ambient.MN = 0.00;
+	Ambient.dTs = 0.00;
 
-}
+	// Set the guess logic as you want
+	setOption( "switchGuess", "ON" );
+	setOption( "switchGuessType", "PC" );
+	PC = 50;
+	RunMaxPower();
 
-// Returning back to SLS maximum thrust condition
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-PC = 50;
-Ambient.alt = 0.0;
-Ambient.MN = 0.0;
-Ambient.dTs = 0.0;
-RunMaxPower();
+	// Setpoint function which creates the Matlab formatted output 
+	SetPoint();
+
+	if(solver.converged == 1 && errHandler.numErrors == 0) {
+
+		cout << "\nSet point generation at altitude" << Ambient.alt << " ft, " << "MN = " << Ambient.MN << ", and dTs = " << Ambient.dTs << " degF is successful!" << endl;
+
+	}
+
+	// Returning back to SLS maximum thrust condition
+	setOption( "switchGuess", "ON" );
+	setOption( "switchGuessType", "PC" );
+	PC = 50;
+	Ambient.alt = 0.0;
+	Ambient.MN = 0.0;
+	Ambient.dTs = 0.0;
+	RunMaxPower();
+#endif

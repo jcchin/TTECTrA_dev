@@ -2,7 +2,7 @@
 //         General Output DataViewer Specification
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-OutFileStream pageStream { filename = "npss.viewOut"; } 
+OutFileStream pageStream { filename = OutputPath + "npss.viewOut"; } 
 
 DataViewer PageViewer page { 
 
@@ -180,7 +180,7 @@ GroupBlock Cblock {   //========================================================
    } 
    DColTBlock nozzles { 
       titleBody = "===NOZZLES===      PR       Cfg      CdTh       Cv        Ath      MNth     Vact        Fg"; 
-      compType = "Nozzle"; 
+      compType = "LowPR_Nozzle"; 
       compTypeFormat = "????????????"; 
       compAttr = { "PR:???.???", "Cfg:???.????", "CdTh:???.????", "Cv:??.????", 
                    "Ath:??????.??", "Fl_Th.MN:????.???=MNth", "Vactual:?????.?", "Fg:??????.?" } 

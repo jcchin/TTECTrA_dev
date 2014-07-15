@@ -1,12 +1,12 @@
 // Creating the output file stream for linear models in NPSS format
 OutFileStream LMGreport {
-	filename = "linearModels.out";
+	filename = OutputPath + "linearModels.out";
 	append = FALSE;
 }
 
 // Creating the output file stream for linear models in Matlab format
 OutFileStream MatlabLinearReport {
-	filename = "linearModels.m";
+	filename = OutputPath +"linearModels.m";
 	append = FALSE;
 }
 
@@ -82,6 +82,8 @@ void linear_model_matlab_output(){
 	real ytrim_col = vec_ytrim.entries();
 
 	MatlabLinearReport << "% Altitude" << endl;
+	MatlabLinearReport << "% PC" << PC << endl;
+	MatlabLinearReport << "% TT" << TargetThrust << endl;
 	MatlabLinearReport << "alt = " << Ambient.alt << ";" << endl;
 	MatlabLinearReport << "% Mach" << endl;
 	MatlabLinearReport << "MN = " << Ambient.MN << ";" << endl;
@@ -299,6 +301,7 @@ void linear_model_matlab_output(){
 	}
 	
 	MatlabLinearReport << "% Input" << endl;
+	MatlabLinearReport << "% " << toStr(lin_mod.inputVars) << endl;
 	MatlabLinearReport << "utrim = [";
 	
 	for(i=0;i<=utrim_row-1;i=i+1){
@@ -335,6 +338,7 @@ void linear_model_matlab_output(){
 	}
 	
 	MatlabLinearReport << "% Output" << endl;
+	MatlabLinearReport << "% " << toStr(lin_mod.outputVars) << endl;
 	MatlabLinearReport << "ytrim = [";
 	
 	for(i=0;i<=ytrim_row-1;i=i+1){
@@ -385,12 +389,37 @@ void linear_model_matlab_output(){
 	MatlabLinearReport << "if (exist('x','var')) x=[x struc]; else x=struc; end" << endl;
 	MatlabLinearReport << "clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc" << endl;
 	MatlabLinearReport << "%------------------------------------------------------------\n" << endl;
-	
+	/*
+	string a_format(real A[][]){
+        return "["+ toStr(A[0][0])+" "+toStr(A[0][1])+"; "+toStr(A[1][0])+" "+toStr(A[1][1])+"];";
+    }
+    string b_format(real B[][]){
+        return "["+ toStr(B[0][0])+" "+toStr(B[1][0])+"];";
+    }
+    string c_format(real C[][]){
+        return "["+ toStr(C[0][0])+" "+toStr(C[0][1])+"; "+toStr(C[1][0])+" "+toStr(C[1][1])+";"+ toStr(C[2][0])+" "+toStr(C[2][1])+"; "+toStr(C[3][0])+" "+toStr(C[3][1])+";"+ toStr(C[4][0])+" "+toStr(C[4][1])+"; "+toStr(C[5][0])+" "+toStr(C[5][1])+";"+ toStr(C[6][0])+" "+toStr(C[6][1])+";"+ toStr(C[7][0])+" "+toStr(C[7][1])+";"+ toStr(C[8][0])+" "+toStr(C[8][1])+";"+ toStr(C[9][0])+" "+toStr(C[9][1])+";"+ toStr(C[10][0])+" "+toStr(C[10][1])+";"+ toStr(C[11][0])+" "+toStr(C[11][1])+";"+ toStr(C[12][0])+" "+toStr(C[12][1])+";"+ toStr(C[13][0])+" "+toStr(C[13][1])+";"+ toStr(C[14][0])+" "+toStr(C[14][1])+";"+ toStr(C[15][0])+" "+toStr(C[15][1])+";"+ toStr(C[16][0])+" "+toStr(C[16][1])+";"+ toStr(C[17][0])+" "+toStr(C[17][1])+";"+ toStr(C[18][0])+" "+toStr(C[18][1])+"];";
+    }
+    string d_format(real D[][]){
+        return "["+ toStr(D[0][0])+"; "+toStr(D[1][0])+"; "+toStr(D[2][0])+"; "+toStr(D[3][0])+"; "+toStr(D[4][0])+"; "+toStr(D[5][0])+"; "+toStr(D[6][0])+"; "+toStr(D[7][0])+"; "+toStr(D[8][0])+"; "+toStr(D[9][0])+"; "+toStr(D[10][0])+"; "+toStr(D[11][0])+"; "+toStr(D[12][0])+"; "+toStr(D[13][0])+"; "+toStr(D[14][0])+"; "+toStr(D[15][0])+"; "+toStr(D[16][0])+"; "+toStr(D[17][0])+"; "+toStr(D[18][0])+"];";
+    }
+    string u_format(real U[]){
+        return toStr(U[0])+";";
+    }
+    string y_format(real Y[]){
+        return "["+ toStr(Y[0])+"; "+toStr(Y[1])+"; "+toStr(Y[2])+"; "+toStr(Y[3])+"; "+toStr(Y[4])+"; "+toStr(Y[5])+"; "+toStr(Y[6])+"; "+toStr(Y[7])+"; "+toStr(Y[8])+"; "+toStr(Y[9])+"; "+toStr(Y[10])+"; "+toStr(Y[11])+"; "+toStr(Y[12])+"; "+toStr(Y[13])+"; "+toStr(Y[14])+"; "+toStr(Y[15])+"; "+toStr(Y[16])+"; "+toStr(Y[17])+"; "+toStr(Y[18])+"];";
+    }
+    string state_format(real S[]){
+        return "["+ toStr(S[0])+"; "+toStr(S[1])+"];";
+    }
+    */
 }
 
 // This model creates a linear model at the current flight conditions and
 // outputs the linear model both in NPSS and Matlab format
 void linear_model(){
+
+	// Turning the guess logic off
+	setOption( "switchGuess", "OFF" );
 
 	// Switching the burner independent to fuel flow rate
 	Burner.switchBurn = "FUEL";
@@ -412,5 +441,30 @@ void linear_model(){
 	
 	// Setting up the solver automatically
 	autoSolverSetup();
+	
+	// Turning the guess logic on
+	setOption( "switchGuess", "ON" );
 
+}
+
+void linear_model_setup(){
+    Burner.switchBurn = "FUEL";
+    // remove state independents and integrators from the Solver manually
+    solver.removeIndependent("HP_Shaft.ind_Nmech");
+    solver.removeDependent("HP_Shaft.integrate_Nmech");
+    solver.removeIndependent("LP_Shaft.ind_Nmech");
+    solver.removeDependent("LP_Shaft.integrate_Nmech");
+    solver.removeIndependent("FAR");
+    solver.removeDependent("Run_Condition");
+}
+
+void linear_model_remove(){
+    Burner.switchBurn = "FAR";
+    // remove state independents and integrators from the Solver manually
+    solver.addIndependent("HP_Shaft.ind_Nmech");
+    solver.addDependent("HP_Shaft.integrate_Nmech");
+    solver.addIndependent("LP_Shaft.ind_Nmech");
+    solver.addDependent("LP_Shaft.integrate_Nmech");
+    solver.addIndependent("FAR");
+    solver.addDependent("Run_Condition");
 }
