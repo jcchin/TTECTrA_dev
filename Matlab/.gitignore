@@ -6,4 +6,4 @@ hs_err*.log
 *.mdl.autosave
 *.mat
 /trans.m
-set_paths.m
+/paths.m
