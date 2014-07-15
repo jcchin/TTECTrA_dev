@@ -512,15 +512,15 @@ Table TB_PR(real alphaMap, real NcorrMap, real RlineMap) {
   }
   
   // alphaMap.interp = "linear" ;
-  // alphaMap.extrap = "linear" ;
+   alphaMap.extrap = "linear" ;
   // alphaMap.extrap = "none" ;
 
   // NcorrMap.interp = "lagrange3" ;
-  // NcorrMap.extrap = "linear" ;
+   NcorrMap.extrap = "linear" ;
   // NcMap.extrap = "none" ;
 
   // RlineMap.interp = "lagrange3" ;
-  // RlineMap.extrap = "linear" ;
+   RlineMap.extrap = "linear" ;
   // RlineMap.extrap = "none" ;
   
   // extrapIsError = 1;

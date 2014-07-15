@@ -1,32 +1,23 @@
-// This is the case file for creating Matlab formatted setpoint values
-// at a flight condition 
+// This file is run once before the S-function to calculate a range of setpoints.
+// Matlab passes in an array, and this file loops over those cases,
+// recording engine properties at each point.
 
-// Input the flight condition where you want to create the Matlab
-// formatted setpoint output
-Ambient.alt = 0.00;
-Ambient.MN = 0.00;
-Ambient.dTs = 0.00;
+#include <setpoint_display.fnc>
+// Fan percent corrected shaft speed
 
-// Set the guess logic as you want
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-PC = 50;
-RunMaxPower();
+driver_min = 40;
+driver_max  = 100;
+Fan_NcPct_target = driver_min;
+real myFn_target = 40000;
+//Setup up steady state solver
+SS_Setup();
+SP_Setup();
+run(); // Running the steady state case
+#include <setpoint.input> //Input from Matlab
 
-// Setpoint function which creates the Matlab formatted output 
-SetPoint();
-
-if(solver.converged == 1 && errHandler.numErrors == 0) {
-
-	cout << "\nSet point generation at altitude" << Ambient.alt << " ft, " << "MN = " << Ambient.MN << ", and dTs = " << Ambient.dTs << " degF is successful!" << endl;
-
+int z;
+for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
+    myFn_target = myFn_targets[z];
+    run();
+    setpoint_display();
 }
-
-// Returning back to SLS maximum thrust condition
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-PC = 50;
-Ambient.alt = 0.0;
-Ambient.MN = 0.0;
-Ambient.dTs = 0.0;
-RunMaxPower();

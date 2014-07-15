@@ -1,0 +1,8 @@
+transient_setup();
+
+cout << "Independents are as follows. \n" << endl;
+cout << solver.list("Independent", FALSE) << endl;
+
+cout << "Dependents are as follows. \n" << endl;
+cout << solver.list("Dependent", FALSE) << endl;
+run();

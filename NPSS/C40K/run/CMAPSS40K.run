@@ -1,21 +1,41 @@
-//-------------------------------------------------------------------------------------------------
-//                                                                       												   |
-//   File Name:    CMAPSS40K.run                                 									   |
-//   Date(s):       May 1, 2014           																   |
-//   Author:        Metin F. Ozcan                                       									   |
-//                                                                       												   |
-//   Description:   File to run CMAPSS40K high BPR SFTF model 						   |
-//                                                                       												   |
-//-------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
+//                                                                       								|
+//   File Name:    CMAPSS40K.run                                 					|
+//   Date(s):       November 18, 2013												|
+//   Author:        Metin F. Ozcan                                       					|
+//                                                                       								|
+//   Description:   File to run CMAPSS40K high BPR SFTF model 		|
+//                                                                       								|
+//----------------------------------------------------------------------------------
 
 // Defining the thermodynamics package
 setThermoPackage("GasTbl");
 
-//-------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//                          User-Defined Elements
+//------------------------------------------------------------------------
+// #include <CoolIt.int>
+
+//------------------------------------------------------------------------
 //                            Model Definition 
-//-------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------
 MODELNAME = "CMAPSS40K High BPR SFTF Model"; 
 AUTHOR = "Metin F. Ozcan"; 
+
+string OutputPath; //this variable sets viewer paths and needs to change if NPSS is being run from Simulink
+string cwd = getcwd();
+    if (cwd.index("MATLAB")==-1){
+        OutputPath = "Output/";
+        cout << "Running from NPSS" << endl;
+    } else {
+        OutputPath = "../NPSS/150PAX_Sfunction/Output/"; 
+        cout << "Running from MATLAB" << endl;
+    }
+cout << "Run on " << date << " at " << timeOfDay << endl;
+// Minimum and maximum values for the transient driver
+// Computed from steady state operation limits
+real driver_min, driver_max;
+real Fan_NcPct_target;
 
 // Including the model and model design point
 #include <High_BPR_CMAPSS40K.mdl>
@@ -24,119 +44,161 @@ AUTHOR = "Metin F. Ozcan";
 // Including view out file and print pride function
 #include <npss.page.view>
 #include <print_macros.fnc>
+#include <setpoint_display.fnc>
 
 // Including necessary custom functions
-#include <output_setup.fnc>
-#include <solver_setup.fnc>
-#include <independents_dependents_constraints.fnc>
 #include <transientDriver.fnc>
+#include <solver_setup.fnc>
+#include <output_setup.fnc>
 #include <accelSchedule.fnc>
 #include <linear_model.fnc>
 
 // Determining the solver preferences
 solver.defaultTolerance = 0.000001;
-solver.maxIterations = 1000;
-solver.maxJacobians = 250;
-solver.maxConvergeFailures = 250;
+solver.maxIterations = 500;
+solver.maxJacobians = 100;
+solver.maxConvergeFailures = 100;
 
-//-------------------------------------------------------------------------------------------------
-//  RUN DESIGN POINT - Do not change necessary for the calibrated model
-//	and the built in guess logic
-//-------------------------------------------------------------------------------------------------
-// Inputting the flight conditions for the design - cruise conditions
+//----------------------------------------------------------------------------
+//  RUN DESIGN POINT
+//----------------------------------------------------------------------------
+
+// Inputting the flight conditions
 Ambient.alt = 35000.0;
 Ambient.MN = 0.8;
 Ambient.dTs = 0;
 
-// Changing the run mode to design
 setOption( "switchDes", "DESIGN" );
-autoSolverSetup(); // Automatically setting up the solver
+autoSolverSetup();
 
-// Switching the burner input to fuel-to-air ratio
+// Switching the burner input to fuel to air ratio
 Burner.switchBurn = "FAR";
 
-// Adding independents to solver for the design run
 solver.addIndependent("FAR");
-// solver.addIndependent("W_Design");
-solver.addIndependent("BPR_Design");
+// solver.addIndependent("W_design");
+solver.addIndependent("BPR_design");
 solver.addIndependent("HPT_Eff");
-
-// Adding dependents to the solver for the design run
 solver.addDependent("Run_Condition_Design");
 solver.addDependent("T4_Design");
-solver.addDependent("TSFC_Design");
+solver.addDependent("TSFC");
 
-// Running the design case
+// cout << "Independents are as follows. \n" << endl;
+// cout << solver.list("Independent", FALSE) << endl;
+
+// cout << "Dependents are as follows. \n" << endl;
+// cout << solver.list("Dependent", FALSE) << endl;
+//solver.solutionMode = "ONE_PASS";
 run();
-// page.display();
+ page.display();
 // CaseView_SS.update();
 // CaseView_SS.display();
 // printPride();
 
-//-------------------------------------------------------------------------------------------------
-//  RUN OFF-DESIGN POINT - SLS Max Thrust
-//-------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+//  RUN OFF-DESIGN POINT
+//----------------------------------------------------------------------------
+
+// Setting up the solver for off-design
+real T4Target = 2666, T41Target = 2400; 
+setOption( "switchDes", "OFFDESIGN" );
+solver.clear();
+autoSolverSetup();
+solver.addIndependent("FAR");
+solver.addDependent("T4_Demand");
+
+// Running the design case in off-design
+run();
+ page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+Fan_NcPct_target = 100;
+
 // Setting up the solver for the steady state case
 SS_Setup();
 
-// Inputting the flight condition for SLS
+//----------------------------------------------------------------------------
+//  Reducing from cruise to SLS maximum power
+//----------------------------------------------------------------------------
+
+Ambient.MN = 0.7;
+run();
+
+Ambient.MN = 0.6;
+run();
+
+Ambient.alt = 30000.0;
+run();
+
+Ambient.alt = 25000.0;
+run();
+
+Ambient.alt = 20000.0;
+run();
+
+Ambient.alt = 15000.0;
+run();
+
+Ambient.MN = 0.5;
+run();
+
+Ambient.MN = 0.4;
+run();
+
+Ambient.alt = 10000.0;
+run();
+
+Ambient.alt = 5000.0;
+run();
+
+Ambient.MN = 0.3;
+run();
+
+Ambient.MN = 0.2;
+run();
+
 Ambient.alt = 0.0;
+run();
+
 Ambient.MN = 0.0;
-Ambient.dTs = 0.0;
+run();
 
-// Switching the guess logic type to Fan NcPct
-setOption( "switchGuessType", "FanNcPct" );
+// #include <powMan.case>	
+// #include <maxLimit.case>
+// #include <minLimit.case>
 
-// Because the default FanNcPct value is 100 and the same with
-// the current Fan_NcPct_target, there is no need to change or
-// assign a value to FanNcPct
 
-// Running the steady state case
-RunMaxPower();
-// page.display();
-// CaseView_SS.update();
-// CaseView_SS.display();
-// printPride();
-
-// The case file for cycle maximum limits
-#ifdef MAXLIMITSCHEDULE
- #include <maxLimit.case>
+#ifdef FLTENV
+ #include <fltenv.case>		
 #endif
 
-// The case file for cycle minimum limits
-#ifdef MINLIMITSCHEDULE
- #include <minLimit.case>		
-#endif
-
-// The case file for creating a flight condition setpoint for  formatted for Matlab
-#ifdef SETPNT
- #include <setpoint.case>		
-#endif
-
-// The case file for creating setpoint values throughout the entire flight envelope
-#ifdef FLTENVSETPNT
+#ifdef POWERMANAGEMENT
  #include <powMan.case>		
 #endif
 
-// The case file for creating the acceleration schedule and minimum RU limit in
-// Matlab format
-#ifdef MATLABOUTPUT
- #include <matlabOutput.case>		
-#endif
-
-// The case file for running the model in transient with an acceleration schedule 
-// at SLS, SL hot day take off, and 6,000 ft hot day take off
 #ifdef ACCELSCHEDULE
  #include <accel.case>		
 #endif
 
-// The case file for creating linear models at several flight conditions throughout
-// the flight envelope and putting these linear model into Matlab format
-#ifdef LINEARMODEL
- #include <linearModel.case>		
+#ifdef MAXLIMITSCHEDULE
+ #include <maxLimit.case>		
 #endif
 
-// The case file for running the NPSS model in Matlab Simulink
-#ifdef TRANSIENT
- #include <transient.case>		
+#ifdef MINLIMITSCHEDULE
+ #include <minLimit.case>		
 #endif
+
+//TTECTrA
+#ifdef SETPOINT
+ #include <setpoint.case>		
+#endif
+
+#ifdef NSFCN
+ #include <nsfcn.case>		
+#endif
+
+#ifdef LM
+  #include <lm.case>
+#endif
+

@@ -1,408 +1,99 @@
-// This case file runs the model in transient with an acceleration schedule 
-// at SLS, SL hot day take off, and 6,000 ft hot day take off 
+#include <acc.view>
+OutFileStream AccPt {
+    filename = OutputPath + "accel.m";
+    append = FALSE;
+}
+AccPt << "output = [];" << endl;
 
-// Minimum and maximum values for the transient driver
-// Computed from steady state operation limits
-real driver_min, driver_max;
+//add solver constraints
 
-//-------------------------------------------------------------------------------------------------
-// Steep ramp in demand with acceleration schedule and HPC stall constraint
-// at SLS  
-//-------------------------------------------------------------------------------------------------
+trans_Condition.addConstraint("accel_limit", "MAX");
+trans_Condition.addConstraint("HPC_SMW_Limit" ,"MAX",1,-1);
+//trans_Condition.addConstraint("LPC_SMN_Limit" ,"MAX",1,-1);
+//trans_Condition.addConstraint("T4_Demand" ,"MAX");
+//Run_Condition.addConstraint("T4_Demand" ,"MAX");
+// HPC stall margin at constant mass flow rate
+/* HPC_SMW_Limit.eq_rhs = "12.0";
+LPC_SMN_Limit.eq_rhs = "10.0";
+T4_Demand.eq_rhs = "3450";  */
+//cout << "NCR25 Units: == " << endl;
+//cout << "NCR25 Units: == " <<  HP_Shaft.Nmech.units << endl;
+//cout << "NCR25 Units: == " << HPC.Fl_I.Tt.units << endl;
+//cout << "NCR25 Units: == " << HP_Shaft.dNqdt.units << endl;
 
-//-------------------------------------------------------------------------------------------------
-//  Running off-design for transient input limits
-//-------------------------------------------------------------------------------------------------
-// Inputting the flight conditions - SLS
+//----------------------------------------------------------------------------
+//  RUN OFFDESIGN FOR TRANSIENT
+//----------------------------------------------------------------------------
+
+// Minimum and maximum values for the transient operation driver
+
+// Fan percent corrected shaft speed
+driver_min = 40;
+driver_max = 100;
+
+// LPC percent corrected shaft speed
+// driver_min = 42.7702;
+// driver_max = 100;
+
+// HPC percent corrected shaft speed
+// driver_min = 92.274;
+// driver_max = 100;
+
+// Fuel flow rate
+// driver_min = 0.277940742;
+// driver_max = 3.664268339;
+
+// Running the model at low power setting
+//real Fan_NcPct_target = driver_min;
+// real LPC_NcPct_target = driver_min;
+// real HPC_NcPct_target = driver_min;
+// real Wfuel_target = driver_min;
+
+// Setting up the solver for the steady state case
+SS_Setup();
+
+// Inputting the flight conditions
 Ambient.alt = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 
-// Setting up the guess logic
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-
-// Running for maximum thrust
-PC = 50;
-RunMaxPower();
-// printPride();
-CaseView_SS.update();
-// page.display();
-
-if(solver.converged == 1 && errHandler.numErrors == 0) {
-
-	cout << "\nMaximum thrust at SLS successful!\n" << endl;
-
-	cout << "Fnet: " << Perf.myFn << "\n" << endl;
-
-	cout << "Fan NcPct: " << Fan.NcPct << endl;
-	cout << "LPC NcPct: " << LPC.NcPct << endl;
-	cout << "HPC NcPct: " << HPC.NcPct << endl;
-
-	cout << "\nNL: " << LP_Shaft.Nmech << endl;
-	cout << "NH: " << HP_Shaft.Nmech << endl;
-
-	cout << "\n" << "Maximum fuel flow rate: " << Burner.Wfuel << endl;
-
-	// Recording the transient driver for the maximum power setting
-	driver_max = Fan.NcPct;
-	// driver_max = LPC.NcPct;
-	// driver_max = HPC.NcPct;
-	// driver_max = Burner.Wfuel
-
-}else{
-
-	cout << "\nMaximum thrust at SLS failed!\n" << endl;
-
-}
-
-// Running for idle
-PC = 21;
-RunIdle();
-// printPride();
-CaseView_SS.update();
-// page.display();
-
-if(solver.converged == 1 && errHandler.numErrors == 0){
-
-	cout << "\nIdle at SLS successful!\n" << endl;
-
-	cout << "Fnet: " << Perf.myFn << "\n" << endl;
-
-	cout << "Fan NcPct: " << Fan.NcPct << endl;
-	cout << "LPC NcPct: " << LPC.NcPct << endl;
-	cout << "HPC NcPct: " << HPC.NcPct << endl;
-
-	cout << "\nNL: " << LP_Shaft.Nmech << endl;
-	cout << "NH: " << HP_Shaft.Nmech << endl;
-
-	cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
-
-	// Recording the transient driver for idle
-	driver_min = Fan.NcPct;
-	// driver_min = LPC.NcPct;
-	// driver_min = HPC.NcPct;
-	// driver_min = Burner.Wfuel
-
-}else{
-
-	cout << "\nIdle at SLS failed!\n" << endl;
-
-}
-
-CaseView_SS.display();
-
-//-------------------------------------------------------------------------------------------------
-// Running transient at SLS
-//-------------------------------------------------------------------------------------------------
-// Adding the constraints to the solver
-trans_Condition.addConstraint("accel_limit", "MAX",1,1);
-trans_Condition.addConstraint("HPC_SMW_Limit" ,"MAX",1,-1);
-
-// Setting up the solver for transient mode
-transient_setup();
-
-// Changing the name of the transient out file name
-caseRow.filename = "transientRunsSLS.out";
-
-// Adding the transient out file stream to the execution sequence
-solver.postExecutionSequence.append("CaseView");
-
-cout << "\nRunning transient now!\n" << endl;
-
-// Total transient simulation time
-transient.stopTime = 20.0;
-
-// Solver tolerance scalar for transient run
-transient.toleranceScaleFactor=500.0;
-
-run();
-// printPride();
-CaseView.display();
-
-cout << "Finished running transient now!\n" << endl;
-
-cout << "Time: " << time << "\n" << endl;
-
-cout << "Fnet: " << Perf.myFn << "\n" << endl;
-
-cout << "Fan NcPct: " << Fan.NcPct << endl;
-cout << "LPC NcPct: " << LPC.NcPct << endl;
-cout << "HPC NcPct: " << HPC.NcPct << endl;
-
-cout << "\nNL: " << LP_Shaft.Nmech << endl;
-cout << "NH: " << HP_Shaft.Nmech << endl;
-
-cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
-
-cout << "\n-------------------------------------------------------------------------------------------------" << endl;
-
-//-------------------------------------------------------------------------------------------------
-// Steep ramp in demand with acceleration schedule and HPC stall constraint
-// at SL hot day take off  
-//-------------------------------------------------------------------------------------------------
-
-//-------------------------------------------------------------------------------------------------
-// Switching solver from transient to steady state
-//-------------------------------------------------------------------------------------------------
-// Clearing post execution sequence from the transient out file stream
-solver.postExecutionSequence = {};
-
-// Setting up the solver for steady state
-SS_Setup();
-
-//-------------------------------------------------------------------------------------------------
-//  Running off-design for transient input limits
-//-------------------------------------------------------------------------------------------------
-// Setting up the guess logic type
-setOption( "switchGuessType", "PC" );
-
-// Inputting the flight condition
-Ambient.MN = 0.25;
-Ambient.dTs = 50;
-
-// Running for maximum thrust
-PC = 50;
-RunMaxPower();
-// printPride();
-CaseView_SS.update();
-// page.display();
-
-if(solver.converged == 1 && errHandler.numErrors == 0) {
-
-	cout << "\nMaximum thrust at SL hot day take off successful!\n" << endl;
-
-	cout << "Fnet: " << Perf.myFn << "\n" << endl;
-
-	cout << "Fan NcPct: " << Fan.NcPct << endl;
-	cout << "LPC NcPct: " << LPC.NcPct << endl;
-	cout << "HPC NcPct: " << HPC.NcPct << endl;
-
-	cout << "\nNL: " << LP_Shaft.Nmech << endl;
-	cout << "NH: " << HP_Shaft.Nmech << endl;
-
-	cout << "\n" << "Maximum fuel flow rate: " << Burner.Wfuel << endl;
-
-	// Recording the transient driver for the maximum power setting
-	driver_max = Fan.NcPct;
-	// driver_max = LPC.NcPct;
-	// driver_max = HPC.NcPct;
-	// driver_max = Burner.Wfuel
-
-}else{
-
-	cout << "\nMaximum thrust at SL hot day take off failed!\n" << endl;
-
-}
-
-// Running for idle
-PC = 21;
-RunIdle();
-// printPride();
-CaseView_SS.update();
-// page.display();
-
-if(solver.converged == 1 && errHandler.numErrors == 0){
-
-	cout << "\nIdle at SL hot day take off successful!\n" << endl;
-
-	cout << "Fnet: " << Perf.myFn << "\n" << endl;
-
-	cout << "Fan NcPct: " << Fan.NcPct << endl;
-	cout << "LPC NcPct: " << LPC.NcPct << endl;
-	cout << "HPC NcPct: " << HPC.NcPct << endl;
-
-	cout << "\nNL: " << LP_Shaft.Nmech << endl;
-	cout << "NH: " << HP_Shaft.Nmech << endl;
-
-	cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
-
-	// Recording the transient driver for idle
-	driver_min = Fan.NcPct;
-	// driver_min = LPC.NcPct;
-	// driver_min = HPC.NcPct;
-	// driver_min = Burner.Wfuel
-
-}else{
-
-	cout << "\nIdle at SL hot day take off failed!\n" << endl;
-
-}
-
-CaseView_SS.display();
-
-//-------------------------------------------------------------------------------------------------
-// Running transient at SL hot day take off
-//-------------------------------------------------------------------------------------------------
-// No need to add constraints to the transient dependent 
-// because they are already added for the previous transient run 
-
-// Setting up the solver for transient mode
-transient_setup();
-
-// Changing the name of the transient out file name
-caseRow.filename = "transientRunsSLHDTKO.out";
-
-// Adding the transient out file stream to the execution sequence
-solver.postExecutionSequence.append("CaseView");
-
-cout << "\nRunning transient now!\n" << endl;
-
-// Total transient simulation time
-transient.stopTime = 20.0;
-
-// Solver tolerance scalar for transient run
-transient.toleranceScaleFactor=100.0;
-
-run();
-// printPride();
-CaseView.display();
-
-cout << "Finished running transient now!\n" << endl;
-
-cout << "Time: " << time << "\n" << endl;
-
-cout << "Fnet: " << Perf.myFn << "\n" << endl;
-
-cout << "Fan NcPct: " << Fan.NcPct << endl;
-cout << "LPC NcPct: " << LPC.NcPct << endl;
-cout << "HPC NcPct: " << HPC.NcPct << endl;
-
-cout << "\nNL: " << LP_Shaft.Nmech << endl;
-cout << "NH: " << HP_Shaft.Nmech << endl;
-
-cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
-
-cout << "\n-------------------------------------------------------------------------------------------------" << endl;
-
-//-------------------------------------------------------------------------------------------------
-// Steep ramp in demand with acceleration schedule and HPC stall constraint
-// at 6,000 ft hot day take off  
-//-------------------------------------------------------------------------------------------------
-
-//-------------------------------------------------------------------------------------------------
-// Switching solver from transient to steady state
-//-------------------------------------------------------------------------------------------------
-// Clearing post execution sequence from the transient out file stream
-solver.postExecutionSequence = {};
-
-// Setting up the solver for steady state
-SS_Setup();
-
-//-------------------------------------------------------------------------------------------------
-//  Running off-design for transient input limits
-//-------------------------------------------------------------------------------------------------
-// Setting up the guess logic type
-setOption( "switchGuessType", "PC" );
-
-// Inputting the flight condition
-Ambient.alt = 6000;
-
-// Running for maximum thrust
-PC = 50;
-RunMaxPower();
-// printPride();
-CaseView_SS.update();
-// page.display();
-
-if(solver.converged == 1 && errHandler.numErrors == 0) {
-
-	cout << "\nMaximum thrust at 6,000 ft hot day take off successful!\n" << endl;
-
-	cout << "Fnet: " << Perf.myFn << "\n" << endl;
-
-	cout << "Fan NcPct: " << Fan.NcPct << endl;
-	cout << "LPC NcPct: " << LPC.NcPct << endl;
-	cout << "HPC NcPct: " << HPC.NcPct << endl;
-
-	cout << "\nNL: " << LP_Shaft.Nmech << endl;
-	cout << "NH: " << HP_Shaft.Nmech << endl;
-
-	cout << "\n" << "Maximum fuel flow rate: " << Burner.Wfuel << endl;
-
-	// Recording the transient driver for the maximum power setting
-	driver_max = Fan.NcPct;
-	// driver_max = LPC.NcPct;
-	// driver_max = HPC.NcPct;
-	// driver_max = Burner.Wfuel
-
-}else{
-
-	cout << "\nMaximum thrust at 6,000 ft hot day take off failed!\n" << endl;
-
-}
-
-// Running for idle
-PC = 21;
-RunIdle();
-// printPride();
-CaseView_SS.update();
-// page.display();
-
-if(solver.converged == 1 && errHandler.numErrors == 0){
-
-	cout << "\nIdle at 6,000 ft hot day take off successful!\n" << endl;
-
-	cout << "Fnet: " << Perf.myFn << "\n" << endl;
-
-	cout << "Fan NcPct: " << Fan.NcPct << endl;
-	cout << "LPC NcPct: " << LPC.NcPct << endl;
-	cout << "HPC NcPct: " << HPC.NcPct << endl;
-
-	cout << "\nNL: " << LP_Shaft.Nmech << endl;
-	cout << "NH: " << HP_Shaft.Nmech << endl;
-
-	cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
-
-	// Recording the transient driver for idle
-	driver_min = Fan.NcPct;
-	// driver_min = LPC.NcPct;
-	// driver_min = HPC.NcPct;
-	// driver_min = Burner.Wfuel
-
-}else{
-
-	cout << "\nIdle at 6,000 ft hot day take off failed!\n" << endl;
-
-}
-
-CaseView_SS.display();
-
-//-------------------------------------------------------------------------------------------------
-// Running transient at 6,000 ft hot day take off
-//-------------------------------------------------------------------------------------------------
-// No need to add constraints to the transient dependent 
-// because they are already added for the previous transient run 
-
-// Changing a solver setting for this run
-trans_indep.dxLimitType = "ABSOLUTE";
-
-// Setting up the solver for transient mode
-transient_setup();
-
-// Changing the name of the transient out file name
-caseRow.filename = "transientRunsHAHDTKO.out";
-
-// Adding the transient out file stream to the execution sequence
-solver.postExecutionSequence.append("CaseView");
-
-cout << "\nRunning transient now!\n" << endl;
-
-// Total transient simulation time
-transient.stopTime = 20.0;
-
-// Solver tolerance scalar for transient run
-transient.toleranceScaleFactor=100.0;
-
+solver.postExecutionSequence.append("CaseView_SS");
+
+CASE++;
+// Running the steady state case
+
+// Running the model at high power setting
+Fan_NcPct_target = driver_max;
+// LPC_NcPct_target = driver_max;
+// HPC_NcPct_target = driver_max;
+// Wfuel_target = driver_max;
+cout<<"Ambient.W = "<<Ambient.W<<endl;
+CASE++;
 run();
 printPride();
-CaseView.display();
+// CaseView_SS.display();
+page.display();
 
-cout << "Finished running transient now!\n" << endl;
 
-cout << "Time: " << time << "\n" << endl;
+// Running the model at high power setting
+Fan_NcPct_target = driver_max;
+// LPC_NcPct_target = driver_max;
+// HPC_NcPct_target = driver_max;
+// Wfuel_target = driver_max;
 
-cout << "Fnet: " << Perf.myFn << "\n" << endl;
+CASE++;
+run();
+printPride();
+// CaseView_SS.display();
+page.display();
+cout<<"Burner.Fl_O.Tt = "<<Burner.Fl_O.Tt<<endl;
+// printPride();
+
+if(solver.converged == 1 && errHandler.numErrors == 0) {
+
+cout << "\nHigh power at SLS successful! \n" << endl;
+
+cout << "Fnet: " << Perf.myFn << endl;
 
 cout << "Fan NcPct: " << Fan.NcPct << endl;
 cout << "LPC NcPct: " << LPC.NcPct << endl;
@@ -411,6 +102,491 @@ cout << "HPC NcPct: " << HPC.NcPct << endl;
 cout << "\nNL: " << LP_Shaft.Nmech << endl;
 cout << "NH: " << HP_Shaft.Nmech << endl;
 
+// Recording the maximum allowable fuel flow rate
+real Wfuel_max = Burner.Wfuel;
+
+// real NH_max = HP_Shaft.Nmech;
+// real NL_max = LP_Shaft.Nmech;
+
+//driver_max = Wfuel_max; // Uncomment if you want to run to fuel flow rate in transient
+
+cout << "\n" << "Max fuel flow rate: " << Burner.Wfuel << endl;
+
+}else{
+
+cout << "\nHigh power at SLS failed! \n" << endl;
+
+}
+
+//----------------------------------------------------------------------------------
+// Decreasing Fan NcPct for transient operation with acceleration schedule
+//----------------------------------------------------------------------------------
+
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+ Fan_NcPct_target = 80;
+CASE++;
+run();
+LPC_Bleed.LPCStabBld.stateInitial = "OPEN";
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 50;
+CASE++;
+run();
+
+Fan_NcPct_target = 40;
+CASE++;
+run(); /**/
+printPride();
+page.display();
+
+if(solver.converged == 1 ){
+
+cout << "\nLow power at SLS successful! \n" << endl;
+
+cout << "Fnet: " << Perf.myFn << endl;
+
+cout << "Fan NcPct: " << Fan.NcPct << endl;
+cout << "LPC NcPct: " << LPC.NcPct << endl;
+cout << "HPC NcPct: " << HPC.NcPct << endl;
+
+cout << "\nNL: " << LP_Shaft.Nmech << endl;
+cout << "NH: " << HP_Shaft.Nmech << endl;
+
+// Recording maximum allowable fuel flow rate
+real Wfuel_min = Burner.Wfuel;
+
+// real NH_min = HP_Shaft.Nmech;
+// real NL_min = LP_Shaft.Nmech;
+
+//driver_min = Wfuel_min; // Uncomment if you want to run to fuel flow rate in transient
+
 cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
 
-cout << "\n-------------------------------------------------------------------------------------------------" << endl;
+}else{
+
+cout << "\nLow power at SLS failed! \n" << endl;
+
+}
+
+transient_setup();
+
+solver.postExecutionSequence = {};
+
+solver.postExecutionSequence.append("CaseView");
+//solver.postExecutionSequence.append("cout << \"test\" << endl;");
+solver.postExecutionSequence.append("accel_disp");
+
+cout << "\nRunning transient now! \n" << endl;
+
+// For SLS 1
+// transient.stopTime = 30.0;
+
+// For burst and chop
+transient.stopTime = 0.015*191;
+
+//Other and debugging
+// transient.stopTime = 1.995;
+
+// solver.debugLevel = "ITERATION_DETAILS";
+// solver.diagnosticFile = "mySolverOutput";
+
+// transient.quiescenceTolerance = 0.0001;
+// transient.quiescence();
+solver.defaultTolerance = solver.defaultTolerance*100;
+//trans_Condition.eq_lhs = "HP_Shaft.dNcqdt";
+//trans_Condition.eq_rhs = "accelSchedule(HPC.NcPct)";
+
+//trans_Condition.eq_lhs = "Fan.NcPct";
+//trans_Condition.eq_rhs = "Fan_NcPct_target";
+   CASE++;
+ run();
+
+CaseView.display();
+page.display();
+printPride();
+
+//solver.debugLevel = "ITERATION_DETAILS";
+//solver.diagnosticFile = "mySolverOutput";
+
+transient.stopTime =  0.02*500;
+
+//transient.maxIterations = 15;
+// solver.solutionMode = "ONE_PASS";
+
+CASE++;
+run();
+CaseView.display();
+page.display();
+printPride();    
+solver.defaultTolerance = solver.defaultTolerance/100;
+//----------------------------------------------------------------------------------
+// Hot day take off at SL
+//----------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------
+// Switching solver from transient to steady state
+//----------------------------------------------------------------------------------
+
+solver.postExecutionSequence = {};
+
+solver.postExecutionSequence.append("CaseView_SS");
+
+Fan_NcPct_target = 100;
+
+SS_Setup();
+
+LPC_Bleed.LPCStabBld.stateInitial = "CLOSE";
+//----------------------------------------------------------------------------------
+// Increasing Mach number at SL for hot day take off
+//----------------------------------------------------------------------------------
+
+Ambient.MN = 0.1;
+CASE++;
+run();
+
+Ambient.MN = 0.2;
+CASE++;
+run();
+
+Ambient.MN = 0.25;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing temperature offset at SL for hot day take off
+//----------------------------------------------------------------------------------
+
+Ambient.dTs = 10;
+CASE++;
+run();
+
+Ambient.dTs = 20;
+CASE++;
+run();
+
+Ambient.dTs = 30;
+CASE++;
+run();
+
+Ambient.dTs = 40;
+CASE++;
+run();
+
+Ambient.dTs = 50;
+CASE++;
+run();
+cout<<"Burner.Fl_O.Tt = "<<Burner.Fl_O.Tt<<endl;
+if(solver.converged == 1 && errHandler.numErrors == 0) {
+
+cout << "\nHigh power at Hot Day TKO successful! \n" << endl;
+
+cout << "Fnet: " << Perf.myFn << endl;
+
+cout << "Fan NcPct: " << Fan.NcPct << endl;
+cout << "LPC NcPct: " << LPC.NcPct << endl;
+cout << "HPC NcPct: " << HPC.NcPct << endl;
+
+cout << "\nNL: " << LP_Shaft.Nmech << endl;
+cout << "NH: " << HP_Shaft.Nmech << endl;
+
+// real NH_max = HP_Shaft.Nmech;
+// real NL_max = LP_Shaft.Nmech;
+
+// driver_max = Burner.Wfuel; // Uncomment if you want to run to fuel flow rate in transient
+
+cout << "\n" << "Max fuel flow rate: " << Burner.Wfuel << endl;
+
+}else{
+
+cout << "\nHigh power at TKO failed! \n" << endl;
+
+}
+
+// printPride();
+
+//----------------------------------------------------------------------------------
+// Decreasing Fan NcPct for transient operation with acceleration schedule
+//----------------------------------------------------------------------------------
+
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 53;
+CASE++;
+run();
+page.display();
+// Fan_NcPct_target = 40;
+// CASE++;
+// run();
+
+printPride();
+
+if(solver.converged == 1 ){
+
+cout << "\nLow power at Hot Day TKO successful! \n" << endl;
+
+cout << "Fnet: " << Perf.myFn << endl;
+
+cout << "Fan NcPct: " << Fan.NcPct << endl;
+cout << "LPC NcPct: " << LPC.NcPct << endl;
+cout << "HPC NcPct: " << HPC.NcPct << endl;
+
+cout << "\nNL: " << LP_Shaft.Nmech << endl;
+cout << "NH: " << HP_Shaft.Nmech << endl;
+
+// real NH_min = HP_Shaft.Nmech;
+// real NL_min = LP_Shaft.Nmech;
+
+// driver_min = Burner.Wfuel; // Uncomment if you want to run to fuel flow rate in transient
+
+cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
+
+}else{
+
+cout << "\nLow power at TKO failed! \n" << endl;
+
+}
+
+// Updating the minimum driver (idle fan percent corrected speed) for hot day TKO - Fan NcPct = 40 has negative thrust
+// and Fan NcPct = 50 has LPC Rline = 1 
+driver_min = 53;
+
+//----------------------------------------------------------------------------------
+// Running transient at hot day TKO
+//----------------------------------------------------------------------------------
+
+// trans_Condition.addConstraint("accel_limit", "MAX");
+// trans_Condition.addConstraint("LPC_SMN_Limit","MAX",2,-1);
+transient_setup();
+
+solver.postExecutionSequence = {};
+
+solver.postExecutionSequence.append("CaseView");
+
+cout << "\nRunning transient now! \n" << endl;
+
+caseRow.filename = "transientRunsHTKO.out";
+
+transient.stopTime = 0.015*191;
+
+solver.defaultTolerance = solver.defaultTolerance*100;
+
+    CASE++;
+run();
+CaseView.display();
+page.display();
+printPride();
+
+transient.stopTime =  0.02*500;
+
+CASE++;
+run();
+CaseView.display();
+page.display();
+printPride();    
+
+solver.defaultTolerance = solver.defaultTolerance/100;
+
+//----------------------------------------------------------------------------------
+// High Hot day take off 
+//----------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------
+// Switching solver from transient to steady state
+//----------------------------------------------------------------------------------
+
+solver.postExecutionSequence = {};
+
+solver.postExecutionSequence.append("CaseView_SS");
+
+Fan_NcPct_target = 100;
+
+SS_Setup();
+
+
+//----------------------------------------------------------------------------------
+// Increasing altitude to high hot day take off
+//----------------------------------------------------------------------------------
+
+Ambient.alt = 1000;
+CASE++;
+run();
+
+Ambient.alt = 2000;
+CASE++;
+run();
+
+Ambient.alt = 3000;
+CASE++;
+run();
+printPride();
+
+Ambient.alt = 4000;
+CASE++;
+run();
+printPride();
+
+Ambient.alt = 5000;
+Ambient.dTs = 25;
+CASE++;
+run();
+printPride();
+cout<<"Burner.Fl_O.Tt = "<<Burner.Fl_O.Tt<<endl;
+
+Ambient.alt = 6000;
+CASE++;
+run();
+printPride();
+cout<<"Burner.Fl_O.Tt = "<<Burner.Fl_O.Tt<<endl;
+
+if(solver.converged == 1 ) {
+
+cout << "\nHigh power at High Hot Day TKO successful! \n" << endl;
+
+cout << "Fnet: " << Perf.myFn << endl;
+
+cout << "Fan NcPct: " << Fan.NcPct << endl;
+cout << "LPC NcPct: " << LPC.NcPct << endl;
+cout << "HPC NcPct: " << HPC.NcPct << endl;
+
+cout << "\nNL: " << LP_Shaft.Nmech << endl;
+cout << "NH: " << HP_Shaft.Nmech << endl;
+
+// real NH_max = HP_Shaft.Nmech;
+// real NL_max = LP_Shaft.Nmech;
+
+// driver_max = Burner.Wfuel; // Uncomment if you want to run to fuel flow rate in transient
+
+cout << "\n" << "Max fuel flow rate: " << Burner.Wfuel << endl;
+
+}else{
+
+cout << "\nHigh power at HHTKO failed! \n" << endl;
+
+}
+ 
+// printPride();
+
+//----------------------------------------------------------------------------------
+// Decreasing Fan NcPct for transient operation with acceleration schedule
+//----------------------------------------------------------------------------------
+
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 53;
+CASE++;
+run();
+page.display();
+
+
+CASE++;
+run();
+page.display();
+
+// Fan_NcPct_target = 40;
+// CASE++;
+// run();
+
+printPride();
+
+if(solver.converged == 1 ){
+
+cout << "\nLow power at High Hot Day TKO successful! \n" << endl;
+
+cout << "Fnet: " << Perf.myFn << endl;
+
+cout << "Fan NcPct: " << Fan.NcPct << endl;
+cout << "LPC NcPct: " << LPC.NcPct << endl;
+cout << "HPC NcPct: " << HPC.NcPct << endl;
+
+cout << "\nNL: " << LP_Shaft.Nmech << endl;
+cout << "NH: " << HP_Shaft.Nmech << endl;
+
+// real NH_min = HP_Shaft.Nmech;
+// real NL_min = LP_Shaft.Nmech;
+
+// driver_min = Burner.Wfuel; // Uncomment if you want to run to fuel flow rate in transient
+
+cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
+
+}else{
+
+cout << "\nLow power at HHTKO failed! \n" << endl;
+
+}
+
+// Updating the minimum driver (idle fan percent corrected speed) for hot day TKO - Fan NcPct = 40 has negative thrust
+// and Fan NcPct = 50 has LPC Rline = 1 
+driver_min = 53; 
+
+//----------------------------------------------------------------------------------
+// Running transient at hot day TKO
+//----------------------------------------------------------------------------------
+
+// trans_Condition.addConstraint("accel_limit", "MAX");
+// trans_Condition.addConstraint("LPC_SMN_Limit","MAX",2,-1);
+transient_setup();
+
+solver.postExecutionSequence = {};
+
+solver.postExecutionSequence.append("CaseView");
+
+
+cout << "\nRunning transient now! \n" << endl;
+
+caseRow.filename = "transientRunsHHTKO.out";
+
+transient.stopTime = 0.015*191;
+
+solver.defaultTolerance = solver.defaultTolerance*1000;
+
+       CASE++;
+run();
+CaseView.display();
+//page.display();
+printPride();
+
+transient.stopTime =  0.02*500;
+
+CASE++;
+run();
+CaseView.display();
+//page.display();
+printPride();     
+solver.defaultTolerance = solver.defaultTolerance/100; 

@@ -1,41 +1,353 @@
-// This is the case file for getting the minimum limits for the engine
+//----------------------------------------------------------------------------------
+// Min RU limit case
+//----------------------------------------------------------------------------------
 
-real min_RU_limit, min_Ps3_limit; // Defining the necessary variables for minimum limits
+//----------------------------------------------------------------------------------
+// Increasing Mach number to 0.25 at SLS
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.1;
+CASE++;
+run();
 
-//-------------------------------------------------------------------------------------------------
-// Minimum RU limit case
-//-------------------------------------------------------------------------------------------------
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
+Ambient.MN = 0.2;
+CASE++;
+run();
 
-// Use PC in the guess logic for idle definition
-PC = 21;
+Ambient.MN = 0.25;
+CASE++;
+run();
 
-// Running the minimum RU limit at 38,000 ft, MN = 0.70, and dTs = 0.0
-Ambient.alt = 38000;
-Ambient.MN = 0.70;
-Ambient.dTs = 0.0;
-RunIdle();
+//----------------------------------------------------------------------------------
+// Increasing altitude to 6,000 ft from SL at Mach number 0.25
+//----------------------------------------------------------------------------------
+Ambient.alt = 2000;
+CASE++;
+run();
 
-cout << "\nMin RU Limit: " << Burner.Wfuel / FS_3.Ps << " lbm/(psia-s)" << endl;
-min_RU_limit = Burner.Wfuel / FS_3.Ps;
+Ambient.alt = 4000;
+CASE++;
+run();
 
-//-------------------------------------------------------------------------------------------------
-// Minimum Ps3 limit case
-//-------------------------------------------------------------------------------------------------
-// Running the minimum Ps3 limit at 40,000 ft, MN = 0.65, and dTs = 0.0
-Ambient.alt = 40000;
+Ambient.alt = 6000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number from 0.25 to 0.65 at 6,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.35;
+CASE++;
+run();
+
+Ambient.MN = 0.45;
+CASE++;
+run();
+
+Ambient.MN = 0.55;
+CASE++;
+run();
+
 Ambient.MN = 0.65;
-RunIdle();
+CASE++;
+run();
 
-cout << "Min Ps3 Limit: " << FS_3.Ps << " psia" << endl;
-min_Ps3_limit = FS_3.Ps;
+//----------------------------------------------------------------------------------
+// Increasing altitude from 8,000 ft to 38,000 ft at M = 0.65
+//----------------------------------------------------------------------------------
+Ambient.alt = 8000;
+CASE++;
+run();
 
-// Returning back to SLS maximum thrust condition
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-PC = 50;
+Ambient.alt = 10000;
+CASE++;
+run();
+
+Ambient.alt = 12000;
+CASE++;
+run();
+
+Ambient.alt = 14000;
+CASE++;
+run();
+
+Ambient.alt = 16000;
+CASE++;
+run();
+
+Ambient.alt = 18000;
+CASE++;
+run();
+
+Ambient.alt = 20000;
+CASE++;
+run();
+
+Ambient.alt = 22000;
+CASE++;
+run();
+
+Ambient.alt = 24000;
+CASE++;
+run();
+
+Ambient.alt = 26000;
+CASE++;
+run();
+
+Ambient.alt = 28000;
+CASE++;
+run();
+
+Ambient.alt = 30000;
+CASE++;
+run();
+
+Ambient.alt = 32000;
+CASE++;
+run();
+
+Ambient.alt = 34000;
+CASE++;
+run();
+
+Ambient.alt = 36000;
+CASE++;
+run();
+
+Ambient.alt = 38000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number from 0.65 to 0.70 at 38,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.7;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Fan NcPct for idle at 38,000 ft and Mach number 0.7
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 52;
+CASE++;
+run();
+
+cout << "Min RU Limit: " << Burner.Wfuel / FS_3.Ps << endl;
+
+//----------------------------------------------------------------------------------
+// Increasing Fan NcPct for maximum power at 38,000 ft and Mach number 0.7
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 100;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number from 0.7 to 0.65 at 38,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.65;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing altitude from 38,000 ft to 40,000 ft at M = 0.65
+//----------------------------------------------------------------------------------
+Ambient.alt = 40000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Fan NcPct for idle at 40,000 ft and Mach number 0.65 
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 52;
+CASE++;
+run();
+
+cout << "Min Ps3 Limit: " << FS_3.Ps << endl;
+
+//----------------------------------------------------------------------------------
+// Increasing Fan NcPct for maximum power at 40,000 ft and Mach number 0.65
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 100;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number to 0.50 from 0.65 at 40,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.60;
+CASE++;
+run();
+
+Ambient.MN = 0.55;
+CASE++;
+run();
+
+Ambient.MN = 0.50;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing altitude from 40,000 ft to 10,000 ft at M = 0.50
+//----------------------------------------------------------------------------------
+Ambient.alt = 35000;
+CASE++;
+run();
+
+Ambient.alt = 30000;
+CASE++;
+run();
+
+Ambient.alt = 25000;
+CASE++;
+run();
+
+Ambient.alt = 20000;
+CASE++;
+run();
+
+Ambient.alt = 10000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number from 0.50 to 0.40 at 10,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.45;
+CASE++;
+run();
+
+Ambient.MN = 0.40;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing altitude from 10,000 ft to 6,000 ft at M = 0.40
+//----------------------------------------------------------------------------------
+Ambient.alt = 9000;
+CASE++;
+run();
+
+Ambient.alt = 8000;
+CASE++;
+run();
+
+Ambient.alt = 7000;
+CASE++;
+run();
+
+Ambient.alt = 6000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number from 0.4 to 0.25 at 6,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.35;
+CASE++;
+run();
+
+Ambient.MN = 0.30;
+CASE++;
+run();
+
+Ambient.MN = 0.25;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing altitude to SL from 6,000 ft at Mach number 0.25
+//----------------------------------------------------------------------------------
+Ambient.alt = 5000;
+CASE++;
+run();
+
+Ambient.alt = 3500;
+CASE++;
+run();
+
+Ambient.alt = 1500;
+CASE++;
+run();
+
 Ambient.alt = 0.0;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number from 0.25 to zero
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.20;
+CASE++;
+run();
+
+Ambient.MN = 0.10;
+CASE++;
+run();
+
 Ambient.MN = 0.0;
-Ambient.dTs = 0.0;
-RunMaxPower();
+CASE++;
+run();

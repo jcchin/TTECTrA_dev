@@ -1,116 +1,536 @@
-// This is the case file for creating setpoint values 
-// throughout the entire flight envelope
-
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-
-//-------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
 // Power Management Runs
-//-------------------------------------------------------------------------------------------------
-cout << "PC \t P2 (psia) \t Fn (lbf) \t Wf (lbm/s) \t Nf (RPM) \t Nc (RPM) \t EPR \t NcR25 (RPM) \t Ps30 (psia) \t FAR" <<endl;
+//----------------------------------------------------------------------------------
+
+cout << "PC \t P2 \t EPR" <<endl;
 
 //----------------------------------------------------------------------------------
-// Maximum thrust at SLS
+// Maximum power at SLS
 //----------------------------------------------------------------------------------
-Ambient.alt = 0.0;
-Ambient.MN = 0.0;
-Ambient.dTs = 0.0;
+run();
 
-PC = 50;
-RunMaxPower();
-
-cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+cout << "50 \t" << FS_2.Pt << "\t" << Perf.myEPR << endl;
 
 //----------------------------------------------------------------------------------
-// Idle at SLS
+// Decreasing Fan NcPct for idle at SLS
 //----------------------------------------------------------------------------------
-PC = 21;
-RunIdle();
+Fan_NcPct_target = 90;
+CASE++;
+run();
 
-cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 50;
+CASE++;
+run();
+
+Fan_NcPct_target = 40;
+CASE++;
+run();
 
 //----------------------------------------------------------------------------------
-// Maximum power at SL, MN = 0.25, and dTs = 50 F
+// Minimum power at SLS
 //----------------------------------------------------------------------------------
-Ambient.MN = 0.25;
-Ambient.dTs = 50.0;
+Fan_NcPct_target = 35;
+CASE++;
+run();
 
-PC = 50;
-RunMaxPower();
-
-cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+cout << "21 \t" << FS_2.Pt << "\t" << Perf.myEPR << endl;
 
 //----------------------------------------------------------------------------------
-// Idle at SL, MN = 0.25, and dTs = 50 F
+// Increasing Fan NcPct for maximum power at SLS
 //----------------------------------------------------------------------------------
-PC = 21;
-RunIdle();
+Fan_NcPct_target = 40;
+CASE++;
+run();
 
-cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+Fan_NcPct_target = 50;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 100;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number from zero to 0.20 at SL
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.1;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Maximum power at SL and Mach number 0.20
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.2;
+CASE++;
+run();
+
+cout << "50 \t" << FS_2.Pt << "\t" << Perf.myEPR << endl;
+
+//----------------------------------------------------------------------------------
+// Decreasing Fan NcPct for idle at SL and Mach number 0.20
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Minimum power at SL and Mach number 0.20
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 53;
+CASE++;
+run();
+
+cout << "21 \t" << FS_2.Pt << "\t" << Perf.myEPR << endl;
+
+//----------------------------------------------------------------------------------
+// Increasing Fan NcPct for maximum power at SL and Mach number 0.20
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 55;
+CASE++;
+run();
+
+Fan_NcPct_target = 57;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 100;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing altitude to 5,000 ft from SL at Mach number 0.20
+//----------------------------------------------------------------------------------
+Ambient.alt = 2500;
+CASE++;
+run();
+
+Ambient.alt = 5000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number from 0.20 to 0.40 at 5,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.3;
+CASE++;
+run();
+
+Ambient.MN = 0.4;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing altitude to 15,000 ft from 5,000 ft at Mach number 0.40
+//----------------------------------------------------------------------------------
+Ambient.alt = 7500;
+CASE++;
+run();
+
+Ambient.alt = 10000;
+CASE++;
+run();
+
+Ambient.alt = 12500;
+CASE++;
+run();
 
 //----------------------------------------------------------------------------------
 // Maximum power at 15,000 ft and Mach number 0.4
 //----------------------------------------------------------------------------------
 Ambient.alt = 15000;
-Ambient.MN = 0.40;
-Ambient.dTs = 0.0;
+CASE++;
+run();
 
-PC = 50;
-RunMaxPower();
-
-cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+cout << "50 \t" << FS_2.Pt << "\t" << Perf.myEPR << endl;
 
 //----------------------------------------------------------------------------------
-// Idle at 15,000 ft and Mach number 0.4
+// Decreasing Fan NcPct for idle at 15,000 ft and Mach number 0.4
 //----------------------------------------------------------------------------------
-PC = 21;
-RunIdle();
+Fan_NcPct_target = 90;
+CASE++;
+run();
 
-cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Minimum power at 15,000 ft and Mach number 0.4
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 53;
+CASE++;
+run();
+
+cout << "21 \t" << FS_2.Pt << "\t" << Perf.myEPR << endl;
+
+//----------------------------------------------------------------------------------
+// Increasing Fan NcPct for maximum power at 15,000 ft and Mach number 0.4
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 100;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number from 0.40 to 0.60 at 15,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.5;
+CASE++;
+run();
+
+Ambient.MN = 0.6;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing altitude to 20,000 ft from 15,000 ft at Mach number 0.60
+//----------------------------------------------------------------------------------
+Ambient.alt = 17500;
+CASE++;
+run();
 
 //----------------------------------------------------------------------------------
 // Maximum power at 20,000 ft and Mach number 0.60
 //----------------------------------------------------------------------------------
 Ambient.alt = 20000;
-Ambient.MN = 0.6;
+CASE++;
+run();
 
-PC = 50;
-RunMaxPower();
-
-cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+cout << "50 \t" << FS_2.Pt << "\t" << Perf.myEPR << endl;
 
 //----------------------------------------------------------------------------------
-// Idle at 20,000 ft and Mach number 0.60
+// Decreasing Fan NcPct for idle at 20,000 ft and Mach number 0.60
 //----------------------------------------------------------------------------------
-PC = 21;
-RunIdle();
+Fan_NcPct_target = 90;
+CASE++;
+run();
 
-cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Minimum power at 20,000 ft and Mach number 0.60
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 50;
+CASE++;
+run();
+
+cout << "21 \t" << FS_2.Pt << "\t" << Perf.myEPR << endl;
+
+//----------------------------------------------------------------------------------
+// Increasing Fan NcPct for maximum power
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 100;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing altitude to 40,000 ft from 20,000 ft at Mach number 0.60
+//----------------------------------------------------------------------------------
+Ambient.alt = 25000;
+CASE++;
+run();
+
+Ambient.alt = 30000;
+CASE++;
+run();
+
+Ambient.alt = 35000;
+CASE++;
+run();
+
+Ambient.alt = 40000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number from 0.60 to 0.80 at 40,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.7;
+CASE++;
+run();
 
 //----------------------------------------------------------------------------------
 // Maximum power at 40,000 ft and Mach number 0.80
 //----------------------------------------------------------------------------------
-Ambient.alt = 40000;
 Ambient.MN = 0.8;
+CASE++;
+run();
 
-PC = 50;
-RunMaxPower();
-
-cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+cout << "50 \t" << FS_2.Pt << "\t" << Perf.myEPR << endl;
 
 //----------------------------------------------------------------------------------
-// Idle at 40,000 ft and Mach number 0.80
+// Decreasing Fan NcPct for idle at 40,000 ft and Mach number 0.80
 //----------------------------------------------------------------------------------
-PC = 21;
-RunIdle();
+Fan_NcPct_target = 90;
+CASE++;
+run();
 
-cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
+Fan_NcPct_target = 80;
+CASE++;
+run();
 
-// Returning back to SLS maximum thrust condition
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-PC = 50;
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Minimum power at 40,000 ft and Mach number 0.80
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 55;
+CASE++;
+run();
+
+cout << "21 \t" << FS_2.Pt << "\t" << Perf.myEPR << endl;
+
+//----------------------------------------------------------------------------------
+// Increasing Fan NcPct for maximum power at 40,000 ft and Mach number 0.80
+//----------------------------------------------------------------------------------
+Fan_NcPct_target = 60;
+CASE++;
+run();
+
+Fan_NcPct_target = 70;
+CASE++;
+run();
+
+Fan_NcPct_target = 80;
+CASE++;
+run();
+
+Fan_NcPct_target = 90;
+CASE++;
+run();
+
+Fan_NcPct_target = 100;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number to 0.50 at 40,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.70;
+CASE++;
+run();
+
+Ambient.MN = 0.60;
+CASE++;
+run();
+
+Ambient.MN = 0.55;
+CASE++;
+run();
+
+Ambient.MN = 0.50;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing altitude from 40,000 ft to 10,000 ft at M = 0.50
+//----------------------------------------------------------------------------------
+Ambient.alt = 35000;
+CASE++;
+run();
+
+Ambient.alt = 30000;
+CASE++;
+run();
+
+Ambient.alt = 25000;
+CASE++;
+run();
+
+Ambient.alt = 20000;
+CASE++;
+run();
+
+Ambient.alt = 10000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number from 0.5 to 0.4 at 10,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.45;
+CASE++;
+run();
+
+Ambient.MN = 0.40;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing altitude from 10,000 ft to 6,000 ft at M = 0.4
+//----------------------------------------------------------------------------------
+Ambient.alt = 9000;
+CASE++;
+run();
+
+Ambient.alt = 8000;
+CASE++;
+run();
+
+Ambient.alt = 7000;
+CASE++;
+run();
+
+Ambient.alt = 6000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number from 0.4 to 0.25 at 6,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.35;
+CASE++;
+run();
+
+Ambient.MN = 0.30;
+CASE++;
+run();
+
+Ambient.MN = 0.25;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing altitude to SL from 6,000 ft
+//----------------------------------------------------------------------------------
+Ambient.alt = 5000;
+CASE++;
+run();
+
+Ambient.alt = 3500;
+CASE++;
+run();
+
+Ambient.alt = 1500;
+CASE++;
+run();
+
 Ambient.alt = 0.0;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number from 0.20 to zero
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.20;
+CASE++;
+run();
+
+Ambient.MN = 0.10;
+CASE++;
+run();
+
 Ambient.MN = 0.0;
-Ambient.dTs = 0.0;
-RunMaxPower();
+CASE++;
+run();

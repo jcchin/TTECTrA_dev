@@ -1,0 +1,4 @@
+void accel_disp(){
+    AccPt << "a.('Fn')=" << Perf.myFn << ";a.('Wf')=" << Burner.Wfuel << ";a.('Nf')=" <<  LP_Shaft.Nmech << ";a.('Nc')=" << HP_Shaft.Nmech << ";a.('EPR')=" << Perf.myEPR << ";a.('NCR25')=" << HP_Shaft.Nmech/(HPC.Fl_I.Tt/518.67)**0.5 << ";" << ";a.('Ncdot')="<< HP_Shaft.dNqdt <<";a.('NcorrDot')="<< HP_Shaft.dNcqdt <<  endl;
+    AccPt << "output = [output a];" << endl;
+}

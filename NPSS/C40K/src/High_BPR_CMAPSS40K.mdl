@@ -1,29 +1,20 @@
-//-------------------------------------------------------------------------------------------------
-//                                                            													           |
-//   File Name:    High_BPR_CMAPSS40K.mdl                                  					   |
-//   Date(s):        May 2, 2014									                                           |
-//   Author:         Metin F. Ozcan                                       								   |
-//                                                                       												   |
-//   Description:   Separate Flow High BPR Turbofan Engine Model 			   		   |
-//                         Calibrated for CMAPSS40K engine model     						   |
-//-------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//                                                                       |
+//   File Name:     High_BPR_150pax.mdl                                  |
+//   Date(s):       July 22, 2013                                        |
+//   Author:        Metin F. Ozcan                                       |
+//                                                                       |
+//   Description:   Separate Flow High BPR Turbofan Engine for 150 PAX   |
+//                                                                       |
+//------------------------------------------------------------------------
 
-// The design variables are overwritten in the design_point_CMAPSS40K.int file. 
-// You can change the design variables in the CMAPSS40K.run file after 
-// including the design_point_CMAPSS40K.int file in the run file.
+// Flight conditions can be overwritten in the transient_150pax.run file whereas the design 
+// variables are overwritten in the design_point_150pax.int file. You can change the design variables 
+// after including the design_point_150pax.int file in the transient.run file as well.
 
-//-------------------------------------------------------------------------------------------------
-// Model Definition 
-//-------------------------------------------------------------------------------------------------
-// Defining the variables for the guess logic and setting their default values
-real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=3.93086, far=0.0219794, EPR=2.55849;
-
-// Guess logic element
-Element Guess { 
-
-#include <Guess.ins> 
-
-}
+//------------------------------------------------------------------------
+//                            Model Definition 
+//------------------------------------------------------------------------
 
 // Defining the Ambient element
 Element FlightConditions Ambient  {
@@ -76,6 +67,9 @@ Element Compressor Fan  {
    S_map.PRdes = 1.658;
    S_map.effDes = 0.875371;
 
+   // real spec_flow_dsn = 42.0;
+   // real hub_to_tip = 0.3;
+
 }
 
 // Defining the splitter element
@@ -103,6 +97,49 @@ Element Compressor LPC  {
    S_map.NcDes = 1.0;
    S_map.PRdes = 1.9103;
    S_map.effDes = 0.875588;
+
+   real spec_flow_dsn = 32.83;
+   real hub_to_tip = 0.8; 
+   void postexecute(){
+   //cout<<"LPC.NcPct = "<<LPC.NcPct<<endl;
+	   //if(LPC.SMN < 10){
+	   if(LPC.NcPct <= 90){	   
+			   LPC_Bleed.LPCStabBld.stateDemand = "OPEN";
+	   } else if(LPC.NcPct <= 93){
+			   LPC_Bleed.LPCStabBld.stateDemand = "MID";
+	   } else {
+			   LPC_Bleed.LPCStabBld.stateDemand = "CLOSE";
+	   }
+   }
+   
+
+}
+
+Element Bleed LPC_Bleed  {
+   Fl_O.MN = 0.4; // OGV inlet Mach number  
+   WrefName = "LPC.Fl_I.W";
+  	DSV LPCStabBld {
+		allowedValues = {"CLOSE","MID","OPEN"}
+		autoSetup = TRUE;
+		controlBounce = TRUE;
+		stateInitial = "CLOSE";
+	}
+	
+	void preexecute(){
+		if(LPCStabBld.state == "OPEN"){
+			stabld.fracW = 0.06;
+		}
+		else if(LPCStabBld.state == "MID"){
+			stabld.fracW = 0.06;
+		} 		
+		else if(LPCStabBld.state == "CLOSE"){
+			stabld.fracW = 0.01;
+		} 
+	} 
+
+   BleedOutPort stabld {	              // stability bleed
+     fracW = 0.01;
+   } 
 
 }
 
@@ -414,7 +451,6 @@ Element Nozzle Core_Nozz  {
 
 }
 
-// Defining the flow end element for the core nozzle
 Element FlowEnd  Core_NozzEnd  {
 }
 
@@ -431,6 +467,12 @@ Element Duct Duct15  {
    dPqPbase = 0.015;
    Fl_O.MN = 0.45; 
 
+}
+
+// Defining the bleed input element
+Element Bleed Sta_Bleed  {
+   Fl_O.MN = 0.30;
+   BleedInPort Stabld; 
 }
 
 // Defining the bypass nozzle element
@@ -456,14 +498,16 @@ Element Nozzle Byp_Nozz  {
 
 }
 
-// Defining the flow end element for the bypass nozzle
 Element FlowEnd Byp_NozzEnd  {
 }
-
-// Defining the high pressure shaft element
+	
 Element Shaft HP_Shaft  {
    ShaftInputPort HPC, HPT;
 
+   // real HPXBase;
+   // real HPInstall = 1;
+
+   // HPX = 100.0;
    Nmech=11158;
    inertia=21.4650;
    
@@ -474,15 +518,33 @@ Element Shaft HP_Shaft  {
 		dNcqdt = HP_Shaft.dNqdt / (HPC.Fl_I.Pt / Ambient.Fl_O.Ps);
    
    }
+   
+	// Table HPXLowAlt( real alt ) {       //horsepower extraction at low altitudes
+		// alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		// hpx = { 1, 1, 0, 0 }
+		// alt.interp = "linear";
+	// }
+	// HPXLowAlt.s_rtn = 0;
+
+	// Table HPXHighAlt( real alt ) {       //horsepower extraction at high altitudes
+		// alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		// hpx = { 0, 0, 1, 1 }
+		// alt.interp = "linear";
+	// }
+	// HPXHighAlt.s_rtn = 0;	
+
+   // void preexecute() { 
+ 	 // HPX = (HPXBase + HPXLowAlt(Ambient.alt) + HPXHighAlt(Ambient.alt))*HPInstall;
+   // }
 
 }
 
-// Defining the low pressure shaft element
 Element Shaft LP_Shaft  {
 
    ShaftInputPort FAN, LPC, LPT;
 	
    Nmech=3887;
+   // fracLoss=0.0;
    inertia=106.60;
 
    real dNcqdt;
@@ -495,18 +557,22 @@ Element Shaft LP_Shaft  {
    
 }
 
-// Flow end element for overboard flow 1
 Element FlowEnd OverBrd1  {
 }
 
-// Flow end element for overboard flow 2
+
 Element FlowEnd OverBrd2  {
 }
 
-// Engine performance calculations element
+// Element FlowEnd  OBsink1  {
+// }
+
+// Element FlowEnd  OBsink2  {
+// }
+
 Element EngPerf Perf  {
    real Nozzle_Atot, VjetRatio, OPR_Jon, myOPR, ThrustPct,myEPR;
-   real delta_KE, Thrml_Eff, Prop_Eff;
+   real delta_KE, Thrml_Eff, Prop_Eff, NcR25;
    FlowStation FS_A, FS_B, PT_exit_ideal;
    real myFn, myTSFC, myFg, myWfuelHr;
    real theta, theta_n;
@@ -536,21 +602,30 @@ Element EngPerf Perf  {
 		Prop_Eff = myFn*Ambient.Fl_O.V / delta_KE; 
 
 		theta_n = theta**exp_theta;
-
+    NcR25 = HP_Shaft.Nmech/(HPC.Fl_I.Tt/518.67)**0.5;
    }
 
 }
 
-//-------------------------------------------------------------------------------------------------
-// Component Linkages
-//-------------------------------------------------------------------------------------------------
+// Element FlowEnd  OBsink3  {
+// }
+
+//=================================================
+//                           Component Linkages
+//=================================================
 linkPorts( "Ambient.Fl_O"    , "Inlet.Fl_I"       , "FS_1"  ) ;
 linkPorts( "Inlet.Fl_O"      , "Fan.Fl_I"         , "FS_2"  ) ;
 linkPorts( "Fan.Fl_O"        , "Splitter.Fl_I"    , "FS_21" ) ;
 linkPorts( "Splitter.Fl_01"  , "Duct4.Fl_I"       , "FS_22" ) ;
 linkPorts( "Duct4.Fl_O"      , "LPC.Fl_I"         , "FS_23" ) ;
+linkPorts( "LPC.Fl_O"        , "LPC_Bleed.Fl_I"    , "FS_235");
+linkPorts( "LPC_Bleed.Fl_O"   , "Duct6.Fl_I"       , "FS_24" ) ; 
 
-linkPorts( "LPC.Fl_O"   , "Duct6.Fl_I"       , "FS_24" ) ;
+//, "Duct6.Fl_I"       , "FS_24" ) ;
+
+
+//, "LPCBleed.Fl_I"    , "FS_23B");
+//linkPorts( "LPCBleed.Fl_O"   , "Duct6.Fl_I"       , "FS_24" ) ;
 linkPorts( "Duct6.Fl_O"      , "HPC.Fl_I"         , "FS_25" ) ;	
 linkPorts( "HPC.Fl_O"        , "Bld3.Fl_I"        , "FS_3"  ) ;
 linkPorts( "Bld3.Fl_O"       , "Burner.Fl_I"      , "FS_36" ) ;  
@@ -565,46 +640,84 @@ linkPorts( "Core_Nozz.Fl_O"  , "Core_NozzEnd.Fl_I", "FS_9"  ) ;
 
 linkPorts( "Splitter.Fl_02"  , "BypBld.Fl_I"      , "FS_13" ) ;
 linkPorts( "BypBld.Fl_O"     , "Duct15.Fl_I"      , "FS_15" ) ;
-linkPorts( "Duct15.Fl_O"  , "Byp_Nozz.Fl_I"   , "FS_17" ) ;
+linkPorts( "Duct15.Fl_O"     , "Sta_Bleed.Fl_I"   , "FS_17SB" ) ;
+linkPorts( "Sta_Bleed.Fl_O"  , "Byp_Nozz.Fl_I"   , "FS_17" ) ;
+
+//, "Byp_Nozz.Fl_I"   , "FS_17" ) ;
+
+//, "Sta_Bleed.Fl_I"   , "FS_17SB" ) ;
+//linkPorts( "Sta_Bleed.Fl_O"  , "Byp_Nozz.Fl_I"   , "FS_17" ) ;
 linkPorts( "Byp_Nozz.Fl_O"   , "Byp_NozzEnd.Fl_I" , "FS_19" ) ;
 
-//-------------------------------------------------------------------------------------------------
-// Bleed Connections
-//-------------------------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------
+//                           Bleed Connections
+//------------------------------------------------------------------------
 linkPorts( "Bld3.Cool1"      , "HPT.Non_ChargeableBld",  "C_HPTinlt" );
+// linkPorts( "Bld3.Cool2"      , "HPT.ChargeableBld"    ,  "C_HPTexit" );
 linkPorts( "HPC.Cool1"       , "LPT.Non_ChargeableBld",  "C_LPTinlt" );
 linkPorts( "HPC.Cool2"       , "LPT.ChargeableBld"    ,  "C_LPTexit" );
+
 linkPorts( "HPC.CustBld"     , "OverBrd2.Fl_I"        ,  "CstmrBld"  ) ;
 linkPorts( "BypBld.Lkg"      , "OverBrd1.Fl_I"        ,  "Duct15Lk"  ) ;
 linkPorts( "HPC.ATD"         , "ATD_Bleed.ATDbld"     ,  "ATDbleed"  ) ;
+linkPorts( "LPC_Bleed.stabld" , "Sta_Bleed.Stabld"     ,  "STAbleed"  ) ;
 
-//-------------------------------------------------------------------------------------------------
-// Shaft Connections
-//-------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------
+//                           Shaft Connections
+//------------------------------------------------------------------------
 linkPorts( "HPC.Sh_O"  , "HP_Shaft.HPC" ,  "HPCworkin"   ) ;
 linkPorts( "HPT.Sh_O"  , "HP_Shaft.HPT" ,  "HPTworkout"  ) ;
 linkPorts( "Fan.Sh_O"  , "LP_Shaft.FAN" ,  "FANworkin"   ) ;
 linkPorts( "LPC.Sh_O"  , "LP_Shaft.LPC" ,  "LPCworkin"   ) ;
 linkPorts( "LPT.Sh_O"  , "LP_Shaft.LPT" ,  "LPTworkout"  ) ;
 
-// Linear model generator
 LinearModelGenerator lin_mod {
 
-	// Declaring model variables for the input and output variables
+	// assign arrays of variable names directly to the linear model attribute
 	inputVars = {"Burner.Wfuel"}
-	outputVars = {"LP_Shaft.Nmech", "HP_Shaft.Nmech", "FS_3.Ps", "FS_5.Pt", "FS_5.Tt", "HPC.Nc", "Perf.myEPR", "Burner.FAR", "FS_25.Tt", "FS_2.Tt", "FS_2.Pt"}
+	outputVars = {"LP_Shaft.Nmech","HP_Shaft.Nmech","Perf.myFn","FS_3.Ps", "FS_5.Pt", "FS_5.Tt", "Perf.myEPR"	}
 
-	// Adding the states to the linear model
-	addState("LP_Shaft.Nmech", "LP_Shaft.dNqdt", 0.005, "FRACTIONAL", 0.0);
+	// use the addState function to set the state and state derivative
+	// variables.
 	addState("HP_Shaft.Nmech", "HP_Shaft.dNqdt", 0.005, "FRACTIONAL", 0.0);
+	addState("LP_Shaft.Nmech", "LP_Shaft.dNqdt", 0.005, "FRACTIONAL", 0.0);
 	
-	// Setting the perturbation percentage for fuel flow rate
 	setPerturb("Burner.Wfuel", 0.005);
 	
-	// Default perturbation percentage for all of the variables 
 	defaultPerturbation = 0.005;
 	
-	// Setting the repeatablility test flag
+	// printDiagnostics = TRUE;
+	// diagnosticFileName = "cerr.out";
+	
+	//reportFileName = "linear_model.out";
+		
 	repeatabilityCheck = TRUE;
+	
+	//void userReport() {
+	
+	// OutFileStream LMGreport {
+		// filename = "linearModels.out";
+	// }
+	
+	// LMGreport << "\n\nLinear Model\n\n";
+	// LMGreport << "A matrix \n " << A << endl;
+	// LMGreport << "B matrix \n " << B << endl;
+	// LMGreport << "C matrix \n " << C << endl;
+	// LMGreport << "D matrix \n " << D << endl;
+	// LMGreport << "\n\n Baseline Values \n\n";
+	// LMGreport << "State = " << lin_mod.stateBase << endl;
+	// LMGreport << "Derivative = " << lin_mod.derivativeBase << endl;
+	// LMGreport << "Input = " << lin_mod.inputBase << endl;
+	// LMGreport << "Output = " << lin_mod.outputBase << endl;
+	// LMGreport << "Fan Corrected Speed = " << Fan.Nc << endl;
+	// LMGreport << "LPC Corrected Speed = " << LPC.Nc << endl;
+	// LMGreport << "HPC Corrected Speed = " << HPC.Nc << endl;
+	// LMGreport << "Passed Linearity Test = " << lin_mod.passedLinearTest << endl;
+	// LMGreport << "Passed Repeatability Test = " << lin_mod.passedRepeatTest << endl;
+	
+	//}
 	
 }

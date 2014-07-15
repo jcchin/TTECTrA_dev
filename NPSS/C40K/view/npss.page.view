@@ -2,7 +2,7 @@
 //         General Output DataViewer Specification
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-OutFileStream pageStream { filename = "npss.viewOut"; } 
+OutFileStream pageStream { filename = OutputPath + "npss.viewOut"; } 
 
 DataViewer PageViewer page { 
 

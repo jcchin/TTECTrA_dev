@@ -1,5 +1,3 @@
-// List of design variable values at the design point
-
 Ambient.W           = 421.9017436;
 
 // Inlet.S_install.s_eRam		 = 1;

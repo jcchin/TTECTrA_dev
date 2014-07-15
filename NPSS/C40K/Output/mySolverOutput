@@ -1,0 +1,131 @@
+
+START CONTINUOUS MODEL CONVERGENCE:
+=========================
+ITERATION #1
+
+INDEPENDENTS
+----------------
+COL  SHORT-NAME                    X-SOLVER       X-MODEL        X-REF
+1    Ambient.ind_W                 +3.9842e+002   +3.9842e+002   +3.9842e+002   
+2    Fan.S_map.ind_RlineMap        +1.5173e+000   +1.5173e+000   +1.5173e+000   
+3    Splitter.ind_BPR              +4.4073e+000   +4.4073e+000   +4.4073e+000   
+4    LPC.S_map.ind_RlineMap        +1.4795e+000   +1.4795e+000   +1.4795e+000   
+5    HPC.S_map.ind_RlineMap        +2.1835e+000   +2.1835e+000   +2.1835e+000   
+6    HPT.S_map.ind_parmMap         +4.8179e+000   +4.8179e+000   +4.8179e+000   
+7    LPT.S_map.ind_parmMap         +1.8564e+000   +1.8564e+000   +1.8564e+000   
+8    HP_Shaft.ind_Nmech            +9.3131e+003   +9.3131e+003   +9.3131e+003   
+9    LP_Shaft.ind_Nmech            +1.7787e+003   +1.7787e+003   +1.7787e+003   
+10   trans_indep                   +3.5247e-001   +3.5247e-001   +3.5247e-001   
+
+
+DEPENDENT ERRORS
+----------------------
+ROW  SHORT-NAME               TYPE Y1             Y2             Y-REF          ERROR          TOLERANCE      CONVERGED 
+1    Fan.S_map.dep_errWc      D    +3.9862e+002   +3.9862e+002   +3.9862e+002   -6.8713e-009   +1.0000e-006   TRUE      DY1I1
+2    LPC.S_map.dep_errWc      D    +6.7431e+001   +6.7431e+001   +6.7431e+001   -1.0813e-007   +1.0000e-006   TRUE      DY2I1
+3    HPC.S_map.dep_errWc      D    +5.7198e+001   +5.7198e+001   +5.7198e+001   -2.8127e-007   +1.0000e-006   TRUE      DY3I1
+4    HPT.S_map.dep_errWp      D    +8.3305e+000   +8.3305e+000   +8.3305e+000   -2.2705e-007   +1.0000e-006   TRUE      DY4I1
+5    LPT.S_map.dep_errWp      D    +4.0969e+001   +4.0969e+001   +4.0969e+001   -2.3131e-007   +1.0000e-006   TRUE      DY5I1
+6    Core_Nozz.dep_Area       D    +1.3864e-001   +1.3864e-001   +2.8905e-001   +8.7729e-007   +1.0000e-006   TRUE      DY6I1
+7    Byp_Nozz.dep_Area        D    +2.1268e-001   +2.1268e-001   +3.7072e-001   -2.8372e-007   +1.0000e-006   TRUE      DY7I1
+8    HP_Shaft.integrate_Nmech I    +9.3131e+003   +9.3131e+003   +6.5216e+003   -1.2144e-006   +1.0000e-006   FALSE     DY8I1
+9    LP_Shaft.integrate_Nmech I    +1.7787e+003   +1.7787e+003   +9.3027e+003   -9.3890e-007   +1.0000e-006   TRUE      DY9I1
+10   trans_Condition          D    +3.5247e-001   +3.5247e-001   +3.5247e-001   -6.3467e-006   +1.0000e-006   FALSE     DY10I1
+
+
+AUXILIARY DEPENDENT ERRORS
+(inactive constraints and targets)
+-------------------------------------
+ROW SHORT-NAME                     TYPE  Y1           Y2           Y-REF        ERROR        TOLERANCE   
+1   LPC_SMN_Limit                  C     +1.7343e+001 +5.0000e+000 +5.0000e+000 +2.4687e+000 +1.0000e-006      DA1I1
+2   HPC_SMN_Limit                  C     +3.9235e+001 +1.0000e+001 +1.0000e+001 +2.9235e+000 +1.0000e-006      DA2I1
+3   LPC_Rline_Min_Limit            C     +1.4795e+000 +3.0000e+000 +3.0000e+000 -5.0685e-001 +1.0000e-006      DA3I1
+4   HPC_Rline_Min_Limit            C     +2.1835e+000 +3.0000e+000 +3.0000e+000 -2.7217e-001 +1.0000e-006      DA4I1
+
+
+CONVERGENCE RATE INFO
+-------------------------
+errorMagNormPrev    = 0              errorMagNorm        = 6.609e-006     convergenceRatio    = 0              
+
+broydenLimit        = 0              divergenceLimit     = 2              convergenceLimit    = 1              
+numConvergeFailures = 0              maxConvergeFailures = 250            
+
+
+
+INDEPENDENT UPDATES - (unscaled)
+---------------------------
+COL  SHORT-NAME                    DX-UNLIM       LIMIT-VAL      DX-LIMITED   
+1    Ambient.ind_W                 +2.1459e-003   +3.9842e+001   +2.1459e-003   
+2    Fan.S_map.ind_RlineMap        -4.1054e-007   +1.5173e-001   -4.1054e-007   
+3    Splitter.ind_BPR              +5.0280e-006   +4.4073e-001   +5.0280e-006   
+4    LPC.S_map.ind_RlineMap        -6.9468e-006   +1.0000e+000   -6.9468e-006   
+5    HPC.S_map.ind_RlineMap        -5.6335e-007   +5.0000e-001   -5.6335e-007   
+6    HPT.S_map.ind_parmMap         -2.5747e-007   +4.8179e-001   -2.5747e-007   
+7    LPT.S_map.ind_parmMap         +8.9604e-006   +1.8564e-001   +8.9604e-006   
+8    HP_Shaft.ind_Nmech            +7.9053e-003   +9.3131e+002   +7.9053e-003   
+9    LP_Shaft.ind_Nmech            +8.7053e-003   +1.7787e+002   +8.7053e-003   
+10   trans_indep                   +2.2370e-006   +1.0000e+000   +2.2370e-006   
+
+
+=========================
+ITERATION #2
+
+INDEPENDENTS
+----------------
+COL  SHORT-NAME                    X-SOLVER       X-MODEL        X-REF
+1    Ambient.ind_W                 +3.9842e+002   +3.9842e+002   +3.9842e+002   
+2    Fan.S_map.ind_RlineMap        +1.5173e+000   +1.5173e+000   +1.5173e+000   
+3    Splitter.ind_BPR              +4.4073e+000   +4.4073e+000   +4.4073e+000   
+4    LPC.S_map.ind_RlineMap        +1.4794e+000   +1.4794e+000   +1.4794e+000   
+5    HPC.S_map.ind_RlineMap        +2.1835e+000   +2.1835e+000   +2.1835e+000   
+6    HPT.S_map.ind_parmMap         +4.8179e+000   +4.8179e+000   +4.8179e+000   
+7    LPT.S_map.ind_parmMap         +1.8564e+000   +1.8564e+000   +1.8564e+000   
+8    HP_Shaft.ind_Nmech            +9.3131e+003   +9.3131e+003   +9.3131e+003   
+9    LP_Shaft.ind_Nmech            +1.7787e+003   +1.7787e+003   +1.7787e+003   
+10   trans_indep                   +3.5247e-001   +3.5247e-001   +3.5247e-001   
+
+
+
+DEPENDENT ERRORS
+----------------------
+ROW  SHORT-NAME               TYPE Y1             Y2             Y-REF          ERROR          TOLERANCE      CONVERGED 
+1    Fan.S_map.dep_errWc      D    +3.9862e+002   +3.9862e+002   +3.9862e+002   -1.5461e-010   +1.0000e-006   TRUE      DY1I2
+2    LPC.S_map.dep_errWc      D    +6.7431e+001   +6.7431e+001   +6.7431e+001   +8.4079e-009   +1.0000e-006   TRUE      DY2I2
+3    HPC.S_map.dep_errWc      D    +5.7198e+001   +5.7198e+001   +5.7198e+001   +2.8212e-008   +1.0000e-006   TRUE      DY3I2
+4    HPT.S_map.dep_errWp      D    +8.3305e+000   +8.3305e+000   +8.3305e+000   +1.9076e-009   +1.0000e-006   TRUE      DY4I2
+5    LPT.S_map.dep_errWp      D    +4.0969e+001   +4.0969e+001   +4.0969e+001   +2.8545e-009   +1.0000e-006   TRUE      DY5I2
+6    Core_Nozz.dep_Area       D    +1.3864e-001   +1.3864e-001   +2.8905e-001   +5.1008e-007   +1.0000e-006   TRUE      DY6I2
+7    Byp_Nozz.dep_Area        D    +2.1268e-001   +2.1268e-001   +3.7072e-001   +3.4250e-008   +1.0000e-006   TRUE      DY7I2
+8    HP_Shaft.integrate_Nmech I    +9.3131e+003   +9.3131e+003   +6.5217e+003   +2.9770e-011   +1.0000e-006   TRUE      DY8I2
+9    LP_Shaft.integrate_Nmech I    +1.7787e+003   +1.7787e+003   +9.3028e+003   -3.8001e-011   +1.0000e-006   TRUE      DY9I2
+10   trans_Condition          D    +3.5247e-001   +3.5247e-001   +3.5247e-001   +0.0000e+000   +1.0000e-006   TRUE      DY10I2
+
+
+AUXILIARY DEPENDENT ERRORS
+(inactive constraints and targets)
+-------------------------------------
+ROW SHORT-NAME                     TYPE  Y1           Y2           Y-REF        ERROR        TOLERANCE   
+1   LPC_SMN_Limit                  C     +1.7343e+001 +5.0000e+000 +5.0000e+000 +2.4686e+000 +1.0000e-006      DA1I2
+2   HPC_SMN_Limit                  C     +3.9235e+001 +1.0000e+001 +1.0000e+001 +2.9235e+000 +1.0000e-006      DA2I2
+3   LPC_Rline_Min_Limit            C     +1.4794e+000 +3.0000e+000 +3.0000e+000 -5.0685e-001 +1.0000e-006      DA3I2
+4   HPC_Rline_Min_Limit            C     +2.1835e+000 +3.0000e+000 +3.0000e+000 -2.7217e-001 +1.0000e-006      DA4I2
+
+
+CONVERGENCE RATE INFO
+-------------------------
+errorMagNormPrev    = 6.609e-006     errorMagNorm        = 5.121e-007     convergenceRatio    = 0.07748        
+
+broydenLimit        = 0              divergenceLimit     = 2              convergenceLimit    = 1              
+numConvergeFailures = 0              maxConvergeFailures = 250            
+
+
+
+CASE 5 : SOLVER CONVERGENCE STATISTICS for 'solver'
+======================================================
+   CONVERGED = TRUE
+   solver iterations = 2
+   total model passes = 2
+   discon iterations = 0
+   Jacobians generated = 0
+   Broyden updates = 0
+

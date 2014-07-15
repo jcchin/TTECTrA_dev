@@ -1,73 +1,314 @@
-// This is the case file for getting the maximum limits for the engine
-
-//-------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
 // Maximum Ps3 limit case
-//-------------------------------------------------------------------------------------------------
-real max_Ps3_limit, max_Nc_limit, max_Nf_limit; // Defining the necessary variables for maximum limits
+//----------------------------------------------------------------------------------
 
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-
-PC = 50;
+//----------------------------------------------------------------------------------
+// Decreasing altitude to -2,000 ft from SLS
+//----------------------------------------------------------------------------------
+Ambient.alt = -1000;
+CASE++;
+run();
 
 Ambient.alt = -2000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number to 0.50 from zero at -2,000 ft    
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.25;
+CASE++;
+run();
+
 Ambient.MN = 0.50;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing dTs to -30F from zero at -2,000 ft and Mach number 0.50
+//----------------------------------------------------------------------------------
+Ambient.dTs = -15;
+CASE++;
+run();
+
 Ambient.dTs = -30;
-RunMaxPower();
+CASE++;
+run();
 
 // Ps3 Max limit at -2,000 ft, Mach number 0.5, and dTs = -30F
-cout << "\nMaximum Ps3 limit: " << FS_3.Ps << " psia" << endl;
-max_Ps3_limit = FS_3.Ps;
+cout << "\nMaximum Ps3 limit: " << FS_3.Ps << endl;
 
-//-------------------------------------------------------------------------------------------------
-// Maximum Nf and Nc limit case
-//-------------------------------------------------------------------------------------------------
-// Running the max Nc case at 2,000 ft, MN = 0.65, and dTs = 0
-Ambient.alt = 2000;
-Ambient.MN = 0.65;
+//----------------------------------------------------------------------------------
+// Correcting back to SLS from -2,000 ft, Mach number 0.5, and dTs = -30F
+//----------------------------------------------------------------------------------
+Ambient.dTs = -15;
+CASE++;
+run();
+
 Ambient.dTs = 0.0;
-RunMaxPower();
+CASE++;
+run();
+
+Ambient.MN = 0.25;
+CASE++;
+run();
+
+Ambient.MN = 0.0;
+CASE++;
+run();
+
+Ambient.alt = -1000;
+CASE++;
+run();
+
+Ambient.alt = 0.0;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Maximum Nf and Nc limit case
+//----------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number at SL to 0.25 from zero
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.1;
+CASE++;
+run();
+
+Ambient.MN = 0.2;
+CASE++;
+run();
+
+Ambient.MN = 0.25;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing altitude to 2,000 ft from SL at Mach number 0.25
+//----------------------------------------------------------------------------------
+Ambient.alt = 2000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number from 0.25 to 0.65 at 2,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.30;
+CASE++;
+run();
+
+Ambient.MN = 0.40;
+CASE++;
+run();
+
+Ambient.MN = 0.50;
+CASE++;
+run();
+
+Ambient.MN = 0.60;
+CASE++;
+run();
+
+Ambient.MN = 0.65;
+CASE++;
+run();
 
 // Max Nc limit at 2,000 ft, Mach number 0.65, and dTs = 0
-// Increasing by 10%
-cout << "Maximum Nc limit: " << HP_Shaft.Nmech * 110 / 100 << " RPM" << endl;
-max_Nc_limit = HP_Shaft.Nmech * 110 / 100;
+cout << "Maximum Nc limit: " << HP_Shaft.Nmech * 110 / 100 << endl;
 
-// Running the first max Nf case at 8,000 ft, Mach number 0.75, and dTs=0
+//----------------------------------------------------------------------------------
+// Increasing altitude to 8,000 ft from 2,000 ft at Mach number 0.65
+//----------------------------------------------------------------------------------
+Ambient.alt = 4000;
+CASE++;
+run();
+
+Ambient.alt = 6000;
+CASE++;
+run();
+
 Ambient.alt = 8000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number from 0.65 to 0.75 at 8,000 ft
+//----------------------------------------------------------------------------------
 Ambient.MN = 0.75;
-RunMaxPower();
+CASE++;
+run();
 
 // First Nf Max candidate point at 8,000 ft, Mach number 0.75, and dTs=0
 real Nf_1 = LP_Shaft.Nmech;
 
-// Running the second max Nf case at 8,000 ft, Mach number 0.75, and dTs=0
+//----------------------------------------------------------------------------------
+// Increasing altitude from 8,000 ft to 16,000 ft at M = 0.75
+//----------------------------------------------------------------------------------
+Ambient.alt = 8000;
+CASE++;
+run();
+
+Ambient.alt = 10000;
+CASE++;
+run();
+
+Ambient.alt = 12000;
+CASE++;
+run();
+
+Ambient.alt = 14000;
+CASE++;
+run();
+
 Ambient.alt = 16000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Increasing Mach number from 0.75 to 0.80 at 16,000 ft
+//----------------------------------------------------------------------------------
 Ambient.MN = 0.80;
-RunMaxPower();
+CASE++;
+run();
 
 // Second Nf Max candidate point at 16,000 ft, Mach number 0.80, and dTs=0
 real Nf_2 = LP_Shaft.Nmech;
 
-// Comparing two Nf maximum limit candidates and selecting the larger one and 
-// increasing it by 10%
+// Comparing two Nf maximum limit candidates and selecting the larger one and increasing it 10%
 if(Nf_1 > Nf_2){
 
-	cout << "Maximum Nf limit: " << Nf_1 * 110 / 100 << " RPM" << endl;
-	max_Nf_limit = Nf_1 * 110 / 100;
-	
+	cout << "Maximum Nf limit: " << Nf_1 * 110 / 100 << endl;
+
 } else {
 
-	cout << "Maximum Nf limit: " << Nf_2 * 110 / 100 << " RPM" << endl;
-	max_Nf_limit = Nf_2 * 110 / 100;
+	cout << "Maximum Nf limit: " << Nf_2 * 110 / 100 << endl;
 
 }
 
-// Returning back to SLS maximum thrust condition
-setOption( "switchGuess", "ON" );
-setOption( "switchGuessType", "PC" );
-PC = 50;
+//----------------------------------------------------------------------------------
+// Decreasing Mach number to 0.50 at 16,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.75;
+CASE++;
+run();
+
+Ambient.MN = 0.65;
+CASE++;
+run();
+
+Ambient.MN = 0.60;
+CASE++;
+run();
+
+Ambient.MN = 0.55;
+CASE++;
+run();
+
+Ambient.MN = 0.50;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing altitude from 16,000 ft to 10,000 ft at M = 0.50
+//----------------------------------------------------------------------------------
+Ambient.alt = 14000;
+CASE++;
+run();
+
+Ambient.alt = 13000;
+CASE++;
+run();
+
+Ambient.alt = 12000;
+CASE++;
+run();
+
+Ambient.alt = 11000;
+CASE++;
+run();
+
+Ambient.alt = 10000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number from 0.50 to 0.40 at 10,000 ft
+//----------------------------------------------------------------------------------
+Ambient.MN = 0.45;
+CASE++;
+run();
+
+Ambient.MN = 0.40;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing altitude from 10,000 ft to 6,000 ft at M = 0.40
+//----------------------------------------------------------------------------------
+Ambient.alt = 9000;
+CASE++;
+run();
+
+Ambient.alt = 8000;
+CASE++;
+run();
+
+Ambient.alt = 7000;
+CASE++;
+run();
+
+Ambient.alt = 6000;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number from 0.40 to 0.25 at 6,000 ft
+//----------------------------------------------------------------------------------
+
+Ambient.MN = 0.35;
+CASE++;
+run();
+
+Ambient.MN = 0.30;
+CASE++;
+run();
+
+Ambient.MN = 0.25;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing altitude to SL from 6,000 ft at Mach number 0.25
+//----------------------------------------------------------------------------------
+Ambient.alt = 5000;
+CASE++;
+run();
+
+Ambient.alt = 3500;
+CASE++;
+run();
+
+Ambient.alt = 1500;
+CASE++;
+run();
+
 Ambient.alt = 0.0;
+CASE++;
+run();
+
+//----------------------------------------------------------------------------------
+// Decreasing Mach number from 0.25 to zero at SL
+//----------------------------------------------------------------------------------
+
+Ambient.MN = 0.20;
+CASE++;
+run();
+
+Ambient.MN = 0.10;
+CASE++;
+run();
+
 Ambient.MN = 0.0;
-Ambient.dTs = 0.0;
-RunMaxPower();
+CASE++;
+run();

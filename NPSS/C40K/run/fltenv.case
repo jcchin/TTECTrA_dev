@@ -1,0 +1,337 @@
+
+// Design condition power hook
+T4Target = 2326; 
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+T4Target = 2048;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+// Stepping down slowly for solver stability
+T4Target = 2000;
+run();
+
+T4Target = 1950;
+run();
+
+T4Target = 1900;
+run();
+
+T4Target = 1800;
+run();
+
+T4Target = 1767;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+// Stepping up slowly to move to the next case
+T4Target = 1850;
+run();
+
+T4Target = 1950;
+run();
+
+T4Target = 2050;
+run();
+
+T4Target = 2150;
+run();
+
+T4Target = 2250;
+run();
+
+T4Target = 2350;
+run();
+
+T4Target = 2450;
+run();
+
+T4Target = 2550;
+run();
+
+// Changing flight condition slowly 
+Ambient.alt = 30000.0;
+Ambient.MN = 0.8;
+run();
+
+Ambient.alt = 25000.0;
+Ambient.MN = 0.6;
+run();
+
+Ambient.alt = 20000.0;
+Ambient.MN = 0.4;
+run();
+
+Ambient.alt = 15000.0;
+Ambient.MN = 0.3;
+run();
+
+Ambient.alt = 10000.0;
+Ambient.MN = 0.25;
+run();
+
+Ambient.alt = 5000.0;
+Ambient.MN = 0.25;
+run();
+
+Ambient.alt = 0.0;
+Ambient.MN = 0.25;
+run();
+
+// Stepping up slowly to the necessary condition
+T4Target = 2650;
+run();
+
+T4Target = 2750;
+run();
+
+T4Target = 2850;
+run();
+
+T4Target = 2950;
+run();
+
+T4Target = 3050;
+run();
+
+T4Target = 3150;
+run();
+
+T4Target = 3250;
+run();
+
+T4Target = 3350;
+run();
+
+T4Target = 3450;
+run();
+
+// Slowly increasing atmosphere temperature offset
+Ambient.dTs = 5.0;
+run();
+
+Ambient.dTs = 10.0;
+run();
+
+Ambient.dTs = 15.0;
+run();
+
+Ambient.dTs = 20.0;
+run();
+
+Ambient.dTs = 25.0;
+run();
+
+Ambient.dTs = 30.0;
+run();
+
+Ambient.dTs = 35.0;
+run();
+
+Ambient.dTs = 40.0;
+run();
+
+Ambient.dTs = 45.0;
+run();
+
+// Running hot day take off power hook
+Ambient.dTs = 50.0;
+T4Target = 3450;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+T4Target = 3054;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+T4Target = 2722;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+T4Target = 2419;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+
+T4Target = 2212;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+
+T4Target = 2125;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+T4Target = 2034;
+//solver.solutionMode = "ONE_PASS";
+run();
+ page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+ // printPride();
+
+// Decreasing temperature offset slowly
+Ambient.dTs = 45.0;
+run();
+
+Ambient.dTs = 40.0;
+run();
+
+Ambient.dTs = 35.0;
+run();
+
+Ambient.dTs = 30.0;
+run();
+
+Ambient.dTs = 25.0;
+run();
+
+Ambient.dTs = 20.0;
+run();
+
+Ambient.dTs = 15.0;
+run();
+
+Ambient.dTs = 10.0;
+run();
+
+Ambient.dTs = 5.0;
+run();
+
+Ambient.dTs = 0.0;
+run();
+
+// Spooling up slowly
+T4Target = 2100;
+run();
+
+T4Target = 2150;
+run();
+
+T4Target = 2200;
+run();
+
+T4Target = 2300;
+run();
+
+T4Target = 2400;
+run();
+
+T4Target = 2500;
+run();
+
+// Reducing Mach number
+Ambient.MN = 0.20;
+run();
+
+Ambient.MN = 0.15;
+run();
+
+Ambient.MN = 0.10;
+run();
+
+Ambient.MN = 0.05;
+run();
+
+// Running SLS power hook
+Ambient.alt = 0.0;
+Ambient.MN = 0.0;
+Ambient.dTs = 0.0;
+run();
+
+// Spooling up slowly
+T4Target = 2600;
+run();
+
+T4Target = 2700;
+run();
+
+T4Target = 2800;
+run();
+
+T4Target = 2900;
+run();
+
+T4Target = 3000;
+run();
+
+
+
+// cout<<"Fan.NcPct = "<<Fan.NcPct<<endl;
+/* // page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+T4Target = 2804;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+T4Target = 2510;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+T4Target = 2233;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+T4Target = 2025;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride();
+
+T4Target = 1860;
+run();
+// page.display();
+// CaseView_SS.update();
+// CaseView_SS.display();
+// printPride(); 
+
+// Spooling up slowly
+T4Target = 1800;
+run();
+
+T4Target = 1700;
+run();
+
+T4Target = 1600;
+run(); */
