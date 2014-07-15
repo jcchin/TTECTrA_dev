@@ -3,9 +3,10 @@ TTECTrA_dev
 
 Development Repository between NASA and GT for TTECTrA
 
+Please visit the [wiki](https://github.com/jcchin/TTECTrA_dev/wiki)
 
 
-# Running from the command line
+### Running from the command line
 Each case file can be run from the command line using the following syntax
 
 ```
