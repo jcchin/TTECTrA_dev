@@ -1,6 +1,7 @@
 // This is the case file for creating Matlab formatted setpoint values
 // at a flight condition 
 #include <setpoint_display.fnc>
+#include <output_setup.fnc>
 #ifdef CSANK  //NASA Method
 	#include <TTECTrA_SP.input>	//Input from Matlab
 	
