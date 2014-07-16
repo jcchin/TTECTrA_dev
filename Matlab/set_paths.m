@@ -2,7 +2,7 @@
 %add your paths here:
 npss_location = ''; %path location of the NPSS executable
 ModelDir = ''; %path location of this particular engine model
-
+%
 
 %----No need to edit below here ---%
 if (exist('paths.m', 'file') == 2) %load paths if supplied elsewhere
