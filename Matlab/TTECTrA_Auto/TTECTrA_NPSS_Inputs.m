@@ -19,8 +19,8 @@ function [ttectra_in] = TTECTrA_NPSS_Inputs
 %  REQUIREMENTS:   
 %       Maltab(R) control systems toolbox
 %**************************************************************************
-
-ttectra_in.in.HomeDirectory='C:\PROJECTS\DSA\Simulations\DSA_NPSS\NPSS_Sfnc_git';
+set_paths;
+ttectra_in.in.HomeDirectory=model_location;
 
 %---------------------------------------------------------
 % Define environmental variables
