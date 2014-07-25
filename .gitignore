@@ -1,7 +1,5 @@
 *.DS_Store
-*.mat
 *.out
-linearModels.m
 *.asv
 *.viewOut
 150PAX_Sfunction.config

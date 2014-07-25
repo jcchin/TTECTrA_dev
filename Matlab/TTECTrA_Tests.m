@@ -18,7 +18,7 @@ set_paths;
 %----------------------------------------
 if ispc %don't even attempt on mac
     fprintf('Generating NPSS Data');
-    GetNPSS_PWLM(ttectra_in,ttectra_in.in.setpoint_vector,ttectra_in.in.linearModelfilename,npss_location,ModelDir);
+    GetNPSS_PWLM(ttectra_in,ttectra_in.in.setpoint_vector,ttectra_in.in.linearModelfilename,npss_location,model_location);
 end
 
 %---------------------------------------

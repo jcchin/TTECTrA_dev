@@ -4,6 +4,5 @@
 /*.r2010a
 hs_err*.log
 *.mdl.autosave
-*.mat
 /trans.m
 /paths.m

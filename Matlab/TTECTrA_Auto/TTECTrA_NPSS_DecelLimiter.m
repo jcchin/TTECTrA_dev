@@ -24,7 +24,7 @@ temp_in.in.loop=3;
 temp_in.Limiter.LPC_Limiter=WfPs3lim;
 
 %Simulate and ensure that LPC SM does not exceed limit.
-[out]=simFromTTECTrA(temp_in);
+%[out]=simFromTTECTrA(temp_in);
 [out]=simFromTTECTrA(temp_in);
 % figure; 
 % subplot(221); plot(out.t, out.Wf_vec, 'b-', out.t, out.Wf_dmd, 'r--','Linewidth',2); ylabel('Wf'); grid on;

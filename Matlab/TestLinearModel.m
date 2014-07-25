@@ -20,7 +20,8 @@ simin.in.loop=2;
 % Load linear model
 %----------------------------------------------
 CurrentDirectory=cd;
-cd('C:\PROJECTS\DSA\Simulations\DSA_NPSS\NPSS_Sfnc_git\NPSS\150PAX_Sfunction');
+set_paths;
+cd([model_location '\NPSS\150PAX_Sfunction\output']);
 linearModels
 cd(CurrentDirectory);
 
