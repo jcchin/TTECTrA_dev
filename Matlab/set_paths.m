@@ -10,6 +10,7 @@ end
 engine_name = '150PAX_Sfunction';
 run_file = '150PAX.run';
 flags = ' -DTRANSIENT -DEBUG';
+%flags = ' -DTRANSIENT';
 
 if (exist(npss_location,'dir') == 7)
     npss_location = npss_location;

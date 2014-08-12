@@ -68,7 +68,7 @@ ttectra_in.SMLimit.T40=7000;
 ttectra_in.SMLimit.Accel=11;
 
 % Parameters ofr decel limit
-ttectra_in.SMLimit.FARmin=0.001;
+ttectra_in.SMLimit.FARmin=0.0075;
 ttectra_in.SMLimit.Decel=8;
 
 % Acceleration controller settings

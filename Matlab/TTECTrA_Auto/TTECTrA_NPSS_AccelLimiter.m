@@ -21,7 +21,6 @@ xvec= xmin: (xmax-xmin)/40 : xmax;
 %Wf_vec=linspace(wf_idle,wf_to*0.5,12);
 Wf_vec=linspace(wf_idle,wf_to*0.5,8);
 
-
 % simulate for transition from each initial thrust to takeoff
 % thrust, with decreasing transition time to find when minimum
 % surge margine drops below the desired value
@@ -57,10 +56,9 @@ for ctr=1:1:length(Wf_vec)
     
     [out]=simFromTTECTrA(temp_in);   % run initial simulation
     
-    figure(199); plot(ctr,0,'bx','Linewidth',2); hold on; grid on; xlabel('ctr'); ylabel('watchdog');
-    %figure(ctr); subplot(211); plot(out.t,out.Wf_dmd,'k-','linewidth',2); hold on;
-        
-	fprintf('\b\b\b\b %d%%',round(100*ctr/length(Wf_vec)));
+    %figure(199); plot(ctr,0,'bx','Linewidth',2); hold on; grid on; xlabel('ctr'); ylabel('watchdog');
+    %figure(ctr); subplot(211); plot(out.t,out.Wf_dmd,'k-','linewidth',2); hold on;   
+	%fprintf('\b\b\b\b %d%%',round(100*ctr/length(Wf_vec)));
     
     if ~isempty(out)    % simulation ran, continue with analysis
         minSM_res(ctr)=min(out.HPC_SM);     % store minimum SM results in array
@@ -116,7 +114,7 @@ for ctr=1:1:length(Wf_vec)
             %figure(ctr); 
             %subplot(211); plot(out.NcR25, out.NcR25_dot,plotstyle{ii}); hold on; ylim([0 200]);
             %subplot(212); plot(out.Nc, out.NcR25_dot,plotstyle{ii}); hold on; ylim([0 200]);
-            figure(199); plot(ctr,watchdog,'bx','Linewidth',2); hold on; grid on; xlabel('ctr'); ylabel('watchdog');
+            %figure(199); plot(ctr,watchdog,'bx','Linewidth',2); hold on; grid on; xlabel('ctr'); ylabel('watchdog');
                              
             fault_flag=fault_flag+1;
             if ~isempty(out)

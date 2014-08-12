@@ -7,3 +7,5 @@ hs_err*.log
 /trans.m
 /paths.m
 /debug.txt
+/TTECTRA_DEBUG_Accel.mat
+*.mat

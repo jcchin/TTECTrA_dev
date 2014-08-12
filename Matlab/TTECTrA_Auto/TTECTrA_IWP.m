@@ -1,4 +1,4 @@
-%function output=TTECTrA_IWP(inputs)
+function output=TTECTrA_IWP(inputs)
 %*************************************************************************
 % Written by Jeffrey Csank (NASA)
 % NASA Glenn Research Center, Cleveland, OH
@@ -7,11 +7,9 @@
 % This file finds the integral windup protection gain for the setpoint
 % controller
 %*************************************************************************
-
-load tempdata_test.mat
-
-inputs=ttectra_in;
-inputs.in.loop=1;
+%load tempdata_test.mat
+%inputs=ttectra_in;
+%inputs.in.loop=1;
 
 %Setup burt and chop test profile
 inputs.in.t_vec=[0      10     11     30     32     60];
@@ -40,7 +38,7 @@ while (abs(error1)>0.002|| abs(error2) > 0.002) && icount<max_count && ifail<max
     
     try
         [res]=simFromTTECTrA(inputs);   % run initial simulation
-
+        
         figure(1);
         plot(res.t,res.CV_dmd,'r--',res.t,res.CV_fdbk,'b-','Linewidth',2); hold on;
         
@@ -56,21 +54,23 @@ while (abs(error1)>0.002|| abs(error2) > 0.002) && icount<max_count && ifail<max
         error2=data(icount,4);
         
         disp([num2str(data(icount,1),'%1.4f') '   ' num2str(data(icount,2),'%1.4f') '   ' ...
-            num2str(data(icount,3),'%1.4f') '   ' num2str(data(icount,4),'%1.4f') '   ' ... 
+            num2str(data(icount,3),'%1.4f') '   ' num2str(data(icount,4),'%1.4f') '   ' ...
             num2str(inputs.controller.IWP_gain,'%4.2f')]);
-              
+        
         icount=icount+1;
         ifail = 0;
     catch
         disp('Simulation Failed')
-   
+        
         inputs.controller.IWP_gain = 4*inputs.controller.IWP_gain;
-     
-        ktemp=min(find(res.t>=(inputs.in.t_vec(2)-1)));
-        faildata(icount2,1)= (max(res.CV_fdbk(ktemp:end)) - max(res.CV_dmd(ktemp:end))) / max(res.CV_dmd(ktemp:end));  %determine overshoot
-        faildata(icount2,3)= inputs.controller.IWP_gain;
-        faildata(icount2,4)=(res.CV_fdbk(end)-res.CV_dmd(end))/res.CV_dmd(end);
-
+        
+        if exist('res')
+            ktemp=min(find(res.t>=(inputs.in.t_vec(2)-1)));
+            faildata(icount2,1)= (max(res.CV_fdbk(ktemp:end)) - max(res.CV_dmd(ktemp:end))) / max(res.CV_dmd(ktemp:end));  %determine overshoot
+            faildata(icount2,3)= inputs.controller.IWP_gain;
+            faildata(icount2,4)=(res.CV_fdbk(end)-res.CV_dmd(end))/res.CV_dmd(end);
+        end
+        
         icount2=icount2+1;
         ifail=ifail+1;
     end

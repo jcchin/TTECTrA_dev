@@ -38,6 +38,8 @@ function outputs=simFromTTECTrA(inputs)
 %       Maltab(R) control systems toolbox
 % *************************************************************************
 
+DEBUG_FLAG=1;
+
 %----------------------------------------------------
 % Model-specific workspace setup:
 %  - User modifies for their model
@@ -86,6 +88,9 @@ DWS.in.Ts_cont = 0.02;         % model sampling time
 %----------------------------------------------------
 setup_TTECTrA_block
 
+if DEBUG_FLAG==1
+   save('Matlab_Debug_Data.mat','inputs') 
+end
 
 %----------------------------------------------------
 % Model execution setup:
