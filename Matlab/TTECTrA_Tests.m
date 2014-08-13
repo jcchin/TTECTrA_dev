@@ -21,9 +21,15 @@ set_paths;
 %     GetNPSS_PWLM(ttectra_in,ttectra_in.in.setpoint_vector,ttectra_in.in.linearModelfilename,npss_location,model_location);
 % end
 
-load Matlab_Debug_Data.mat
-ttectra_in=inputs;
-ttectra_in.in.loop=2;
+%load Matlab_Debug_Data.mat
+
+load TTECTRA_DEBUG_Decel.mat
+load Matlab_NPSS_Input_Debug.mat
+%ttectra_in=inputs;
+ttectra_in.in.loop=3;
+ttectra_in.in.t_vec=wfin.time';
+ttectra_in.in.wf_vec=wfin.data';
+ttectra_in.in.FT_dmd=[];
 out=simFromTTECTrA(ttectra_in);
 
 figure(1);

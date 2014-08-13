@@ -84,18 +84,20 @@ xlabel('NcR25'); ylabel('Ncdot');
 % Decel Limiter 
 %---------------------------------------
 %load TTECTRA_DEBUG_Accel.mat %use to skip the whole design process
+ttectra_in.SMLimit.FARmin=0.0065;
 [output]=TTECTrA_NPSS_DecelLimiter(ttectra_in);
 ttectra_in.Limiter.WfPs3min=output;
+save TTECTRA_DEBUG_Decel.mat ttectra_in
 
-% %------------------------------
-% % Integrate Limiters and Setpoint Controller
-% %------------------------------
+%------------------------------
+% Integrate Limiters and Setpoint Controller
+%------------------------------
 % ttectra_in.controller.IWP_gain=TTECTrA_IWP(ttectra_in);
 % 
 % if isempty(ttectra_in.controller.IWP_gain)
 %     ttectra_in.controller.IWP_gain=1000;
 % end
-% 
+
 % % Seems to be issue with IWP gain tuning - overwrite for now
 % %ttectra_in.controller.IWP_gain=1200;
 % %ttectra_in.in.loop = 1;

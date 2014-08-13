@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.215"
+    ComputedModelVersion    "1.225"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jcsank"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Aug 12 13:09:42 2014"
-  RTWModifiedTimeStamp	  329749550
-  ModelVersionFormat	  "1.%<AutoIncrement:215>"
+  LastModifiedDate	  "Wed Aug 13 12:27:46 2014"
+  RTWModifiedTimeStamp	  329833658
+  ModelVersionFormat	  "1.%<AutoIncrement:225>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -111,7 +111,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.10.0"
 	  StartTime		  "0.0"
-	  StopTime		  "20"
+	  StopTime		  "60"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.02"
 	  InitialStep		  "auto"
@@ -1117,6 +1117,14 @@ Model {
       BlockType		      Terminator
     }
     Block {
+      BlockType		      ToFile
+      Filename		      "untitled.mat"
+      MatrixName	      "ans"
+      SaveFormat	      "Array"
+      Decimation	      "1"
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      ToWorkspace
       VariableName	      "simulink_output"
       MaxDataPoints	      "1000"
@@ -1134,7 +1142,7 @@ Model {
   }
   System {
     Name		    "NPSS_TTECTrA"
-    Location		    [458, 362, 1418, 1058]
+    Location		    [440, 277, 1605, 1031]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1148,7 +1156,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    265
+    SIDHighWatermark	    269
     Block {
       BlockType		      Clock
       Name		      "Clock"
@@ -1288,7 +1296,7 @@ Model {
       BlockType		      From
       Name		      "From4"
       SID		      150
-      Position		      [130, 571, 200, 589]
+      Position		      [80, 571, 150, 589]
       GotoTag		      "Ps3"
       TagVisibility	      "global"
     }
@@ -1383,6 +1391,29 @@ Model {
       EnableBusSupport	      off
     }
     Block {
+      BlockType		      Scope
+      Name		      "Scope"
+      SID		      267
+      Ports		      [3]
+      Position		      [585, 679, 615, 711]
+      Floating		      off
+      Location		      [19, 75, 484, 680]
+      Open		      off
+      NumInputPorts	      "3"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+	axes2			"%<SignalLabel>"
+	axes3			"%<SignalLabel>"
+      }
+      TimeRange		      "60"
+      YMin		      "0~220~4700"
+      YMax		      "0.25~270~5200"
+      SaveName		      "ScopeData3"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
+    }
+    Block {
       BlockType		      SubSystem
       Name		      "TTECTrA Simulink Block"
       SID		      53
@@ -1399,7 +1430,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"TTECTrA Simulink Block"
-	Location		[848, 377, 1820, 1127]
+	Location		[367, 223, 1553, 977]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1466,8 +1497,8 @@ Model {
 	  Name			  "Fnet_dmd_profile"
 	  SID			  59
 	  Position		  [165, 628, 200, 662]
-	  InputValues		  "[0           10         10.5           20]"
-	  Table			  "[30000  30000  30000  30000]"
+	  InputValues		  "[0  10  11  30  32  60]"
+	  Table			  "[3878.686        3878.686         27704.9         27704.9        3878.686        3878.686]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
@@ -1745,7 +1776,7 @@ Model {
 	      Position		      [345, 515, 380, 555]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Gain		      "20000"
+	      Gain		      "0.00015692"
 	      ParameterDataTypeMode   "Inherit via internal rule"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeMode	      "Inherit via internal rule"
@@ -1769,7 +1800,7 @@ Model {
 	      Position		      [655, 171, 755, 199]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Value		      "2.8663"
+	      Value		      "0.625"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -1945,7 +1976,7 @@ Model {
 	      Name		      "Sum3"
 	      SID		      90
 	      Ports		      [2, 1]
-	      Position		      [830, 325, 850, 345]
+	      Position		      [920, 325, 940, 345]
 	      ForegroundColor	      "red"
 	      ShowName		      off
 	      IconShape		      "round"
@@ -2027,14 +2058,6 @@ Model {
 	    }
 	    Block {
 	      BlockType		      UnitDelay
-	      Name		      "Unit Delay"
-	      SID		      192
-	      Position		      [185, 203, 220, 237]
-	      ForegroundColor	      "red"
-	      SampleTime	      "-1"
-	    }
-	    Block {
-	      BlockType		      UnitDelay
 	      Name		      "Unit Delay1"
 	      SID		      199
 	      Position		      [640, 568, 675, 602]
@@ -2043,10 +2066,18 @@ Model {
 	      SampleTime	      "-1"
 	    }
 	    Block {
+	      BlockType		      UnitDelay
+	      Name		      "Unit Delay2"
+	      SID		      269
+	      Position		      [175, 203, 210, 237]
+	      ForegroundColor	      "red"
+	      SampleTime	      "-1"
+	    }
+	    Block {
 	      BlockType		      Outport
 	      Name		      "Wf cmd"
 	      SID		      96
-	      Position		      [895, 328, 925, 342]
+	      Position		      [985, 328, 1015, 342]
 	      ForegroundColor	      "red"
 	      IconDisplay	      "Port number"
 	    }
@@ -2091,7 +2122,7 @@ Model {
 	    Line {
 	      SrcBlock		      "Sum9"
 	      SrcPort		      1
-	      DstBlock		      "Unit Delay"
+	      DstBlock		      "Unit Delay2"
 	      DstPort		      1
 	    }
 	    Line {
@@ -2187,7 +2218,7 @@ Model {
 	    Line {
 	      SrcBlock		      "Initial Condition1"
 	      SrcPort		      1
-	      Points		      [80, 0]
+	      Points		      [170, 0]
 	      DstBlock		      "Sum3"
 	      DstPort		      1
 	    }
@@ -2316,21 +2347,6 @@ Model {
 	      DstPort		      2
 	    }
 	    Line {
-	      SrcBlock		      "Unit Delay"
-	      SrcPort		      1
-	      Points		      [12, 0]
-	      Branch {
-		Points			[153, 0; 0, -20]
-		DstBlock		"Switch"
-		DstPort			3
-	      }
-	      Branch {
-		Points			[0, -85]
-		DstBlock		"Feedback Filter"
-		DstPort			1
-	      }
-	    }
-	    Line {
 	      SrcBlock		      "Mux"
 	      SrcPort		      1
 	      DstBlock		      "Scope"
@@ -2342,6 +2358,21 @@ Model {
 	      Points		      [20, 0; 0, 15]
 	      DstBlock		      "Scope"
 	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "Unit Delay2"
+	      SrcPort		      1
+	      Points		      [22, 0]
+	      Branch {
+		Points			[153, 0; 0, -20]
+		DstBlock		"Switch"
+		DstPort			3
+	      }
+	      Branch {
+		Points			[0, -85]
+		DstBlock		"Feedback Filter"
+		DstPort			1
+	      }
 	    }
 	  }
 	}
@@ -2887,36 +2918,12 @@ Model {
 		}
 		Block {
 		  BlockType		  Display
-		  Name			  "Display1"
-		  SID			  237
-		  Ports			  [1]
-		  Position		  [675, 262, 760, 398]
-		  Decimation		  "1"
-		  Lockdown		  off
-		}
-		Block {
-		  BlockType		  Display
 		  Name			  "Display2"
 		  SID			  238
 		  Ports			  [1]
 		  Position		  [755, 137, 840, 273]
 		  Decimation		  "1"
 		  Lockdown		  off
-		}
-		Block {
-		  BlockType		  Display
-		  Name			  "Display3"
-		  SID			  265
-		  Ports			  [1]
-		  Position		  [405, 372, 490, 508]
-		  Decimation		  "1"
-		  Lockdown		  off
-		}
-		Block {
-		  BlockType		  InitialCondition
-		  Name			  "IC"
-		  SID			  240
-		  Position		  [350, 78, 390, 122]
 		}
 		Block {
 		  BlockType		  Product
@@ -2931,12 +2938,34 @@ Model {
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
+		  BlockType		  Scope
+		  Name			  "Scope"
+		  SID			  268
+		  Ports			  [3]
+		  Position		  [655, 299, 685, 331]
+		  Floating		  off
+		  Location		  [19, 75, 484, 680]
+		  Open			  off
+		  NumInputPorts		  "3"
+		  List {
+		    ListType		    AxesTitles
+		    axes1		    "%<SignalLabel>"
+		    axes2		    "%<SignalLabel>"
+		    axes3		    "%<SignalLabel>"
+		  }
+		  YMin			  "-5~-5~-5"
+		  YMax			  "5~5~5"
+		  SaveName		  "ScopeData4"
+		  DataFormat		  "StructureWithTime"
+		  SampleTime		  "0"
+		}
+		Block {
 		  BlockType		  UnitDelay
 		  Name			  "Unit Delay"
 		  SID			  231
 		  Position		  [510, 78, 545, 112]
 		  ForegroundColor	  "red"
-		  X0			  "2.8663"
+		  X0			  "0.625"
 		  SampleTime		  "-1"
 		}
 		Block {
@@ -2945,6 +2974,7 @@ Model {
 		  SID			  232
 		  Position		  [145, 35, 305, 65]
 		  ForegroundColor	  "red"
+		  Value			  "0.0005"
 		}
 		Block {
 		  BlockType		  Outport
@@ -2957,35 +2987,42 @@ Model {
 		Line {
 		  SrcBlock		  "Ps3"
 		  SrcPort		  1
-		  Points		  [5, 0]
+		  Points		  [80, 0]
 		  Branch {
-		    DstBlock		    "IC"
-		    DstPort		    1
+		    DstBlock		    "Product"
+		    DstPort		    2
 		  }
 		  Branch {
-		    Points		    [0, 340]
-		    DstBlock		    "Display3"
-		    DstPort		    1
+		    Points		    [0, 225]
+		    DstBlock		    "Scope"
+		    DstPort		    3
 		  }
 		}
 		Line {
 		  SrcBlock		  "WfPs3 Limit"
 		  SrcPort		  1
 		  Points		  [90, 0; 0, 35]
-		  DstBlock		  "Product"
-		  DstPort		  1
+		  Branch {
+		    DstBlock		    "Product"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 230]
+		    DstBlock		    "Scope"
+		    DstPort		    2
+		  }
 		}
 		Line {
 		  SrcBlock		  "Product"
 		  SrcPort		  1
-		  Points		  [25, 0]
+		  Points		  [20, 0]
 		  Branch {
 		    DstBlock		    "Unit Delay"
 		    DstPort		    1
 		  }
 		  Branch {
-		    Points		    [0, 235]
-		    DstBlock		    "Display1"
+		    Points		    [0, 210]
+		    DstBlock		    "Scope"
 		    DstPort		    1
 		  }
 		}
@@ -3003,11 +3040,8 @@ Model {
 		    DstPort		    1
 		  }
 		}
-		Line {
-		  SrcBlock		  "IC"
-		  SrcPort		  1
-		  DstBlock		  "Product"
-		  DstPort		  2
+		Annotation {
+		  Position		  [639, 369]
 		}
 	      }
 	    }
@@ -3064,7 +3098,7 @@ Model {
 	      Name		      "Mux"
 	      SID		      263
 	      Ports		      [2, 1]
-	      Position		      [1015, 411, 1020, 449]
+	      Position		      [1015, 406, 1020, 444]
 	      ShowName		      off
 	      Inputs		      "2"
 	      DisplayOption	      "bar"
@@ -3073,20 +3107,19 @@ Model {
 	      BlockType		      Scope
 	      Name		      "Scope"
 	      SID		      262
-	      Ports		      [3]
-	      Position		      [1055, 393, 1105, 587]
+	      Ports		      [2]
+	      Position		      [1055, 395, 1105, 590]
 	      Floating		      off
-	      Location		      [33, 100, 456, 945]
+	      Location		      [2496, 631, 2938, 1013]
 	      Open		      off
-	      NumInputPorts	      "3"
+	      NumInputPorts	      "2"
 	      List {
 		ListType		AxesTitles
 		axes1			"%<SignalLabel>"
 		axes2			"%<SignalLabel>"
-		axes3			"%<SignalLabel>"
 	      }
-	      YMin		      "-5~-5~-5"
-	      YMax		      "5~5~5"
+	      YMin		      "-5~-5"
+	      YMax		      "5~5"
 	      SaveName		      "ScopeData2"
 	      DataFormat	      "StructureWithTime"
 	      SampleTime	      "0"
@@ -3184,30 +3217,31 @@ Model {
 		DstPort			1
 	      }
 	      Branch {
-		Points			[0, 210; -180, 0]
-		Branch {
-		  DstBlock		  "Unit Delay"
-		  DstPort		  1
-		}
-		Branch {
-		  Points		  [0, 125]
-		  DstBlock		  "Scope"
-		  DstPort		  2
-		}
+		Points			[0, 210]
+		DstBlock		"Unit Delay"
+		DstPort			1
 	      }
 	    }
 	    Line {
 	      SrcBlock		      "MinMax"
 	      SrcPort		      1
-	      Points		      [40, 0]
+	      Points		      [35, 0]
 	      Branch {
-		Points			[40, 0]
-		DstBlock		"Multiport Switch1"
-		DstPort			4
+		Points			[5, 0]
+		Branch {
+		  Points		  [40, 0]
+		  DstBlock		  "Multiport Switch1"
+		  DstPort		  4
+		}
+		Branch {
+		  Points		  [0, -105]
+		  DstBlock		  "Multiport Switch1"
+		  DstPort		  2
+		}
 	      }
 	      Branch {
-		Points			[0, -105]
-		DstBlock		"Multiport Switch1"
+		Points			[0, 310]
+		DstBlock		"Scope"
 		DstPort			2
 	      }
 	    }
@@ -3220,14 +3254,14 @@ Model {
 		DstPort			3
 	      }
 	      Branch {
-		Points			[0, -5; 0, 30]
+		Points			[0, 25]
 		Branch {
 		  Points		  [0, 5]
 		  DstBlock		  "MinMax"
 		  DstPort		  1
 		}
 		Branch {
-		  Points		  [0, 215]
+		  Points		  [0, 210]
 		  DstBlock		  "Mux"
 		  DstPort		  1
 		}
@@ -3242,7 +3276,7 @@ Model {
 		DstPort			2
 	      }
 	      Branch {
-		Points			[0, 195]
+		Points			[0, 190]
 		DstBlock		"Mux"
 		DstPort			2
 	      }
@@ -3250,7 +3284,7 @@ Model {
 	    Line {
 	      SrcBlock		      "Mux"
 	      SrcPort		      1
-	      Points		      [5, 0; 0, -5]
+	      Points		      [15, 0]
 	      DstBlock		      "Scope"
 	      DstPort		      1
 	    }
@@ -3265,8 +3299,8 @@ Model {
 	  Name			  "Wf_profile"
 	  SID			  139
 	  Position		  [425, 303, 460, 337]
-	  InputValues		  "[0           10         10.5           20]"
-	  Table			  "[2.8663      2.8663     0.26839     0.26839]"
+	  InputValues		  "[0  10  11  30  32  60]"
+	  Table			  "[0.5         0.5         0.5         0.5         0.5         0.5]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
@@ -3286,7 +3320,6 @@ Model {
 	  Name			  "loop flag"
 	  SID			  142
 	  Position		  [385, 205, 460, 225]
-	  Value			  "3"
 	}
 	Block {
 	  BlockType		  Constant
@@ -3294,7 +3327,6 @@ Model {
 	  SID			  143
 	  Position		  [900, 305, 975, 325]
 	  ShowName		  off
-	  Value			  "3"
 	}
 	Block {
 	  BlockType		  Outport
@@ -3557,6 +3589,15 @@ Model {
 	  Position		  [187, 19]
 	}
       }
+    }
+    Block {
+      BlockType		      ToFile
+      Name		      "To File"
+      SID		      266
+      Position		      [520, 590, 680, 630]
+      Filename		      "Matlab_NPSS_Input_Debug.mat"
+      MatrixName	      "wfin"
+      SaveFormat	      "Timeseries"
     }
     Block {
       BlockType		      ToWorkspace
@@ -3871,8 +3912,24 @@ Model {
 	DstPort			4
       }
       Branch {
-	DstBlock		"S-Function"
-	DstPort			1
+	Points			[10, 0]
+	Branch {
+	  DstBlock		  "S-Function"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 85]
+	  Branch {
+	    Points		    [0, 5]
+	    DstBlock		    "To File"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 80]
+	    DstBlock		    "Scope"
+	    DstPort		    1
+	  }
+	}
       }
     }
     Line {
@@ -3884,8 +3941,16 @@ Model {
     Line {
       SrcBlock		      "From1"
       SrcPort		      1
-      DstBlock		      "TTECTrA Simulink Block"
-      DstPort		      1
+      Points		      [65, 0]
+      Branch {
+	DstBlock		"TTECTrA Simulink Block"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 245]
+	DstBlock		"Scope"
+	DstPort			3
+      }
     }
     Line {
       SrcBlock		      "From2"
@@ -3966,8 +4031,16 @@ Model {
     Line {
       SrcBlock		      "From4"
       SrcPort		      1
-      DstBlock		      "IC"
-      DstPort		      1
+      Points		      [30, 0]
+      Branch {
+	DstBlock		"IC"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 115]
+	DstBlock		"Scope"
+	DstPort			2
+      }
     }
     Line {
       SrcBlock		      "IC"

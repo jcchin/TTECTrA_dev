@@ -144,13 +144,13 @@ if isfield(inputs,'Limiter')    % at least one limiter has been calculated
         DWS.TTECTrA_limiter.Ncdot_sched=[150 150];
     end
     
-    if isfield(inputs.Limiter,'WfPs3min') && ~isempty(inputs.Limiter.WfPs3min)
-        DWS.TTECTrA_limiter.WfPs3lim = inputs.Limiter.WfPs3min;
+    if isfield(inputs.Limiter,'WfPs3lim') && ~isempty(inputs.Limiter.WfPs3lim)
+        DWS.TTECTrA_limiter.WfPs3lim = inputs.Limiter.WfPs3lim;
     else    % no decel limiter has been provided, use default
         if DWS.in.loop == 1
             display('WARNING -- No deceleration limiter has been calculated, using default values');
         end
-        DWS.TTECTrA_limiter.WfPs3lim = 1;
+        DWS.TTECTrA_limiter.WfPs3lim = .0005;
     end
 else        % no limiters have been provided, use default
     if DWS.in.loop == 1
