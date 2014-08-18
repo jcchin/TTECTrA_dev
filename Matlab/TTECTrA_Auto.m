@@ -79,7 +79,7 @@ figure(101);
 plot(ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'b-','Linewidth',2); grid on;
 xlabel('NcR25'); ylabel('Ncdot');
 
-% save TTECTRA_DEBUG_Accel.mat ttectra_in
+%save TTECTRA_DEBUG_Accel.mat ttectra_in
 %---------------------------------------
 % Decel Limiter 
 %---------------------------------------
@@ -87,11 +87,12 @@ xlabel('NcR25'); ylabel('Ncdot');
 ttectra_in.SMLimit.FARmin=0.0065;
 [output]=TTECTrA_NPSS_DecelLimiter(ttectra_in);
 ttectra_in.Limiter.WfPs3min=output;
-save TTECTRA_DEBUG_Decel.mat ttectra_in
+%save TTECTRA_DEBUG_Decel.mat ttectra_in
 
 %------------------------------
 % Integrate Limiters and Setpoint Controller
 %------------------------------
+load TTECTRA_DEBUG_Decel.mat
 % ttectra_in.controller.IWP_gain=TTECTrA_IWP(ttectra_in);
 % 
 % if isempty(ttectra_in.controller.IWP_gain)

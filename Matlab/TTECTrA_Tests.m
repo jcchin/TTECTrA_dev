@@ -27,9 +27,9 @@ load TTECTRA_DEBUG_Decel.mat
 load Matlab_NPSS_Input_Debug.mat
 %ttectra_in=inputs;
 ttectra_in.in.loop=3;
-ttectra_in.in.t_vec=wfin.time';
-ttectra_in.in.wf_vec=wfin.data';
-ttectra_in.in.FT_dmd=[];
+ttectra_in.in.t_vec=wfin(1,:);
+ttectra_in.in.wf_vec=wfin(2,:);
+%ttectra_in.in.FT_dmd;
 out=simFromTTECTrA(ttectra_in);
 
 figure(1);

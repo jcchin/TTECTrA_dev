@@ -9,3 +9,4 @@ hs_err*.log
 /debug.txt
 /TTECTRA_DEBUG_Accel.mat
 *.mat
+/TTECTrA_Tests_2008a.m

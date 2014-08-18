@@ -38,7 +38,7 @@ function outputs=simFromTTECTrA(inputs)
 %       Maltab(R) control systems toolbox
 % *************************************************************************
 
-DEBUG_FLAG=1;
+DEBUG_FLAG=0;
 
 %----------------------------------------------------
 % Model-specific workspace setup:
@@ -71,7 +71,7 @@ try
     DWS.in.Wf_zro=max(interp1([2.0304e+03 4.2037e+04],[3.6027e-01 3.9309e+00],inputs.in.FT_dmd(1)),0.625);
     DWS.in.Nc_zro=interp1([2.0304e+03 4.2037e+04],[9.7129e+03 1.2077e+04],inputs.in.FT_dmd(1));
     DWS.in.Nf_zro=interp1([2.0304e+03 4.2037e+04],[2.7345e+03 4.2001e+03],inputs.in.FT_dmd(1));
-    
+
 catch
     DWS.in.Nc_zro=interp1([3.6027e-01 3.9309e+00],[9.7129e+03 1.2077e+04],inputs.in.wf_vec(1));
     DWS.in.Nf_zro=interp1([3.6027e-01 3.9309e+00],[2.7345e+03 4.2001e+03],inputs.in.wf_vec(1));
@@ -89,7 +89,7 @@ DWS.in.Ts_cont = 0.02;         % model sampling time
 setup_TTECTrA_block
 
 if DEBUG_FLAG==1
-   save('Matlab_Debug_Data.mat','inputs') 
+    save('Matlab_Debug_Data.mat','inputs')
 end
 
 %----------------------------------------------------
@@ -99,9 +99,13 @@ end
 %----------------------------------------------------
 try
     y=sim(inputs.in.simFileName,'SrcWorkspace','current','ReturnWorkspaceOutputs','on','StopTime',num2str(inputs.in.t_vec(end)));
-catch ME
-    errordlg({'Error running simulation:',ME.message})
-    outputs=[];
+catch
+    try
+        sim(inputs.in.simFileName,inputs.in.t_vec(end));
+    catch ME
+        errordlg({'Error running simulation:',ME.message})
+        outputs=[];
+    end
 end
 
 if ~exist('outputs')
@@ -121,7 +125,7 @@ if ~exist('outputs')
         outputs.T40 = y.get('T4');
         outputs.Ps3     = y.get('Ps3');
         outputs.NcR25_dot = y.get('N2dot')./sqrt(y.get('T25'));
-        
+
         % from controller block
         %  > Control variable feedback
         %  > Demand signals for control variables
@@ -154,8 +158,31 @@ if ~exist('outputs')
             outputs.T40     = y.find('T4');
             outputs.NcR25_dot = y.find('N2dot')./sqrt(y.find('T25'));
         catch
-            errordlg({'Error running simulation:',ME.message})
-            outputs=[];
+            try
+                outputs.t       = Time;
+                outputs.P2      = P2;
+                outputs.Fnet    = myFnR;
+                outputs.Wf_vec  = Wfuel;
+                outputs.T25     = T25;
+                outputs.Nc      = N2;
+                outputs.Nf      = N1;
+                outputs.NcR25   = N2R25;
+                outputs.Nc_dot  = N2dot;
+                outputs.HPC_SM  = HPC_SMN;
+                outputs.LPC_SM  = LPC_SMN;
+                outputs.FAR  = FAR;
+                outputs.CV_fdbk = out_Fdbk;
+                outputs.CV_dmd  = out_dmd;
+                outputs.FT_dmd  = out_Fnet_dmd;
+                outputs.Wf_dmd  = out_Wf_dmd;
+                outputs.Ps3     = Ps3;
+                outputs.T40     = T4;
+                outputs.NcR25_dot = N2dot./sqrt(T25);
+            catch
+
+                errordlg({'Error running simulation:',ME.message})
+                outputs=[];
+            end
         end
     end
 end
