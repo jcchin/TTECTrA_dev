@@ -207,7 +207,7 @@ if sum(yvec) ~= length(yvec)*minAcc      % at least one simulation met minSM > d
     
     % assign schedule and enable button to show schedule
     output.Limiter.NcR25_sched=xvec;
-    output.Limiter.Ncdot_sched=yvec;
+    output.Limiter.Ncdot_sched=yvec/inputs.in.Ts;
 else                   % no simulations met minSM > desired minSM
     warndlg(sprintf('Minimum surge margin not met -- Default schedule assigned \n Reduce desired surge margin below %2.4f %%',max(minSM_res)));
     

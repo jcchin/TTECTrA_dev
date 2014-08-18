@@ -168,9 +168,30 @@ limiter_gain=6.0159e-4;  % dc gain
 limiter_bw=3.0602;       % controller bandwidth
 bw_factor=interp1([0:5000:40000],[0.9923 0.8336 0.6918 0.5667 0.4584 0.3669 0.2923 0.2343 0.1932], inputs.in.alt);
 
+if isfield(inputs,'controller')
+    if isfield(inputs.controller,'accel_k')
+        DWS.TTECTrA_limiter.Kp_accel=inputs.controller.accel_k;
+    else
+        DWS.TTECTrA_limiter.Kp_accel=limiter_gain;
+    end
+    
+    if isfield(inputs.controller,'accel_bw') && isfield(inputs.controller,'accel_k')
+        DWS.TTECTrA_limiter.Ki_accel=inputs.controller.accel_k*inputs.controller.accel_bw;
+    else
+        DWS.TTECTrA_limiter.Ki_accel=limiter_gain*limiter_bw/bw_factor;
+    end
+    
+    if isfield(inputs.controller,'Accel_IWP')
+        DWS.TTECTrA_limiter.IWUP_accel=inputs.controller.Accel_IWP;
+    else
+        DWS.TTECTrA_limiter.IWUP_accel=500;
+    end
+else
 DWS.TTECTrA_limiter.Kp_accel=limiter_gain;
 DWS.TTECTrA_limiter.Ki_accel=limiter_gain*limiter_bw/bw_factor;
 DWS.TTECTrA_limiter.IWUP_accel=5000;
+end
+
 DWS.TTECTrA_limiter.accel_num = [1-exp(-1.5*DWS.in.Ts_cont)];
 DWS.TTECTrA_limiter.accel_den = [1 -exp(-1.5*DWS.in.Ts_cont)];
 
