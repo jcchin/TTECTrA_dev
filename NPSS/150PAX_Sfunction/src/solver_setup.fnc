@@ -45,43 +45,46 @@ void transient_setup() {
     //solver.addIndependent("trans_indep2");
 
 	// Turning on the guess logic for the initialization run
-	setOption( "switchGuess", "ON" );
+	// setOption( "switchGuess", "ON" );
+	// setOption( "switchGuessType", "PC" );
+	
+	// PC = 25;
 	
 	// Running the first time step as an off-design point for solver stability
 	
-	setOption( "switchGuessType", "FanNcPct" );
-	FanNcPct = transientDriver(0);
+	// setOption( "switchGuessType", "FanNcPct" );
+	// FanNcPct = transientDriver(0);
 	
 	// setOption( "switchGuessType", "Wfuel" );    
 	
 	// solver.forceNewJacobian = TRUE;
 	time = 0.;
-	run();
+	// run();
 	
 	// Adding transient demand variable to the solver
     solver.addIndependent("trans_indep"); 
     solver.addDependent("trans_Condition");   
 
-	if(solver.converged == 1 && errHandler.numErrors == 0) {
+	// if(solver.converged == 1 && errHandler.numErrors == 0) {
 	
-		cout << "\nInitialization successful!\n" << endl;
+		// cout << "\nInitialization successful!\n" << endl;
 
-		cout << "Fnet: " << Perf.myFn << "\n" << endl;
+		// cout << "Fnet: " << Perf.myFn << "\n" << endl;
 		
-		cout << "Fan NcPct: " << Fan.NcPct << endl;
-		cout << "LPC NcPct: " << LPC.NcPct << endl;
-		cout << "HPC NcPct: " << HPC.NcPct << endl;
+		// cout << "Fan NcPct: " << Fan.NcPct << endl;
+		// cout << "LPC NcPct: " << LPC.NcPct << endl;
+		// cout << "HPC NcPct: " << HPC.NcPct << endl;
 
-		cout << "\nNL: " << LP_Shaft.Nmech << endl;
-		cout << "NH: " << HP_Shaft.Nmech << endl;
+		// cout << "\nNL: " << LP_Shaft.Nmech << endl;
+		// cout << "NH: " << HP_Shaft.Nmech << endl;
 
-		cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
+		// cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
 	
-	}else{
+	// }else{
 
-		cout << "\nInitialization failed!\n" << endl;
+		// cout << "\nInitialization failed!\n" << endl;
 
-	}
+	// }
 	
 	// Turning off the guess logic
 	setOption( "switchGuess", "OFF" );
@@ -92,7 +95,7 @@ void transient_setup() {
 	
 	initializeHistory();
 
-    transient.baseTimeStep = 0.015;
+    transient.baseTimeStep = 0.02;
     
 }
 

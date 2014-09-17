@@ -41,7 +41,7 @@ set_output(); // view/output_paths.fnc
 
 // Determining the solver preferences
 solver.defaultTolerance = 0.000001;
-solver.maxIterations = 1000;
+solver.maxIterations = 500;
 solver.maxJacobians = 250;
 solver.maxConvergeFailures = 250;
 
@@ -111,4 +111,12 @@ RunMaxPower();
 // The case file for running the NPSS model in Matlab Simulink
 #ifdef TRANSIENT
  #include <transient.case>		
+#endif
+
+#ifdef DEBUG
+ #include <debug.case>
+#endif
+
+#ifdef GUESSCHECK
+ #include <guesscheck.case>
 #endif

@@ -26,23 +26,65 @@ void calculate() {
 
 	if (switchGuess == "ON" && switchDes == "OFFDESIGN"){
 
-		if( getPassType() <= 0) {
+		if(getPassType() <= 0) {
+		
+			if(switchGuessType == "PC") {
+			
+				Ambient.W = TB_Ambient_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			
+			}
+			
+			else if(switchGuessType == "FanNcPct") {
+			
+				Ambient.W = TB_Ambient_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+				
+			}
+		
+			else if(switchGuessType == "LPCNcPct") {
+			
+				Ambient.W = TB_Ambient_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			
+			}
+			
+			else if(switchGuessType == "HPCNcPct") {
+			
+				Ambient.W = TB_Ambient_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			
+			}
+			
+			else if(switchGuessType == "Wfuel") {
+			
+				Ambient.W = TB_Ambient_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			
+			}
+			
+			else if(switchGuessType == "FAR") {
+			
+				Ambient.W = TB_Ambient_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			
+			}
+			
+			else if(switchGuessType == "EPR") {
+			
+				Ambient.W = TB_Ambient_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			
+			}
+		
+			// Ambient.W = TB_Ambient(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			Splitter.BPR = TB_BPR(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
 
-			Ambient.W = TB_Ambient(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
-			Splitter.BPR = TB_BPR(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
+			Fan.S_map.RlineMap = TB_FanRline(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			LPC.S_map.RlineMap = TB_LPCRline(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			HPC.S_map.RlineMap = TB_HPCRline(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
 
-			Fan.S_map.RlineMap = TB_FanRline(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
-			LPC.S_map.RlineMap = TB_LPCRline(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
-			HPC.S_map.RlineMap = TB_HPCRline(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
+			Burner.FAR = TB_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			Burner.Wfuel = TB_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
 
-			Burner.FAR = TB_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
-			Burner.Wfuel = TB_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
+			HPT.S_map.parmMap = TB_HPTParm(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			LPT.S_map.parmMap = TB_LPTParm(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
 
-			HPT.S_map.parmMap = TB_HPTParm(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
-			LPT.S_map.parmMap = TB_LPTParm(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
-
-			HP_Shaft.Nmech = TB_HPNmech(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
-			LP_Shaft.Nmech = TB_LPNmech(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far,EPR);
+			HP_Shaft.Nmech = TB_HPNmech(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			LP_Shaft.Nmech = TB_LPNmech(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
 
 		}
 
