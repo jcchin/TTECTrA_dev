@@ -17,7 +17,7 @@
 // Model Definition 
 //-------------------------------------------------------------------------------------------------
 // Defining the variables for the guess logic and setting their default values
-real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=3.93086, far=0.0219794, EPR=2.55849;
+real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=3.93086, far_pc=0.0219794, EPR=2.55849;
 
 // Guess logic element
 Element Guess { 

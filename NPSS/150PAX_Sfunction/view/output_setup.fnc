@@ -1,3 +1,5 @@
+#ifdef ACCELSCHEDULE
+
 // Creating steady state output stream
 OutFileStream caseRow_SS {
     filename = OutputPath + "steadystateRuns.out";
@@ -909,3 +911,4 @@ else if(!Fan.S_Qhx.isEmpty() || !LPC.S_Qhx.isEmpty() || !HPC.S_Qhx.isEmpty() || 
 
 }
 
+#endif

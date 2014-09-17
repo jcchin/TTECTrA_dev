@@ -187,12 +187,12 @@ Independent trans_indep {
 // Dependents 
 //-------------------------------------------------------------------------------------------------
 // Transient dependent - fan percent corrected speed
- Dependent trans_Condition {
+ // Dependent trans_Condition {
 
-     eq_lhs = "Fan.NcPct";
-     eq_rhs = "transientDriver(time)";
+     // eq_lhs = "Fan.NcPct";
+     // eq_rhs = "transientDriver(time)";
 
- }
+ // }
 
 // Transient dependent - LPC percent corrected speed
 // Dependent trans_Condition {
@@ -211,12 +211,12 @@ Independent trans_indep {
 // }
 
 // Transient dependent - fuel flow rate
-// Dependent trans_Condition {
+Dependent trans_Condition {
 
-    // eq_lhs = "Burner.Wfuel";
-    // eq_rhs = "transientDriver(time)";
+    eq_lhs = "Burner.Wfuel";
+    eq_rhs = "transientDriver(time)";
 	
-// }
+}
 
 //-------------------------------------------------------------------------------------------------
 // Constraints 

@@ -1,33 +1,77 @@
 // This case file sets up the solver for transient simulation in Matlab Simulink
 // This case file is automatically called in the configuration file for the S-function
 
+// Minimum and maximum values for the transient driver
+// Computed from steady state operation limits
+real driver_min, driver_max;
+
 // Determining the solver preferences
-solver.defaultTolerance = 0.000001;
+solver.defaultTolerance = 0.0001;
 solver.maxIterations = 500;
 solver.maxJacobians = 250;
 solver.maxConvergeFailures = 250;
 
+// Inputting the flight condition
+Ambient.alt = 0.0;
+Ambient.MN = 0.0;
+Ambient.dTs = 0.0;
+
+// Turning on the guess logic
+setOption( "switchGuess", "ON" );
+
+// Switching the guess logic type to PC
+setOption( "switchGuessType", "PC" );
+
+// Inputting the power setting 
+PC = 50;
+
+// Running the model for maximum power
+RunMaxPower();
+
+driver_max = Burner.Wfuel;
+
+// cout << Burner.Wfuel << endl;
+
+// Inputting the power setting 
+PC = 21;
+
+// Running the model for idle
+RunIdle();
+
+driver_min = Burner.Wfuel;
+
+// cout << Burner.Wfuel << endl;
+
 // Turning off the guess logic
 setOption( "switchGuess", "OFF" );
 
-// Inputting the flight condition
-//Ambient.alt = 30000.0;
-//Ambient.MN = 0.8;
-//Ambient.dTs = 0.0;
-
-// Switching the guess logic type to PC
-//setOption( "switchGuessType", "PC" );
-
-// Inputting the power setting 
-//PC = 35;
-
-// Running the model
-//run();
-
-setOption( "switchGuessType", "Wfuel" );
-
-// Setting the fuel flow rate as the independent for the burner
+// Switching burner input variable to fuel flow rate
 Burner.switchBurn = "FUEL";
+	
+// Automatically setting up the solver
+autoSolverSetup();
+	
+// Adding transient demand variable to the solver
+solver.addIndependent("trans_indep"); 
+solver.addDependent("trans_Condition");
+
+// Running the model for initialization
+run();
+
+// cout << Burner.Wfuel << endl;
+
+// Adding the map R-line constraints to the solver
+// Fan map R-line limits
+// Fan.S_map.dep_errWc.addConstraint("Fan_Rline_Min_Limit", "MAX",1,1);
+// Fan.S_map.dep_errWc.addConstraint("Fan_Rline_Max_Limit", "MIN",1,1);
+
+// LPC map R-line limits
+// LPC.S_map.dep_errWc.addConstraint("LPC_Rline_Min_Limit", "MAX",1,1);
+// LPC.S_map.dep_errWc.addConstraint("LPC_Rline_Max_Limit", "MIN",1,1);
+
+// HPC map R-line limits
+// HPC.S_map.dep_errWc.addConstraint("HPC_Rline_Min_Limit", "MAX",1,1);
+// HPC.S_map.dep_errWc.addConstraint("HPC_Rline_Max_Limit", "MIN",1,1);
 
 // Automatically setting up the solver
 autoSolverSetup();
@@ -47,5 +91,5 @@ initializeHistory();
 // Setting up the transient simulation time step
 transient.baseTimeStep = 0.02;
 
-// Running the model in transient mode
+// Running the model for initialization
 run();

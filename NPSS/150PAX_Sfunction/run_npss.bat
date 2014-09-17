@@ -1,7 +1,7 @@
 @echo off
 
 REM Change the npss directory to your local copy's address - Remember to put "\" at the end of your address
-REM set NPSS_TOP=C:\path2npss\
+set NPSS_TOP=C:\Users\mozcan3\Desktop\NPSS.nt.sfunction2\
 
 
 IF EXIST ..\npss_paths.bat (

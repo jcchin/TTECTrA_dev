@@ -423,3 +423,12 @@ cout << "NH: " << HP_Shaft.Nmech << endl;
 cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
 
 cout << "\n-------------------------------------------------------------------------------------------------" << endl;
+
+// Returning back to SLS maximum thrust condition
+setOption( "switchGuess", "ON" );
+setOption( "switchGuessType", "PC" );
+PC = 50;
+Ambient.alt = 0.0;
+Ambient.MN = 0.0;
+Ambient.dTs = 0.0;
+RunMaxPower();
