@@ -2,7 +2,7 @@
 %==========================================================================
 % This file currently being used as a test file.
 %==========================================================================
-close all; clear; clc;
+% close all; clear; clc;
 
 % add paths for support and gui functions
 addpath('TTECTrA_Auto')

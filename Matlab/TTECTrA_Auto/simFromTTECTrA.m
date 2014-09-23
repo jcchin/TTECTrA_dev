@@ -38,7 +38,7 @@ function outputs=simFromTTECTrA(inputs)
 %       Maltab(R) control systems toolbox
 % *************************************************************************
 
-DEBUG_FLAG=1;
+DEBUG_FLAG=0;
 
 %----------------------------------------------------
 % Model-specific workspace setup:

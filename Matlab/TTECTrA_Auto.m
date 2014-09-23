@@ -79,7 +79,7 @@ figure(101);
 plot(ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'b-','Linewidth',2); grid on;
 xlabel('NcR25'); ylabel('Ncdot');
 
-% save TTECTRA_DEBUG_Accel.mat ttectra_in
+save TTECTRA_DEBUG_Accel.mat ttectra_in
 %---------------------------------------
 % Decel Limiter 
 %---------------------------------------
