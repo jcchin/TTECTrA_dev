@@ -49,13 +49,13 @@ inputs.controller.IWP_gain=1569;
 inputs.in.simTime=inputs.in.t_vec(end);
 [res]=simFromTTECTrA(inputs);   % run initial simulation
 
-%figure(1);
-figure;
-subplot(221); plot(res.t,res.CV_dmd,'r--',res.t,res.CV_fdbk,'b-','Linewidth',2) ; hold on; ylabel('Control Variable');
-subplot(222); plot(res.t,res.Wf_dmd,'r--',res.t,res.Wf_vec,'b-','Linewidth',2) ; hold on; ylabel('Wf');
-%subplot(223); plot(res.t,res.Fnet,'b-','Linewidth',2) ; hold on; ylabel('Fnet');
-subplot(223); plot(res.t,res.HPC_SM,'b-','Linewidth',2) ; hold on; ylabel('HPC SM');
-subplot(224); plot(res.t,res.Wf_vec./res.Ps3,'b-','Linewidth',2) ; hold on; ylabel('Wf/Ps3');
+% %figure(1);
+% figure;
+% subplot(221); plot(res.t,res.CV_dmd,'r--',res.t,res.CV_fdbk,'b-','Linewidth',2) ; hold on; ylabel('Control Variable');
+% subplot(222); plot(res.t,res.Wf_dmd,'r--',res.t,res.Wf_vec,'b-','Linewidth',2) ; hold on; ylabel('Wf');
+% subplot(223); plot(res.t,res.Fnet,'b-','Linewidth',2) ; hold on; ylabel('Fnet');
+% subplot(223); plot(res.t,res.HPC_SM,'b-','Linewidth',2) ; hold on; ylabel('HPC SM');
+% subplot(224); plot(res.t,res.Wf_vec./res.Ps3,'b-','Linewidth',2) ; hold on; ylabel('Wf/Ps3');
 
 
 % data gathered:
@@ -139,12 +139,12 @@ while (abs(error1)>0.002||abs(error2) > 0.002) && icount<max_count && ifail<max_
     try
         [res]=simFromTTECTrA(inputs);   % run initial simulation
 
-        figure;
-        subplot(221); plot(res.t,res.CV_dmd,'r--',res.t,res.CV_fdbk,'b-','Linewidth',2) ; hold on; ylabel('Control Variable');
-        subplot(222); plot(res.t,res.Wf_dmd,'r--',res.t,res.Wf_vec,'b-','Linewidth',2) ; hold on; ylabel('Wf');
-        %subplot(223); plot(res.t,res.Fnet,'b-','Linewidth',2) ; hold on; ylabel('Fnet');
-        subplot(223); plot(res.t,res.HPC_SM,'b-','Linewidth',2) ; hold on; ylabel('HPC SM');
-        subplot(224); plot(res.t,res.Wf_vec./res.Ps3,'b-','Linewidth',2) ; hold on; ylabel('Wf/Ps3');
+%         figure;
+%         subplot(221); plot(res.t,res.CV_dmd,'r--',res.t,res.CV_fdbk,'b-','Linewidth',2) ; hold on; ylabel('Control Variable');
+%         subplot(222); plot(res.t,res.Wf_dmd,'r--',res.t,res.Wf_vec,'b-','Linewidth',2) ; hold on; ylabel('Wf');
+%         %subplot(223); plot(res.t,res.Fnet,'b-','Linewidth',2) ; hold on; ylabel('Fnet');
+%         subplot(223); plot(res.t,res.HPC_SM,'b-','Linewidth',2) ; hold on; ylabel('HPC SM');
+%         subplot(224); plot(res.t,res.Wf_vec./res.Ps3,'b-','Linewidth',2) ; hold on; ylabel('Wf/Ps3');
 
 %         figure(100);
 %         plot(res.t,res.CV_dmd,'r--',res.t,res.CV_fdbk,'b-','Linewidth',2)
