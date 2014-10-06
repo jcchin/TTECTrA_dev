@@ -26,7 +26,7 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jcsank"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu May 29 13:54:47 2014"
+  LastModifiedDate	  "Thu Oct 02 13:00:47 2014"
   RTWModifiedTimeStamp	  323272484
   ModelVersionFormat	  "1.%<AutoIncrement:61>"
   ConfigurationManager	  "None"
@@ -673,7 +673,7 @@ Model {
   }
   System {
     Name		    "NPSS_Sfunction"
-    Location		    [1856, 120, 3452, 888]
+    Location		    [2484, 121, 3452, 888]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200

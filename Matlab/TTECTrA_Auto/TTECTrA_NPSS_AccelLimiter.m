@@ -33,9 +33,9 @@ Ncdot_res=zeros(length(Wf_vec),1);
 minSM_res=zeros(length(Wf_vec),1);
 maxT40_res=zeros(length(Wf_vec),1);
 
-plotstyle={'bx';'bo';'bd';'bs';'b*';'rx';'ro';'rd';'rs';'r*';'cx';'co';'cd';'cs';'c*';'mx';'mo';'md';'ms';'m*';}
+plotstyle={'bx';'bo';'bd';'bs';'b*';'rx';'ro';'rd';'rs';'r*';'cx';'co';'cd';'cs';'c*';'mx';'mo';'md';'ms';'m*';};
 %plotstyle={'bx';'ro';'ms';'cd';'bd';'rx';'mo';'cs';'bs';'rd';'mx';'co';'bo';'rs';'md';'cx';};
-%tic    
+%tic
 
 % run simulations to get acceleration data
 for ctr=1:1:length(Wf_vec)
@@ -54,11 +54,15 @@ for ctr=1:1:length(Wf_vec)
     temp_in.in.t_vec=[0 10 10+t_tr_sim 20];
     temp_in.in.wf_vec=[Wf_vec([ctr ctr]) wf_to wf_to];
     
-    [out]=simFromTTECTrA(temp_in);   % run initial simulation
+    if isfield(temp_in.in,'PWLM_Flag') && temp_in.in.PWLM_Flag==1
+        [out]=simFromTTECTrA_PWLM(temp_in);   % run initial simulation
+    else
+        [out]=simFromTTECTrA(temp_in);   % run initial simulation
+    end
     
     %figure(199); plot(ctr,0,'bx','Linewidth',2); hold on; grid on; xlabel('ctr'); ylabel('watchdog');
-    %figure(ctr); subplot(211); plot(out.t,out.Wf_dmd,'k-','linewidth',2); hold on;   
-	%fprintf('\b\b\b\b %d%%',round(100*ctr/length(Wf_vec)));
+    %figure(ctr); subplot(211); plot(out.t,out.Wf_dmd,'k-','linewidth',2); hold on;
+    %fprintf('\b\b\b\b %d%%',round(100*ctr/length(Wf_vec)));
     
     if ~isempty(out)    % simulation ran, continue with analysis
         minSM_res(ctr)=min(out.HPC_SM);     % store minimum SM results in array
@@ -83,7 +87,7 @@ for ctr=1:1:length(Wf_vec)
         
         %NcR25_res(ctr,:)=out.NcR25; % necessary for interp to work
         buf=0.005;%;0.01;  % determines acceptable range for min SM
-        minSM_chg = 1000;     % stop loop when change < buf; force to enter loop 
+        minSM_chg = 1000;     % stop loop when change < buf; force to enter loop
         watchdog=1;
         fault_flag=0;
         
@@ -100,27 +104,31 @@ for ctr=1:1:length(Wf_vec)
             t_tr_sim=mean(t_tr);
             temp_in.in.t_vec=[0 10 10+t_tr_sim 20];
             
-%             if ctr==3 && watchdog>=3
-%                 a=1
-%             end
+            %             if ctr==3 && watchdog>=3
+            %                 a=1
+            %             end
             
-            out=simFromTTECTrA(temp_in);    % run simulation with new transient
+            if isfield(temp_in.in,'PWLM_Flag') && temp_in.in.PWLM_Flag==1
+                [out]=simFromTTECTrA_PWLM(temp_in);   % run initial simulation
+            else
+                [out]=simFromTTECTrA(temp_in);   % run initial simulation
+            end
             
             ii=watchdog;
             while ii>length(plotstyle)
                 ii=ii-length(plotstyle);
             end
             %figure(ctr); plot(out.NcR25, out.NcR25_dot,plotstyle{ii}); hold on; ylim([0 200]);
-            %figure(ctr); 
+            %figure(ctr);
             %subplot(211); plot(out.NcR25, out.NcR25_dot,plotstyle{ii}); hold on; ylim([0 200]);
             %subplot(212); plot(out.Nc, out.NcR25_dot,plotstyle{ii}); hold on; ylim([0 200]);
             %figure(199); plot(ctr,watchdog,'bx','Linewidth',2); hold on; grid on; xlabel('ctr'); ylabel('watchdog');
-                             
+            
             fault_flag=fault_flag+1;
             if ~isempty(out)
-                %figure(ctr); subplot(211); plot(out.t,out.Wf_vec,plotstyle{ii}); hold on; 
+                %figure(ctr); subplot(211); plot(out.t,out.Wf_vec,plotstyle{ii}); hold on;
                 %subplot(212); plot(out.t,out.CV_fdbk,plotstyle{ii}); hold on;
-            
+                
                 minSM_chg = abs(minSM_res(ctr)-min(out.HPC_SM));
                 minSM_res(ctr) = min(out.HPC_SM);
                 
