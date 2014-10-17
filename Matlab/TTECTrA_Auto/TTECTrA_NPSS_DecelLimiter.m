@@ -36,8 +36,10 @@ while isempty(out) && watchdog<10
     end
     
     if isfield(temp_in.in,'PWLM_Flag') && temp_in.in.PWLM_Flag==1
+        initialize_NPSS(temp_in.in.HomeDirectory,[temp_in.in.alt temp_in.in.MN temp_in.in.dTamb],[temp_in.in.t_vec' temp_in.in.wf_vec']);
         [out]=simFromTTECTrA_PWLM(temp_in);   % run initial simulation
     else
+        initialize_NPSS(temp_in.in.HomeDirectory,[temp_in.in.alt temp_in.in.MN temp_in.in.dTamb],[temp_in.in.t_vec' temp_in.in.wf_vec']);
         [out]=simFromTTECTrA(temp_in);   % run initial simulation
     end
     
@@ -65,8 +67,10 @@ while abs(error)>0.10 && watchdog<watchdog_limit
     
     %Simulate
     if isfield(temp_in.in,'PWLM_Flag') && temp_in.in.PWLM_Flag==1
+        initialize_NPSS(temp_in.in.HomeDirectory,[temp_in.in.alt temp_in.in.MN temp_in.in.dTamb],[temp_in.in.t_vec' temp_in.in.wf_vec']);
         [out]=simFromTTECTrA_PWLM(temp_in);   % run initial simulation
     else
+        initialize_NPSS(temp_in.in.HomeDirectory,[temp_in.in.alt temp_in.in.MN temp_in.in.dTamb],[temp_in.in.t_vec' temp_in.in.wf_vec']);
         [out]=simFromTTECTrA(temp_in);   % run initial simulation
     end
     
