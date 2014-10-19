@@ -7,10 +7,17 @@ solver.maxIterations = 500;
 solver.maxJacobians = 250;
 solver.maxConvergeFailures = 250;
 
+// Including the flight condition from the file written by TTECTrA
 #include<Sfunction_flight_condition.data>
 
-// Turning off the guess logic
-setOption( "switchGuess", "OFF" );
+// Turning on the guess logic
+setOption( "switchGuess", "ON" );
+
+// Switching the guess logic type to fuel flow rate
+setOption( "switchGuessType", "Wfuel" );
+
+// Assigning the initial fuel flow rate from the input signal to the power management variable
+Wfuel = transientDriver_scaled(0.0);
 
 // Switching burner input variable to fuel flow rate
 Burner.switchBurn = "FUEL";
@@ -25,7 +32,8 @@ solver.addDependent("trans_Condition");
 // Running the model for initialization
 run();
 
-cout << Burner.Wfuel << endl;
+// Turning off the guess logic
+setOption( "switchGuess", "OFF" );
 
 // Automatically setting up the solver
 autoSolverSetup();

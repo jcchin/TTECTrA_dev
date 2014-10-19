@@ -7,7 +7,7 @@
 
 // if(switchGuessType == "PC") {
 
-	Table TB_Ambient_PC(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_Ambient_PC(real Alt, real MN, real dTs, real PC) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -4075,7 +4075,7 @@
 
 // else if(switchGuessType == "FanNcPct") {
 
-	Table TB_Ambient_FanNcPct(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_Ambient_FanNcPct(real Alt, real MN, real dTs, real FanNcPct) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -8143,7 +8143,7 @@
 
 // else if(switchGuessType == "LPCNcPct") {
 
-	Table TB_Ambient_LPCNcPct(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_Ambient_LPCNcPct(real Alt, real MN, real dTs, real LPCNcPct) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -12211,7 +12211,7 @@
 
 // else if(switchGuessType == "HPCNcPct") {
 
-	Table TB_Ambient_HPCNcPct(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_Ambient_HPCNcPct(real Alt, real MN, real dTs, real HPCNcPct) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -16279,7 +16279,7 @@
 
 // else if(switchGuessType == "Wfuel") {
 
-	Table TB_Ambient_Wfuel(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_Ambient_Wfuel(real Alt, real MN, real dTs, real Wfuel) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -20347,7 +20347,7 @@
 
 // else if(switchGuessType == "FAR") {
 
-	Table TB_Ambient_FAR(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_Ambient_FAR(real Alt, real MN, real dTs, real far) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -24415,7 +24415,7 @@
 
 // else if(switchGuessType == "EPR") {
 
-	Table TB_Ambient_EPR(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_Ambient_EPR(real Alt, real MN, real dTs, real EPR) {
 
 		Alt = 0 {
 			MN = 0 {
