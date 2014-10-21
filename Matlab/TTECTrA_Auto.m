@@ -42,9 +42,9 @@ set_paths;
 %----------------------
 % -Piecewise linear model used to develop controller gains and schedules
 % until NPSS memory issues has been resolved
-ttectra_in.in.simFileNamePWLM='NPSS_TTECTrA_PWLM.mdl';
-ttectra_in.in.PWLM_Flag=1;
-addpath('TTECTrA_PWLM')
+%ttectra_in.in.simFileNamePWLM='NPSS_TTECTrA_PWLM.mdl';
+%ttectra_in.in.PWLM_Flag=1;
+%addpath('TTECTrA_PWLM')
 %----------------------
 
 %----------------------------------------
@@ -67,6 +67,7 @@ subplot(222); plot(SP.Nf_SP,SP.FT_SP,'bx-','Linewidth',2); grid on; xlabel('Nf')
 subplot(223); plot(SP.Nc_SP,SP.FT_SP,'bx-','Linewidth',2); grid on; xlabel('Nc'); ylabel('Thrust');
 subplot(224); plot(SP.Wf_SP,SP.FT_SP,'bx-','Linewidth',2); grid on; xlabel('Wf'); ylabel('Thrust');
 
+clear SP
 %---------------------------------------
 % Design Setpoint Controller
 %---------------------------------------
@@ -77,33 +78,40 @@ if ~issorted(output.Fdbk)
     output.Ki=output.Ki(idx);
 end
 ttectra_in.gains=output;
+clear output
 
 %----------------------------------------
 % Accel Limiter (Ncdot in per sample time)
 %----------------------------------------
-[output]=TTECTrA_NPSS_AccelLimiter(ttectra_in);
-ttectra_in.Limiter=output.Limiter;
+TTECTrA_NPSS_AccelLimiter_s
+
+%[output]=TTECTrA_NPSS_AccelLimiter(ttectra_in);
+%ttectra_in.Limiter=output.Limiter;
 
 figure(101);
 plot(ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'b-','Linewidth',2); grid on; hold on;
 xlabel('NcR25'); ylabel('Ncdot');
-save PWLM_Accel_Debug.mat ttectra_in
+%save PWLM_Accel_Debug.mat ttectra_in
 
 %---------------------------------------
 % Decel Limiter
 %---------------------------------------
-[output]=TTECTrA_NPSS_DecelLimiter(ttectra_in);
-ttectra_in.Limiter.WfPs3lim=output;
+TTECTrA_NPSS_DecelLimiter_s
+
+%[output]=TTECTrA_NPSS_DecelLimiter(ttectra_in);
+%ttectra_in.Limiter.WfPs3lim=output;
 
 %---------------------------------------
 % Integrate Limiters and Setpoint Controller
 %---------------------------------------
-ttectra_in.controller.IWP_gain=TTECTrA_IWP(ttectra_in);
+TTECTrA_IWP_s
 
-if isempty(ttectra_in.controller.IWP_gain)
-    ttectra_in.controller.IWP_gain=1650;
-end
- 
+% ttectra_in.controller.IWP_gain=TTECTrA_IWP(ttectra_in);
+% 
+% if isempty(ttectra_in.controller.IWP_gain)
+%     ttectra_in.controller.IWP_gain=1650;
+% end
+
 %------------------------------
 % Test Controller Design
 %------------------------------
