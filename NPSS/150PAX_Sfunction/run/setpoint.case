@@ -11,6 +11,7 @@
 
 	//Setup up steady state solver
 	real myFn_target = 20000;
+	SP_Setup() //add Run_Condition_jtc based on thrust
 	RunMaxPower();
 	run(); // Running the steady state case
 

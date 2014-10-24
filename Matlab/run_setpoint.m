@@ -1,7 +1,7 @@
 %run_setpoint.m
 %no setup required, just run this file.
 engine = '150PAX_Sfunction'; %eventually work for c40k_t as well
-run_lm = true; %run linear model?
+run_lm = false; %run linear model?
 
 %It send a thrust vector from Matlab to NPSS -> runs it -> passes the 
 %output back to Matlab
@@ -28,13 +28,13 @@ path2model = [topDir,'\NPSS\',engine];
 %%
 diary('run_shell.bat')
 %copy all of the newly created files to the model path
-fprintf('copy "%s\\TTECTrA_SP.input" "%s\\run\\TTECTrA_SP.input" /Y\n', current_folder, path2model)%/Y switch overwrites
+fprintf('copy "%s\\%s" "%s\\run\\%s" /Y\n', current_folder, inputFile, path2model, inputFile)%/Y switch overwrites
 disp('CD \') %switch to top drive
 fprintf('cd %s\n', path2model) %move to model directory
 disp('@echo off') %silence npss output
-disp('call run_npss.bat run\TTECTrA_SetPoint.run') %run npss
+disp('call run_npss.bat run\150PAX.run -DSETPNT -DCSANK') %run npss
 if (run_lm)
-    disp('call run_npss.bat run\linear_model_150pax.run') %run npss
+    disp('call run_npss.bat run\150PAX.run -DLINEARMODEL') %run npss
 end
 %copy npss output back to matlab
 fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model, current_folder) %*.m pattern matches and copies all files
