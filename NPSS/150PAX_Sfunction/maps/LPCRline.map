@@ -5,9 +5,9 @@
 //                                                                                                      |
 //----------------------------------------------------------------------------------
 
-if(switchGuessType == "PC") {
+// if(switchGuessType == "PC") {
 
-	Table TB_LPCRline(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_LPCRline_PC(real Alt, real MN, real dTs, real PC) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -4071,11 +4071,11 @@ if(switchGuessType == "PC") {
 
 	}
 
-}
+// }
 
-else if(switchGuessType == "FanNcPct") {
+// else if(switchGuessType == "FanNcPct") {
 
-	Table TB_LPCRline(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_LPCRline_FanNcPct(real Alt, real MN, real dTs, real FanNcPct) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -8139,11 +8139,11 @@ else if(switchGuessType == "FanNcPct") {
 
 	}
 
-}
+// }
 
-else if(switchGuessType == "LPCNcPct") {
+// else if(switchGuessType == "LPCNcPct") {
 
-	Table TB_LPCRline(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_LPCRline_LPCNcPct(real Alt, real MN, real dTs, real LPCNcPct) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -12207,11 +12207,11 @@ else if(switchGuessType == "LPCNcPct") {
 
 	}
 
-}
+// }
 
-else if(switchGuessType == "HPCNcPct") {
+// else if(switchGuessType == "HPCNcPct") {
 
-	Table TB_LPCRline(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_LPCRline_HPCNcPct(real Alt, real MN, real dTs, real HPCNcPct) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -16275,11 +16275,11 @@ else if(switchGuessType == "HPCNcPct") {
 
 	}
 
-}
+// }
 
-else if(switchGuessType == "Wfuel") {
+// else if(switchGuessType == "Wfuel") {
 
-	Table TB_LPCRline(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_LPCRline_Wfuel(real Alt, real MN, real dTs, real Wfuel) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -20343,11 +20343,11 @@ else if(switchGuessType == "Wfuel") {
 
 	}
 
-}
+// }
 
-else if(switchGuessType == "FAR") {
+// else if(switchGuessType == "FAR") {
 
-	Table TB_LPCRline(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_LPCRline_FAR(real Alt, real MN, real dTs, real far) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -24411,11 +24411,11 @@ else if(switchGuessType == "FAR") {
 
 	}
 
-}
+// }
 
-else if(switchGuessType == "EPR") {
+// else if(switchGuessType == "EPR") {
 
-	Table TB_LPCRline(real Alt, real MN, real dTs, real PC, real FanNcPct, real LPCNcPct, real HPCNcPct, real Wfuel, real far, real EPR) {
+	Table TB_LPCRline_EPR(real Alt, real MN, real dTs, real EPR) {
 
 		Alt = 0 {
 			MN = 0 {
@@ -28479,4 +28479,4 @@ else if(switchGuessType == "EPR") {
 
 	}
 
-}
+// }

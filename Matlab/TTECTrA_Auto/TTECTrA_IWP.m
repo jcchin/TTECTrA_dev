@@ -47,7 +47,11 @@ end
 inputs.controller.IWP_gain=1569;
 
 inputs.in.simTime=inputs.in.t_vec(end);
-[res]=simFromTTECTrA(inputs);   % run initial simulation
+if isfield(inputs.in,'PWLM_Flag') && inputs.in.PWLM_Flag==1
+    [res]=simFromTTECTrA_PWLM(inputs);   % run initial simulation
+else
+    [res]=simFromTTECTrA(inputs);   % run initial simulation
+end
 
 % %figure(1);
 % figure;
@@ -137,7 +141,11 @@ IWP_0=inputs.controller.IWP_gain*60;
 inputs.controller.IWP_gain=1.01*inputs.controller.IWP_gain;
 while (abs(error1)>0.002||abs(error2) > 0.002) && icount<max_count && ifail<max_fail;
     try
-        [res]=simFromTTECTrA(inputs);   % run initial simulation
+        if isfield(inputs.in,'PWLM_Flag') && inputs.in.PWLM_Flag==1
+            [res]=simFromTTECTrA_PWLM(inputs);   % run initial simulation
+        else
+            [res]=simFromTTECTrA(inputs);   % run initial simulation
+        end
 
 %         figure;
 %         subplot(221); plot(res.t,res.CV_dmd,'r--',res.t,res.CV_fdbk,'b-','Linewidth',2) ; hold on; ylabel('Control Variable');

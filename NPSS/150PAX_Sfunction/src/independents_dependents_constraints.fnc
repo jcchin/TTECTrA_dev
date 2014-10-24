@@ -211,10 +211,17 @@ Independent trans_indep {
 // }
 
 // Transient dependent - fuel flow rate
+// Dependent trans_Condition {
+
+    // eq_lhs = "Burner.Wfuel";
+    // eq_rhs = "transientDriver(time)";
+	
+// }
+
 Dependent trans_Condition {
 
     eq_lhs = "Burner.Wfuel";
-    eq_rhs = "transientDriver(time)";
+    eq_rhs = "transientDriver_scaled(time)";
 	
 }
 

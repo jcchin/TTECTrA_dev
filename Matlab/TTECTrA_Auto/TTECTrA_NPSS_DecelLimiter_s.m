@@ -1,89 +1,88 @@
-function [output]=TTECTrA_NPSS_DecelLimiter(inputs)
-%       TTECTrA_controller.m
 % *************************************************************************
 % written by Jeffrey Csank (RHC)
 % NASA Glenn Research Center, Cleveland, OH
 % *************************************************************************
+temp_in=ttectra_in;
 
-watchdog_limit=20;
+dtemp_watchdog_limit=20;
 %-------------------------------------------
 %Determine what the Wf/Ps3 limit is based on steady-state data
 %-------------------------------------------
-WfPs3lim=interp1(inputs.SP.FAR_SP,inputs.SP.WfPs3_SP,inputs.SMLimit.FARmin,'linear','extrap');
-WfPs3lim=max(min(inputs.SMLimit.FARmin),WfPs3lim);
+dtemp_WfPs3lim=interp1(temp_in.SP.FAR_SP,temp_in.SP.WfPs3_SP,temp_in.SMLimit.FARmin,'linear','extrap');
+dtemp_WfPs3lim=max(min(temp_in.SMLimit.FARmin),dtemp_WfPs3lim);
 
 %-------------------------------------------
 % Now add in the decel limiter and determine if WfPs3limit will preseve
 % minimum HPC surge margin.
 %-------------------------------------------
-temp_in=inputs;
 
 %Now rewrite simulation information
 temp_in.in.t_vec=[0 10 10.5 20];
-temp_in.in.wf_vec=[inputs.SP.wf_takeoff*[1 1] inputs.SP.wf_idle*[1 1]];
+temp_in.in.wf_vec=[temp_in.SP.wf_takeoff*[1 1] temp_in.SP.wf_idle*[1 1]];
 temp_in.in.simTime=20.0;
 temp_in.in.loop=3;
-temp_in.Limiter.WfPs3lim=WfPs3lim;
+temp_in.Limiter.WfPs3lim=dtemp_WfPs3lim;
 
 %Simulate and ensure that LPC SM does not exceed limit  
-watchdog=1;
-out=[];
+dtemp_watchdog=1;
+dtemp_out=[];
 
-while isempty(out) && watchdog<10
+while isempty(dtemp_out) && dtemp_watchdog<10
     
-    if watchdog>1
+    if dtemp_watchdog>1
         temp_in.Limiter.WfPs3lim=1.1*temp_in.Limiter.WfPs3lim;
     end
     
     if isfield(temp_in.in,'PWLM_Flag') && temp_in.in.PWLM_Flag==1
         initialize_NPSS(temp_in.in.HomeDirectory,[temp_in.in.alt temp_in.in.MN temp_in.in.dTamb],[temp_in.in.t_vec' temp_in.in.wf_vec']);
-        [out]=simFromTTECTrA_PWLM(temp_in);   % run initial simulation
+        [dtemp_out]=simFromTTECTrA_PWLM(temp_in);   % run initial simulation
     else
         initialize_NPSS(temp_in.in.HomeDirectory,[temp_in.in.alt temp_in.in.MN temp_in.in.dTamb],[temp_in.in.t_vec' temp_in.in.wf_vec']);
-        [out]=simFromTTECTrA(temp_in);   % run initial simulation
+        [dtemp_out]=simFromTTECTrA(temp_in);   % run initial simulation
     end
     
-    watchdog=watchdog+1;
+    dtemp_watchdog=dtemp_watchdog+1;
 end
 %-------------------------------------------
 % Now that we have a valid starting point, fine tune the decel limiter
 %-------------------------------------------
-watchdog=1;
-WfPs3lim=temp_in.Limiter.WfPs3lim
-error=(inputs.SMLimit.FARmin-min(out.FAR))/inputs.SMLimit.FARmin;
-while abs(error)>0.10 && watchdog<watchdog_limit   
-    WfPs3lim_prev=WfPs3lim;
+dtemp_watchdog=1;
+dtemp_WfPs3lim=temp_in.Limiter.WfPs3lim
+dtemp_error=(temp_in.SMLimit.FARmin-min(dtemp_out.FAR))/temp_in.SMLimit.FARmin;
+while abs(dtemp_error)>0.10 && dtemp_watchdog<dtemp_watchdog_limit   
+    WfPs3lim_prev=dtemp_WfPs3lim;
     
     %Update limiter based on difference
-    WfPs3lim=WfPs3lim+error*0.001;
+    dtemp_WfPs3lim=dtemp_WfPs3lim+dtemp_error*0.001;
 
     %check for fault
-    if WfPs3lim<0
-        WfPs3lim=WfPs3lim_prev;
-        watchdog=watchdog_limit;
+    if dtemp_WfPs3lim<0
+        dtemp_WfPs3lim=WfPs3lim_prev;
+        dtemp_watchdog=dtemp_watchdog_limit;
     end
     
-    temp_in.Limiter.WfPs3lim=WfPs3lim;
+    temp_in.Limiter.WfPs3lim=dtemp_WfPs3lim;
     
     %Simulate
     if isfield(temp_in.in,'PWLM_Flag') && temp_in.in.PWLM_Flag==1
         initialize_NPSS(temp_in.in.HomeDirectory,[temp_in.in.alt temp_in.in.MN temp_in.in.dTamb],[temp_in.in.t_vec' temp_in.in.wf_vec']);
-        [out]=simFromTTECTrA_PWLM(temp_in);   % run initial simulation
+        [dtemp_out]=simFromTTECTrA_PWLM(temp_in);   % run initial simulation
     else
         initialize_NPSS(temp_in.in.HomeDirectory,[temp_in.in.alt temp_in.in.MN temp_in.in.dTamb],[temp_in.in.t_vec' temp_in.in.wf_vec']);
-        [out]=simFromTTECTrA(temp_in);   % run initial simulation
+        [dtemp_out]=simFromTTECTrA(temp_in);   % run initial simulation
     end
     
     try
-        save_error(watchdog)=error;
-        error=(inputs.SMLimit.FARmin-min(out.FAR))/inputs.SMLimit.FARmin;
-        watchdog=watchdog+1;
+        dtemp_save_error(dtemp_watchdog)=dtemp_error;
+        dtemp_error=(temp_in.SMLimit.FARmin-min(dtemp_out.FAR))/temp_in.SMLimit.FARmin;
+        dtemp_watchdog=dtemp_watchdog+1;
     catch
-        WfPs3lim=WfPs3lim_prev;
-        watchdog=watchdog_limit;
+        dtemp_WfPs3lim=WfPs3lim_prev;
+        dtemp_watchdog=dtemp_watchdog_limit;
     end
     
 end
 
-output=WfPs3lim;
-end
+ttectra_in.Limiter.WfPs3lim=dtemp_WfPs3lim;
+
+clear dtemp_* temp_in temp_out 

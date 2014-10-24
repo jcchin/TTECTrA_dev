@@ -41,15 +41,14 @@ ttectra_in.in.simFileName='NPSS_TTECTrA.mdl';  % simulation file name
 %---------------------------------------------------------
 % NOTE: Do we need still need the the idle, takeoff, and bkpts
 ttectra_in.SPcalc.idle = 10000;      % idle thrust
-ttectra_in.SPcalc.takeoff =30000;    % takeoff thrust
+ttectra_in.SPcalc.takeoff =27000;    % takeoff thrust
 ttectra_in.SPcalc.bkpt=10;           % breakpoints:
 
 %Define points for the setpoint function
 ttectra_in.in.setpoint_vector = [10000.0000, 10952.3810, 11904.7619, 12857.1429, 13809.5238, ...
              14761.9048, 15714.2857, 16666.6667, 17619.0476, 18571.4286,...
              19523.8095, 20476.1905, 21428.5714, 22380.9524, 23333.3333,...
-             24285.7143, 25238.0952, 26190.4762, 27142.8571, 28095.2381,...
-             29047.6190, 30000.0000];
+             24285.7143, 25238.0952, 26190.4762, 20000.0000];
          
 %---------------------------------------------------------
 % Setpoint controller setup

@@ -1,12 +1,12 @@
 Model {
-  Name			  "NPSS_TTECTrA"
+  Name			  "NPSS_TTECTrA_PWLM"
   Version		  7.5
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.242"
+    ComputedModelVersion    "1.256"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jcsank"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Oct 06 12:36:24 2014"
-  RTWModifiedTimeStamp	  334499626
-  ModelVersionFormat	  "1.%<AutoIncrement:242>"
+  LastModifiedDate	  "Mon Oct 06 12:58:01 2014"
+  RTWModifiedTimeStamp	  334501030
+  ModelVersionFormat	  "1.%<AutoIncrement:256>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -127,8 +127,8 @@ Model {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  SolverMode		  "Auto"
-	  Solver		  "FixedStepDiscrete"
-	  SolverName		  "FixedStepDiscrete"
+	  Solver		  "ode4"
+	  SolverName		  "ode4"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -763,6 +763,21 @@ Model {
       Interpolate	      on
     }
     Block {
+      BlockType		      Integrator
+      ExternalReset	      "none"
+      InitialConditionSource  "internal"
+      InitialCondition	      "0"
+      LimitOutput	      off
+      UpperSaturationLimit    "inf"
+      LowerSaturationLimit    "-inf"
+      ShowSaturationPort      off
+      ShowStatePort	      off
+      AbsoluteTolerance	      "auto"
+      IgnoreLimit	      off
+      ZeroCross		      on
+      ContinuousStateAttributes	"''"
+    }
+    Block {
       BlockType		      Lookup
       Table		      " rand(1,10)-0.5"
       LookUpMeth	      "Interpolation-Extrapolation"
@@ -935,6 +950,11 @@ Model {
       LUTDesignAbsError	      "1e-6"
     }
     Block {
+      BlockType		      "M-S-Function"
+      FunctionName	      "mlfile"
+      DisplayMFileStacktrace  on
+    }
+    Block {
       BlockType		      MinMax
       Function		      "min"
       Inputs		      "1"
@@ -1016,13 +1036,6 @@ Model {
       RndMeth		      "Zero"
       SaturateOnIntegerOverflow	on
       SampleTime	      "-1"
-    }
-    Block {
-      BlockType		      "S-Function"
-      FunctionName	      "system"
-      SFunctionModules	      "''"
-      PortCounts	      "[]"
-      SFunctionDeploymentMode off
     }
     Block {
       BlockType		      Saturate
@@ -1117,14 +1130,6 @@ Model {
       BlockType		      Terminator
     }
     Block {
-      BlockType		      ToFile
-      Filename		      "untitled.mat"
-      MatrixName	      "ans"
-      SaveFormat	      "Array"
-      Decimation	      "1"
-      SampleTime	      "-1"
-    }
-    Block {
       BlockType		      ToWorkspace
       VariableName	      "simulink_output"
       MaxDataPoints	      "1000"
@@ -1141,8 +1146,8 @@ Model {
     }
   }
   System {
-    Name		    "NPSS_TTECTrA"
-    Location		    [605, 337, 1749, 1091]
+    Name		    "NPSS_TTECTrA_PWLM"
+    Location		    [574, 378, 1739, 1132]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1156,7 +1161,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    160
+    SIDHighWatermark	    169
     Block {
       BlockType		      Clock
       Name		      "Clock"
@@ -1169,7 +1174,7 @@ Model {
       Name		      "Demux1"
       SID		      2
       Ports		      [1, 19]
-      Position		      [750, 177, 755, 863]
+      Position		      [670, 177, 675, 863]
       ShowName		      off
       Outputs		      "19"
       DisplayOption	      "bar"
@@ -1202,24 +1207,6 @@ Model {
       LockScale		      off
       RndMeth		      "Floor"
       DoSatur		      off
-    }
-    Block {
-      BlockType		      Display
-      Name		      "Display"
-      SID		      4
-      Ports		      [1]
-      Position		      [460, 282, 545, 418]
-      Decimation	      "1"
-      Lockdown		      off
-    }
-    Block {
-      BlockType		      Display
-      Name		      "Display1"
-      SID		      5
-      Ports		      [1]
-      Position		      [615, 55, 720, 455]
-      Decimation	      "1"
-      Lockdown		      off
     }
     Block {
       BlockType		      Product
@@ -1272,7 +1259,7 @@ Model {
       BlockType		      From
       Name		      "From1"
       SID		      10
-      Position		      [130, 451, 200, 469]
+      Position		      [105, 451, 175, 469]
       GotoTag		      "Fdbk"
       TagVisibility	      "global"
     }
@@ -1298,30 +1285,6 @@ Model {
       SID		      13
       Position		      [80, 571, 150, 589]
       GotoTag		      "Ps3"
-      TagVisibility	      "global"
-    }
-    Block {
-      BlockType		      From
-      Name		      "From5"
-      SID		      14
-      Position		      [295, 286, 365, 304]
-      GotoTag		      "t"
-      TagVisibility	      "global"
-    }
-    Block {
-      BlockType		      From
-      Name		      "From6"
-      SID		      15
-      Position		      [295, 321, 365, 339]
-      GotoTag		      "FnR"
-      TagVisibility	      "global"
-    }
-    Block {
-      BlockType		      From
-      Name		      "From7"
-      SID		      16
-      Position		      [300, 356, 370, 374]
-      GotoTag		      "Fdbk"
       TagVisibility	      "global"
     }
     Block {
@@ -1372,46 +1335,178 @@ Model {
       Value		      "5000"
     }
     Block {
-      BlockType		      Mux
-      Name		      "Mux"
-      SID		      23
-      Ports		      [4, 1]
-      Position		      [425, 277, 430, 418]
-      ShowName		      off
-      DisplayOption	      "bar"
-    }
-    Block {
-      BlockType		      "S-Function"
-      Name		      "S-Function"
-      SID		      24
+      BlockType		      SubSystem
+      Name		      "Subsystem"
+      SID		      161
       Ports		      [1, 1]
-      Position		      [470, 499, 580, 541]
-      FunctionName	      "NPSSSfunction"
-      Parameters	      "'150_PAX_Sfunction.config'"
-      EnableBusSupport	      off
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Scope"
-      SID		      25
-      Ports		      [3]
-      Position		      [585, 679, 615, 711]
-      Floating		      off
-      Location		      [19, 75, 484, 680]
-      Open		      off
-      NumInputPorts	      "3"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-	axes2			"%<SignalLabel>"
-	axes3			"%<SignalLabel>"
+      Position		      [485, 481, 585, 559]
+      LibraryVersion	      "1.216"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"Subsystem"
+	Location		[530, 352, 1626, 1060]
+	Open			off
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "u"
+	  SID			  162
+	  Position		  [590, 358, 620, 372]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "Integrator"
+	  SID			  163
+	  Ports			  [1, 1]
+	  Position		  [800, 350, 815, 380]
+	  ShowName		  off
+	  InitialCondition	  "x0"
+	}
+	Block {
+	  BlockType		  ToWorkspace
+	  Name			  "out_wght"
+	  SID			  164
+	  Ports			  [1]
+	  Position		  [550, 427, 595, 443]
+	  BlockMirror		  on
+	  ShowName		  off
+	  VariableName		  "out_wght"
+	  MaxDataPoints		  "inf"
+	  SampleTime		  "-1"
+	  SaveFormat		  "Array"
+	}
+	Block {
+	  BlockType		  "M-S-Function"
+	  Name			  "weight(ML)\n"
+	  SID			  165
+	  Ports			  [1, 1]
+	  Position		  [495, 464, 570, 486]
+	  FunctionName		  "sfun_weights2"
+	  Parameters		  "beta,mode,bkpt,bkpt_i,x,y"
+	}
+	Block {
+	  BlockType		  "M-S-Function"
+	  Name			  "x_dot (ML)"
+	  SID			  166
+	  Ports			  [3, 1]
+	  Position		  [690, 336, 755, 394]
+	  FunctionName		  "sfun_xdot2"
+	  Parameters		  "bkpt,bkpt_i,x,u,y,A,B"
+	}
+	Block {
+	  BlockType		  "M-S-Function"
+	  Name			  "y_out (ML)"
+	  SID			  167
+	  Ports			  [3, 1]
+	  Position		  [760, 426, 825, 484]
+	  FunctionName		  "sfun_output2"
+	  Parameters		  "bkpt,bkpt_i,x,u,y,C,D"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "y"
+	  SID			  168
+	  Position		  [1000, 448, 1030, 462]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "u"
+	  SrcPort		  1
+	  Points		  [22, 0]
+	  Branch {
+	    Points		    [0, 90]
+	    DstBlock		    "y_out (ML)"
+	    DstPort		    2
+	  }
+	  Branch {
+	    DstBlock		    "x_dot (ML)"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  SrcBlock		  "x_dot (ML)"
+	  SrcPort		  1
+	  DstBlock		  "Integrator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Integrator"
+	  SrcPort		  1
+	  Points		  [24, 0]
+	  Branch {
+	    Points		    [0, 145; -110, 0]
+	    Branch {
+	      Points		      [0, -75]
+	      DstBlock		      "y_out (ML)"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [-254, 0]
+	      DstBlock		      "weight(ML)\n"
+	      DstPort		      1
+	    }
+	  }
+	  Branch {
+	    Points		    [0, -65; -182, 0; 0, 45]
+	    DstBlock		    "x_dot (ML)"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "weight(ML)\n"
+	  SrcPort		  1
+	  Points		  [53, 0]
+	  Branch {
+	    DstBlock		    "y_out (ML)"
+	    DstPort		    3
+	  }
+	  Branch {
+	    Points		    [0, -40]
+	    Branch {
+	      DstBlock		      "out_wght"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, -50]
+	      DstBlock		      "x_dot (ML)"
+	      DstPort		      3
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "y_out (ML)"
+	  SrcPort		  1
+	  DstBlock		  "y"
+	  DstPort		  1
+	}
+	Annotation {
+	  Position		  [1179, 228]
+	}
+	Annotation {
+	  Position		  [705, 365]
+	}
       }
-      TimeRange		      "60"
-      YMin		      "0~220~4700"
-      YMax		      "0.25~270~5200"
-      SaveName		      "ScopeData3"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
     }
     Block {
       BlockType		      SubSystem
@@ -1430,7 +1525,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"TTECTrA Simulink Block"
-	Location		[605, 337, 1770, 1091]
+	Location		[525, 365, 1711, 1119]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1497,8 +1592,8 @@ Model {
 	  Name			  "Fnet_dmd_profile"
 	  SID			  33
 	  Position		  [165, 628, 200, 662]
-	  InputValues		  "[0  10  20  30]"
-	  Table			  "[30000  30000  30000  30000]"
+	  InputValues		  "[0  10  15  20  30  35]"
+	  Table			  "[30000  30000  30000  30000  30000  30000]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
@@ -1798,7 +1893,7 @@ Model {
 	      Position		      [655, 171, 755, 199]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Value		      "2.8663"
+	      Value		      "0.53679"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3055,7 +3150,7 @@ Model {
 		  SID			  112
 		  Position		  [510, 78, 545, 112]
 		  ForegroundColor	  "red"
-		  X0			  "2.8663"
+		  X0			  "0.53679"
 		  SampleTime		  "-1"
 		}
 		Block {
@@ -3419,8 +3514,8 @@ Model {
 	  Name			  "Wf_profile"
 	  SID			  123
 	  Position		  [425, 303, 460, 337]
-	  InputValues		  "[0  10  20  30]"
-	  Table			  "[2.8663      2.8663      2.8663      2.8663]"
+	  InputValues		  "[0  10  15  20  30  35]"
+	  Table			  "[0.53679     0.53679      2.5797      2.5797     0.53679     0.53679]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
@@ -3716,14 +3811,6 @@ Model {
       }
     }
     Block {
-      BlockType		      ToFile
-      Name		      "To File"
-      SID		      128
-      Position		      [520, 590, 680, 630]
-      Filename		      "Matlab_NPSS_Input_Debug.mat"
-      MatrixName	      "wfin"
-    }
-    Block {
       BlockType		      ToWorkspace
       Name		      "To Workspace"
       SID		      129
@@ -3998,18 +4085,10 @@ Model {
       Expr		      "sqrt(u(1)/518.67)"
     }
     Line {
-      SrcBlock		      "S-Function"
+      SrcBlock		      "Subsystem"
       SrcPort		      1
-      Points		      [10, 0]
-      Branch {
-	DstBlock		"Demux1"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, -265]
-	DstBlock		"Display1"
-	DstPort			1
-      }
+      DstBlock		      "Demux1"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "Clock"
@@ -4028,33 +4107,8 @@ Model {
     Line {
       SrcBlock		      "TTECTrA Simulink Block"
       SrcPort		      1
-      Points		      [5, 0]
-      Branch {
-	Labels			[1, 0]
-	Points			[0, -120]
-	DstBlock		"Mux"
-	DstPort			4
-      }
-      Branch {
-	Points			[10, 0]
-	Branch {
-	  DstBlock		  "S-Function"
-	  DstPort		  1
-	}
-	Branch {
-	  Points		  [0, 85]
-	  Branch {
-	    Points		    [0, 5]
-	    DstBlock		    "To File"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, 80]
-	    DstBlock		    "Scope"
-	    DstPort		    1
-	  }
-	}
-      }
+      DstBlock		      "Subsystem"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "From"
@@ -4065,16 +4119,8 @@ Model {
     Line {
       SrcBlock		      "From1"
       SrcPort		      1
-      Points		      [65, 0]
-      Branch {
-	DstBlock		"TTECTrA Simulink Block"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 245]
-	DstBlock		"Scope"
-	DstPort			3
-      }
+      DstBlock		      "TTECTrA Simulink Block"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "From2"
@@ -4129,42 +4175,10 @@ Model {
       DstPort		      1
     }
     Line {
-      SrcBlock		      "From5"
-      SrcPort		      1
-      DstBlock		      "Mux"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "From6"
-      SrcPort		      1
-      DstBlock		      "Mux"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "From7"
-      SrcPort		      1
-      DstBlock		      "Mux"
-      DstPort		      3
-    }
-    Line {
-      SrcBlock		      "Mux"
-      SrcPort		      1
-      DstBlock		      "Display"
-      DstPort		      1
-    }
-    Line {
       SrcBlock		      "From4"
       SrcPort		      1
-      Points		      [30, 0]
-      Branch {
-	DstBlock		"IC"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 115]
-	DstBlock		"Scope"
-	DstPort			2
-      }
+      DstBlock		      "IC"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "IC"
@@ -4175,7 +4189,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      1
-      Points		      [5, 0]
+      Points		      [85, 0]
       Branch {
 	DstBlock		"To Workspace"
 	DstPort			1
@@ -4189,7 +4203,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      2
-      Points		      [235, 0]
+      Points		      [315, 0]
       Branch {
 	DstBlock		"To Workspace1"
 	DstPort			1
@@ -4208,7 +4222,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      3
-      Points		      [5, 0]
+      Points		      [85, 0]
       Branch {
 	DstBlock		"To Workspace10"
 	DstPort			1
@@ -4222,7 +4236,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      4
-      Points		      [125, 0]
+      Points		      [205, 0]
       Branch {
 	DstBlock		"To Workspace5"
 	DstPort			1
@@ -4242,7 +4256,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      6
-      Points		      [250, 0]
+      Points		      [330, 0]
       Branch {
 	DstBlock		"To Workspace6"
 	DstPort			1
@@ -4256,7 +4270,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      7
-      Points		      [5, 0]
+      Points		      [85, 0]
       Branch {
 	DstBlock		"To Workspace12"
 	DstPort			1
@@ -4300,7 +4314,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      13
-      Points		      [5, 0]
+      Points		      [85, 0]
       Branch {
 	DstBlock		"To Workspace2"
 	DstPort			1
