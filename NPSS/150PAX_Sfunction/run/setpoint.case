@@ -10,18 +10,19 @@
 	setOption( "switchGuessType", "FanNcPct" );
 
 	//Setup up steady state solver
-	real myFn_target = 20000;
-	SP_Setup() //add Run_Condition_jtc based on thrust
-	RunMaxPower();
+	TargetThrust = 20000;
+	//RunMaxPower();
 	run(); // Running the steady state case
 
-
+	SP_Setup(); //add Run_Condition_thrust
 	int z;
 	for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
-	    myFn_target = myFn_targets[z];
+	    TargetThrust = myFn_targets[z];
+	    //cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
 	    run();
-	    setpoint_display(z);
-	}	
+	    setpoint_display(z, myFn_targets[z]);
+	}
+	SP_Remove();	
 #endif
 
 

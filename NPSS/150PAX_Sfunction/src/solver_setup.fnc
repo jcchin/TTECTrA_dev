@@ -24,11 +24,26 @@ void SS_Setup(){
 }
 
 void SP_Setup(){
+	setOption( "switchDes", "OFFDESIGN" );
+	setOption( "solutionMode", "STEADY_STATE" );
+
+	// Switching the burner independent to FAR 
+	Burner.switchBurn = "FAR";
+
     solver.removeIndependent("FAR");
     solver.removeDependent("Run_Condition");
+    solver.removeDependent("Fan_Max_Nc");
 
     solver.addIndependent("FAR");
-    solver.addDependent("Run_Condition_jtc");
+    solver.addDependent("Run_Condition_Thrust");
+}
+
+void SP_Remove(){
+    solver.removeIndependent("FAR");
+    solver.removeDependent("Run_Condition_Thrust");
+
+    solver.addIndependent("FAR");
+    solver.addDependent("Run_Condition");
 }
 
 // This function sets up the solver for transient operation
