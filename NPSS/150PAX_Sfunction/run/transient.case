@@ -8,7 +8,7 @@ solver.maxJacobians = 250;
 solver.maxConvergeFailures = 250;
 
 // Including the flight condition from the file written by TTECTrA
-#include<Sfunction_flight_condition.data>
+#include <Sfunction_flight_condition.data>
 
 // Turning on the guess logic
 setOption( "switchGuess", "ON" );

@@ -1,11 +1,11 @@
 //-------------------------------------------------------------------------------------------------
 //                                                                       												   |
-//   File Name:     High_BPR_150pax.mdl                                  						   |
-//   Date(s):       May 20, 2014                                        									   |
-//   Author:        Metin F. Ozcan 
-//                     modified by Jeff Chin                                      									   |
+//   File Name:     High_BPR_150pax.mdl                                  						               |
+//   Date(s):       May 20, 2014                                        									         |
+//   Author:        Metin F. Ozcan                                                                 |
+//                     modified by Jeff Chin                                      							   |
 //                                                                       												   |
-//   Description:   Separate Flow High BPR Turbofan Engine for 150 PAX   		   |
+//   Description:   Separate Flow High BPR Turbofan Engine for 150 PAX   		                       |
 //                                                                       												   |
 //-------------------------------------------------------------------------------------------------
 
@@ -21,9 +21,7 @@ real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=3.93086, far_pc=0.02
 
 // Guess logic element
 Element Guess { 
-
-#include <Guess.ins> 
-
+  #include <Guess.ins> 
 }
 
 // Defining the Ambient element
@@ -143,10 +141,8 @@ Element Compressor HPC  {
    } 
 	
 	void preexecute() { 
-		
-        CustBld.fracBldW = BleedFlow / Fl_I.W ;  // calc fracW to give fixed flow
-	
-    } 
+      CustBld.fracBldW = BleedFlow / Fl_I.W ;  // calc fracW to give fixed flow
+  } 
 
 }
 
@@ -156,7 +152,6 @@ Element Bleed Bld3  {
    BleedOutPort Cool1 {	              // HPT cooling flow
      fracW = 0.087+0.051;
    } 
-
 }
 
 // Defining the element for fuel flow start   
@@ -177,31 +172,9 @@ Element Burner Burner  {
    FAR = 0.0286;
    TtCombOut = 3130.0;
 
-   // Subelement ThermalMass S_Qhx {
-	
-		// switchForm = "ADD_SOLVER";
-		// switchLagIn = "PHYSICAL";
-	
-		// Wdes = ;
-		// kcDes = ;
-		// muDes = ;
-		// ChxDes = ;
-		
-		// Ahx = ;
-		
-		// massMat = ;
-		// CpMat = ;
-		// kcMat = ;
-		// thMat = ;
-		// Tmat = ;
-		
-		// tau = 100;
-		// expChx = 1;
-		// wtdAvg_Fl = 0.5;
    void preexecute() { 
 	   //Burner.Wfuel = transientDriver2(time);
    }
-	// }
    
 }
 
@@ -231,55 +204,6 @@ Element Turbine HPT  {
    // } 
 
    real delta_eff = 0.0; 
-
-   /*Subelement CoolIt Cool { 
-     cool1 = "Non_ChargeableBld";
-     cool2 = "ChargeableBld";
-     desBladeTemp[1] = 2200;
-     desVaneTemp[1] = 2200;
-     desBladeTemp[2] = 2200;
-     desVaneTemp[2] = 2200;
-     nStages = 1;
-     xFactor =1.95; //1.95; 
-     xFactor1 =1.70; //2.38; 
-
-   }*/ 
-
-   /*void postexecute() { 
-     FS_41.copyFlow("Fl_I");
-     FS_41.add("Non_ChargeableBld");
-     Cool.run(); 
-
-     delta_eff = 0.0;
-   }*/
-
-	// Subelement ThermalMass S_Qhx {
-	
-		// switchForm = "ADD_SOLVER";
-		// switchLagIn = "PHYSICAL";
-		// switchLagIn = "CONTROLCHAR";
-	
-		// Wdes = 39.85;
-		// kcDes = 9.30555e-6;
-		// muDes = 3.94e-5;
-		// ChxDes = 0.795;
-		// ChxDes = 0.467;
-		// expChx = 1;
-		
-		// Ahx = 1254.53*0.001;
-		
-		// massMat = 537.79;
-		// CpMat = 0.106045;
-		// kcMat = ;
-		// thMat = ;
-		// Tmat = 1486.319;
-		
-		// tau = 70;
-		// leadLagRatio = 0.0;
-		
-		// wtdAvg_Fl = 0.5;
-	
-	// }
    
 }
 
@@ -322,57 +246,6 @@ Element Turbine LPT  {
    }
 
    real delta_eff = 0.0; 
-
-   /*Subelement CoolIt Cool { 
-     cool1 = "Non_ChargeableBld";
-     cool2 = "ChargeableBld";
-     desBladeTemp[1] = 2060;
-     desVaneTemp[1] = 2060;
-     desBladeTemp[2] = 2060;
-     desVaneTemp[2] = 2060;
-     desBladeTemp[3] = 2060;
-     desVaneTemp[3] = 2060;
-     nStages = 3;
-     xFactor =.425; //1.55; 
-     xFactor1 =0.63; //2.99; 
-
-   }*/ 
-
-   /*void postexecute() { 
-     FS_49.copyFlow("Fl_I");
-     FS_49.add("Non_ChargeableBld");
-     Cool.run(); 
-
-     delta_eff = 0.0;
-   }*/
-
-	// Subelement ThermalMass S_Qhx {
-	
-		// switchForm = "ADD_SOLVER";
-		// switchLagIn = "PHYSICAL";
-		// switchLagIn = "CONTROLCHAR";
-	
-		// Wdes = 47.69;
-		// kcDes = 9.01851e-6;
-		// muDes = 3.18e-5;
-		// ChxDes = 0.467;
-		// ChxDes = 0.795;
-		// expChx = 1;
-		
-		// Ahx = 7831.79*0.001;
-		
-		// massMat = 619.80;
-		// CpMat = 0.106045;
-		// kcMat = ;
-		// thMat = ;
-		// Tmat = 1139.721;
-		
-		// tau = 100;
-		// leadLagRatio = 0.0;
-		
-		// wtdAvg_Fl = 0.5;
-	
-	// }
    
 }
 
