@@ -1,3 +1,4 @@
+% This function initializes NPSS for TTECTrA runs through S-function 
 function initialize_NPSS(HomeDirectory,flight_condition,input_signal)
 
     % Saving the current Matlab directory

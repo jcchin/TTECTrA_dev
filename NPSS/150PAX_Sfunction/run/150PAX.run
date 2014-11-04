@@ -113,11 +113,3 @@ RunMaxPower();
 #ifdef TRANSIENT
  #include <transient.case>		
 #endif
-
-#ifdef DEBUG
- #include <debug.case>
-#endif
-
-#ifdef GUESSCHECK
- #include <guesscheck.case>
-#endif
