@@ -1,6 +1,6 @@
 % Altitude
 % PC50
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0;
@@ -15,13 +15,13 @@ A = [-7.09921 0.856326; 3.71543 -4.42576];
 % B matrix
 B = [2534.41; 3426.61];
 % C matrix
-C = [1 0; 0 1; 0 0; 0 0; 0.0252472 0; 0.131378 0; 0.00855998 0.190871; 0.00105139 0.186472; 0.000470232 0.0106025; 0.00158273 0.0940633; 0.00085058 0.150321; 3.20292e-005 0.000722175; 4.46651 2.80891; 0 0; 0.0292619 -0.0224361; 0.0289958 -0.0222338; -0.0343856 0; -0.033618 0; 0 0];
+C = [1 0; 0 1; 0 0; 0 0; 0.0252472 0; 0.131378 0; 0.00855998 0.190871; 0.00105135 0.186472; 0.000470232 0.0106025; 0.00158271 0.0940633; 0.000850555 0.150321; 3.20292e-005 0.000722175; 4.46651 2.80891; 0 0; 0.029262 -0.0224361; 0.0289958 -0.0222338; -0.0343856 0; -0.033618 0; 0 0];
 % D matrix
 D = [0; 0; 0; 0; 0; 0; 0; 0; 0; 266.509; 486.944; 0; 633.891; 1; 0; 0; 0; 0; 0.00980493];
 % State
 state = [5222.27; 14650.7];
 % Derivative
-derivative = [-0.000576768; -0.00118503];
+derivative = [0.000122264; -0.000697327];
 % Input
 % { "Burner.Wfuel" }
 utrim = [2.86628];
@@ -45,7 +45,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC48
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0;
@@ -90,7 +90,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC44
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0;
@@ -135,7 +135,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC40
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0;
@@ -180,7 +180,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC38
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0;
@@ -225,7 +225,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC35
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0;
@@ -270,7 +270,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC30
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0;
@@ -315,7 +315,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC28
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0;
@@ -360,7 +360,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC25
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0;
@@ -405,7 +405,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC21
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0;
@@ -450,7 +450,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC50
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0.25;
@@ -495,7 +495,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC48
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0.25;
@@ -540,7 +540,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC44
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0.25;
@@ -585,7 +585,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC40
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0.25;
@@ -630,7 +630,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC38
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0.25;
@@ -675,7 +675,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC35
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0.25;
@@ -720,7 +720,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC30
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0.25;
@@ -765,7 +765,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC28
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0.25;
@@ -810,7 +810,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC25
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0.25;
@@ -855,7 +855,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC21
-% TT0
+% TT27000
 alt = 0;
 % Mach
 MN = 0.25;
@@ -900,7 +900,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC50
-% TT0
+% TT27000
 alt = 5000;
 % Mach
 MN = 0.4;
@@ -945,7 +945,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC48
-% TT0
+% TT27000
 alt = 5000;
 % Mach
 MN = 0.4;
@@ -990,7 +990,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC44
-% TT0
+% TT27000
 alt = 5000;
 % Mach
 MN = 0.4;
@@ -1035,7 +1035,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC40
-% TT0
+% TT27000
 alt = 5000;
 % Mach
 MN = 0.4;
@@ -1080,7 +1080,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC38
-% TT0
+% TT27000
 alt = 5000;
 % Mach
 MN = 0.4;
@@ -1125,7 +1125,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC35
-% TT0
+% TT27000
 alt = 5000;
 % Mach
 MN = 0.4;
@@ -1170,7 +1170,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC30
-% TT0
+% TT27000
 alt = 5000;
 % Mach
 MN = 0.4;
@@ -1215,7 +1215,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC28
-% TT0
+% TT27000
 alt = 5000;
 % Mach
 MN = 0.4;
@@ -1260,7 +1260,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC25
-% TT0
+% TT27000
 alt = 5000;
 % Mach
 MN = 0.4;
@@ -1305,7 +1305,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC21
-% TT0
+% TT27000
 alt = 5000;
 % Mach
 MN = 0.4;
@@ -1350,7 +1350,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC50
-% TT0
+% TT27000
 alt = 10000;
 % Mach
 MN = 0.5;
@@ -1395,7 +1395,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC48
-% TT0
+% TT27000
 alt = 10000;
 % Mach
 MN = 0.5;
@@ -1440,7 +1440,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC44
-% TT0
+% TT27000
 alt = 10000;
 % Mach
 MN = 0.5;
@@ -1485,7 +1485,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC40
-% TT0
+% TT27000
 alt = 10000;
 % Mach
 MN = 0.5;
@@ -1530,7 +1530,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC38
-% TT0
+% TT27000
 alt = 10000;
 % Mach
 MN = 0.5;
@@ -1575,7 +1575,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC35
-% TT0
+% TT27000
 alt = 10000;
 % Mach
 MN = 0.5;
@@ -1620,7 +1620,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC30
-% TT0
+% TT27000
 alt = 10000;
 % Mach
 MN = 0.5;
@@ -1665,7 +1665,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC28
-% TT0
+% TT27000
 alt = 10000;
 % Mach
 MN = 0.5;
@@ -1710,7 +1710,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC25
-% TT0
+% TT27000
 alt = 10000;
 % Mach
 MN = 0.5;
@@ -1755,7 +1755,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC21
-% TT0
+% TT27000
 alt = 10000;
 % Mach
 MN = 0.5;
@@ -1800,7 +1800,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC50
-% TT0
+% TT27000
 alt = 15000;
 % Mach
 MN = 0.65;
@@ -1845,7 +1845,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC48
-% TT0
+% TT27000
 alt = 15000;
 % Mach
 MN = 0.65;
@@ -1890,7 +1890,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC44
-% TT0
+% TT27000
 alt = 15000;
 % Mach
 MN = 0.65;
@@ -1935,7 +1935,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC40
-% TT0
+% TT27000
 alt = 15000;
 % Mach
 MN = 0.65;
@@ -1980,7 +1980,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC38
-% TT0
+% TT27000
 alt = 15000;
 % Mach
 MN = 0.65;
@@ -2025,7 +2025,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC35
-% TT0
+% TT27000
 alt = 15000;
 % Mach
 MN = 0.65;
@@ -2070,7 +2070,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC30
-% TT0
+% TT27000
 alt = 15000;
 % Mach
 MN = 0.65;
@@ -2115,7 +2115,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC28
-% TT0
+% TT27000
 alt = 15000;
 % Mach
 MN = 0.65;
@@ -2160,7 +2160,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC25
-% TT0
+% TT27000
 alt = 15000;
 % Mach
 MN = 0.65;
@@ -2205,7 +2205,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC21
-% TT0
+% TT27000
 alt = 15000;
 % Mach
 MN = 0.65;
@@ -2250,7 +2250,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC50
-% TT0
+% TT27000
 alt = 20000;
 % Mach
 MN = 0.65;
@@ -2295,7 +2295,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC48
-% TT0
+% TT27000
 alt = 20000;
 % Mach
 MN = 0.65;
@@ -2340,7 +2340,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC44
-% TT0
+% TT27000
 alt = 20000;
 % Mach
 MN = 0.65;
@@ -2385,7 +2385,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC40
-% TT0
+% TT27000
 alt = 20000;
 % Mach
 MN = 0.65;
@@ -2430,7 +2430,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC38
-% TT0
+% TT27000
 alt = 20000;
 % Mach
 MN = 0.65;
@@ -2475,7 +2475,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC35
-% TT0
+% TT27000
 alt = 20000;
 % Mach
 MN = 0.65;
@@ -2520,7 +2520,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC30
-% TT0
+% TT27000
 alt = 20000;
 % Mach
 MN = 0.65;
@@ -2565,7 +2565,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC28
-% TT0
+% TT27000
 alt = 20000;
 % Mach
 MN = 0.65;
@@ -2610,7 +2610,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC25
-% TT0
+% TT27000
 alt = 20000;
 % Mach
 MN = 0.65;
@@ -2655,7 +2655,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC21
-% TT0
+% TT27000
 alt = 20000;
 % Mach
 MN = 0.65;
@@ -2700,7 +2700,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC50
-% TT0
+% TT27000
 alt = 25000;
 % Mach
 MN = 0.65;
@@ -2745,7 +2745,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC48
-% TT0
+% TT27000
 alt = 25000;
 % Mach
 MN = 0.65;
@@ -2790,7 +2790,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC44
-% TT0
+% TT27000
 alt = 25000;
 % Mach
 MN = 0.65;
@@ -2835,7 +2835,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC40
-% TT0
+% TT27000
 alt = 25000;
 % Mach
 MN = 0.65;
@@ -2880,7 +2880,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC38
-% TT0
+% TT27000
 alt = 25000;
 % Mach
 MN = 0.65;
@@ -2925,7 +2925,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC35
-% TT0
+% TT27000
 alt = 25000;
 % Mach
 MN = 0.65;
@@ -2970,7 +2970,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC30
-% TT0
+% TT27000
 alt = 25000;
 % Mach
 MN = 0.65;
@@ -3015,7 +3015,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC28
-% TT0
+% TT27000
 alt = 25000;
 % Mach
 MN = 0.65;
@@ -3060,7 +3060,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC25
-% TT0
+% TT27000
 alt = 25000;
 % Mach
 MN = 0.65;
@@ -3105,7 +3105,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC21
-% TT0
+% TT27000
 alt = 25000;
 % Mach
 MN = 0.65;
@@ -3150,7 +3150,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC50
-% TT0
+% TT27000
 alt = 30000;
 % Mach
 MN = 0.75;
@@ -3195,7 +3195,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC48
-% TT0
+% TT27000
 alt = 30000;
 % Mach
 MN = 0.75;
@@ -3240,7 +3240,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC44
-% TT0
+% TT27000
 alt = 30000;
 % Mach
 MN = 0.75;
@@ -3285,7 +3285,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC40
-% TT0
+% TT27000
 alt = 30000;
 % Mach
 MN = 0.75;
@@ -3330,7 +3330,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC38
-% TT0
+% TT27000
 alt = 30000;
 % Mach
 MN = 0.75;
@@ -3375,7 +3375,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC35
-% TT0
+% TT27000
 alt = 30000;
 % Mach
 MN = 0.75;
@@ -3420,7 +3420,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC30
-% TT0
+% TT27000
 alt = 30000;
 % Mach
 MN = 0.75;
@@ -3465,7 +3465,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC28
-% TT0
+% TT27000
 alt = 30000;
 % Mach
 MN = 0.75;
@@ -3510,7 +3510,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC25
-% TT0
+% TT27000
 alt = 30000;
 % Mach
 MN = 0.75;
@@ -3555,7 +3555,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC21
-% TT0
+% TT27000
 alt = 30000;
 % Mach
 MN = 0.75;
@@ -3600,7 +3600,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC50
-% TT0
+% TT27000
 alt = 35000;
 % Mach
 MN = 0.8;
@@ -3645,7 +3645,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC48
-% TT0
+% TT27000
 alt = 35000;
 % Mach
 MN = 0.8;
@@ -3690,7 +3690,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC44
-% TT0
+% TT27000
 alt = 35000;
 % Mach
 MN = 0.8;
@@ -3735,7 +3735,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC40
-% TT0
+% TT27000
 alt = 35000;
 % Mach
 MN = 0.8;
@@ -3780,7 +3780,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC38
-% TT0
+% TT27000
 alt = 35000;
 % Mach
 MN = 0.8;
@@ -3825,7 +3825,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC35
-% TT0
+% TT27000
 alt = 35000;
 % Mach
 MN = 0.8;
@@ -3870,7 +3870,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC30
-% TT0
+% TT27000
 alt = 35000;
 % Mach
 MN = 0.8;
@@ -3915,7 +3915,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC28
-% TT0
+% TT27000
 alt = 35000;
 % Mach
 MN = 0.8;
@@ -3960,7 +3960,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC25
-% TT0
+% TT27000
 alt = 35000;
 % Mach
 MN = 0.8;
@@ -4005,7 +4005,7 @@ clear alt MN dTamb NfRpt Fn A B C D utrim ytrim state struc
 
 % Altitude
 % PC21
-% TT0
+% TT27000
 alt = 35000;
 % Mach
 MN = 0.8;

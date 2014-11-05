@@ -1,7 +1,7 @@
 // This case file runs the model throughout the flight envelope and
 // generates linear models about points of interest
 
-#ifdef CSANK //NASA Method
+#ifndef CSANK //NASA Method
 	
 	//----------------------------------------------------------------------------------
 	// CSANK PWLM - Linearization at each point requested from Matlab
@@ -20,7 +20,7 @@
 
 #endif
 
-#ifndef CSANK  //Georgia Tech Method
+#ifdef CSANK  //Georgia Tech Method
 
 	//----------------------------------------------------------------------------------
 	//  Refactored GT Method - Linearization at power hook at multiple flight conditions

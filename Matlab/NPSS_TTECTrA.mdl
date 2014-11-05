@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.242"
+    ComputedModelVersion    "1.244"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -24,11 +24,11 @@ Model {
   Creator		  "jcsank"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "jcsank"
+  LastModifiedBy	  "jcchin"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Oct 06 12:36:24 2014"
-  RTWModifiedTimeStamp	  334499626
-  ModelVersionFormat	  "1.%<AutoIncrement:242>"
+  LastModifiedDate	  "Wed Nov 05 11:11:59 2014"
+  RTWModifiedTimeStamp	  337086655
+  ModelVersionFormat	  "1.%<AutoIncrement:244>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1117,14 +1117,6 @@ Model {
       BlockType		      Terminator
     }
     Block {
-      BlockType		      ToFile
-      Filename		      "untitled.mat"
-      MatrixName	      "ans"
-      SaveFormat	      "Array"
-      Decimation	      "1"
-      SampleTime	      "-1"
-    }
-    Block {
       BlockType		      ToWorkspace
       VariableName	      "simulink_output"
       MaxDataPoints	      "1000"
@@ -1142,7 +1134,7 @@ Model {
   }
   System {
     Name		    "NPSS_TTECTrA"
-    Location		    [605, 337, 1749, 1091]
+    Location		    [605, 337, 2206, 1312]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1497,7 +1489,7 @@ Model {
 	  Name			  "Fnet_dmd_profile"
 	  SID			  33
 	  Position		  [165, 628, 200, 662]
-	  InputValues		  "[0  10  20  30]"
+	  InputValues		  "[0  10  15  20]"
 	  Table			  "[30000  30000  30000  30000]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
@@ -1682,8 +1674,11 @@ Model {
 	      SID		      49
 	      Position		      [435, 33, 470, 67]
 	      ForegroundColor	      "red"
-	      InputValues	      "[1  2]"
-	      Table		      "[1  2]"
+	      InputValues	      "[10000  10952  11905  12857  13810  14762  15714  16667  17619  18571  19524  20476  21429  "
+	      "22381  23333  24286  25238  26190  27000]"
+	      Table		      "[3351.08        3485.18        3617.09        3736.41        3841.09         3946.6         4047."
+	      "8        4147.36        4243.83        4334.02        4423.46         4508.7        4586.42        4663.34     "
+	      "   4743.77        4827.12        4910.63         4994.1        5105.82]"
 	      LookUpMeth	      "Interpolation-Use End Values"
 	      SaturateOnIntegerOverflow	off
 	      SampleTime	      "0.02"
@@ -1774,7 +1769,7 @@ Model {
 	      Position		      [345, 515, 380, 555]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Gain		      "3000"
+	      Gain		      "1000"
 	      ParameterDataTypeMode   "Inherit via internal rule"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeMode	      "Inherit via internal rule"
@@ -1798,7 +1793,7 @@ Model {
 	      Position		      [655, 171, 755, 199]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Value		      "2.8663"
+	      Value		      "0.87741"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -1817,9 +1812,11 @@ Model {
 	      Position		      [360, 398, 410, 442]
 	      ForegroundColor	      "red"
 	      NumberOfTableDimensions "1"
-	      BreakpointsForDimension1 "[1000  5000]"
+	      BreakpointsForDimension1 "[1569.2        2533.66        3036.85        3316.81        3888.38        4175.37   "
+	      "     4349.18        4658.53        4969.22        5222.27]"
 	      IndexSearchMethod	      "Binary search"
-	      Table		      "[1  2]"
+	      Table		      "[0.028793    0.019807    0.018824    0.020145    0.020873    0.020927    0.022161    0.025364    "
+	      "0.028856    0.026582]"
 	      SampleTime	      "0.02"
 	      RndMeth		      "Simplest"
 	      Port {
@@ -1837,9 +1834,11 @@ Model {
 	      Position		      [360, 308, 410, 352]
 	      ForegroundColor	      "red"
 	      NumberOfTableDimensions "1"
-	      BreakpointsForDimension1 "[1000  5000]"
+	      BreakpointsForDimension1 "[1569.2        2533.66        3036.85        3316.81        3888.38        4175.37   "
+	      "     4349.18        4658.53        4969.22        5222.27]"
 	      IndexSearchMethod	      "Binary search"
-	      Table		      "[1  2]"
+	      Table		      "[0.0015462   0.0008438  0.00057883  0.00050162  0.00040076  0.00036099  0.00033907  0.00031578  0"
+	      ".00029433  0.00033493]"
 	      SampleTime	      "0.02"
 	      RndMeth		      "Simplest"
 	    }
@@ -3055,7 +3054,7 @@ Model {
 		  SID			  112
 		  Position		  [510, 78, 545, 112]
 		  ForegroundColor	  "red"
-		  X0			  "2.8663"
+		  X0			  "0.87741"
 		  SampleTime		  "-1"
 		}
 		Block {
@@ -3419,8 +3418,8 @@ Model {
 	  Name			  "Wf_profile"
 	  SID			  123
 	  Position		  [425, 303, 460, 337]
-	  InputValues		  "[0  10  20  30]"
-	  Table			  "[2.8663      2.8663      2.8663      2.8663]"
+	  InputValues		  "[0  10  15  20]"
+	  Table			  "[0.87741     0.87741      2.7356      2.7356]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
@@ -3714,14 +3713,6 @@ Model {
 	  Position		  [757, 347]
 	}
       }
-    }
-    Block {
-      BlockType		      ToFile
-      Name		      "To File"
-      SID		      128
-      Position		      [520, 590, 680, 630]
-      Filename		      "Matlab_NPSS_Input_Debug.mat"
-      MatrixName	      "wfin"
     }
     Block {
       BlockType		      ToWorkspace
@@ -4042,17 +4033,9 @@ Model {
 	  DstPort		  1
 	}
 	Branch {
-	  Points		  [0, 85]
-	  Branch {
-	    Points		    [0, 5]
-	    DstBlock		    "To File"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, 80]
-	    DstBlock		    "Scope"
-	    DstPort		    1
-	  }
+	  Points		  [0, 165]
+	  DstBlock		  "Scope"
+	  DstPort		  1
 	}
       }
     }

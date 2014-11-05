@@ -143,7 +143,7 @@ while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp
     catch
         disp('Simulation Failed')
         temp_in.controller.IWP_gain = 4*temp_in.controller.IWP_gain;
-        if exist('temp_out')
+        if ~isempty(temp_out)
             itemp_ktemp=min(find(temp_out.t>=(temp_in.in.t_vec(2)-1)));
             itemp_faildata(itemp_icount2,1)= (max(temp_out.CV_fdbk(itemp_ktemp:end)) - max(temp_out.CV_dmd(itemp_ktemp:end))) / max(temp_out.CV_dmd(itemp_ktemp:end));  %determine overshoot
             itemp_faildata(itemp_icount2,3)= temp_in.controller.IWP_gain;
