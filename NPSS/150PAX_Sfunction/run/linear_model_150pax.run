@@ -104,7 +104,7 @@ cout << "\n" << "Max fuel flow rate: " << Burner.Wfuel << endl;
 
 //run_linear();
 //----------------------------------------------------------------------------------
-// CSANK PWLM - Linearization at each point
+// TTECTrA PWLM - Linearization at each point
 //----------------------------------------------------------------------------------
 real Fan_NcPct_targets[]={100, 90, 80, 70, 60, 50, 40, 30, 20}; 
 int z;

@@ -32,7 +32,7 @@ fprintf('copy "%s\\%s" "%s\\run\\%s" /Y\n', current_folder, inputFile, path2mode
 disp('CD \') %switch to top drive
 fprintf('cd %s\n', path2model) %move to model directory
 disp('@echo off') %silence npss output
-disp('call run_npss.bat run\150PAX.run -DSETPNT -DCSANK') %run npss
+disp('call run_npss.bat run\150PAX.run -DSETPNT -DTTECTrA') %run npss
 if (run_lm)
     disp('call run_npss.bat run\150PAX.run -DLINEARMODEL') %run npss
 end

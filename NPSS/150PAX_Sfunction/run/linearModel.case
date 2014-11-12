@@ -1,10 +1,10 @@
 // This case file runs the model throughout the flight envelope and
 // generates linear models about points of interest
 
-#ifndef CSANK //NASA Method
+#ifndef TTECTrA //NASA Method
 	
 	//----------------------------------------------------------------------------------
-	// CSANK PWLM - Linearization at each point requested from Matlab
+	// TTECTrA PWLM - Linearization at each point requested from Matlab
 	//----------------------------------------------------------------------------------
 	real Fan_NcPct_targets[]={100, 90, 80, 70, 60, 50, 40, 30, 20}; 
 	int z;
@@ -20,7 +20,7 @@
 
 #endif
 
-#ifdef CSANK  //Georgia Tech Method
+#ifdef TTECTrA  //Georgia Tech Method
 
 	//----------------------------------------------------------------------------------
 	//  Refactored GT Method - Linearization at power hook at multiple flight conditions

@@ -2,7 +2,7 @@
 // at a flight condition 
 #include <setpoint_display.fnc>
 #include <output_setup.fnc>
-#ifdef CSANK  //NASA Method
+#ifdef TTECTrA  //NASA Method
 	#include <TTECTrA_SP.input>	//Input from Matlab
 	
 	// Set the guess logic as you want
@@ -26,7 +26,7 @@
 #endif
 
 
-#ifndef CSANK  //GT's method (hardcoded power hook)
+#ifndef TTECTrA  //GT's method (hardcoded power hook)
 	// Input the flight condition where you want to create the Matlab
 	// formatted setpoint output
 	Ambient.alt = 0.00;
