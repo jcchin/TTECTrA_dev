@@ -34,7 +34,7 @@ fprintf('cd %s\n', path2model) %move to model directory
 disp('@echo off') %silence npss output
 disp('call run_npss.bat run\150PAX.run -DSETPNT -DTTECTrA') %run npss
 if (run_lm)
-    disp('call run_npss.bat run\150PAX.run -DLINEARMODEL') %run npss
+    disp('call run_npss.bat run\150PAX.run -DLINEARMODEL -DTTECTrA') %run npss
 end
 %copy npss output back to matlab
 fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model, current_folder) %*.m pattern matches and copies all files

@@ -10,6 +10,17 @@ OutFileStream MatlabLinearReport {
 	append = FALSE;
 }
 
+void run_linear(){
+    // Removing independents and dependents from the solver for linear model generation
+    linear_model_setup();
+    // Generating linear model
+    lin_mod.generate();
+    // Outputting linear model generation results to linearModels.out file
+    linear_model_matlab_output();
+    // Adding removed independents and dependents for linear model generation to the solver
+    linear_model_remove();
+}
+
 // This function outputs the generated linear models in NPSS format
 void linear_model_output(){
 
@@ -37,7 +48,7 @@ void linear_model_output(){
 void linear_model_matlab_output(){
 
 	// Generating linear model
-	lin_mod.generate();
+	//lin_mod.generate();
 	
 	Matrix A,B,C,D,state, derivative, utrim, ytrim;
 	

@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.244"
+    ComputedModelVersion    "1.245"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -19,16 +19,15 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
-  InitFcn		  "setup_NPSS_Simulink"
   Created		  "Thu Dec 05 09:56:33 2013"
   Creator		  "jcsank"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jcchin"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Nov 05 11:11:59 2014"
-  RTWModifiedTimeStamp	  337086655
-  ModelVersionFormat	  "1.%<AutoIncrement:244>"
+  LastModifiedDate	  "Wed Nov 12 17:31:51 2014"
+  RTWModifiedTimeStamp	  337714305
+  ModelVersionFormat	  "1.%<AutoIncrement:245>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -551,8 +550,8 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
-      CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    " [ 520, 285, 1400, 915 ] "
+      CurrentDlgPage	      "Real-Time Workshop"
+      ConfigPrmDlgPosition    " [ 272, 100, 1169, 738 ] "
     }
     PropName		    "ConfigurationSets"
   }
@@ -1134,7 +1133,7 @@ Model {
   }
   System {
     Name		    "NPSS_TTECTrA"
-    Location		    [605, 337, 2206, 1312]
+    Location		    [253, 342, 1456, 1114]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1489,7 +1488,7 @@ Model {
 	  Name			  "Fnet_dmd_profile"
 	  SID			  33
 	  Position		  [165, 628, 200, 662]
-	  InputValues		  "[0  10  15  20]"
+	  InputValues		  "[0           10       10.055           20]"
 	  Table			  "[30000  30000  30000  30000]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
@@ -1793,7 +1792,7 @@ Model {
 	      Position		      [655, 171, 755, 199]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Value		      "0.87741"
+	      Value		      "1.3678"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -1812,11 +1811,9 @@ Model {
 	      Position		      [360, 398, 410, 442]
 	      ForegroundColor	      "red"
 	      NumberOfTableDimensions "1"
-	      BreakpointsForDimension1 "[1569.2        2533.66        3036.85        3316.81        3888.38        4175.37   "
-	      "     4349.18        4658.53        4969.22        5222.27]"
+	      BreakpointsForDimension1 "[5222.27]"
 	      IndexSearchMethod	      "Binary search"
-	      Table		      "[0.028793    0.019807    0.018824    0.020145    0.020873    0.020927    0.022161    0.025364    "
-	      "0.028856    0.026582]"
+	      Table		      "[0.026582]"
 	      SampleTime	      "0.02"
 	      RndMeth		      "Simplest"
 	      Port {
@@ -1834,11 +1831,9 @@ Model {
 	      Position		      [360, 308, 410, 352]
 	      ForegroundColor	      "red"
 	      NumberOfTableDimensions "1"
-	      BreakpointsForDimension1 "[1569.2        2533.66        3036.85        3316.81        3888.38        4175.37   "
-	      "     4349.18        4658.53        4969.22        5222.27]"
+	      BreakpointsForDimension1 "[5222.27]"
 	      IndexSearchMethod	      "Binary search"
-	      Table		      "[0.0015462   0.0008438  0.00057883  0.00050162  0.00040076  0.00036099  0.00033907  0.00031578  0"
-	      ".00029433  0.00033493]"
+	      Table		      "[0.00033493]"
 	      SampleTime	      "0.02"
 	      RndMeth		      "Simplest"
 	    }
@@ -3054,7 +3049,7 @@ Model {
 		  SID			  112
 		  Position		  [510, 78, 545, 112]
 		  ForegroundColor	  "red"
-		  X0			  "0.87741"
+		  X0			  "1.3678"
 		  SampleTime		  "-1"
 		}
 		Block {
@@ -3418,8 +3413,8 @@ Model {
 	  Name			  "Wf_profile"
 	  SID			  123
 	  Position		  [425, 303, 460, 337]
-	  InputValues		  "[0  10  15  20]"
-	  Table			  "[0.87741     0.87741      2.7356      2.7356]"
+	  InputValues		  "[0           10       10.055           20]"
+	  Table			  "[1.3678      1.3678      2.7356      2.7356]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}

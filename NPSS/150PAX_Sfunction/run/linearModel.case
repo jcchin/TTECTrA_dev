@@ -1,26 +1,31 @@
 // This case file runs the model throughout the flight envelope and
 // generates linear models about points of interest
 
-#ifndef TTECTrA //NASA Method
-	
+#ifdef TTECTrA //NASA Method
+	// Turning the guess logic off
+	setOption( "switchGuess", "OFF" );
 	//----------------------------------------------------------------------------------
 	// TTECTrA PWLM - Linearization at each point requested from Matlab
 	//----------------------------------------------------------------------------------
-	real Fan_NcPct_targets[]={100, 90, 80, 70, 60, 50, 40, 30, 20}; 
+	real Fan_NcPct_targets[]={100, 90, 80, 70, 60, 50, 40, 30, 25}; 
+	SS_Setup();
+	SP_Remove();
 	int z;
+	cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
 	for ( z=0; z < Fan_NcPct_targets.entries(); ++z ) { //loop through Fan_NcPct_targets
 	    Fan_NcPct_target = Fan_NcPct_targets[z];
 	    CASE++;
 	    run();
-	    CaseView_SS.display();
-	    page.display();
+	    //CaseView_SS.display();
+	    //page.display();
 
 	    run_linear();
 	}
-
+	// Turning the guess logic back on
+	setOption( "switchGuess", "ON" );
 #endif
 
-#ifdef TTECTrA  //Georgia Tech Method
+#ifndef TTECTrA  //Georgia Tech Method
 
 	//----------------------------------------------------------------------------------
 	//  Refactored GT Method - Linearization at power hook at multiple flight conditions

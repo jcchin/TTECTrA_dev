@@ -34,7 +34,7 @@ clc
 %clean up
 clear inputFile status result topDir npss_location npss_location_chin npss_location_csank path2model output current_folder input
 delete TTECTrA_SP.input
-delete run_shell.bat
+%delete run_shell.bat
 
 %Load Data into workspace:
 setpoints
