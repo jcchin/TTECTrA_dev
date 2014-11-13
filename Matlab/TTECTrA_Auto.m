@@ -27,7 +27,7 @@
 %       bkpt
 % *************************************************************************
 close all; clear; clc;
-
+tic
 % add paths for support and gui functions
 addpath('TTECTrA_Auto')
 
@@ -111,7 +111,7 @@ TTECTrA_IWP_s
 % if isempty(ttectra_in.controller.IWP_gain)
 %     ttectra_in.controller.IWP_gain=1650;
 % end
-
+toc
 %------------------------------
 % Test Controller Design
 %------------------------------
