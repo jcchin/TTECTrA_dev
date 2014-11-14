@@ -13,18 +13,11 @@
 %   controller and transient limiters for an engine model and verify the
 %   design through two simulations.
 %--------------------------------------------------------------------------
-%  REQUIREMENTS:   (To be determined)
-%
-%--------------------------------------------------------------------------
 % Programmer Notes/Issues/To-Dos:
-%   *Test integration with the updated NPSS S-function model
 %   *Consider adding additional code to develop performance curve
 %   *Add in test runs and automatically present the data in format that can
 %   be used in systems analysis (compressor map versus time?? or just
 %   performance curve???)
-%   *Do we need the following variables still? 
-%       ttectra_in.SPcalc.idle,ttectra_in.SPcalc.takeoff,ttectra_in.SPcalc.
-%       bkpt
 % *************************************************************************
 close all; clear; clc;
 % add paths for support and gui functions
@@ -35,16 +28,6 @@ addpath('TTECTrA_Auto')
 %----------------------------------------
 ttectra_in=TTECTrA_NPSS_Inputs;      % load input data
 set_paths;
-
-%----------------------
-% TEMPORARY FIX
-%----------------------
-% -Piecewise linear model used to develop controller gains and schedules
-% until NPSS memory issues has been resolved
-%ttectra_in.in.simFileNamePWLM='NPSS_TTECTrA_PWLM.mdl';
-%ttectra_in.in.PWLM_Flag=1;
-%addpath('TTECTrA_PWLM')
-%----------------------
 
 %----------------------------------------
 % Run NPSS to get linear model and steady-state data
@@ -84,51 +67,41 @@ clear output
 %----------------------------------------
 TTECTrA_NPSS_AccelLimiter_s
 
-%[output]=TTECTrA_NPSS_AccelLimiter(ttectra_in);
-%ttectra_in.Limiter=output.Limiter;
-
 figure(101);
 plot(ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'b-','Linewidth',2); grid on; hold on;
 xlabel('NcR25'); ylabel('Ncdot');
-%save PWLM_Accel_Debug.mat ttectra_in
 
 %---------------------------------------
 % Decel Limiter
 %---------------------------------------
 TTECTrA_NPSS_DecelLimiter_s
 
-%[output]=TTECTrA_NPSS_DecelLimiter(ttectra_in);
-%ttectra_in.Limiter.WfPs3lim=output;
-
 %---------------------------------------
 % Integrate Limiters and Setpoint Controller
 %---------------------------------------
 TTECTrA_IWP_s
 
-% ttectra_in.controller.IWP_gain=TTECTrA_IWP(ttectra_in);
-% 
-% if isempty(ttectra_in.controller.IWP_gain)
-%     ttectra_in.controller.IWP_gain=1650;
-% end
 %------------------------------
 % Test Controller Design
 %------------------------------
-%Determine the min/max thrust and several intermediate points
-minFn=max(ttectra_in.SPcalc.idle,0.15*ttectra_in.SPcalc.takeoff);
-dFn=(ttectra_in.SPcalc.takeoff-minFn);
+minFn=max(ttectra_in.SPcalc.idle,0.15*ttectra_in.SPcalc.takeoff); %Determine min/idle thrust
+dFn=(ttectra_in.SPcalc.takeoff-minFn); %Determine delta between max and min
+
+%Build thrust profile and set TTECTrA for closed loop 
 ttectra_in.in.t_vec  = [0, 10, 10.5, 20, 20.5, 30, 31, 35, 36, 40, 41, 45, 46, 50, 51, 55,56,60,62,64,70];
 ttectra_in.in.FT_dmd = [0, 0,  1   ,  1,    0,  0, .5, .5,.75,.75, 1,  1, .67,.67,.33,.33,0,0,.85,0,0]*dFn + minFn;
-       
 ttectra_in.in.loop = 1;
 
+%Simulate
 out=simFromTTECTrA(ttectra_in);
 
+%Plot the results
 if ~isempty(out)
-    % create figure to show results
+    
     figure(111);
     subplot(211); set(gca,'FontSize',12); plot(out.t,out.Fnet,'-',out.t,out.FT_dmd,'r--','LineWidth',2);
     xlabel('Time (sec)','FontSize',12);ylabel('F_{net}R','FontSize',12); grid on;
-    legend('actual','command','Location','NorthWest');  
+    legend('actual','command','Location','NorthEast');  
     subplot(212); set(gca,'FontSize',12); plot(out.t,out.CV_fdbk,'-',out.t,out.CV_dmd,'r--','LineWidth',2);
     xlabel('Time (sec)','FontSize',12);ylabel('Control variable','FontSize',12); grid on; 
 
@@ -136,17 +109,19 @@ if ~isempty(out)
     subplot(211); set(gca,'FontSize',12);
     plot(out.t,out.HPC_SM,'b-',out.t([1 end]),ttectra_in.SMLimit.Accel([1 1]),'r--','LineWidth',2);
     xlabel('Time (sec)','FontSize',12);ylabel('HPC surge margin (%)','FontSize',12); grid on;
-    legend('actual','limit','Location','NorthWest');
+    legend('actual','limit','Location','NorthEast');
     subplot(212); set(gca,'FontSize',12);
     plot(out.NcR25,out.Nc_dot,'b.', ...
         ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'r--','LineWidth',2);
+    xlim([min(ttectra_in.Limiter.NcR25_sched) max(ttectra_in.Limiter.NcR25_sched)]);
+    ylim([min(ttectra_in.Limiter.Ncdot_sched)*.8 max(ttectra_in.Limiter.Ncdot_sched)*1.2]);
     xlabel('Corrected core speed','FontSize',12); ylabel('Core acceleration','FontSize',12); grid on;
 
     figure(113);
     subplot(211); set(gca,'FontSize',12);
     plot(out.t,out.LPC_SM,'b-',out.t([1 end]),ttectra_in.SMLimit.Decel([1 1]),'r--','LineWidth',2);
     xlabel('Time (sec)','FontSize',12);ylabel('LPC surge margin (%)','FontSize',12); grid on;
-    legend('actual','limit','Location','NorthWest');
+    legend('actual','limit','Location','NorthEast');
     subplot(212); set(gca,'FontSize',12); 
     plot(out.t,out.Wf_vec./out.Ps3,'b-',out.t([1 end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
     xlabel('Time (sec)','FontSize',12);ylabel('W_f/P_{s3}','FontSize',12); grid on;

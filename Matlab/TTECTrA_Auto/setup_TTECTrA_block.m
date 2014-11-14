@@ -26,7 +26,7 @@ DWS.in.loop  = inputs.in.loop;     % indicates which controller to use
 % Demand profiles, either thrust or Wf
 %---------------------------------------
 % Modify input values based on the loop value:
-if DWS.in.loop==3 || DWS.in.loop==2     % fuel flow profile => default thrust profile
+if DWS.in.loop==3 || DWS.in.loop==2 || DWS.in.loop==4     % fuel flow profile => default thrust profile
     if length(inputs.in.wf_vec) == 1
         DWS.in.wf_vec=inputs.in.wf_vec*ones(1,length(inputs.in.t_vec));
     else
@@ -64,7 +64,7 @@ if isfield(inputs,'SP') && sum(isfield(inputs.SP,{'FT_SP',[inputs.controller.CVo
     end
     
 else    % no setpoints have been provided, use defaults
-    if DWS.in.loop == 1
+    if DWS.in.loop == 1 || DWS.in.loop == 5
         display('WARNING -- No setpoints have been calculated, using default values');
     end
     DWS.TTECTrA_setpoints.FT_bkpt=[1 2];
@@ -95,7 +95,7 @@ if isfield(inputs,'gains') && sum(isfield(inputs.gains,{'Fdbk','Kp','Ki'}))==3 &
         DWS.TTECTrA_controller.IWP=max(inputs.gains.Fdbk)/100;
     end
 else    % no gains have been provided
-    if DWS.in.loop == 1     % warn if CV loop is indicated
+    if DWS.in.loop == 1 || DWS.in.loop == 5     % warn if CV loop is indicated
         display('WARNING -- No controller gains specified, using default values');
     end
     DWS.TTECTrA_controller.P_gain=[1 2];
@@ -123,7 +123,7 @@ end
 if isfield(inputs,'actuator') && isfield(inputs.actuator,'wf_bw')
     DWS.TTECTrA_Wf.bandwidth=inputs.actuator.wf_bw;
 else
-    if DWS.in.loop == 1     % warn if CV loop is indicated
+    if DWS.in.loop == 1 || DWS.in.loop == 5    % warn if CV loop is indicated
         display('WARNING -- No fuel actuator bandwidth specified, using default value');
     end
     DWS.TTECTrA_Wf.bandwidth=23;
@@ -137,7 +137,7 @@ if isfield(inputs,'Limiter')    % at least one limiter has been calculated
         DWS.TTECTrA_limiter.Nc_sched=inputs.Limiter.NcR25_sched;
         DWS.TTECTrA_limiter.Ncdot_sched=inputs.Limiter.Ncdot_sched;
     else    % no accel schedule has been provided, use default
-        if DWS.in.loop == 1
+        if DWS.in.loop == 1 || DWS.in.loop == 5
             display('WARNING -- No acceleration schedule has been calculated, using default schedule');
         end
         DWS.TTECTrA_limiter.Nc_sched=[7500 11000];
@@ -147,13 +147,13 @@ if isfield(inputs,'Limiter')    % at least one limiter has been calculated
     if isfield(inputs.Limiter,'WfPs3lim') && ~isempty(inputs.Limiter.WfPs3lim)
         DWS.TTECTrA_limiter.WfPs3lim = inputs.Limiter.WfPs3lim;
     else    % no decel limiter has been provided, use default
-        if DWS.in.loop == 1
+        if DWS.in.loop == 1 || DWS.in.loop == 5
             display('WARNING -- No deceleration limiter has been calculated, using default values');
         end
         DWS.TTECTrA_limiter.WfPs3lim = .0005;
     end
 else        % no limiters have been provided, use default
-    if DWS.in.loop == 1
+    if DWS.in.loop == 1 || DWS.in.loop == 5
         display('WARNING -- No limiters have been calculated, using default values');
     end
     DWS.TTECTrA_limiter.Nc_sched=[7500 11000];
@@ -205,10 +205,17 @@ DWS.TTECTrA_limiter.accel_den = [1 -exp(-1.5*DWS.in.Ts_cont)];
 load_system(inputs.in.simFileName);
 
 temp_path='NPSS_TTECTrA/';
-%set_param([temp_path 'Sqrt(Theta)1'],'SampleTime',num2str(DWS.in.Ts_cont));
-%set_param([temp_path 'Divide1'],'SampleTime',num2str(DWS.in.Ts_cont));
-set_param([temp_path 'IC'],'Value',num2str(5000));  %Ps3 Initial Condition
 
+if strcmpi(inputs.controller.CVoutput(1:2),'Nf')
+    set_param([temp_path 'ICFdbk'],'Value',num2str(DWS.in.Nf_zro));
+elseif strcmpi(inputs.controller.CVoutput(1:2),'Nc')
+    set_param([temp_path 'ICFdbk'],'Value',num2str(DWS.in.Nc_zro));
+elseif strcmpi(inputs.controller.CVoutput(1:3),'EPR')
+    set_param([temp_path 'ICFdbk'],'Value',num2str(DWS.in.EPR_zro));
+end
+
+set_param([temp_path 'ICFnR'],'Value',num2str(DWS.in.Fn_zro));  %Feedback Initial Condition
+set_param([temp_path 'ICPs3'],'Value',num2str(DWS.in.Ps3_zro));  %Ps3 Initial Condition
 
 %---------------------------------------
 % TTECTrA Simulink Block
@@ -222,6 +229,7 @@ set_param([temp_path 'Fnet_dmd_profile'],'SampleTime',num2str(DWS.in.Ts_cont));
 %-------- PreFilter1 --------
 set_param([temp_path 'PreFilter'],'Numerator',['[' num2str(1-exp(-DWS.TTECTrA_controller.PreFilterBW*2*pi*DWS.in.Ts_cont)) ']']);
 set_param([temp_path 'PreFilter'],'Denominator',['[' num2str([1 -exp(-DWS.TTECTrA_controller.PreFilterBW*2*pi*DWS.in.Ts_cont)]) ']']);
+set_param([temp_path 'PreFilter'],'InitialStates',['[' num2str(DWS.in.FT_dmd(1)) ']']);
 
 %-------- loop flag --------
 set_param([temp_path 'loop flag'],'Value',num2str(DWS.in.loop));
@@ -234,6 +242,7 @@ set_param([temp_path 'Wf_profile'],'SampleTime',num2str(DWS.in.Ts_cont));
 %-------- Filter3 (Actuator) --------
 set_param([temp_path 'Actuator'],'Numerator',['[' num2str(1-exp(-DWS.TTECTrA_Wf.bandwidth*DWS.in.Ts_cont)) ']']);
 set_param([temp_path 'Actuator'],'Denominator',['[' num2str([1 -exp(-DWS.TTECTrA_Wf.bandwidth*DWS.in.Ts_cont)]) ']']);
+set_param([temp_path 'Actuator'],'InitialStates',['[' num2str(DWS.in.Wf_zro) ']']);
 
 set_param([temp_path 'Multiport Switch'],'SampleTime',num2str(DWS.in.Ts_cont));
 set_param([temp_path 'Multiport Switch1'],'SampleTime',num2str(DWS.in.Ts_cont));

@@ -68,14 +68,19 @@ tempflag=1;
 %Can we run NPSS at starting point to get this data and start off the
 %simulation:
 try
-    DWS.in.Wf_zro=max(interp1([2.0304e+03 4.2037e+04],[3.6027e-01 3.9309e+00],inputs.in.FT_dmd(1)),0.625);
-    DWS.in.Nc_zro=interp1([2.0304e+03 4.2037e+04],[9.7129e+03 1.2077e+04],inputs.in.FT_dmd(1));
-    DWS.in.Nf_zro=interp1([2.0304e+03 4.2037e+04],[2.7345e+03 4.2001e+03],inputs.in.FT_dmd(1));
-
+    DWS.in.Fn_zro=inputs.in.FT_dmd(1);
+    DWS.in.Wf_zro=max(interp1(inputs.SP.FT_SP,inputs.SP.Wf_SP,inputs.in.FT_dmd(1),'linear','extrap'),0.625);
+    DWS.in.Nc_zro=interp1(inputs.SP.FT_SP,inputs.SP.Nc_SP,inputs.in.FT_dmd(1),'linear','extrap');
+    DWS.in.Nf_zro=interp1(inputs.SP.FT_SP,inputs.SP.Nf_SP,inputs.in.FT_dmd(1),'linear','extrap');
+    DWS.in.Ps3_zro=interp1(inputs.SP.FT_SP,inputs.SP.Ps3_SP,inputs.in.FT_dmd(1),'linear','extrap');
+    DWS.in.EPR_zro=interp1(inputs.SP.FT_SP,inputs.SP.EPR_SP,inputs.in.FT_dmd(1),'linear','extrap');
 catch
-    DWS.in.Nc_zro=interp1([3.6027e-01 3.9309e+00],[9.7129e+03 1.2077e+04],inputs.in.wf_vec(1));
-    DWS.in.Nf_zro=interp1([3.6027e-01 3.9309e+00],[2.7345e+03 4.2001e+03],inputs.in.wf_vec(1));
+    DWS.in.Fn_zro=interp1(inputs.SP.Wf_SP,inputs.SP.FT_SP,inputs.in.wf_vec(1),'linear','extrap');
     DWS.in.Wf_zro=inputs.in.wf_vec(1);
+    DWS.in.Nc_zro=interp1(inputs.SP.Wf_SP,inputs.SP.Nc_SP,inputs.in.wf_vec(1),'linear','extrap');
+    DWS.in.Nf_zro=interp1(inputs.SP.Wf_SP,inputs.SP.Nf_SP,inputs.in.wf_vec(1),'linear','extrap');
+    DWS.in.Ps3_zro=interp1(inputs.SP.Wf_SP,inputs.SP.Ps3_SP,inputs.in.wf_vec(1),'linear','extrap');
+    DWS.in.EPR_zro=interp1(inputs.SP.Wf_SP,inputs.SP.EPR_SP,inputs.in.wf_vec(1),'linear','extrap');
 end
 
 % DWS.in.Wf_zro  = MWS.IC.Wf_0;    % initial fuel flow
@@ -102,7 +107,7 @@ try
     if(isfield(inputs.in,'FT_dmd'))
         % Creating the fuel flow rate input signal based on the net thrust
         % demand
-        inputs.in.wf_vec = interp1(inputs.SP.FT_SP,inputs.SP.Wf_SP,inputs.in.FT_dmd,'linear');
+        inputs.in.wf_vec = interp1(inputs.SP.FT_SP,inputs.SP.Wf_SP,inputs.in.FT_dmd,'linear','extrap');
         % Initializing NPSS for the net thrust demand case
         initialize_NPSS(inputs.in.HomeDirectory,[inputs.in.alt inputs.in.MN inputs.in.dTamb],[inputs.in.t_vec' inputs.in.wf_vec']);
     else

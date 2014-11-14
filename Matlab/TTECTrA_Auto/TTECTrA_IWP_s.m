@@ -18,18 +18,18 @@ itemp_tstart_burst=10.0;
 %Setup burt and chop test profile
 temp_in.in.t_vec=[0 itemp_tstart_burst itemp_tstart_burst+1 itemp_tstart_chop itemp_tstart_chop+2  itemp_tstart_chop*2];
 %temp_in.in.FT_dmd=[0.14 0.14 1.0 1.0 0.14 0.14]*max(temp_in.SP.FT_SP);
-temp_in.in.FT_dmd=[0.145 0.145 0.98 .98 0.145 0.145]*max(temp_in.SP.FT_SP);
+temp_in.in.FT_dmd=[0.14 0.14 0.98 .98 0.14 0.14]*max(temp_in.SP.FT_SP);
 %temp_in.in.FT_dmd=max(temp_in.in.FT_dmd, min(temp_in.SP.FT_SP)+0.02*max(temp_in.SP.FT_SP));
 
 temp_in.in.loop=1;
 
 %define an initial guess at the IWUP gain:
 if strcmpi(temp_in.controller.CVoutput(1:2),'Nf')
-    temp_in.controller.IWP_gain=min(temp_in.SP.Nf_SP);
+    temp_in.controller.IWP_gain=min(temp_in.SP.Nf_SP)/100;
 elseif strcmpi(temp_in.controller.CVoutput(1:2),'Nc')
-    temp_in.controller.IWP_gain=min(temp_in.SP.Nc_SP);
+    temp_in.controller.IWP_gain=min(temp_in.SP.Nc_SP)/100;
 elseif strcmpi(temp_in.controller.CVoutput(1:3),'EPR')
-    temp_in.controller.IWP_gain=min(temp_in.SP.EPR_SP);
+    temp_in.controller.IWP_gain=min(temp_in.SP.EPR_SP)/100;
 end
 %temp_in.controller.IWP_gain=1569;
 temp_in.controller.IWP_gain
@@ -113,7 +113,7 @@ itemp_error2=100; %Final error (make sure integral does not windup for decels
 itemp_icount=1; itemp_icount2=1;
 itemp_max_count=30;
 itemp_ifail=0;
-itemp_max_fail=10;  %Maximum continous fails
+itemp_max_fail=20;  %Maximum continous fails
 itemp_IPW_0=temp_in.controller.IWP_gain*60;
 temp_in.controller.IWP_gain=1.01*temp_in.controller.IWP_gain;
 while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp_max_count && itemp_ifail<itemp_max_fail;
@@ -136,19 +136,33 @@ while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp
         itemp_fdata(itemp_icount,4)=(temp_out.CV_fdbk(end)-temp_out.CV_dmd(end))/temp_out.CV_dmd(end);
         temp_in.controller.IWP_gain = temp_in.controller.IWP_gain + itemp_fdata(itemp_icount,1)*itemp_IPW_0;
         itemp_error1=itemp_fdata(itemp_icount,1);
-        itemp_error2=itemp_fdata(itemp_icount,4);
-
+        itemp_error2=itemp_fdata(itemp_icount,4);        
+        
         itemp_icount=itemp_icount+1;
         itemp_ifail = 0;
     catch
         disp('Simulation Failed')
-        temp_in.controller.IWP_gain = 4*temp_in.controller.IWP_gain;
+        
         if ~isempty(temp_out)
             itemp_ktemp=min(find(temp_out.t>=(temp_in.in.t_vec(2)-1)));
             itemp_faildata(itemp_icount2,1)= (max(temp_out.CV_fdbk(itemp_ktemp:end)) - max(temp_out.CV_dmd(itemp_ktemp:end))) / max(temp_out.CV_dmd(itemp_ktemp:end));  %determine overshoot
             itemp_faildata(itemp_icount2,3)= temp_in.controller.IWP_gain;
             itemp_faildata(itemp_icount2,4)=(temp_out.CV_fdbk(end)-temp_out.CV_dmd(end))/temp_out.CV_dmd(end);
+        else
+            itemp_ktemp=NaN;
+            itemp_faildata(itemp_icount2,1)=NaN;
+            itemp_faildata(itemp_icount2,3)= temp_in.controller.IWP_gain;
+            itemp_faildata(itemp_icount2,4)=NaN;
         end
+        
+        %temp_in.controller.IWP_gain = 4*temp_in.controller.IWP_gain;
+        if mod(itemp_icount2,2)==1
+            temp_in.controller.IWP_gain=min(itemp_faildata(:,3))/10;
+        else
+            temp_in.controller.IWP_gain=max(itemp_faildata(:,3))*10;
+        end
+        itemp_faildata
+        
         itemp_icount2=itemp_icount2+1;
         itemp_ifail=itemp_ifail+1;
     end
