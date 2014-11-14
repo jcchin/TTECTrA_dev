@@ -332,11 +332,3 @@ set_param([temp_path 'Sum'],'SampleTime',num2str(DWS.in.Ts_cont));
 set_param([temp_path 'Sum2'],'SampleTime',num2str(DWS.in.Ts_cont));
 set_param([temp_path 'Sum4'],'SampleTime',num2str(DWS.in.Ts_cont));
 set_param([temp_path 'Discrete-Time Integrator'],'SampleTime',num2str(DWS.in.Ts_cont));
-
-% %---------------------------------------
-% % TTECTrA Simulink Block/Thrust Solver Controller
-% %---------------------------------------
-% temp_path='NPSS_TTECTrA/TTECTrA Simulink Block/Thrust Solver Controller/';
-% 
-% set_param([temp_path 'Discrete-Time Integrator1'],'InitialCondition',num2str(DWS.in.Wf_zro));
-% set_param([temp_path 'Discrete-Time Integrator1'],'SampleTime',num2str(DWS.in.Ts_cont))

@@ -32,8 +32,6 @@ atemp_Ncdot_out=zeros(length(atemp_Wf_vec),1);
 atemp_minSM_out=zeros(length(atemp_Wf_vec),1);
 atemp_maxT40_out=zeros(length(atemp_Wf_vec),1);
 
-atemp_plotstyle={'bx';'bo';'bd';'bs';'b*';'rx';'ro';'rd';'rs';'r*';'cx';'co';'cd';'cs';'c*';'mx';'mo';'md';'ms';'m*';};
-
 % run simulations to get acceleration data
 for ctr=1:1:length(atemp_Wf_vec)
     %display(['Running simulations for Wf = ' num2str(atemp_Wf_vec(ctr))])
@@ -84,7 +82,7 @@ for ctr=1:1:length(atemp_Wf_vec)
         atemp_watchdog=1;
         atemp_fault_flag=0;
         
-        while (atemp_minSM_out(ctr) < (1-atemp_buf)*atemp_minSM_des || atemp_minSM_out(ctr) > (1+atemp_buf)*atemp_minSM_des) && atemp_minSM_chg > atemp_buf  && atemp_watchdog<20 && atemp_fault_flag<3
+        while (atemp_minSM_out(ctr) < (1-atemp_buf)*atemp_minSM_des || atemp_minSM_out(ctr) > (1+atemp_buf)*atemp_minSM_des) && atemp_minSM_chg > atemp_buf  && atemp_watchdog<20 && atemp_fault_flag<6
             % minSM is not in buffer range: adjust transient until it is
             if atemp_minSM_out(ctr) > (1+atemp_buf)*atemp_minSM_des
                 % faster transient is necessary
@@ -103,19 +101,16 @@ for ctr=1:1:length(atemp_Wf_vec)
                 [temp_out]=simFromTTECTrA(temp_in);   % run initial simulation
             end
             
-%             ii=atemp_watchdog;
-%             while ii>length(atemp_plotstyle)
-%                 ii=ii-length(atemp_plotstyle);
-%             end
-            
             atemp_fault_flag=atemp_fault_flag+1;
             if ~isempty(temp_out)
+                %save good data
                 atemp_minSM_chg = abs(atemp_minSM_out(ctr)-min(temp_out.HPC_SM));
                 atemp_minSM_out(ctr) = min(temp_out.HPC_SM);
-                
                 atemp_fault_flag=0;
             else
-                
+                %increment fault counter   
+                % may acutally be able to remove this in  the future.
+                atemp_fault_flag=atemp_fault_flag+1;
             end
             
             atemp_watchdog=atemp_watchdog+1;

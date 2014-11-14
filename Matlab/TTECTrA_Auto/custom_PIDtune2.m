@@ -1,10 +1,8 @@
 function [varargout]=custom_PIDtune2(plant,Ts,BW)
-%function [varargout]=custom_PIDtune(varargin)
 %==========================================================================
 % Written by: Jeffrey Csank, NASA Glenn Research Center
-% 
-%
-%
+% This file contains an algorithm for tuning the PI controller gains based
+% on the given linear model.
 % -------------------------------------------------------------------------
 % References:
 % 1) Astrom, K., Hagglund, T. "PID Controllers: Theory, Design, and Tuning",
@@ -183,15 +181,6 @@ while ii<MAX_K2Tuning && error>=ERROR_K2Tuning
     ii=ii+1;
 end
 
-% figure;
-% plot(Tsim,Ysim1,'b-',Tsim,Usim,'k--','Linewidth',2);
-% 
-% %Debugging - print results
-% disp([num2str(Tr1090,'%1.4f') ' ' num2str(T90-T10,'%1.4f') '  '...
-%     num2str(Tr2080,'%1.4f') ' ' num2str(T80-T20,'%1.4f') '  ' num2str(error,'%1.4f') '  ' num2str(ii) '  ' num2str(Ti_ii) ' ' num2str(dcgain(plant),'%1.4s')]);
-
-
-
 % ------------------------------
 % Catch Bad Results -
 % If both the Ti and K (final tuning) reach max iterations, return empty
@@ -207,57 +196,5 @@ varargout{2}=K/Ti;
 end
 
 %============================
-% End Proram - Old Code
+% End Proram
 %============================
-
-%==========================================================================
-% Determine Ultimate Gain
-%==========================================================================
-% WATCHDOGLIMIT=600;
-% 
-% flag=0;         %Flag to identify when the ultimate gain was found:
-% watchdog=0;     %counter
-% Ku=1/dcgain(plant); %initial gain attempt
-% Tsim=0:Ts/4:150;       %Create time vector
-% Usim=ones(1,length(Tsim));
-% Usim(1:10)=0; %Control input
-% Ysim=lsim(feedback(Ku*plant,1),Usim,Tsim); %simulate
-%     
-% %Keep increasing the gain until the ultimate gain is found
-% while flag==0 && watchdog<WATCHDOGLIMIT
-%     if max(Ysim)<max(Usim)
-%         Ku=Ku*1.1;
-%     elseif exist('pts_max') &&( Ysim(pts_max(1)) - Ysim(pts_max(2)))>0.025
-%         Ku=Ku*1.05;
-%     else
-%         Ku=Ku*1.0001;
-%     end
-%     
-%     Ysim=lsim(feedback(Ku*plant,1),Usim,Tsim); %simulate
-%     pts_rise=find(Ysim(2:end)>Ysim(1:end-1) & Ysim(2:end)>0);   %determine where the output is increase
-%     pts_max=pts_rise(pts_rise(1:end-1)-pts_rise(2:end)<-1);     %determine the max point of each oscillation
-%     
-%     if pts_max>10        
-%         %Determine if the oscillation amplitude is decreasing each
-%         %oscillation.  If not, we found our ultimate gain (Ku)
-%         pts_check1=find(Ysim(pts_max(5:end))-Ysim(pts_max(4:end-1)) > 0.001);
-%         pts_check2=find(Ysim(pts_max(6:end))-Ysim(pts_max(4:end-2)) > 0.001);
-%         pts_check3=find(Ysim(pts_max(7:end))-Ysim(pts_max(4:end-3)) > 0.001);
-%         
-%          if ~isempty(pts_check1) && ~isempty(pts_check2) && ~isempty(pts_check3)
-%             flag=1;
-%          end
-%     end
-%     watchdog=watchdog+1;
-%     if watchdog==300
-%        Ku=1/dcgain(plant)*0.0001;
-%     end
-% end
-% 
-% if watchdog==WATCHDOGLIMIT
-%     Ku=[ ]
-% end
-
-%==========================================================================
-% END File
-%==========================================================================
