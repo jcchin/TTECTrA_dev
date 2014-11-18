@@ -3,17 +3,17 @@
 % written by Jeffrey Csank (RHC)
 % NASA Glenn Research Center, Cleveland, OH
 % *************************************************************************
-temp_in=ttectra_in;
+atemp_in=ttectra_in;
 
-atemp_minSM_des=temp_in.SMLimit.Accel;
-atemp_maxT40_des=temp_in.SMLimit.T40;
+atemp_minSM_des=atemp_in.SMLimit.Accel;
+atemp_maxT40_des=atemp_in.SMLimit.T40;
 
-atemp_wf_idle=temp_in.SP.wf_idle;
-atemp_wf_to=temp_in.SP.wf_takeoff;
+atemp_wf_idle=atemp_in.SP.wf_idle;
+atemp_wf_to=atemp_in.SP.wf_takeoff;
 
 % NcR25 breakpoints for schedule
-atemp_xmin= floor((temp_in.SP.NcR25_min*.95)/10)*10;
-atemp_xmax= round((temp_in.SP.NcR25_max*1.05)/10)*10;
+atemp_xmin= floor((atemp_in.SP.NcR25_min*.95)/10)*10;
+atemp_xmax= round((atemp_in.SP.NcR25_max*1.05)/10)*10;
 atemp_xvec= atemp_xmin: (atemp_xmax-atemp_xmin)/40 : atemp_xmax;
 
 % vector of initial fuel flows
@@ -24,8 +24,8 @@ atemp_Wf_vec=linspace(atemp_wf_idle,atemp_wf_to*0.5,8);
 % thrust, with decreasing transition time to find when minimum
 % surge margine drops below the desired value
 % flight conditions for all simulations
-temp_in.in.simTime=20.0;
-temp_in.in.loop=2;
+atemp_in.in.simTime=20.0;
+atemp_in.in.loop=2;
 
 atemp_NcR25_out=zeros(length(atemp_Wf_vec),1);
 atemp_Ncdot_out=zeros(length(atemp_Wf_vec),1);
@@ -46,13 +46,13 @@ for ctr=1:1:length(atemp_Wf_vec)
     
     % create fuel-flow command vector for simulation
     t_tr_sim=mean(t_tr);
-    temp_in.in.t_vec=[0 10 10+t_tr_sim 20];
-    temp_in.in.wf_vec=[atemp_Wf_vec([ctr ctr]) atemp_wf_to atemp_wf_to];
+    atemp_in.in.t_vec=[0 10 10+t_tr_sim 20];
+    atemp_in.in.wf_vec=[atemp_Wf_vec([ctr ctr]) atemp_wf_to atemp_wf_to];
     
-    if isfield(temp_in.in,'PWLM_Flag') && temp_in.in.PWLM_Flag==1
-        [temp_out]=simFromTTECTrA_PWLM(temp_in);   % run initial simulation
+    if isfield(atemp_in.in,'PWLM_Flag') && atemp_in.in.PWLM_Flag==1
+        [temp_out]=simFromTTECTrA_PWLM(atemp_in);   % run initial simulation
     else
-        [temp_out]=simFromTTECTrA(temp_in);   % run initial simulation
+        [temp_out]=simFromTTECTrA(atemp_in);   % run initial simulation
     end
     
     if ~isempty(temp_out)    % simulation ran, continue with analysis
@@ -93,12 +93,12 @@ for ctr=1:1:length(atemp_Wf_vec)
             end
             
             t_tr_sim=mean(t_tr);
-            temp_in.in.t_vec=[0 10 10+t_tr_sim 20];
+            atemp_in.in.t_vec=[0 10 10+t_tr_sim 20];
 
-            if isfield(temp_in.in,'PWLM_Flag') && temp_in.in.PWLM_Flag==1
-                [temp_out]=simFromTTECTrA_PWLM(temp_in);   % run initial simulation
+            if isfield(atemp_in.in,'PWLM_Flag') && atemp_in.in.PWLM_Flag==1
+                [temp_out]=simFromTTECTrA_PWLM(atemp_in);   % run initial simulation
             else
-                [temp_out]=simFromTTECTrA(temp_in);   % run initial simulation
+                [temp_out]=simFromTTECTrA(atemp_in);   % run initial simulation
             end
             
             atemp_fault_flag=atemp_fault_flag+1;
@@ -149,18 +149,18 @@ end
 
 % repeat interpolation for each successive set of simulation
 % results WHERE atemp_minSM_out is in the buffered atemp_minSM_des range
-for i=2:1:length(atemp_Wf_vec)
-    if atemp_minSM_out(i) > (1-atemp_buf)*atemp_minSM_des && atemp_minSM_out(i) < (1+atemp_buf)*atemp_minSM_des
-        %display(['Using curve i = ' num2str(i) ' to form schedule (minSM = ' num2str(atemp_minSM_out(i)) ')']);
-        atemp_idx_s=find(atemp_NcR25_out(i,:)==min(atemp_NcR25_out(i,:)),1,'last');
-        atemp_idx_e=find(atemp_NcR25_out(i,:)==max(atemp_NcR25_out(i,:)),1,'first');
+for itemp_i=2:1:length(atemp_Wf_vec)
+    if atemp_minSM_out(itemp_i) > (1-atemp_buf)*atemp_minSM_des && atemp_minSM_out(itemp_i) < (1+atemp_buf)*atemp_minSM_des
+        %display(['Using curve itemp_i = ' num2str(itemp_i) ' to form schedule (minSM = ' num2str(atemp_minSM_out(itemp_i)) ')']);
+        atemp_idx_s=find(atemp_NcR25_out(itemp_i,:)==min(atemp_NcR25_out(itemp_i,:)),1,'last');
+        atemp_idx_e=find(atemp_NcR25_out(itemp_i,:)==max(atemp_NcR25_out(itemp_i,:)),1,'first');
         
         clear atemp_tempx atemp_tempx_1 atemp_tempy atemp_tempy_1
         atemp_tempx=atemp_NcR25_out(1,atemp_idx_s:atemp_idx_e); atemp_tempy=atemp_Ncdot_out(1,atemp_idx_s:atemp_idx_e);
         atemp_tempx_1=unique(atemp_tempx);
-        for i=1:length(atemp_tempx_1)
-            atemp_temp_find=find(atemp_tempx==atemp_tempx_1(i));
-            atemp_tempy_1(i)=atemp_tempy(atemp_temp_find(1));
+        for itemp_ii=1:length(atemp_tempx_1)
+            atemp_temp_find=find(atemp_tempx==atemp_tempx_1(itemp_ii));
+            atemp_tempy_1(itemp_ii)=atemp_tempy(atemp_temp_find(1));
         end
         atemp_yvec_temp=interp1(atemp_tempx_1,atemp_tempy_1,atemp_xvec);
         %atemp_yvec_temp=interp1(atemp_NcR25_out(i,atemp_idx_s:atemp_idx_e),atemp_Ncdot_out(i,atemp_idx_s:atemp_idx_e),atemp_xvec);
@@ -173,15 +173,15 @@ atemp_yvec=max(atemp_yvec,atemp_minAcc*ones(1,length(atemp_yvec)));   % make sur
 if sum(atemp_yvec) ~= length(atemp_yvec)*atemp_minAcc      % at least one simulation met minSM > desired minSM
     % shape schedule (increase toward maximum, then decrease)
     atemp_idx_t=find(atemp_yvec==max(atemp_yvec),1,'first');
-    for i=2:1:length(atemp_yvec)-1
-        if (i<atemp_idx_t && atemp_yvec(i-1)>atemp_yvec(i)) || (i>atemp_idx_t && atemp_yvec(i)<atemp_yvec(i+1))
-            atemp_yvec(i)=interp1([atemp_xvec(i-1) atemp_xvec(i+1)],[atemp_yvec(i-1) atemp_yvec(i+1)],atemp_xvec(i));
+    for itemp_i=2:1:length(atemp_yvec)-1
+        if (itemp_i<atemp_idx_t && atemp_yvec(itemp_i-1)>atemp_yvec(itemp_i)) || (itemp_i>atemp_idx_t && atemp_yvec(itemp_i)<atemp_yvec(itemp_i+1))
+            atemp_yvec(itemp_i)=interp1([atemp_xvec(itemp_i-1) atemp_xvec(itemp_i+1)],[atemp_yvec(itemp_i-1) atemp_yvec(itemp_i+1)],atemp_xvec(itemp_i));
         end
     end
     
     % assign schedule and enable button to show schedule
     ttectra_in.Limiter.NcR25_sched=atemp_xvec;
-    ttectra_in.Limiter.Ncdot_sched=atemp_yvec/temp_in.in.Ts;
+    ttectra_in.Limiter.Ncdot_sched=atemp_yvec/atemp_in.in.Ts;
 else                   % no simulations met minSM > desired minSM
     warndlg(sprintf('Minimum surge margin not met -- Default schedule assigned \n Reduce desired surge margin below %2.4f %%',max(atemp_minSM_out)));
 
@@ -190,4 +190,4 @@ else                   % no simulations met minSM > desired minSM
     ttectra_in.Limiter.Ncdot_sched = [ ];
 end
 
-clear ctr atemp* t_tr t_tr_sim temp_in
+clear ctr atemp* t_tr t_tr_sim atemp_in
