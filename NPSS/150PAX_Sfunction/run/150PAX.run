@@ -108,3 +108,14 @@ RunMaxPower();
 #ifdef TRANSIENT
  #include <transient.case>		
 #endif
+
+#ifdef PLOT
+	#include <mapplot_matlab.fnc>
+	createMapDataFiles_matlab();
+#endif
+
+#ifdef MODEL
+	#include <matlab_model_info.fnc>
+	matlab_model_info();
+#endif
+	
