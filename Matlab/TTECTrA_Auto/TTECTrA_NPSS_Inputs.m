@@ -22,6 +22,11 @@ function [ttectra_in] = TTECTrA_NPSS_Inputs
 set_paths;
 ttectra_in.in.HomeDirectory=model_location;
 
+% Save controller design to .mat or make empty '[]' if you do not want to
+% save the controller
+%ttectra_in.in.filename='TTECTrA_Design.mat';
+ttectra_in.in.filename=[];
+
 %---------------------------------------------------------
 % Define environmental variables
 %---------------------------------------------------------

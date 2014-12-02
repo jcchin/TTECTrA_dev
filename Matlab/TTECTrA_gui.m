@@ -31,4 +31,6 @@ gui_iwp
 %---- Test Final Design ----
 ManualTune_testfinaldesign
 
-close(h)
+if isfield(ttectra_in.in,'filename') && ~isempty(ttectra_in.in.filename)
+    save([model_location '\Matlab\' ttectra_in.in.filename],'ttectra_in');
+end
