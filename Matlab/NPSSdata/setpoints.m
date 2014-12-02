@@ -35,5 +35,5 @@ a.('Fn')=25238;a.('Wf')=2.46619;a.('Nf')=4910.63;a.('Nc')=14342;a.('EPR')=1.5546
 output = [output a]; clear a; %thrust target: 25238
 a.('Fn')=26190;a.('Wf')=2.60216;a.('Nf')=4994.1;a.('Nc')=14443.7;a.('EPR')=1.59878;a.('NCR25')=12271.7;a.('Ps30')=386.753;a.('FAR')=0.0269433;
 output = [output a]; clear a; %thrust target: 26190
-a.('Fn')=27000;a.('Wf')=2.73563;a.('Nf')=5105.82;a.('Nc')=14547.7;a.('EPR')=1.64718;a.('NCR25')=12279;a.('Ps30')=401.337;a.('FAR')=0.0275165;
-output = [output a]; clear a; %thrust target: 27000
+a.('Fn')=26500;a.('Wf')=2.64857;a.('Nf')=5027.53;a.('Nc')=14478.6;a.('EPR')=1.61496;a.('NCR25')=12277.2;a.('Ps30')=391.716;a.('FAR')=0.0271552;
+output = [output a]; clear a; %thrust target: 26500
