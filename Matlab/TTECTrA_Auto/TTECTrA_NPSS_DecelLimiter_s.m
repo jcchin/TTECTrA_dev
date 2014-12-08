@@ -32,7 +32,7 @@ while isempty(dtemp_out) && dtemp_watchdog<10
     if dtemp_watchdog>1
         %After initial guess, if we do not have valid data, WfPs3lim
         %probably to small, increase and try again
-        dtemp_in.Limiter.WfPs3lim=1.1*dtemp_in.Limiter.WfPs3lim;
+        dtemp_in.Limiter.WfPs3lim=1.5*dtemp_in.Limiter.WfPs3lim;
     end
     
     if isfield(dtemp_in.in,'PWLM_Flag') && dtemp_in.in.PWLM_Flag==1

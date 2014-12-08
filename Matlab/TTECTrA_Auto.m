@@ -20,9 +20,11 @@
 %   performance curve???)
 % *************************************************************************
 close all; clear; clc;
+
 % add paths for support and gui functions
 addpath('TTECTrA_Auto')
 
+h=waitbar(0,sprintf('Setting up TTECTrA ...'));
 %----------------------------------------
 % Load input parameters
 %----------------------------------------
@@ -40,6 +42,8 @@ end
 %---------------------------------------
 % Design Power Management Function
 %---------------------------------------
+close(h); h=waitbar(0.1,sprintf('Designing Power Management Function ...'));
+
 [SP]=TTECTrA_NPSS_SPcalc(ttectra_in);
 ttectra_in.SP=SP;
 
@@ -53,6 +57,8 @@ clear SP
 %---------------------------------------
 % Design Setpoint Controller
 %---------------------------------------
+close(h); h=waitbar(0.2,sprintf('Designing Set Point Controller ...'));
+
 [output]=TTECTrA_NPSS_SPController(ttectra_in);
 if ~issorted(output.Fdbk)
     [output.Fdbk,idx]=sort(output.Fdbk);
@@ -65,6 +71,8 @@ clear output
 %----------------------------------------
 % Accel Limiter (Ncdot in per sample time)
 %----------------------------------------
+close(h); h=waitbar(0.4,sprintf('Designing Acceleration Controller ...'));
+
 TTECTrA_NPSS_AccelLimiter_s
 
 figure(101);
@@ -74,16 +82,19 @@ xlabel('NcR25'); ylabel('Ncdot');
 %---------------------------------------
 % Decel Limiter
 %---------------------------------------
+close(h); h=waitbar(0.6,sprintf('Designing Deceleration Limiter ...'));
 TTECTrA_NPSS_DecelLimiter_s
 
 %---------------------------------------
 % Integrate Limiters and Setpoint Controller
 %---------------------------------------
+close(h); h=waitbar(0.8,sprintf('Tuning Integral Windup Protection ...'));
 TTECTrA_IWP_s
 
 %------------------------------
 % Test Controller Design
 %------------------------------
+close(h); h=waitbar(1.0,sprintf('Design Complete, Testing Closed-Loop Controller'));
 minFn=max(ttectra_in.SPcalc.idle,0.15*ttectra_in.SPcalc.takeoff); %Determine min/idle thrust
 dFn=(ttectra_in.SPcalc.takeoff-minFn); %Determine delta between max and min
 
@@ -136,3 +147,9 @@ else
     disp('WARNING -- Simulation failed, no output generated')
 end
 
+if isfield(ttectra_in.in,'filename') && ~isempty(ttectra_in.in.filename)
+    save([model_location '\Matlab\' ttectra_in.in.filename],'ttectra_in');
+end
+
+close(h);
+disp('Design Complete');
