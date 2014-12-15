@@ -17,8 +17,8 @@ outputs.NcR25_SP    =NcR25;
 outputs.WfPs3_SP    =WfPs3_SP;
 outputs.FAR_SP      =FAR_SP;
 outputs.Ps3_SP      =Ps3_SP;
-outputs.wf_idle     = min(Wf_SP);
-outputs.wf_takeoff  = max(Wf_SP);
+%outputs.wf_idle     = min(Wf_SP);
+%outputs.wf_takeoff  = max(Wf_SP);
 outputs.NcR25_min  = min(NcR25);
 outputs.NcR25_max  = max(NcR25);
 

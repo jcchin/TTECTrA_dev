@@ -17,8 +17,8 @@ end
 %Setup simulation to run closed loop tests for large thrust transients to
 %ensure transient limiter is used
 %--------------------------------
-minWf=ttectra_in.SP.wf_idle;
-dWf=ttectra_in.SP.wf_takeoff-ttectra_in.SP.wf_idle;
+minWf=min(ttectra_in.SP.Wf_SP);
+dWf=max(ttectra_in.SP.Wf_SP)-minWf;
 ttectra_in.in.t_vec  = [0, 10, 10.5, 20];
 ttectra_in.in.wf_vec = [0.1, 0.1,  1   ,  1]*dWf + minWf;
 ttectra_in.in.loop = 4;

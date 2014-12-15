@@ -31,7 +31,6 @@ elseif strcmpi(itemp_in.controller.CVoutput(1:2),'Nc')
 elseif strcmpi(itemp_in.controller.CVoutput(1:3),'EPR')
     itemp_in.controller.IWP_gain=min(itemp_in.SP.EPR_SP)/100;
 end
-%itemp_in.controller.IWP_gain=1569;
 itemp_in.controller.IWP_gain
 
 itemp_in.in.simTime=itemp_in.in.t_vec(end);

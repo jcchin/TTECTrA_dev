@@ -8,8 +8,8 @@ atemp_in=ttectra_in;
 atemp_minSM_des=atemp_in.SMLimit.Accel;
 atemp_maxT40_des=atemp_in.SMLimit.T40;
 
-atemp_wf_idle=atemp_in.SP.wf_idle;
-atemp_wf_to=atemp_in.SP.wf_takeoff;
+atemp_wf_idle=min(atemp_in.SP.Wf_SP);
+atemp_wf_to=max(atemp_in.SP.Wf_SP);
 
 % NcR25 breakpoints for schedule
 atemp_xmin= floor((atemp_in.SP.NcR25_min*.95)/10)*10;

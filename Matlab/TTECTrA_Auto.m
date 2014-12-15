@@ -95,8 +95,8 @@ TTECTrA_IWP_s
 % Test Controller Design
 %------------------------------
 close(h); h=waitbar(1.0,sprintf('Design Complete, Testing Closed-Loop Controller'));
-minFn=max(ttectra_in.SPcalc.idle,0.15*ttectra_in.SPcalc.takeoff); %Determine min/idle thrust
-dFn=(ttectra_in.SPcalc.takeoff-minFn); %Determine delta between max and min
+minFn=max( min(ttectra_in.SP.FT_SP),0.15*max(ttectra_in.SP.FT_SP)); %Determine min/idle thrust
+dFn=(max(ttectra_in.SP.FT_SP)-minFn); %Determine delta between max and min
 
 %Build thrust profile and set TTECTrA for closed loop 
 ttectra_in.in.t_vec  = [0, 10, 10.5, 20, 20.5, 30, 31, 35, 36, 40, 41, 45, 46, 50, 51, 55,56,60,62,64,70];

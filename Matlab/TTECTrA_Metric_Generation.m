@@ -58,8 +58,8 @@ TTECTrA_NPSS_DecelLimiter_s
 
 ps={'b-';'r--';'c-.';'m:';'b--';'r-.';'c:';'m-';'b-.';'r:';'c-';'m--';'b:';'r-';'c--';'m-.';};
 %Build thrust profile and set TTECTrA for closed loop
-minFn=max(ttectra_in.SPcalc.idle,0.145*ttectra_in.SPcalc.takeoff);
-dFn=(ttectra_in.SPcalc.takeoff-minFn);
+minFn=max( min(ttectra_in.SP.FT_SP),0.15*max(ttectra_in.SP.FT_SP)); %Determine min/idle thrust
+dFn=(max(ttectra_in.SP.FT_SP)-minFn); %Determine delta between max and min
 ttectra_in.in.t_vec  = [0, 20, 20.1, 40];
 ttectra_in.in.FT_dmd = [0, 0,  1   ,  1]*dFn + minFn;
 ttectra_in.in.loop = 1;

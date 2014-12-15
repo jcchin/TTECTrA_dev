@@ -151,7 +151,8 @@ end
 %----------------------
 % Redesign
 %----------------------
-create_accel_schedule
+%create_accel_schedule
+ManualTune_accelschedule
 
 
 % move and show the gui
