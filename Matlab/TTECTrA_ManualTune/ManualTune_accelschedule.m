@@ -13,7 +13,7 @@ TTECTrA_NPSS_AccelLimiter_s
 
 figure(102);
 plot(ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'b-','Linewidth',2); grid on; hold on;
-xlabel('NcR25'); ylabel('Ncdot');
+xlabel('NcR25, rpm'); ylabel('Ncdot, rpm/s');
 
 %show response with accel controller
 ManualTune_accelcontroller

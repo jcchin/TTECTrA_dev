@@ -37,37 +37,37 @@ if ~isempty(out)
 
     figure(111);
     subplot(211); set(gca,'FontSize',12); plot(out.t,out.Fnet,'-',out.t,out.FT_dmd,'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('F_{net}R','FontSize',12); grid on;
-    legend('actual','command','Location','NorthEast');
+    xlabel('Time, s','FontSize',12);ylabel('F_{net}R, lbf','FontSize',12); grid on;
+    legend('feedback','command','Location','NorthEast');
     subplot(212); set(gca,'FontSize',12); plot(out.t,out.CV_fdbk,'-',out.t,out.CV_dmd,'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('Control variable','FontSize',12); grid on;
+    xlabel('Time, s','FontSize',12);ylabel('Control variable','FontSize',12); grid on;
 
     figure(112);
     subplot(311); set(gca,'FontSize',12);
     plot(out.t,out.HPC_SM,'b-',out.t([1 end]),ttectra_in.SMLimit.Accel([1 1]),'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('HPC surge margin (%)','FontSize',12); grid on;
-    legend('actual','limit','Location','NorthEast');
+    xlabel('Time, s','FontSize',12);ylabel('HPC SM, %','FontSize',12); grid on;
+    legend('feedback','limit','Location','NorthEast');
     subplot(312); set(gca,'FontSize',12);
     plot(out.t,out.T40,'b-',out.t([1 end]),ttectra_in.SMLimit.T40*([1 1]),'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('T40 (\circR)','FontSize',12); grid on;
+    xlabel('Time, s','FontSize',12);ylabel('T40, \circR','FontSize',12); grid on;
     subplot(313); set(gca,'FontSize',12);
     plot(out.NcR25,out.Nc_dot,'b.', ...
         ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'r--','LineWidth',2);
     xlim([min(ttectra_in.Limiter.NcR25_sched) max(ttectra_in.Limiter.NcR25_sched)]);
     ylim([min(ttectra_in.Limiter.Ncdot_sched)*.8 max(ttectra_in.Limiter.Ncdot_sched)*1.2]);
-    xlabel('Corrected core speed','FontSize',12); ylabel('Core acceleration','FontSize',12); grid on;
+    xlabel('NcR25, rpm','FontSize',12); ylabel('Nc_{dot}, rpm/s','FontSize',12); grid on;
 
     figure(113);
     subplot(311); set(gca,'FontSize',12);
     plot(out.t,out.LPC_SM,'b-',out.t([1 end]),ttectra_in.SMLimit.Decel([1 1]),'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('LPC surge margin (%)','FontSize',12); grid on;
-    legend('actual','limit','Location','NorthEast');
+    xlabel('Time, s','FontSize',12);ylabel('LPC SM, %','FontSize',12); grid on;
+    legend('feedback','limit','Location','NorthEast');
     subplot(312); set(gca,'FontSize',12);
     plot(out.t,out.FAR,'b-',out.t([1 end]),ttectra_in.SMLimit.FARmin([1 1]),'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('FAR','FontSize',12); grid on;
+    xlabel('Time, s','FontSize',12);ylabel('FAR','FontSize',12); grid on;
     subplot(313); set(gca,'FontSize',12);
     plot(out.t,out.Wf_vec./out.Ps3,'b-',out.t([1 end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('W_f/P_{s3}','FontSize',12); grid on;
+    xlabel('Time, s','FontSize',12);ylabel('W_f/P_{s3}, lb/(psi*s)','FontSize',12); grid on;
 
 else
     disp('WARNING -- Simulation failed, no output generated')

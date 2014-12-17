@@ -20,13 +20,16 @@ gui_spc
 
 %---- Acceleration Schedule ----
 gui_accel
+%ManualTune_accelschedule
 
 %---- Deceleration Limiter ----
+%ManualTune_decellimit
 gui_decel
 
 %---- Integral Windup Protection ----
-TTECTrA_IWP_s
-gui_iwp
+%TTECTrA_IWP_s
+%gui_iwp
+ttectra_in.controller.IWP_gain=33.9151;
 
 %---- Test Final Design ----
 ManualTune_testfinaldesign

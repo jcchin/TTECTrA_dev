@@ -20,7 +20,7 @@ end
 minWf=min(ttectra_in.SP.Wf_SP);
 dWf=max(ttectra_in.SP.Wf_SP)-minWf;
 ttectra_in.in.t_vec  = [0, 10, 10.5, 20];
-ttectra_in.in.wf_vec = [0.1, 0.1,  1   ,  1]*dWf + minWf;
+ttectra_in.in.wf_vec = [0.1, 0.1,.95,.95]*dWf + minWf;
 ttectra_in.in.loop = 4;
 
 %--------------------------------
@@ -39,17 +39,18 @@ end
 if ~isempty(out)
     figure(103);
     subplot(221); set(gca,'FontSize',12); plot(out.t,(out.Fnet-min(out.Fnet))/(max(out.Fnet)-min(out.Fnet)),'-','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('F_{net}R, fractional unit','FontSize',12); grid on; xlim([9 tend]);
+    xlabel('Time, s','FontSize',12);ylabel('F_{net}R, fractional unit','FontSize',12); grid on; xlim([9 tend]);
     subplot(223); set(gca,'FontSize',12);
+    legend('feedback','command','Location','NorthWest');
     plot(out.t,out.HPC_SM,'b-',out.t([1 end]),ttectra_in.SMLimit.Accel([1 1]),'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('HPC surge margin (%)','FontSize',12); grid on; xlim([9 tend]);
+    xlabel('Time, s','FontSize',12);ylabel('HPC surge margin, %','FontSize',12); grid on; xlim([9 tend]);
     subplot(224); set(gca,'FontSize',12);
     plot(out.t,out.T40,'b-',out.t([1 end]),ttectra_in.SMLimit.T40([1 1]),'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('T40, \circR','FontSize',12); grid on; xlim([9 tend]);
+    xlabel('Time, s','FontSize',12);ylabel('T40, \circR','FontSize',12); grid on; xlim([9 tend]);
     subplot(222); set(gca,'FontSize',12);
     plot(out.NcR25,out.Nc_dot,'b.', ...
         ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'r--','LineWidth',2);
-    xlabel('Corrected core speed','FontSize',12); ylabel('Core acceleration','FontSize',12); grid on;
+    xlabel('Corrected core speed, rpm','FontSize',12); ylabel('Core acceleration, rpm/s','FontSize',12); grid on;
     ylim([0.9*min(ttectra_in.Limiter.Ncdot_sched) max(ttectra_in.Limiter.Ncdot_sched)]);
 end
 

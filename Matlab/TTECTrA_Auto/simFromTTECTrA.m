@@ -83,8 +83,6 @@ catch
     DWS.in.EPR_zro=interp1(inputs.SP.Wf_SP,inputs.SP.EPR_SP,inputs.in.wf_vec(1),'linear','extrap');
 end
 
-% DWS.in.Wf_zro  = MWS.IC.Wf_0;    % initial fuel flow
-% DWS.in.Nc_zro  = MWS.IC.Nc_0;    % initial core speed
 DWS.in.Ts_cont = 0.02;         % model sampling time
 
 %----------------------------------------------------

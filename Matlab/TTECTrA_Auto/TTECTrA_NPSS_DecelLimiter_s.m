@@ -10,20 +10,22 @@ dtemp_trimi=round(1/dtemp_in.in.Ts); %determine trim time
 %-------------------------------------------
 % Setup initial limit guess
 %-------------------------------------------
-%Guess at a Wf/Ps3 limit based on steady-state data and defined FAR limit
+%Guess at a Wf/Ps3 limit based on steady-state data and defined FAR limit 
 dtemp_WfPs3lim=interp1(dtemp_in.SP.FAR_SP,dtemp_in.SP.WfPs3_SP,dtemp_in.SMLimit.FARmin,'linear','extrap');
 dtemp_WfPs3lim=max(min(dtemp_in.SP.WfPs3_SP),dtemp_WfPs3lim);
 
 % Add in the decel limiter and determine if WfPs3limit will preseve
 % minimum HPC surge margin.  
 % Rewrite simulation information
-dtemp_in.in.t_vec=[0 10 10.5 20];
-dtemp_in.in.wf_vec=[max(dtemp_in.SP.Wf_SP)*[1 1] min(dtemp_in.SP.Wf_SP)*[1 1]];
+minWf=min(ttectra_in.SP.Wf_SP);
+dWf=max(ttectra_in.SP.Wf_SP)-minWf;
+dtemp_in.in.t_vec  = [0,10,10.5,20];
+dtemp_in.in.wf_vec = [0.95,0.95,0.05,0.05]*dWf + minWf;
 dtemp_in.in.simTime=20.0;
 dtemp_in.in.loop=3;
 dtemp_in.Limiter.WfPs3lim=dtemp_WfPs3lim;
 
-%Simulate and ensure that LPC SM does not exceed limit.  I fthe limit is
+%Simulate and ensure that LPC SM does not exceed limit.  If the limit is
 %not valid, increase limit and try again.
 dtemp_watchdog=1;
 dtemp_out=[];
@@ -32,7 +34,7 @@ while isempty(dtemp_out) && dtemp_watchdog<10
     if dtemp_watchdog>1
         %After initial guess, if we do not have valid data, WfPs3lim
         %probably to small, increase and try again
-        dtemp_in.Limiter.WfPs3lim=1.5*dtemp_in.Limiter.WfPs3lim;
+        dtemp_in.Limiter.WfPs3lim=1.1*dtemp_in.Limiter.WfPs3lim;
     end
     
     if isfield(dtemp_in.in,'PWLM_Flag') && dtemp_in.in.PWLM_Flag==1

@@ -51,8 +51,9 @@ ttectra_in.in.setpoint_vector = [10000.0000, 10952.3810, 11904.7619, 12857.1429,
 ttectra_in.in.linearModelfilename='NPSS_PWLM.mat';
          
 %---------------------------------------------------------
-% Setpoint controller setup
+% Setup Controllers
 %---------------------------------------------------------
+% Setpoint controller settings
 ttectra_in.controller.PreFilterBW=6;
 ttectra_in.controller.FdbkFilterBW=[];
 ttectra_in.controller.CVoutput='Nf';
@@ -60,21 +61,21 @@ ttectra_in.controller.bandwidth=2;
 ttectra_in.controller.phasemargin=60;
 ttectra_in.controller.IWP_gain=1000;
 
+% Acceleration controller settings
+ttectra_in.controller.accel_k=2.9061e-004*.5;
+ttectra_in.controller.accel_bw=0.1250*8*3;
+ttectra_in.controller.Accel_IWP=7000;
+
 %---------------------------------------------------------
 % Transient Limiter setup
 %---------------------------------------------------------                           
 % Parameters for accleration schedule
-ttectra_in.SMLimit.T40=7000;
+ttectra_in.SMLimit.T40=5000;
 ttectra_in.SMLimit.Accel=11;
 
-% Parameters ofr decel limit
-ttectra_in.SMLimit.FARmin=0.02;
-ttectra_in.SMLimit.Decel=8;
-
-% Acceleration controller settings
-ttectra_in.controller.accel_k=2.9061e-004*.5;
-ttectra_in.controller.accel_bw=0.1250*8;
-ttectra_in.controller.Accel_IWP=7000;
+% Parameters for decel limit
+ttectra_in.SMLimit.FARmin=0.0175;
+ttectra_in.SMLimit.Decel=11;
 
 % Fuel actuator bandwidth
 ttectra_in.actuator.wf_bw=23;

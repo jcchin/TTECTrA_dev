@@ -27,10 +27,12 @@ out=simFromTTECTrA(ttectra_in);
 if ~isempty(out)
     figure(105);
     subplot(211); set(gca,'FontSize',12); plot(out.t,out.Fnet,'-',out.t,out.FT_dmd,'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('F_{net}R','FontSize',12); grid on;
-    legend('actual','command','Location','NorthWest');
+    xlabel('Time, s','FontSize',12);ylabel('F_{net}R, lbf','FontSize',12); grid on;
+    xlim([9 20]);
+    legend('feedback','command','Location','NorthWest');
     subplot(212); set(gca,'FontSize',12); plot(out.t,out.CV_fdbk,'-',out.t,out.CV_dmd,'r--','LineWidth',2);
-    xlabel('Time (sec)','FontSize',12);ylabel('Control variable','FontSize',12); grid on;
+    xlabel('Time, s','FontSize',12);ylabel('Control variable','FontSize',12); grid on;
+    xlim([9 20]);
 end
 
 disp(['     Current Integral Windup Protection: ' num2str(ttectra_in.controller.IWP_gain)]);

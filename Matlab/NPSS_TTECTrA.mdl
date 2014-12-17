@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.258"
+    ComputedModelVersion    "1.259"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jcsank"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 02 08:35:41 2014"
-  RTWModifiedTimeStamp	  339410121
-  ModelVersionFormat	  "1.%<AutoIncrement:258>"
+  LastModifiedDate	  "Wed Dec 17 10:02:51 2014"
+  RTWModifiedTimeStamp	  340711278
+  ModelVersionFormat	  "1.%<AutoIncrement:259>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1133,8 +1133,8 @@ Model {
   }
   System {
     Name		    "NPSS_TTECTrA"
-    Location		    [447, 237, 1650, 1009]
-    Open		    off
+    Location		    [348, 203, 1551, 975]
+    Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -1397,7 +1397,7 @@ Model {
       System {
 	Name			"TTECTrA Simulink Block"
 	Location		[324, 102, 1548, 895]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2254,7 +2254,7 @@ Model {
 	  System {
 	    Name		    "Tranisent Limiter Logic"
 	    Location		    [480, 135, 1704, 928]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2460,7 +2460,7 @@ Model {
 		  Position		  [490, 290, 520, 320]
 		  ForegroundColor	  "red"
 		  NamePlacement		  "alternate"
-		  Gain			  "0.00043593"
+		  Gain			  "0.00043592"
 		  ParameterDataTypeMode	  "Inherit via internal rule"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 		  OutDataTypeMode	  "Inherit via internal rule"
@@ -2844,7 +2844,7 @@ Model {
 		  SID			  113
 		  Position		  [145, 35, 305, 65]
 		  ForegroundColor	  "red"
-		  Value			  "0.018788"
+		  Value			  "0.0051124"
 		}
 		Block {
 		  BlockType		  Outport
@@ -3227,7 +3227,7 @@ Model {
 	  Position		  [425, 278, 460, 312]
 	  ForegroundColor	  "cyan"
 	  InputValues		  "[0           10         10.5           20]"
-	  Table			  "[2.6486      2.6486     0.87741     0.87741]"
+	  Table			  "[2.56        2.56     0.96597     0.96597]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
