@@ -1,4 +1,4 @@
-%       TTECTrA.m
+%       TTECTrA_Auto.m
 %********************************************************************
 % Tool for Turbine Engine Closed-loop Transient Analysis (TTECTrA)
 %--------------------------------------------------------------------
@@ -7,8 +7,8 @@
 %   \TTECTrA_Auto\load_sim_params.m has been specifically written to
 %   integrate with NPSS_TTECTrA.mdl model file.
 %********************************************************************
-% Written by Alicia Zinnecker (N&R Engineering) and Jeffrey Csank (NASA)
-%
+% Written by Alicia Zinnecker (N&R Engineering), Jeffrey Csank (NASA), and
+% Jeffrey Chin (NASA)
 %   Running this file executes the TTECTrA tool to design a set-point
 %   controller and transient limiters for an engine model and verify the
 %   design through two simulations.
