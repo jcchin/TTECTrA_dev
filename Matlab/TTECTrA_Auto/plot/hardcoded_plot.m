@@ -35,34 +35,50 @@ Nc_index = Nc;
 Rline_index = Rline;
 Alpha_index = Alpha;
 
-testx = repmat(Rline_index',[1,14,2]);%[1,13,3]
-testy = repmat(Nc_index,[11,1,2]); %[11,1,3]
-% testz = myHPC.Alpha_index(1)*ones(11,13);
-% testz(:,:,2) = myHPC.Alpha_index(2)*ones(11,13);
-% testz(:,:,3) = myHPC.Alpha_index(3)*ones(11,13);
-testz = repmat(shiftdim(Alpha_index,-1), [11,14]);
-
-vv = eta_map;
-%vv = myHPC.Wc_map;
-%vv = myHPC.pr_map;
-%zz = alphaa;
-                            %41         %23         %10
-[xxi,yyi,zzi] = meshgrid(1:0.05:3,0.3:.025:1.15 ,0:10:90 );
-
-
-%vvi = griddata(testx,testy,testz,vv,xxi,yyi,zzi); % vi is 25-by-40-by-25
-
-figure(2)
-
-%br  %bl  %up
-%slice(xxi,yyi,zzi,vvi,3,1.05,0), shading interp
+figure(1)
 
 hold on
 alpha =1;
 op_bool = 0;
 
+colors = ['y' 'm' 'c' 'b' 'r'];
+%% interp speedlines
+% %make 11x13x3 indices
+Rlength = length(Rline_index);
+Nlength = length(Nc_index);
+Alength = length(Alpha_index);
+testx = Wc_map;
+
+gridx = repmat(Rline_index',[1,Nlength,Alength]);
+gridy = repmat(Nc_index,[Rlength,1,Alength]);
+gridz = repmat(shiftdim(Alpha_index,-1), [Rlength,Nlength]);
+
+%aa = ones(Rlength,Nlength)*0;
+aaa = ones(Nlength,Rlength,Alength)*1;
+    
+P = [2 1 3];
+gridx = permute(gridx, P);
+gridy = permute(gridy, P);
+gridz = permute(gridz, P);
+Wc = permute(Wc_map, P);
+pr = permute(pr_map, P);
+eta = permute(eta_map, P);
+
+interp3Wc = interp3(gridx,gridy,gridz,Wc, gridx, gridy, aaa);
+interp3pr = interp3(gridx,gridy,gridz,pr, gridx, gridy, aaa);
+interp3eta = interp3(gridx,gridy,gridz,eta, gridx, gridy, aaa);
+
+Wc3 = permute(interp3Wc, P);
+pr3 = permute(interp3pr, P);
+eta3 = permute(interp3eta, P);
+
+surf(Wc3(:,:,1),pr3(:,:,1),ones(size(Wc3(:,:,1)))*0,eta3(:,:,1)), shading interp
+
 for i = 1:length(Nc_index)
-    pcolor(Wc_map(:,:,alpha),pr_map(:,:,alpha),eta_map(:,:,alpha))
+    for j = 1:Alength
+    %pcolor(Wc_map(:,:,alpha),pr_map(:,:,alpha),eta_map(:,:,alpha))
+    plot3(Wc_map(:,:,j),pr_map(:,:,j),ones(Rlength,Nlength)*(Alpha_index(j)), colors(j))
+    end
     hold on
     % Label Speed lines
     if rem(i,2) == 0  %every other line
@@ -81,57 +97,11 @@ xlabel('Corrected Mass Flow')
 ylabel('Pressure Ratio')
 grid on
 % Plotting Rline
-hold on
+%hold on
 for i = 1:length(Rline_index)
     for id = 1:length(Rline_index)
         plot(Wc_map(i,1:length(Nc_index)),pr_map(i,1:length(Nc_index)),'--g')
         hold on
     end
 end
-
-
-
-
-
-
-
-
-
-%  P = [2 1 3];
-%  testx = permute(testx, P);
-%  testy = permute(testy, P);
-%  testz = permute(testz, P);
-%  vv = permute(vv, P);
-%F = griddedInterpolant(testx,testy,testz,vv)
-
-%vvi = interp3(testx,testy,testz,vv,xxi,yyi,zzi); % vi is 25-by-40-by-25
-
-%surf(xxi,yyi,vvi);
-
-
-%% interp speedlines
-% %make 11x13x3 indices
-% gridx = repmat(myHPC.Rline_index',[1,13,3]);
-% gridy = repmat(myHPC.Nc_index,[11,1,3]);
-% gridz = repmat(shiftdim(myHPC.Alpha_index,-1), [11,13]);
-% 
-% aa = ones(length(myHPC.Nc_index),length(myHPC.Rline_index),length(myHPC.Alpha_index))*a;
-% 
-% P = [2 1 3];
-% gridx = permute(gridx, P);
-% gridy = permute(gridy, P);
-% gridz = permute(gridz, P);
-% Wc = permute(myHPC.Wc_map, P);
-% pr = permute(myHPC.pr_map, P);
-% eta = permute(myHPC.eta_map, P);
-% 
-% interp3Wc = interp3(gridx,gridy,gridz,Wc, gridx, gridy, aa);
-% interp3pr = interp3(gridx,gridy,gridz,pr, gridx, gridy, aa);
-% interp3eta = interp3(gridx,gridy,gridz,eta, gridx, gridy, aa);
-% 
-% Wc3 = permute(interp3Wc, P);
-% pr3 = permute(interp3pr, P);
-% eta3 = permute(interp3eta, P);
-% 
-% pcolor(Wc3(:,:,alpha),pr3(:,:,alpha),eta3(:,:,alpha))
 
