@@ -27,9 +27,8 @@ end
 Wc = monotonic(Wc); %make monotonically increasing
 Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
 
-%save to object
-P = [2 1 3]; %reshape in this order
 
+P = [2 1 3]; %reshape in this order
 Wc_map = permute(Wc, P);
 eta_map = permute(eta, P);
 pr_map = permute(pr, P);
@@ -40,9 +39,7 @@ Alpha_index = Alpha;
 figure(1)
 
 hold on
-alpha =1;
 op_bool = 0;
-
 %% interp speedlines
 % %make 11x13x3 indices
 Rlength = length(Rline_index);
@@ -54,6 +51,7 @@ gridx = permute(repmat(Rline_index',[1,Nlength,Alength]), P);
 gridy = permute(repmat(Nc_index,[Rlength,1,Alength]), P);
 gridz = permute(repmat(shiftdim(Alpha_index,-1), [Rlength,Nlength]), P);
 
+aa = ones(Rlength,Nlength)*0;
 aaa = ones(Nlength,Rlength,Alength)*1;
 interp3Wc = interp3(gridx,gridy,gridz,Wc_map, gridx, gridy, aaa);
 interp3pr = interp3(gridx,gridy,gridz,pr_map, gridx, gridy, aaa);
@@ -63,7 +61,7 @@ Wc3 = permute(interp3Wc, P);
 pr3 = permute(interp3pr, P);
 eta3 = permute(interp3eta, P);
 
-surf(Wc3(:,:,1),pr3(:,:,1),ones(size(Wc3(:,:,1)))*0,eta3(:,:,1)), shading interp
+surf(Wc3(:,:,1),pr3(:,:,1),ones(size(Wc3(:,:,1)))*0,eta3(:,:,1)), shading interp, alpha 0.5
 
 for i = 1:length(Nc_index)
     for j = 1:Alength
@@ -83,7 +81,6 @@ if op_bool
     plot(wc_op,pr_op,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
 end
 % Plot Labeling
-%title(['Plot of NPSS ' obj.name ' Pressure Ratio Given Alpha = 0'])
 xlabel('Corrected Mass Flow')
 ylabel('Pressure Ratio')
 grid on
@@ -91,7 +88,12 @@ grid on
 %hold on
 for i = 1:length(Rline_index)
     for id = 1:length(Rline_index)
-        plot(Wc(i,1:length(Nc_index)),pr(i,1:length(Nc_index)),'--g')
+        for j = 1:Alength
+            plot3(Wc(i,1:length(Nc_index),j),pr(i,1:length(Nc_index),j),ones(1,Nlength)*Alpha_index(j),'--g')
+        end
+        %plot(Wc(i,1:length(Nc_index)),pr(i,1:length(Nc_index)),'--g')
+        %plot3(Wc3(:,:,1),pr3(:,:,1),aa, 'g')
+        %plot3(Wc3(i,1:Nlength,1),pr3(i,1:Nlength,1),aa,'--g')
         hold on
     end
 end
