@@ -23,10 +23,8 @@ if ~(all(diff(Alpha)>0)) %if not ascending, flip Alpha dimension
    Alpha = fliplr(Alpha);
 end
 
-
 Wc = monotonic(Wc); %make monotonically increasing
 Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
-
 
 P = [2 1 3]; %reshape in this order
 Wc_map = permute(Wc, P);
@@ -97,4 +95,9 @@ for i = 1:length(Rline_index)
         hold on
     end
 end
+
+% Operating Points
+%wc_op = ;
+%pr_op = ;
+%plot3(wc_op(:),pr_op(:),alph,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
 

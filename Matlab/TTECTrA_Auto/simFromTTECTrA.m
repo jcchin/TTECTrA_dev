@@ -153,6 +153,8 @@ if ~exist('outputs')
         % ----
         % ADDITIONAL (OPTIONAL) OUTPUT VARIABLES
         % ----
+        outputs.Wc_op  = y.get('Wc_op');
+        outputs.pr_op  = y.get('pr_op');
     catch
         try
             outputs.t       = y.find('Time');

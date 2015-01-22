@@ -35,7 +35,7 @@ input = {'Burner.Wfuel'};
 %     'Burner.FAR','Perf.myEPR'};
 output = {'LP_Shaft.Nmech','HP_Shaft.Nmech','FS_2.Pt','FS_2.Tt','FS_25.Pt',...
     'FS_25.Tt','FS_3.Ps','FS_3.Tt','FS_5.Pt', 'FS_5.Tt','FS_4.Tt','Perf.myEPR',...
-    'Perf.myFn','Perf.Wfuel','HPC.SMN','HPC.SMW','LPC.SMN','LPC.SMW','Burner.FAR'};
+    'Perf.myFn','Perf.Wfuel','HPC.SMN','HPC.SMW','LPC.SMN','LPC.SMW','Burner.FAR','HPC.Wc','HPC.PR'};
 
 %% Setup begins here
 eval(['addpath ', npss_location])
