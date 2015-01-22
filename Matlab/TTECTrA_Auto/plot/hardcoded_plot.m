@@ -1,5 +1,5 @@
-clear all
-clc
+%clear all
+%clc
 temp_map = extract('mapDataFan');
 
 [~, ~, ~, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
@@ -97,7 +97,7 @@ for i = 1:length(Rline_index)
 end
 
 % Operating Points
-%wc_op = ;
-%pr_op = ;
-%plot3(wc_op(:),pr_op(:),alph,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
+wc_op = out.Wc_op;
+pr_op = out.pr_op;
+plot3(wc_op,pr_op,alph,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
 
