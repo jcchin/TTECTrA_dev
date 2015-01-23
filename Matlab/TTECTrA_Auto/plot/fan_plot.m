@@ -1,6 +1,7 @@
-%clear all
-%clc
-temp_map = extract('mapDataHPC');
+clear all
+clc
+load('TTECTrA_Auto_Results2.mat')
+temp_map = extract('mapDataFan');
 
 [~, ~, ~, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
 %this inner for loop breaks 4-D matrix into separate 3-D matrices for each variable of interest
@@ -98,8 +99,8 @@ end
 
 % Operating Points
 
-wc_op = out.Wc_op;
-pr_op = out.pr_op;
+wc_op = out.Fan_Wc;
+pr_op = out.Fan_pr;
 
 alph = [];
 a = sort(Alpha_index);

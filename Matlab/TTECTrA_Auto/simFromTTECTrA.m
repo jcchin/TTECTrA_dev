@@ -153,8 +153,12 @@ if ~exist('outputs')
         % ----
         % ADDITIONAL (OPTIONAL) OUTPUT VARIABLES
         % ----
-        outputs.Wc_op  = y.get('Wc_op');
-        outputs.pr_op  = y.get('pr_op');
+        outputs.Fan_Wc  = y.get('Fan_Wc');
+        outputs.Fan_pr  = y.get('Fan_pr');
+        outputs.LPC_Wc  = y.get('LPC_Wc');
+        outputs.LPC_pr  = y.get('LPC_pr');
+        outputs.HPC_Wc  = y.get('HPC_Wc');
+        outputs.HPC_pr  = y.get('HPC_pr');
     catch
         try
             outputs.t       = y.find('Time');
