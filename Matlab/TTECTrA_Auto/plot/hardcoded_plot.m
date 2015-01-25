@@ -1,5 +1,6 @@
-%clear all
-%clc
+clear all
+clc
+load('TTECTrA_Auto_Results2.mat')
 temp_map = extract('mapDataHPC');
 
 [~, ~, ~, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
@@ -98,8 +99,8 @@ end
 
 % Operating Points
 
-wc_op = out.Wc_op;
-pr_op = out.pr_op;
+wc_op = out.HPC_Wc;
+pr_op = out.HPC_pr;
 
 alph = [];
 a = sort(Alpha_index);
