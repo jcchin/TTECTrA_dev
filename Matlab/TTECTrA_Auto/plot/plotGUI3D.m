@@ -48,7 +48,7 @@ guidata(hObject, handles);
 % % end
 
 % UIWAIT makes plotGUI3D wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
+uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
@@ -211,40 +211,73 @@ popup_sel_index = get(handles.popupmenu1, 'Value');
 load('TTECTrA_Auto_Results2.mat')
 temp_map = extract(['mapData' handles.name_array{popup_sel_index}]);
 
-[~, ~, ~, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
+[~, ~, c, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
 %this inner for loop breaks 4-D matrix into separate 3-D matrices for each variable of interest
 %compressor variable: 1)alpha  2)shaft speed  3)Rline  4)Wcorr  5)PR  6)eff
 Alpha = zeros(1,d);
-
-for i=1:1:d     %for every alpha, transpose row and column vectors
-    Wc(:,:,i)= (temp_map(:,:,4,i)); %evaluates the assignment 'Wc_<#>_map'
-    eta(:,:,i)= (temp_map(:,:,6,i));
-    pr(:,:,i)= (temp_map(:,:,5,i));
-    Alpha(i)= temp_map(1,1,1,i); %save Alpha
-end
-Nc=temp_map(1,:,2,1);%save Nc Index
-Rline=transpose(temp_map(:,1,3,1));%save Rline Index
-
-if ~(all(diff(Alpha)>0)) %if not ascending, flip Alpha dimension
-   Wc = flipdim(Wc,3); 
-   eta = flipdim(eta,3); 
-   pr = flipdim(pr,3);
-   Alpha = fliplr(Alpha);
-end
-
-Wc = monotonic(Wc); %make monotonically increasing
-%Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
-
 P = [2 1 3]; %reshape in this order
-handles.Wc_map = permute(Wc, P);
-handles.eta_map = permute(eta, P);
-handles.pr_map = permute(pr, P);
-handles.Wc = Wc;
-handles.eta = eta;
-handles.pr = pr;
-handles.Nc_index = Nc;
-handles.Rline_index = Rline;
-handles.Alpha_index = Alpha;
+
+if (c == 6)  %compressors
+    for i=1:1:d     %for every alpha, transpose row and column vectors
+        Wc(:,:,i)= (temp_map(:,:,4,i)); %evaluates the assignment 'Wc_<#>_map'
+        eta(:,:,i)= (temp_map(:,:,6,i));
+        pr(:,:,i)= (temp_map(:,:,5,i));
+        Alpha(i)= temp_map(1,1,1,i); %save Alpha
+    end
+    Nc=temp_map(1,:,2,1);%save Nc Index
+    Rline=transpose(temp_map(:,1,3,1));%save Rline Index
+
+    if ~(all(diff(Alpha)>0)) %if not ascending, flip Alpha dimension
+       Wc = flipdim(Wc,3); 
+       eta = flipdim(eta,3); 
+       pr = flipdim(pr,3);
+       Alpha = fliplr(Alpha);
+    end
+
+    Wc = monotonic(Wc); %make monotonically increasing
+    %Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
+
+    
+    handles.Wc_map = permute(Wc, P);
+    handles.eta_map = permute(eta, P);
+    handles.pr_map = permute(pr, P);
+    handles.Wc = Wc;
+    handles.eta = eta;
+    handles.pr = pr;
+    handles.Nc_index = Nc;
+    handles.Rline_index = Rline;
+    handles.Alpha_index = Alpha;
+    
+elseif (c==5) %turbines
+    
+    for i=1:1:d     %for every alpha, transpose row and column vectors
+        Wc(:,:,i)= (temp_map(:,:,4,i));
+        eta(:,:,i)= (temp_map(:,:,5,i));
+        pr(:,:,i)= (temp_map(:,:,3,i));
+        Alpha(i)= temp_map(1,1,1,i); %save Alpha
+    end
+    Nc=temp_map(1,:,2,1); %save Nc Index
+    Orthog=transpose(temp_map(:,1,3,1)); %Turbines don't have an R-line
+
+    if ~(all(diff(Alpha)>0)) %if not ascending, flip Alpha dimension
+       Wc = flipdim(Wc,3); 
+       eta = flipdim(eta,3); 
+       pr = flipdim(pr,3);
+       Alpha = fliplr(Alpha);
+    end
+
+    Wc = monotonic(Wc); %make monotonically increasing
+    
+    handles.Wc_map = permute(Wc, P);
+    handles.eta_map = permute(eta, P);
+    handles.pr_map = permute(pr, P);
+    handles.Wc = Wc;
+    handles.eta = eta;
+    handles.pr = pr;
+    handles.Nc_index = Nc;
+    handles.Orthog_index = Orthog;
+    handles.Alpha_index = Alpha;
+end
 
 set(handles.slider1,'Value', max(handles.Alpha_index))
 set(handles.slider1,'Min',min(handles.Alpha_index));
@@ -341,76 +374,81 @@ function masterplot(hObject, eventdata, handles)
 popup_sel_index = get(handles.popupmenu1, 'Value');
 temp_map = extract(['mapData' handles.name_array{popup_sel_index}]);
 
-[~, ~, ~, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
+[~, ~, c, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
 %this inner for loop breaks 4-D matrix into separate 3-D matrices for each variable of interest
 %compressor variable: 1)alpha  2)shaft speed  3)Rline  4)Wcorr  5)PR  6)eff
 Alpha = zeros(1,d);
 
-for i=1:1:d     %for every alpha, transpose row and column vectors
-    Wc(:,:,i)= (temp_map(:,:,4,i)); %evaluates the assignment 'Wc_<#>_map'
-    eta(:,:,i)= (temp_map(:,:,6,i));
-    pr(:,:,i)= (temp_map(:,:,5,i));
-    Alpha(i)= temp_map(1,1,1,i); %save Alpha
-end
-Nc=temp_map(1,:,2,1);%save Nc Index
-Rline=transpose(temp_map(:,1,3,1));%save Rline Index
+% for i=1:1:d     %for every alpha, transpose row and column vectors
+%     Wc(:,:,i)= (temp_map(:,:,4,i)); %evaluates the assignment 'Wc_<#>_map'
+%     eta(:,:,i)= (temp_map(:,:,6,i));
+%     pr(:,:,i)= (temp_map(:,:,5,i));
+%     Alpha(i)= temp_map(1,1,1,i); %save Alpha
+% end
+% Nc=temp_map(1,:,2,1);%save Nc Index
+% Rline=transpose(temp_map(:,1,3,1));%save Rline Index
+% 
+% if ~(all(diff(Alpha)>0)) %if not ascending, flip Alpha dimension
+%    Wc = flipdim(Wc,3); 
+%    eta = flipdim(eta,3); 
+%    pr = flipdim(pr,3);
+%    Alpha = fliplr(Alpha);
+% end
+% 
+% Wc = monotonic(Wc); %make monotonically increasing
+% %Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
+% 
+% P = [2 1 3]; %reshape in this order
+% handles.Wc_map = permute(Wc, P);
+% handles.eta_map = permute(eta, P);
+% handles.pr_map = permute(pr, P);
+% handles.Wc = Wc;
+% handles.eta = eta;
 
-if ~(all(diff(Alpha)>0)) %if not ascending, flip Alpha dimension
-   Wc = flipdim(Wc,3); 
-   eta = flipdim(eta,3); 
-   pr = flipdim(pr,3);
-   Alpha = fliplr(Alpha);
-end
+% handles.pr = pr;
+% handles.Nc_index = Nc;
+% handles.Rline_index = Rline;
+% handles.Alpha_index = Alpha;
 
-Wc = monotonic(Wc); %make monotonically increasing
-%Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
-
-P = [2 1 3]; %reshape in this order
-handles.Wc_map = permute(Wc, P);
-handles.eta_map = permute(eta, P);
-handles.pr_map = permute(pr, P);
-handles.Wc = Wc;
-handles.eta = eta;
-handles.pr = pr;
-handles.Nc_index = Nc;
-handles.Rline_index = Rline;
-handles.Alpha_index = Alpha;
-
-pushbutton4_Callback(hObject, eventdata, handles)
+% pushbutton4_Callback(hObject, eventdata, handles)
 P = [2 1 3]; %reshape in this order
 a = handles.sliderValue;
 axis tight
 try
-        Rlength = length(handles.Rline_index);
-        Nlength = length(handles.Nc_index);
-        Alength = length(handles.Alpha_index);
-        
-        testx = handles.Wc_map;
+    if(c==6)
+       Rlength = length(handles.Rline_index);
+    elseif(c==5)
+       Olength = length(handles.Orthog_index);
+    end
+    Nlength = length(handles.Nc_index);
+    Alength = length(handles.Alpha_index);    
+    testx = handles.Wc_map;
 catch err
     error('**--Load Maps before adjusting the IGV angle and plotting--**')
 end
 
 load('TTECTrA_Auto_Results2.mat')
 
-
-try
-    Rlength = length(handles.Rline_index);
-    Nlength = length(handles.Nc_index);
-    Alength = length(handles.Alpha_index);
-
-    testx = handles.Wc_map;
-catch err
-    error('**--Load Maps before adjusting the IGV angle and plotting--**')
-end
-
 minA = min(min(min(handles.Alpha_index)));
 
-gridx = permute(repmat(handles.Rline_index',[1,Nlength,Alength]), P);
-gridy = permute(repmat(handles.Nc_index,[Rlength,1,Alength]), P);
-gridz = permute(repmat(shiftdim(handles.Alpha_index,-1), [Rlength,Nlength]), P);
+if(c==6)
+    gridx = permute(repmat(handles.Rline_index',[1,Nlength,Alength]), P);
+    gridy = permute(repmat(handles.Nc_index,[Rlength,1,Alength]), P);
+    gridz = permute(repmat(shiftdim(handles.Alpha_index,-1), [Rlength,Nlength]), P);
 
-aa = ones(Rlength,Nlength)*a;
-aaa = ones(Nlength,Rlength,Alength)*a;
+    aa = ones(Rlength,Nlength)*a;
+    aaa = ones(Nlength,Rlength,Alength)*a;
+
+elseif(c==5)
+    gridx = permute(repmat(handles.Orthog_index',[1,Nlength,Alength]),P);
+    gridy = permute(repmat(handles.Nc_index,[Olength,1,Alength]),P);
+    gridz = permute(repmat(shiftdim(handles.Alpha_index,-1), [Olength,Nlength]),P);
+
+    aa = ones(Olength,Nlength)*a; %a
+    aaa = ones(Nlength,Olength,Alength)*a; %a
+
+end
+
 interp3Wc = interp3(gridx,gridy,gridz,handles.Wc_map, gridx, gridy, aaa);
 interp3pr = interp3(gridx,gridy,gridz,handles.pr_map, gridx, gridy, aaa);
 interp3eta = interp3(gridx,gridy,gridz,handles.eta_map, gridx, gridy, aaa);
@@ -419,50 +457,70 @@ Wc3 = permute(interp3Wc, P);
 pr3 = permute(interp3pr, P);
 eta3 = permute(interp3eta, P);
 
-surf(Wc3(:,:,1),pr3(:,:,1),ones(size(Wc3(:,:,1)))*a,eta3(:,:,1)), shading interp, alpha 0.5
+if(c==6)
+    surf(Wc3(:,:,1),pr3(:,:,1),ones(size(Wc3(:,:,1)))*a,eta3(:,:,1)), shading interp, alpha 0.5
+elseif(c==5)
+    surf(pr3(:,:,1),Wc3(:,:,1),ones(size(Wc3(:,:,1)))*a,eta3(:,:,1)), shading interp, alpha 0.5
+end    
 
 hold on
 
 colors = ['y' 'm' 'c' 'b' 'r'];
 
-for i = 1:length(handles.Nc_index)
+for i = 1:Nlength
     if handles.check1 %wireframe checkbox
         for j = 1:Alength
             %pcolor(handles.comp.Wc_map(:,:,alpha),myHPC.pr_map(:,:,alpha),myHPC.eta_map(:,:,alpha))
-            plot3(handles.Wc(:,:,j),handles.pr(:,:,j),ones(Rlength,Nlength)*(handles.Alpha_index(j)), colors(j))
+            if(c==6)
+                plot3(handles.Wc(:,:,j),handles.pr(:,:,j),ones(Rlength,Nlength)*(handles.Alpha_index(j)), colors(j))
+            elseif(c==5)
+                plot3(handles.pr(:,:,j),handles.Wc(:,:,j),ones(Olength,Nlength)*(handles.Alpha_index(j)), colors(j))
+            end
         end
     end
-    plot3(Wc3(:,:,1),pr3(:,:,1),aa, 'g')
+    if(c==6)
+        plot3(Wc3(:,:,1),pr3(:,:,1),aa, 'g')
+    elseif(c==5)
+         plot3(pr3(:,:,1),Wc3(:,:,1),aa, 'g')
+    end
+        
     %pcolor(xxi(:,:,alpha),yyi(:,:,alpha),vvi(:,:,alpha)), shading interp
     hold on
     % Label Speed lines
     if rem(i,2) == 0  %every other line
         label(i) = cellstr(['speed ' num2str(handles.Nc_index(i)) ]);
         %text(myHPC.Wc_map(1,i), myHPC.pr_map(1,i), label(i),'VerticalAlignment','bottom','HorizontalAlignment','right');
-        text(Wc3(1,i),pr3(1,i),a, label(i),'VerticalAlignment','bottom','HorizontalAlignment','right');
+        if (c==6)
+            text(Wc3(1,i),pr3(1,i),a, label(i),'VerticalAlignment','bottom','HorizontalAlignment','right');
+        elseif (c==5)
+            text(pr3(1,i),Wc3(1,i),a, label(i),'VerticalAlignment','bottom','HorizontalAlignment','right'); %a
+        end
     end
 end
 
-
-% Plot Labeling
-%title(['Plot of NPSS ' obj.name ' Pressure Ratio Given Alpha = 0'])
-xlabel('Corrected Mass Flow', 'FontSize',10)
-ylabel('Pressure Ratio',  'FontSize',10)
-zlabel('IGV angle', 'FontSize',10)
-grid on
-% Plotting Rline
-hold on
-for i = 1:length(handles.Rline_index)
-    for id = 1:length(handles.Rline_index)
-        if handles.check1 %show wireframe
-            for j = 1:Alength
-                plot3(handles.Wc(i,1:length(handles.Nc_index),j),handles.pr(i,1:length(handles.Nc_index),j),ones(1,Nlength)*handles.Alpha_index(j),'--g')
+if (c==6)
+    % Plot Labeling
+    %title(['Plot of NPSS ' obj.name ' Pressure Ratio Given Alpha = 0'])
+    xlabel('Corrected Mass Flow', 'FontSize',10)
+    ylabel('Pressure Ratio',  'FontSize',10)
+    zlabel('IGV angle', 'FontSize',10)
+    grid on
+    % Plotting Rline
+    hold on
+    for i = 1:length(handles.Rline_index)
+        for id = 1:length(handles.Rline_index)
+            if handles.check1 %show wireframe
+                for j = 1:Alength
+                    plot3(handles.Wc(i,1:length(handles.Nc_index),j),handles.pr(i,1:length(handles.Nc_index),j),ones(1,Nlength)*handles.Alpha_index(j),'--g')
+                end
             end
+            plot3(Wc3(i,1:length(handles.Nc_index),1),pr3(i,1:length(handles.Nc_index),1),aa,'--g')
+            %plot3(xxi(i,1:160),yyi(i,1:160),zzi(i,1:160),'--g')
+            hold on
         end
-        plot3(Wc3(i,1:length(handles.Nc_index),1),pr3(i,1:length(handles.Nc_index),1),aa,'--g')
-        %plot3(xxi(i,1:160),yyi(i,1:160),zzi(i,1:160),'--g')
-        hold on
     end
+elseif(c==5)
+    
 end
 
 hold on
@@ -470,10 +528,10 @@ hold on
 %    plot(wc_op,pr_op,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
 %end
 
-if handles.check1 %show wireframe
+%if handles.check1 %show wireframe
     %pcolor(Wc3(:,:,1),pr3(:,:,1),eta3(:,:,1)), shading interp
     %surf(Wc3(:,:,1),pr3(:,:,1),ones(size(Wc3(:,:,1)))*minA,eta3(:,:,1)), shading interp
-end
+%end
 
  % Operating Points
 if handles.check2 %op_points
@@ -483,12 +541,17 @@ if handles.check2 %op_points
     %alph = evalin('base', 'alph');%ones([45,1]);
     alph = [];
     a = sort(handles.Alpha_index);
+
     for i=1:length(a)
         b = ones([(length(wc_op)/length(a)),1])*a(i);
         alph = vertcat(alph,b); %create the z vector based on alph_index
     end
     %c= str2num(handles.comp.scalar); %only want one (out of 5) column of the '_op' vector
-    plot(wc_op,pr_op,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
+    if(c==6)
+        plot(wc_op,pr_op,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
+    elseif(c==5)
+        plot(pr_op,wc_op,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
+    end
 end
 
 set(gca,'XMinorTick','on', 'YMinorTick', 'on', 'ZMinorTick', 'on')
