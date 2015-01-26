@@ -76,9 +76,10 @@ for i = 1:length(Nc_index)
 end
 % Operating Points
 hold on
-if op_bool
-    plot(wc_op,pr_op,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
-end
+
+wc_op = out.LPC_Wc;
+pr_op = out.LPC_pr;
+
 % Plot Labeling
 xlabel('Corrected Mass Flow')
 ylabel('Pressure Ratio')
