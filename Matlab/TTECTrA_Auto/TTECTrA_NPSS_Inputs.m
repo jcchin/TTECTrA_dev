@@ -37,7 +37,7 @@ ttectra_in.in.dTamb=0;                            % deviation from STD temp
 ttectra_in.in.Ts=0.015;
 ttectra_in.in.simTime=20.0;                         % simulation time
 ttectra_in.in.simFileName='NPSS_TTECTrA.mdl';  % simulation file name 
-ttectra_in.in.filename=[];
+ttectra_in.in.filename='jtc_baseline.mat';
 
 %---------------------------------------------------------
 % Setpoint function setup

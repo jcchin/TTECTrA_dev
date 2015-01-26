@@ -148,7 +148,7 @@ else
 end
 
 if isfield(ttectra_in.in,'filename') && ~isempty(ttectra_in.in.filename)
-    save([model_location '\Matlab\' ttectra_in.in.filename],'ttectra_in');
+    save([model_location '\Matlab\TTECTrA_Data\' ttectra_in.in.filename],'ttectra_in');
 end
 
 close(h);
