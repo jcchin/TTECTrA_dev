@@ -48,7 +48,7 @@ guidata(hObject, handles);
 % % end
 
 % UIWAIT makes plotGUI3D wait for user response (see UIRESUME)
-uiwait(handles.figure1);
+% uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
@@ -208,7 +208,7 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 cla; %clear curent axes
 %save in compressor/turbine of interest
 popup_sel_index = get(handles.popupmenu1, 'Value');
-load('TTECTrA_Auto_Results2.mat')
+load('TTECTrA_Auto_Results3.mat')
 temp_map = extract(['mapData' handles.name_array{popup_sel_index}]);
 
 [~, ~, c, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
@@ -216,7 +216,17 @@ temp_map = extract(['mapData' handles.name_array{popup_sel_index}]);
 %compressor variable: 1)alpha  2)shaft speed  3)Rline  4)Wcorr  5)PR  6)eff
 Alpha = zeros(1,d);
 P = [2 1 3]; %reshape in this order
-
+%hardcoded scalars for 150pax
+Fan_wc_scalar = 1.0356;
+Fan_pr_scalar = 1.0001;
+LPC_wc_scalar = 1.0076;
+LPC_pr_scalar = 1.0000;
+HPC_wc_scalar = 1.0322;
+HPC_pr_scalar = 1.0001;
+HPT_wc_scalar = 0.9040;
+HPT_pr_scalar = 1.9104;
+LPT_wc_scalar = 0.9585;
+LPT_pr_scalar = 1.5628;
 if (c == 6)  %compressors
     for i=1:1:d     %for every alpha, transpose row and column vectors
         Wc(:,:,i)= (temp_map(:,:,4,i)); %evaluates the assignment 'Wc_<#>_map'
@@ -236,7 +246,10 @@ if (c == 6)  %compressors
 
     Wc = monotonic(Wc); %make monotonically increasing
     %Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
-
+    wc_scalar = eval([ handles.name_array{popup_sel_index} '_wc_scalar']);
+    pr_scalar = eval([ handles.name_array{popup_sel_index} '_pr_scalar']);
+    Wc= Wc * wc_scalar;
+    pr = ((pr-1)/pr_scalar)+1;%((pr_map-1)*pr_scalar)+1;
     
     handles.Wc_map = permute(Wc, P);
     handles.eta_map = permute(eta, P);
@@ -267,6 +280,10 @@ elseif (c==5) %turbines
     end
 
     Wc = monotonic(Wc); %make monotonically increasing
+    wc_scalar = eval([ handles.name_array{popup_sel_index} '_wc_scalar']);
+    pr_scalar = eval([ handles.name_array{popup_sel_index} '_pr_scalar']);
+    Wc= Wc * wc_scalar;
+    pr = ((pr-1)/pr_scalar)+1;%((pr_map-1)*pr_scalar)+1;
     
     handles.Wc_map = permute(Wc, P);
     handles.eta_map = permute(eta, P);
@@ -379,37 +396,6 @@ temp_map = extract(['mapData' handles.name_array{popup_sel_index}]);
 %compressor variable: 1)alpha  2)shaft speed  3)Rline  4)Wcorr  5)PR  6)eff
 Alpha = zeros(1,d);
 
-% for i=1:1:d     %for every alpha, transpose row and column vectors
-%     Wc(:,:,i)= (temp_map(:,:,4,i)); %evaluates the assignment 'Wc_<#>_map'
-%     eta(:,:,i)= (temp_map(:,:,6,i));
-%     pr(:,:,i)= (temp_map(:,:,5,i));
-%     Alpha(i)= temp_map(1,1,1,i); %save Alpha
-% end
-% Nc=temp_map(1,:,2,1);%save Nc Index
-% Rline=transpose(temp_map(:,1,3,1));%save Rline Index
-% 
-% if ~(all(diff(Alpha)>0)) %if not ascending, flip Alpha dimension
-%    Wc = flipdim(Wc,3); 
-%    eta = flipdim(eta,3); 
-%    pr = flipdim(pr,3);
-%    Alpha = fliplr(Alpha);
-% end
-% 
-% Wc = monotonic(Wc); %make monotonically increasing
-% %Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
-% 
-% P = [2 1 3]; %reshape in this order
-% handles.Wc_map = permute(Wc, P);
-% handles.eta_map = permute(eta, P);
-% handles.pr_map = permute(pr, P);
-% handles.Wc = Wc;
-% handles.eta = eta;
-
-% handles.pr = pr;
-% handles.Nc_index = Nc;
-% handles.Rline_index = Rline;
-% handles.Alpha_index = Alpha;
-
 % pushbutton4_Callback(hObject, eventdata, handles)
 P = [2 1 3]; %reshape in this order
 a = handles.sliderValue;
@@ -427,7 +413,7 @@ catch err
     error('**--Load Maps before adjusting the IGV angle and plotting--**')
 end
 
-load('TTECTrA_Auto_Results2.mat')
+load('TTECTrA_Auto_Results3.mat')
 
 minA = min(min(min(handles.Alpha_index)));
 
@@ -498,6 +484,7 @@ for i = 1:Nlength
     end
 end
 
+% Plotting Rline
 if (c==6)
     % Plot Labeling
     %title(['Plot of NPSS ' obj.name ' Pressure Ratio Given Alpha = 0'])
@@ -505,7 +492,7 @@ if (c==6)
     ylabel('Pressure Ratio',  'FontSize',10)
     zlabel('IGV angle', 'FontSize',10)
     grid on
-    % Plotting Rline
+    
     hold on
     for i = 1:length(handles.Rline_index)
         for id = 1:length(handles.Rline_index)
@@ -520,22 +507,18 @@ if (c==6)
         end
     end
 elseif(c==5)
-    
+    %do nothing for turbines (no R lines)
 end
 
 hold on
-%if op_bool
-%    plot(wc_op,pr_op,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
-%end
-
-%if handles.check1 %show wireframe
-    %pcolor(Wc3(:,:,1),pr3(:,:,1),eta3(:,:,1)), shading interp
-    %surf(Wc3(:,:,1),pr3(:,:,1),ones(size(Wc3(:,:,1)))*minA,eta3(:,:,1)), shading interp
-%end
 
  % Operating Points
 if handles.check2 %op_points
-
+    
+    ylabel('Corrected Mass Flow', 'FontSize',10)
+    xlabel('Pressure Ratio',  'FontSize',10)
+    zlabel('IGV angle', 'FontSize',10)
+    grid on
     wc_op = eval(['out.' handles.name_array{popup_sel_index} '_Wc']);%evalin('base', 'wc_op');
     pr_op = eval(['out.' handles.name_array{popup_sel_index} '_pr']);%evalin('base', 'pr_op');
     %alph = evalin('base', 'alph');%ones([45,1]);
@@ -555,102 +538,4 @@ if handles.check2 %op_points
 end
 
 set(gca,'XMinorTick','on', 'YMinorTick', 'on', 'ZMinorTick', 'on')
-%set(gca,'XMinorGrid','on', 'YMinorGrid', 'on', 'ZMinorGrid', 'on')
-
 hold off
-    
-% elseif strcmp('turbine',handles.comp.type)
-%     
-%     % Plot Labeling
-%     %title(['Plot of NPSS ' obj.name ' Pressure Ratio Given Alpha = 0'])
-%     xlabel('Pressure Ratio',  'FontSize',10)
-%     ylabel('Corrected Mass Flow', 'FontSize',10)
-%     zlabel('IGV angle', 'FontSize',10)
-%     grid on
-%     % Plotting Rline
-%     
-%     try
-%         Nlength = length(handles.comp.Nc_index);
-%         Rlength = length(handles.comp.Orthog_index);%Analogous to Compressor R-line
-%         Alength = length(handles.comp.Alpha_index);
-%         testx = handles.comp.Wc_map;
-%     catch err
-%         error('**--Load Maps before adjusting the IGV angle and plotting--**')
-%     end
-%     
-%     minA = min(min(min(handles.comp.Alpha_index)));
-%     
-%     Orthog_index = handles.comp.Orthog_index;
-%     
-%     gridx = repmat(Orthog_index',[1,Nlength,Alength]);
-%     gridy = repmat(handles.comp.Nc_index,[Rlength,1,Alength]);
-%     gridz = repmat(shiftdim(handles.comp.Alpha_index,-1), [Rlength,Nlength]);
-%     
-%     aa = ones(length(Orthog_index),length(handles.comp.Nc_index))*a;
-%     aaa = ones(length(handles.comp.Nc_index),length(Orthog_index),length(handles.comp.Alpha_index))*a;
-%     
-%     P = [2 1 3];
-%     gridx = permute(gridx, P);
-%     gridy = permute(gridy, P);
-%     gridz = permute(gridz, P);
-%     Wc = permute(handles.comp.Wc_map, P);
-%     pr = permute(handles.comp.pr_map, P);
-%     eta = permute(handles.comp.eta_map, P);
-%     
-%     interp3Wc = interp3(gridx,gridy,gridz,Wc, gridx, gridy, aaa);
-%     interp3pr = interp3(gridx,gridy,gridz,pr, gridx, gridy, aaa);
-%     interp3eta = interp3(gridx,gridy,gridz,eta, gridx, gridy, aaa);
-%     
-%     Wc3 = permute(interp3Wc, P);
-%     pr3 = permute(interp3pr, P);
-%     eta3 = permute(interp3eta, P);
-%     
-%     surf(pr3(:,:,1),Wc3(:,:,1),ones(size(Wc3(:,:,1)))*a,eta3(:,:,1)), shading interp
-%     
-%     hold on
-% 
-%     
-%     colors = ['y' 'm' 'c' 'b' 'r' 'r' 'r' 'r' 'r' 'r'];
-%     
-%     for i = 1:length(handles.comp.Nc_index)
-%         if handles.check1 %wireframe checkbox
-%             for j = 1:Alength
-%                 %pcolor(handles.comp.Wc_map(:,:,alpha),myHPC.pr_map(:,:,alpha),myHPC.eta_map(:,:,alpha))
-%                 plot3(handles.comp.pr_map(:,:,j),handles.comp.Wc_map(:,:,j),ones(Rlength,Nlength)*(handles.comp.Alpha_index(j)), colors(j))
-%             end
-%         end
-%         plot3(pr3(:,:,1),Wc3(:,:,1),aa, 'g')
-%         %pcolor(xxi(:,:,alpha),yyi(:,:,alpha),vvi(:,:,alpha)), shading interp
-%         hold on
-%         % Label Speed lines
-%         if rem(i,2) == 0  %every other line
-%             label(i) = cellstr(['speed ' num2str(handles.comp.Nc_index(i)) ]);
-%             %text(myHPC.Wc_map(1,i), myHPC.pr_map(1,i), label(i),'VerticalAlignment','bottom','HorizontalAlignment','right');
-%             text(pr3(1,i),Wc3(1,i),a, label(i),'VerticalAlignment','bottom','HorizontalAlignment','right');
-%         end
-%     end %end turbine
-%     
-%     
-%     if handles.check1 %show wireframe
-%         %pcolor(Wc3(:,:,1),pr3(:,:,1),eta3(:,:,1)), shading interp
-%         surf(pr3(:,:,1),Wc3(:,:,1),ones(size(Wc3(:,:,1)))*minA,eta3(:,:,1)), shading interp
-%     end
-%     
-%     % Operating Points
-%     if handles.check2 %op_points
-%         wc_op = evalin('base', 'wc_op');
-%         pr_op = evalin('base', 'pr_op');
-%         %alph = evalin('base', 'alph');%ones([45,1]);
-%         alph = [];
-%         a = sort(handles.comp.Alpha_index);
-%         for i=1:length(a)
-%             b = ones([(length(wc_op)/length(a)),1])*a(i);
-%             alph = vertcat(alph,b); %create the z vector based on alph_index
-%         end
-%         c= str2num(handles.comp.scalar); %only want one (out of 5) column of the '_op' vector
-%         plot3(pr_op(:,c),wc_op(:,c),alph,'--rs','LineWidth',1,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',3)
-%     end
-%     
-%     hold off
-%     
-% end %end compressor/turbine

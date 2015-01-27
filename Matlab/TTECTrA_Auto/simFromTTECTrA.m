@@ -159,6 +159,10 @@ if ~exist('outputs')
         outputs.LPC_pr  = y.get('LPC_pr');
         outputs.HPC_Wc  = y.get('HPC_Wc');
         outputs.HPC_pr  = y.get('HPC_pr');
+        outputs.HPT_Wc  = y.get('HPT_Wc');
+        outputs.HPT_pr  = y.get('HPT_pr');
+        outputs.LPT_Wc  = y.get('LPT_Wc');
+        outputs.LPT_pr  = y.get('LPT_pr');
     catch
         try
             outputs.t       = y.find('Time');

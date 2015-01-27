@@ -1,7 +1,7 @@
 clear all
 clc
 load('TTECTrA_Auto_Results3.mat')
-temp_map = extract('mapDataLPT');
+temp_map = extract('mapDataHPT');
 
 [~, ~, ~, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
 %this inner for loop breaks 4-D matrix into separate 3-D matrices for each variable of interest
@@ -27,8 +27,8 @@ Wc = monotonic(Wc); %make monotonically increasing
 %Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
 
 P = [2 1 3];
-wc_scalar = 0.9585;
-pr_scalar = 1.5628;
+wc_scalar = 0.9040;
+pr_scalar = 1.9104;
 Wc= Wc * wc_scalar;
 pr = ((pr-1)/pr_scalar)+1;%((pr_map-1)*pr_scalar)+1;
 
@@ -52,8 +52,8 @@ gridx = permute(repmat(Orthog_index',[1,Nlength,Alength]),P);
 gridy = permute(repmat(Nc_index,[Olength,1,Alength]),P);
 gridz = permute(repmat(shiftdim(Alpha_index,-1), [Olength,Nlength]),P);
 
-aa = ones(Olength,Nlength)*0; %a
-aaa = ones(Nlength,Olength,Alength)*1; %a
+aa = ones(Olength,Nlength)*2; %a
+aaa = ones(Nlength,Olength,Alength)*2; %a
 
 interp3Wc = interp3(gridx,gridy,gridz,Wc_map, gridx, gridy, aaa);
 interp3pr = interp3(gridx,gridy,gridz,pr_map, gridx, gridy, aaa);
@@ -63,13 +63,11 @@ Wc3 = permute(interp3Wc, P);
 pr3 = permute(interp3pr, P);
 eta3 = permute(interp3eta, P);
 
-surf(pr3(:,:,1),Wc3(:,:,1),ones(size(Wc3(:,:,1)))*0,eta3(:,:,1)), shading interp, alpha 0.5%a
+surf(pr3(:,:,2),Wc3(:,:,2),ones(size(Wc3(:,:,2)))*2,eta3(:,:,1)), shading interp, alpha 0.5%a
 
 hold on
 
-
 colors = ['y' 'm' 'c' 'b' 'r' 'r' 'r' 'r' 'r' 'r'];
-
 
 for i = 1:Nlength
     %if handles.check1 %wireframe checkbox
@@ -85,7 +83,7 @@ for i = 1:Nlength
     if rem(i,2) == 0  %every other line
         label(i) = cellstr(['speed ' num2str(Nc_index(i)) ]);
         %text(myHPC.Wc_map(1,i), myHPC.pr_map(1,i), label(i),'VerticalAlignment','bottom','HorizontalAlignment','right');
-        text(pr3(1,i),Wc3(1,i), label(i),'VerticalAlignment','bottom','HorizontalAlignment','right'); %a
+        text(pr3(1,i),Wc3(1,i),2, label(i),'VerticalAlignment','bottom','HorizontalAlignment','right'); %a
     end
 end %end turbine
 
@@ -96,10 +94,8 @@ end %end turbine
 % end
 
 % Operating Points
-
-
-wc_op = out.LPT_Wc;
-pr_op = out.LPT_pr;
+wc_op = out.HPT_Wc;
+pr_op = out.HPT_pr;
 
 
 alph = [];

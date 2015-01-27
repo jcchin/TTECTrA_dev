@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.63"
+    ComputedModelVersion    "1.64"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jcchin"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jan 22 11:44:27 2015"
-  RTWModifiedTimeStamp	  343827863
-  ModelVersionFormat	  "1.%<AutoIncrement:63>"
+  LastModifiedDate	  "Mon Jan 26 18:17:01 2015"
+  RTWModifiedTimeStamp	  344197019
+  ModelVersionFormat	  "1.%<AutoIncrement:64>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -673,7 +673,7 @@ Model {
   }
   System {
     Name		    "NPSS_Sfunction"
-    Location		    [236, 82, 1204, 849]
+    Location		    [236, 82, 1214, 1001]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -687,7 +687,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    92
+    SIDHighWatermark	    96
     Block {
       BlockType		      Clock
       Name		      "Clock"
@@ -699,10 +699,10 @@ Model {
       BlockType		      Demux
       Name		      "Demux1"
       SID		      53
-      Ports		      [1, 25]
-      Position		      [1085, 198, 1090, 1072]
+      Ports		      [1, 29]
+      Position		      [1095, 215, 1100, 1205]
       ShowName		      off
-      Outputs		      "25"
+      Outputs		      "29"
       DisplayOption	      "bar"
     }
     Block {
@@ -1047,11 +1047,55 @@ Model {
     }
     Block {
       BlockType		      ToWorkspace
+      Name		      "To Workspace29"
+      SID		      93
+      Ports		      [1]
+      Position		      [1255, 1152, 1315, 1178]
+      VariableName	      "LPT_Wc"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
       Name		      "To Workspace3"
       SID		      78
       Ports		      [1]
       Position		      [1255, 657, 1315, 683]
       VariableName	      "Wfuel"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace30"
+      SID		      94
+      Ports		      [1]
+      Position		      [1180, 1187, 1240, 1213]
+      VariableName	      "LPT_pr"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace31"
+      SID		      95
+      Ports		      [1]
+      Position		      [1255, 1082, 1315, 1108]
+      VariableName	      "HPT_Wc"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace32"
+      SID		      96
+      Ports		      [1]
+      Position		      [1180, 1117, 1240, 1143]
+      VariableName	      "HPT_pr"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Array"
@@ -1191,13 +1235,14 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      1
+      Points		      [0, -5]
       DstBlock		      "To Workspace"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      2
-      Points		      [235, 0; 0, 85]
+      Points		      [225, 0; 0, 80]
       Branch {
 	DstBlock		"To Workspace1"
 	DstPort			1
@@ -1216,7 +1261,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      3
-      Points		      [10, 0]
+      Points		      [0, -5]
       Branch {
 	DstBlock		"To Workspace10"
 	DstPort			1
@@ -1230,19 +1275,21 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      4
+      Points		      [0, -5]
       DstBlock		      "To Workspace5"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      5
+      Points		      [0, -5]
       DstBlock		      "To Workspace11"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      6
-      Points		      [0, -5; 250, 0; 0, 30]
+      Points		      [240, 0; 0, 20]
       Branch {
 	Points			[0, -30]
 	DstBlock		"To Workspace6"
@@ -1256,7 +1303,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      7
-      Points		      [10, 0]
+      Points		      [0, -5]
       Branch {
 	DstBlock		"To Workspace12"
 	DstPort			1
@@ -1270,37 +1317,42 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      8
+      Points		      [0, -5]
       DstBlock		      "To Workspace7"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      10
+      Points		      [0, -5]
       DstBlock		      "To Workspace9"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      9
+      Points		      [0, -5]
       DstBlock		      "To Workspace14"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      11
+      Points		      [0, -5]
       DstBlock		      "To Workspace8"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      12
+      Points		      [0, -5]
       DstBlock		      "To Workspace20"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      13
-      Points		      [5, 0]
+      Points		      [-5, 0; 0, -5]
       Branch {
 	DstBlock		"To Workspace2"
 	DstPort			1
@@ -1314,36 +1366,42 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      14
+      Points		      [0, -5]
       DstBlock		      "To Workspace3"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      15
+      Points		      [0, -5]
       DstBlock		      "To Workspace15"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      16
+      Points		      [0, -5]
       DstBlock		      "To Workspace16"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      17
+      Points		      [0, -5]
       DstBlock		      "To Workspace17"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      18
+      Points		      [0, -5]
       DstBlock		      "To Workspace18"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      19
+      Points		      [0, -5]
       DstBlock		      "To Workspace19"
       DstPort		      1
     }
@@ -1356,44 +1414,74 @@ Model {
     Line {
       SrcBlock		      "S-Function"
       SrcPort		      1
-      Points		      [115, 0]
+      Points		      [125, 0]
       DstBlock		      "Demux1"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      20
+      Points		      [0, -5]
       DstBlock		      "To Workspace27"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      21
+      Points		      [0, -5]
       DstBlock		      "To Workspace28"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      22
+      Points		      [0, -5]
       DstBlock		      "To Workspace25"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      23
+      Points		      [0, -5]
       DstBlock		      "To Workspace26"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      24
+      Points		      [0, -5]
       DstBlock		      "To Workspace13"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      25
+      Points		      [0, -5]
       DstBlock		      "To Workspace24"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      26
+      DstBlock		      "To Workspace31"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      27
+      DstBlock		      "To Workspace32"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      28
+      DstBlock		      "To Workspace29"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      29
+      DstBlock		      "To Workspace30"
       DstPort		      1
     }
   }
