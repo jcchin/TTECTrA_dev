@@ -17,10 +17,8 @@ itemp_tstart_burst=10.0;
 
 %Setup burt and chop test profile
 itemp_in.in.t_vec=[0 itemp_tstart_burst itemp_tstart_burst+1 itemp_tstart_chop itemp_tstart_chop+2  itemp_tstart_chop*2];
-%itemp_in.in.FT_dmd=[0.14 0.14 1.0 1.0 0.14 0.14]*max(itemp_in.SP.FT_SP);
-itemp_in.in.FT_dmd=[0.14 0.14 0.98 .98 0.14 0.14]*max(itemp_in.SP.FT_SP);
-%itemp_in.in.FT_dmd=max(itemp_in.in.FT_dmd, min(itemp_in.SP.FT_SP)+0.02*max(itemp_in.SP.FT_SP));
-
+itemp_profile=[0.14 0.14 0.98 .98 0.14 0.14]*max(itemp_in.SP.FT_SP);
+itemp_in.in.FT_dmd=max(min(itemp_in.SP.FT_SP),itemp_profile); %ensure that min thrust is not too low
 itemp_in.in.loop=1;
 
 %define an initial guess at the IWUP gain:
@@ -31,7 +29,6 @@ elseif strcmpi(itemp_in.controller.CVoutput(1:2),'Nc')
 elseif strcmpi(itemp_in.controller.CVoutput(1:3),'EPR')
     itemp_in.controller.IWP_gain=min(itemp_in.SP.EPR_SP)/100;
 end
-%itemp_in.controller.IWP_gain=1569;
 itemp_in.controller.IWP_gain
 
 itemp_in.in.simTime=itemp_in.in.t_vec(end);
@@ -129,8 +126,6 @@ while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp
         %------------------------------------------------------
         itemp_ktemp=min(find(temp_out.t>=(itemp_in.in.t_vec(2)-1)));
         itemp_fdata(itemp_icount,1)= (max(temp_out.CV_fdbk(itemp_ktemp:end)) - max(temp_out.CV_dmd(itemp_ktemp:end))) / max(temp_out.CV_dmd(itemp_ktemp:end));
-        %itemp_temp_i=temp_out.t(min(find(temp_out.Fnet>=0.95*max(itemp_in.SP.FT_SP))))-itemp_in.in.t_vec(2);
-        %itemp_fdata(itemp_icount,2)= itemp_temp_i;
         itemp_fdata(itemp_icount,2)=temp_out.t(min(find(temp_out.Fnet(itemp_ktemp:end)>=0.95*max(itemp_in.SP.FT_SP))))-itemp_in.in.t_vec(2);
         itemp_fdata(itemp_icount,3)= itemp_in.controller.IWP_gain;
         itemp_fdata(itemp_icount,4)=(temp_out.CV_fdbk(end)-temp_out.CV_dmd(end))/temp_out.CV_dmd(end);
