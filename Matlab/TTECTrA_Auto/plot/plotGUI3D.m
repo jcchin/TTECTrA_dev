@@ -526,7 +526,7 @@ if handles.check2 %op_points
     a = sort(handles.Alpha_index);
 
     for i=1:length(a)
-        b = ones([(length(wc_op)/length(a)),1])*a(i);
+        b = ones([floor((length(wc_op)/length(a))),1])*a(i);
         alph = vertcat(alph,b); %create the z vector based on alph_index
     end
     %c= str2num(handles.comp.scalar); %only want one (out of 5) column of the '_op' vector
