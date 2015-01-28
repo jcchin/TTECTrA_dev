@@ -50,20 +50,17 @@ for i=1:length(lmdata);
     temp_data(i,2)=lmdata(i).NfRpt;
     temp_data(i,3)=lmdata(i).ytrim(1);
 end
-temp_data
 
 i1=max(find(temp_data(:,3)>min(out.Nf)));
 i2=max(find(temp_data(:,3)>max(out.Nf)));
 
-y1temp=lsim(ss(lmdata(i1).A,lmdata(i1).B,lmdata(i1).C,lmdata(i1).D),(out.Wf_vec-lmdata(i1).utrim),out.t);
+y1temp=lsim(ss(lmdata(i1).A,lmdata(i1).B,lmdata(i1).C,lmdata(i1).D),(out.Wf_vec-lmdata(i1).utrim),out.t)
+
+for i=1:length(y1temp(:,1))
+    y1(i,:)=y1temp(i,:)+lmdata(i1).ytrim';
+end
 
 
-%WTF
-% for i=1:length(y1(:,1))
-%     y1(:,i)=y1temp(:,i)'+lmdata(i1).ytrim;
-% end
-% 
-% 
-% figure(201);
-% plot(out.t, y1(:,1),'c:','Linewidth',2);
+figure(201);
+plot(out.t, y1(:,1),'c:','Linewidth',2);
 
