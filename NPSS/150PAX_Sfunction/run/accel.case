@@ -22,11 +22,17 @@ Ambient.dTs = 0.0;
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
 
+// Turning the VAFN off
+setOption( "switchVAFN", "ON" );
+
+// Turning the VAFN schedule off
+setOption( "switchVAFNSchedule", "OFF" );
+
 // Running for maximum thrust
 PC = 50;
 RunMaxPower();
 // printPride();
-CaseView_SS.update();
+// CaseView_SS.update();
 // page.display();
 
 if(solver.converged == 1 && errHandler.numErrors == 0) {
@@ -45,10 +51,10 @@ if(solver.converged == 1 && errHandler.numErrors == 0) {
 	cout << "\n" << "Maximum fuel flow rate: " << Burner.Wfuel << endl;
 
 	// Recording the transient driver for the maximum power setting
-	driver_max = Fan.NcPct;
+	// driver_max = Fan.NcPct;
 	// driver_max = LPC.NcPct;
 	// driver_max = HPC.NcPct;
-	// driver_max = Burner.Wfuel
+	driver_max = Burner.Wfuel;
 
 }else{
 
@@ -59,9 +65,9 @@ if(solver.converged == 1 && errHandler.numErrors == 0) {
 
 // Running for idle
 PC = 21;
-RunIdle();
+run_current_point();
 // printPride();
-CaseView_SS.update();
+// CaseView_SS.update();
 // page.display();
 
 if(solver.converged == 1 && errHandler.numErrors == 0){
@@ -80,10 +86,10 @@ if(solver.converged == 1 && errHandler.numErrors == 0){
 	cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
 
 	// Recording the transient driver for idle
-	driver_min = Fan.NcPct;
+	// driver_min = Fan.NcPct;
 	// driver_min = LPC.NcPct;
 	// driver_min = HPC.NcPct;
-	// driver_min = Burner.Wfuel
+	driver_min = Burner.Wfuel;
 
 }else{
 
@@ -92,7 +98,7 @@ if(solver.converged == 1 && errHandler.numErrors == 0){
 
 }
 
-CaseView_SS.display();
+// CaseView_SS.display();
 
 //-------------------------------------------------------------------------------------------------
 // Running transient at SLS
@@ -117,7 +123,7 @@ transient.stopTime = 20.0;
 // transient.stopTime = 0.015;
 
 // Solver tolerance scalar for transient run
-transient.toleranceScaleFactor=1000.0;
+transient.toleranceScaleFactor=100.0;
 
 // transient.maxIterations = 5;
 
@@ -141,6 +147,8 @@ cout << "NH: " << HP_Shaft.Nmech << endl;
 cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
 
 cout << "\n-------------------------------------------------------------------------------------------------" << endl;
+
+/*
 
 //-------------------------------------------------------------------------------------------------
 // Steep ramp in demand with acceleration schedule and HPC stall constraint
@@ -170,7 +178,7 @@ Ambient.dTs = 50;
 PC = 50;
 RunMaxPower();
 // printPride();
-CaseView_SS.update();
+// CaseView_SS.update();
 // page.display();
 
 if(solver.converged == 1 && errHandler.numErrors == 0) {
@@ -189,10 +197,10 @@ if(solver.converged == 1 && errHandler.numErrors == 0) {
 	cout << "\n" << "Maximum fuel flow rate: " << Burner.Wfuel << endl;
 
 	// Recording the transient driver for the maximum power setting
-	driver_max = Fan.NcPct;
+	// driver_max = Fan.NcPct;
 	// driver_max = LPC.NcPct;
 	// driver_max = HPC.NcPct;
-	// driver_max = Burner.Wfuel
+	driver_max = Burner.Wfuel;
 
 }else{
 
@@ -203,9 +211,9 @@ if(solver.converged == 1 && errHandler.numErrors == 0) {
 
 // Running for idle
 PC = 21;
-RunIdle();
+run_current_point();
 // printPride();
-CaseView_SS.update();
+// CaseView_SS.update();
 // page.display();
 
 if(solver.converged == 1 && errHandler.numErrors == 0){
@@ -224,10 +232,10 @@ if(solver.converged == 1 && errHandler.numErrors == 0){
 	cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
 
 	// Recording the transient driver for idle
-	driver_min = Fan.NcPct;
+	// driver_min = Fan.NcPct;
 	// driver_min = LPC.NcPct;
 	// driver_min = HPC.NcPct;
-	// driver_min = Burner.Wfuel
+	driver_min = Burner.Wfuel;
 
 }else{
 
@@ -236,7 +244,7 @@ if(solver.converged == 1 && errHandler.numErrors == 0){
 
 }
 
-CaseView_SS.display();
+// CaseView_SS.display();
 
 //-------------------------------------------------------------------------------------------------
 // Running transient at SL hot day take off
@@ -259,7 +267,7 @@ cout << "\nRunning transient now!\n" << endl;
 transient.stopTime = 20.0;
 
 // Solver tolerance scalar for transient run
-transient.toleranceScaleFactor=5000.0;
+transient.toleranceScaleFactor=100.0;
 
 run();
 // printPride();
@@ -309,7 +317,7 @@ Ambient.alt = 6000;
 PC = 50;
 RunMaxPower();
 // printPride();
-CaseView_SS.update();
+// CaseView_SS.update();
 // page.display();
 
 if(solver.converged == 1 && errHandler.numErrors == 0) {
@@ -328,10 +336,10 @@ if(solver.converged == 1 && errHandler.numErrors == 0) {
 	cout << "\n" << "Maximum fuel flow rate: " << Burner.Wfuel << endl;
 
 	// Recording the transient driver for the maximum power setting
-	driver_max = Fan.NcPct;
+	// driver_max = Fan.NcPct;
 	// driver_max = LPC.NcPct;
 	// driver_max = HPC.NcPct;
-	// driver_max = Burner.Wfuel
+	driver_max = Burner.Wfuel;
 
 }else{
 
@@ -344,7 +352,7 @@ if(solver.converged == 1 && errHandler.numErrors == 0) {
 PC = 21;
 RunIdle();
 // printPride();
-CaseView_SS.update();
+// CaseView_SS.update();
 // page.display();
 
 if(solver.converged == 1 && errHandler.numErrors == 0){
@@ -363,10 +371,10 @@ if(solver.converged == 1 && errHandler.numErrors == 0){
 	cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
 
 	// Recording the transient driver for idle
-	driver_min = Fan.NcPct;
+	// driver_min = Fan.NcPct;
 	// driver_min = LPC.NcPct;
 	// driver_min = HPC.NcPct;
-	// driver_min = Burner.Wfuel
+	driver_min = Burner.Wfuel;
 
 }else{
 
@@ -375,7 +383,7 @@ if(solver.converged == 1 && errHandler.numErrors == 0){
 
 }
 
-CaseView_SS.display();
+// CaseView_SS.display();
 
 //-------------------------------------------------------------------------------------------------
 // Running transient at 6,000 ft hot day take off
@@ -432,3 +440,5 @@ Ambient.alt = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 RunMaxPower();
+
+*/

@@ -5,8 +5,15 @@
 //-------------------------------------------------------------------------------------------------
 real max_Ps3_limit, max_Nc_limit, max_Nf_limit; // Defining the necessary variables for maximum limits
 
+// Turning on the guess tables and declaring PC as the power management variable
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
+
+// Turning the VAFN off
+setOption( "switchVAFN", "ON" );
+
+// Turning the VAFN schedule off
+setOption( "switchVAFNSchedule", "OFF" );
 
 PC = 50;
 

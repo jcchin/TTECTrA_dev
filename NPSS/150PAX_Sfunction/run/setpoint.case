@@ -9,6 +9,12 @@
 	setOption( "switchGuess", "ON" );
 	setOption( "switchGuessType", "FanNcPct" );
 
+	// Turning the VAFN off
+	setOption( "switchVAFN", "ON" );
+
+	// Turning the VAFN schedule off
+	setOption( "switchVAFNSchedule", "OFF" );
+	
 	//Setup up steady state solver
 	TargetThrust = 20000;
 	//RunMaxPower();
@@ -36,6 +42,13 @@
 	// Set the guess logic as you want
 	setOption( "switchGuess", "ON" );
 	setOption( "switchGuessType", "PC" );
+	
+	// Turning the VAFN off
+	setOption( "switchVAFN", "ON" );
+
+	// Turning the VAFN schedule off
+	setOption( "switchVAFNSchedule", "OFF" );
+	
 	PC = 50;
 	RunMaxPower();
 

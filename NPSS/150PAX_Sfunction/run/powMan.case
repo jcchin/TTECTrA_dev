@@ -4,6 +4,12 @@
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
 
+// Turning the VAFN off
+setOption( "switchVAFN", "ON" );
+
+// Turning the VAFN schedule off
+setOption( "switchVAFNSchedule", "OFF" );
+
 //-------------------------------------------------------------------------------------------------
 // Power Management Runs
 //-------------------------------------------------------------------------------------------------

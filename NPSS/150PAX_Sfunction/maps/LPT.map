@@ -130,13 +130,9 @@ Subelement TurbineEfficiencyMap S_eff {
 
    PgeomDesign.interp = "linear";
    PgeomDesign.extrap = "none";
-   
    NcDes.interp = "linear";
    NcDes.extrap = "none";
-   // NcDes.extrap = "lagrange2";
-   
    PRdes.interp = "linear";
-   // PRdes.extrap = "lagrange2";
    PRdes.extrap = "none";
  }
 
@@ -236,16 +232,9 @@ Subelement TurbineEfficiencyMap S_eff {
          }
          PgeomDesign.interp = "linear";
          PgeomDesign.extrap = "none";
-         
          NcDes.interp = "linear";
-         // NcDes.extrap = "linear";
          NcDes.extrap = "none";
-         
          PRdes.interp = "linear";
-         PRdes.extrap = "none";
-         // PRdes.extrap = "linear";
-
-         }
+         PRdes.extrap = "none";      }
    }
-
 }

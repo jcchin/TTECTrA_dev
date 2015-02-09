@@ -1,0 +1,217 @@
+#ifndef __COMPRESSORREYNOLDSEFFECTS_MOD__
+#define __COMPRESSORREYNOLDSEFFECTS_MOD__
+
+// ****************************************************************************
+// * NASA Glenn Research Center
+// * 21000 Brookpark Rd
+// * Cleveland, OH 44135
+// *
+// ****************************************************************************
+
+#include <InterpIncludes.ncp>
+
+extern real WcDes;
+extern real ReDes;
+extern real s_WcRe;
+extern real s_effRe;
+
+class CompressorReynoldsEffects_mod extends Subelement {
+
+//------------------------------------------------------------
+//     ******* DOCUMENTATION *******
+//------------------------------------------------------------
+
+  title = "";
+
+  description = isA() + " calculates the effects of changing Reynolds number on performance 
+for compressor efficiency maps.";
+
+  usageNotes = isA() + 
+"
+
+- This subelement is designed to calculate the effects of changing
+Reynolds numbers on compressor efficiency map.  The higher level 
+element supplies values of corrected weight flow and Reynolds 
+number at design.  The subelement returns an efficiency scalar 
+and a weight flow scalar representing the Reynolds effects.  
+These scalars are used to adjust the map calculated values.  
+
+- The subelement works by taking map values of corrected weight flow 
+and Reynolds number at design and adjusting them for the actual inlet 
+conditions.       
+
+- The methods used to calculate these corrections are based on 
+correlations derived in the Reynolds Correction Appendix.";
+
+  background = "";
+
+//------------------------------------------------------------
+//     ******* SETUP VARIABLES ********
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+//   ******* OPTION VARIABLE SETUP *******
+//------------------------------------------------------------
+
+  Option switchDes {
+    allowedValues = { DESIGN, OFFDESIGN };
+    description = "Design mode switch indicator [ DESIGN / OFFDESIGN]";
+    rewritableValues = FALSE;  // Enables converter optimization.
+    trigger = FALSE;
+  }
+
+//------------------------------------------------------------
+// ****** SETUP PORTS, FLOW STATIONS, SOCKETS, TABLES ********
+//------------------------------------------------------------
+
+// FLUID PORTS
+
+// FUEL PORTS
+
+// BLEED PORTS
+
+// THERMAL PORTS
+
+// MECHANICAL PORTS
+
+// FLOW STATIONS
+  FlowStation Fl_Iint {
+    description = "internal inlet flow station"; 
+  }  
+  
+// SOCKETS
+  addInterface(COMPRESSOR_REYNOLDS_EFFECTS);
+
+// TABLES
+
+
+//------------------------------------------------------------
+// ******* INTERNAL SOLVER SETUP *******
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+//  ******  ADD SOLVER INDEPENDENTS & DEPENDENTS  ******
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// ******* VARIABLE CHANGED METHODOLOGY *******
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+//   ******* PERFORM ENGINEERING CALCULATIONS *******
+//------------------------------------------------------------
+  void calculate() {
+
+    Fl_Iint.copyFlowStatic("Fl_I");	 
+	 //------------------------------------------------------------
+    // get variables from parent
+    //------------------------------------------------------------
+       real WcDes_local;
+	 real ReDes_local;
+
+    //------------------------------------------------------------
+    // create locals for variables returned to parent
+    //------------------------------------------------------------
+	 real s_WcRe_ret, s_effRe_ret;
+	 
+    //------------------------------------------------------------
+    // get the inlet flow conditions from parent   
+    //------------------------------------------------------------	 
+    real TtFlowIn = Fl_Iint.Tt;
+    real PtFlowIn = Fl_Iint.Pt;
+    real WflowIn =  Fl_Iint.W;
+    
+    //------------------------------------------------------------
+    // calculate entrance variables
+    //------------------------------------------------------------
+    real  delta = PtFlowIn / C_PSTD ;
+    real  theta = TtFlowIn / C_TSTD ;
+    real  Wc = WflowIn * sqrt(theta) / delta; 
+    
+    //----------------------------------------------------------------------
+    // the Reynolds number index is calculated using Sutherland's 
+    // approximation for viscosity
+    //----------------------------------------------------------------------
+     
+    real RNI = ( ( TtFlowIn + 198.72 ) * delta ) / ( ( C_TSTD + 198.72 ) * 
+						     theta * theta ) ;	  
+	 
+    if ( switchDes == DESIGN) {
+      RNI_des = RNI; 
+    }		
+      WcDes_local = WcDes;
+	ReDes_local = ReDes;	
+	
+
+    //-----------------------------------------------------------------------
+    // The term ReConst is a constant which can be calculated from the 
+    // geometry of the compressor if it is known.  However, in general it 
+    // is obtained from the Reynolds number at the design point.  At the 
+    // design point the RNI is set equal to unity and the design corrected 
+    // flow and Re are used to solve ReConst.
+    //-----------------------------------------------------------------------
+    real ReConst = ReDes_local / WcDes_local ;
+	 
+    //------------------------------------------------------------------------
+    // Determine Reynolds Number corrections on flow and efficiency
+    // The corrections to flow and efficiency are obtained by making 
+    // a dual read of an empirical curve.
+    //------------------------------------------------------------------------
+    //------------------------------------------------------------------------
+    // Calculate the Reynolds number.  The two Reynolds number's are both
+    // at the current value of the corrected flow, however, one is for a
+    // Reynolds number index of unity (i.e., the value of D for the 
+    // uncorrected map point) and the second is for the current value of 
+    // the Reynolds number index.
+    //------------------------------------------------------------------------
+    
+    // real  Re1 = ReConst * Wc * 1.0 ;
+    real  Re1 = ReConst * Wc * RNI_des ;
+    real  Re2 = ReConst * Wc * RNI ;
+	
+    //------------------------------------------------------------------------
+    // read the empirical curve approximated by the following expression
+    //------------------------------------------------------------------------
+    
+    real  D1 = 3600. / Re1 - 0.003 ;
+    real  D2 = 3600. / Re2 - 0.003 ;
+    
+    //------------------------------------------------------------------------
+    // calculate the difference between the corrections.  The difference 
+    // in the two values of D is taken to be the percent correction
+    // in flow and efficiency.
+    //------------------------------------------------------------------------
+    
+    real  DVSR = D2 - D1 ;
+	 
+    //------------------------------------------------------------
+    //calculate the corrected flow and efficiency scalars
+    //------------------------------------------------------------
+    s_WcRe_ret  = 1. - DVSR ;
+    s_effRe_ret  = 1. - DVSR ;
+
+    //------------------------------------------------------------
+    // return variables to parent
+    //------------------------------------------------------------
+     s_WcRe = s_WcRe_ret;
+     s_effRe = s_effRe_ret;
+
+     //s_WcRe = 1.0; // turns off effect
+     //s_effRe = 1.0; // turns off effect
+     
+     //cout << "switchDes = " << switchDes << "\n";    
+     //cout << "RNI_des = " << RNI_des << "\n";    
+     //cout << "ReConst = " << ReConst << "\n";    
+     //cout << "ReDes   = " << ReDes << "\n";    
+     //cout << "WcDes   = " << WcDes << "\n"; 	  
+     //cout << "ReDes   = " << ReDes_local << "\n";    
+     //cout << "WcDes   = " << WcDes_local<< "\n"; 
+     //cout << "delta   = " << delta << "\n"; 
+        
+// must pass design Re and Wc to other assemblies !!!
+
+  }
+}
+
+#endif
+

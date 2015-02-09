@@ -1,0 +1,28 @@
+// Note Table DischargeCoeff is defined in the parent element
+
+class CDTH extends Subelement {
+
+  // I N P U T   P A R A M E T E R S
+
+  real PR_local {
+	 value = 0.0 ;
+	 IOstatus = "input" ;
+	 description = "Nozzle pressure ratio" ;
+	 units = NONE; 
+  }
+
+  // O U T P U T   P A R A M E T E R S
+ 
+  // O P T I O N   A N D   T R I G G E R   P A R A M E T E R S
+
+  // No mode variables. Subelement doesn't have a DESIGN fork, so
+  // don't define the variable.
+ 
+ void calculate() {	
+
+            PR_local = PR;   // PR calculated in parent element nozzle
+	    CdTh = DischargeCoeff (PR_local) ;
+
+  } // end execute()
+
+} // end CDTH
