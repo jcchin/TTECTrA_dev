@@ -11,7 +11,7 @@
 	SS_Setup();
 	SP_Remove();
 	int z;
-	cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
+	// cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
 	for ( z=0; z < Fan_NcPct_targets.entries(); ++z ) { //loop through Fan_NcPct_targets
 	    Fan_NcPct_target = Fan_NcPct_targets[z];
 	    CASE++;
@@ -35,7 +35,13 @@
 	// Setting up the guess logic
 	setOption( "switchGuess", "ON" );
 	setOption( "switchGuessType", "PC" );
+	
+	// Turning the VAFN on or off
+	setOption( "switchVAFN", "ON" );
 
+	// Turning the VAFN schedule on or off
+	setOption( "switchVAFNSchedule", "OFF" );
+	
 	real alt_targets[]={0,    0, 5000, 10000, 15000, 20000, 25000, 30000, 35000};
 	real MN_targets[]= {0, 0.25, 0.40,  0.50,  0.65,  0.65,  0.65,  0.75,  0.80};
 	real dTs_targets[]={0,   50,    0,     0,     0,     0,     0,     0,     0};
@@ -61,7 +67,8 @@
 		}
 
 		PC = 21;
-		RunIdle();
+		// RunIdle();
+		run_current_point();
 		linear_model();
 	}
 	// Returning back to SLS maximum thrust condition

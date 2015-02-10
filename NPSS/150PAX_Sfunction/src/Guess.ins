@@ -5,7 +5,7 @@ Option switchGuess {
 }
 
 Option switchGuessType {
-	allowedValues = { "PC", "FanNcPct", "LPCNcPct", "HPCNcPct", "Wfuel", "FAR", "EPR" }
+	allowedValues = { "PC", "FanNcPct", "LPCNcPct", "HPCNcPct", "Wfuel", "FAR", "EPR", "Fnet" }
 	IOstatus = "input";
 	trigger=FALSE;
 }
@@ -21,15 +21,16 @@ Option switchGuessType {
 #include <LPTParm.map>
 #include <HPNmech.map>
 #include <LPNmech.map>
+#include <delta_s_Ath.map>
 
 void calculate() {
 
 	if (switchGuess == "ON" && switchDes == "OFFDESIGN"){
 
 		if(getPassType() <= 0) {
-		
+
 			if(switchGuessType == "PC") {
-			
+
 				Ambient.W = TB_Ambient_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
 				Splitter.BPR = TB_BPR_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
 				Fan.S_map.RlineMap = TB_FanRline_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
@@ -41,11 +42,12 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
 				HP_Shaft.Nmech = TB_HPNmech_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
 				LP_Shaft.Nmech = TB_LPNmech_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
-			
+				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
+
 			}
-			
+
 			else if(switchGuessType == "FanNcPct") {
-			
+
 				Ambient.W = TB_Ambient_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
 				Splitter.BPR = TB_BPR_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
 				Fan.S_map.RlineMap = TB_FanRline_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
@@ -57,11 +59,12 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
 				HP_Shaft.Nmech = TB_HPNmech_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
 				LP_Shaft.Nmech = TB_LPNmech_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
-				
+				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
+
 			}
-		
+
 			else if(switchGuessType == "LPCNcPct") {
-			
+
 				Ambient.W = TB_Ambient_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
 				Splitter.BPR = TB_BPR_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
 				Fan.S_map.RlineMap = TB_FanRline_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
@@ -73,11 +76,12 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
 				HP_Shaft.Nmech = TB_HPNmech_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
 				LP_Shaft.Nmech = TB_LPNmech_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
-				
+				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
+
 			}
-			
+
 			else if(switchGuessType == "HPCNcPct") {
-			
+
 				Ambient.W = TB_Ambient_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
 				Splitter.BPR = TB_BPR_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
 				Fan.S_map.RlineMap = TB_FanRline_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
@@ -89,11 +93,12 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
 				HP_Shaft.Nmech = TB_HPNmech_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
 				LP_Shaft.Nmech = TB_LPNmech_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
-			
+				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
+
 			}
-			
+
 			else if(switchGuessType == "Wfuel") {
-			
+
 				Ambient.W = TB_Ambient_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
 				Splitter.BPR = TB_BPR_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
 				Fan.S_map.RlineMap = TB_FanRline_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
@@ -105,11 +110,12 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
 				HP_Shaft.Nmech = TB_HPNmech_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
 				LP_Shaft.Nmech = TB_LPNmech_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
-			
+				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
+
 			}
-			
+
 			else if(switchGuessType == "FAR") {
-			
+
 				Ambient.W = TB_Ambient_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,far_pc);
 				Splitter.BPR = TB_BPR_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,far_pc);
 				Fan.S_map.RlineMap = TB_FanRline_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,far_pc);
@@ -121,11 +127,12 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,far_pc);
 				HP_Shaft.Nmech = TB_HPNmech_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,far_pc);
 				LP_Shaft.Nmech = TB_LPNmech_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,far_pc);
-			
+				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,FAR);
+
 			}
-			
+
 			else if(switchGuessType == "EPR") {
-			
+
 				Ambient.W = TB_Ambient_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
 				Splitter.BPR = TB_BPR_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
 				Fan.S_map.RlineMap = TB_FanRline_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
@@ -137,24 +144,26 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
 				HP_Shaft.Nmech = TB_HPNmech_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
 				LP_Shaft.Nmech = TB_LPNmech_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
-				
+				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
+
 			}
-		
-			// Ambient.W = TB_Ambient(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
-			// Splitter.BPR = TB_BPR(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
 
-			// Fan.S_map.RlineMap = TB_FanRline(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
-			// LPC.S_map.RlineMap = TB_LPCRline(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
-			// HPC.S_map.RlineMap = TB_HPCRline(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			else if(switchGuessType == "Fnet") {
 
-			// Burner.FAR = TB_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
-			// Burner.Wfuel = TB_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+				Ambient.W = TB_Ambient_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				Splitter.BPR = TB_BPR_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				Fan.S_map.RlineMap = TB_FanRline_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				LPC.S_map.RlineMap = TB_LPCRline_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				HPC.S_map.RlineMap = TB_HPCRline_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				Burner.FAR = TB_FAR_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				Burner.Wfuel = TB_Wfuel_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				HPT.S_map.parmMap = TB_HPTParm_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				LPT.S_map.parmMap = TB_LPTParm_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				HP_Shaft.Nmech = TB_HPNmech_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				LP_Shaft.Nmech = TB_LPNmech_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
 
-			// HPT.S_map.parmMap = TB_HPTParm(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
-			// LPT.S_map.parmMap = TB_LPTParm(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
-
-			// HP_Shaft.Nmech = TB_HPNmech(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
-			// LP_Shaft.Nmech = TB_LPNmech(Ambient.alt,Ambient.MN,Ambient.dTs,PC,FanNcPct,LPCNcPct,HPCNcPct,Wfuel,far_pc,EPR);
+			}
 
 		}
 

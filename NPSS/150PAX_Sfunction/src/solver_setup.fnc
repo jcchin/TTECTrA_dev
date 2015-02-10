@@ -60,7 +60,7 @@ void transient_setup() {
     //solver.addIndependent("trans_indep2");
 
 	// Turning on the guess logic for the initialization run
-	// setOption( "switchGuess", "ON" );
+	setOption( "switchGuess", "ON" );
 	// setOption( "switchGuessType", "PC" );
 	
 	// PC = 25;
@@ -70,11 +70,12 @@ void transient_setup() {
 	// setOption( "switchGuessType", "FanNcPct" );
 	// FanNcPct = transientDriver(0);
 	
-	// setOption( "switchGuessType", "Wfuel" );    
+	setOption( "switchGuessType", "Wfuel" );    
+	Wfuel = transientDriver(0.0);
 	
-	// solver.forceNewJacobian = TRUE;
+	solver.forceNewJacobian = TRUE;
 	time = 0.;
-	// run();
+	run();
 	
 	// Adding transient demand variable to the solver
     solver.addIndependent("trans_indep"); 
@@ -127,12 +128,25 @@ void RunMaxPower(){
 	
 	// Setting up the solver and adding the 
 	// additional independent and dependent
-	autoSolverSetup(); 
+	autoSolverSetup();
+	
+	Fan_Max_Nc.addConstraint("Tt4_Max_Limit","MAX",1,1);
+	
 	solver.addIndependent( "FAR" );
 	solver.addDependent( "Fan_Max_Nc" );
 	
+	// Fan_Rline_Target.addConstraint("Fan_SMW_Limit", "MIN", 1, 1);
+	// Fan_Rline_Target.addConstraint("Byp_Nozz_Min_Area", "MIN", 2, 1);
+	// Fan_Rline_Target.addConstraint("Byp_Nozz_Max_Area", "MAX", 2, 1);
+	
+	// solver.addIndependent( "Byp_Nozz_VA" );
+	// solver.addDependent( "Fan_Rline_Target" );
+	
 	// Running the case
 	run();
+	
+	Fan_Max_Nc.removeAllConstraints();
+	// Fan_Rline_Target.removeAllConstraints();
 	
 	// Storing the maximum thrust
 	MaxThrust = Perf.myFn;

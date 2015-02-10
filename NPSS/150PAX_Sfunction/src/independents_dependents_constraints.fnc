@@ -37,6 +37,17 @@ Independent HPT_Eff {
    
 }
 
+// Bypass nozzle variable area independent
+Independent Byp_Nozz_VA {
+	
+	varName = "Byp_Nozz.delta_s_Ath";
+	dxLimitType = "ABSOLUTE";
+	dxLimit = 0.5;
+	perturbationType = "ABSOLUTE";
+	// perturbation = 0.02;
+	
+}
+
 //-------------------------------------------------------------------------------------------------
 // Dependents 
 //-------------------------------------------------------------------------------------------------
@@ -85,11 +96,19 @@ Dependent Run_Condition{
 
 }
 
-// Maximum fan corrected speed target
+// Maximum fan corrected percent speed target
 Dependent Fan_Max_Nc{
 
     eq_lhs = "Fan.NcPct";
     eq_rhs = "100.0";
+
+}
+
+// Fan R-line target
+Dependent Fan_Rline_Target{
+
+    eq_lhs = "Fan.S_map.RlineMap";
+    eq_rhs = "2.2";
 
 }
 
@@ -157,6 +176,22 @@ Dependent FAR_Idle{
 	
 } 
 
+// Bypass nozzle minimum area
+Dependent Byp_Nozz_Min_Area {
+	
+	eq_lhs = "Byp_Nozz.delta_s_Ath";
+	eq_rhs = "-0.50";
+	
+}
+
+// Bypass nozzle maximum area
+Dependent Byp_Nozz_Max_Area {
+	
+	eq_lhs = "Byp_Nozz.delta_s_Ath";
+	eq_rhs = "0.50";
+	
+}
+
 //-------------------------------------------------------------------------------------------------
 // Constraints 
 //-------------------------------------------------------------------------------------------------
@@ -186,6 +221,18 @@ Independent trans_indep {
 //-------------------------------------------------------------------------------------------------
 // Dependents 
 //-------------------------------------------------------------------------------------------------
+#ifdef TRANSIENT
+
+Dependent trans_Condition {
+
+    eq_lhs = "Burner.Wfuel";
+    eq_rhs = "transientDriver_scaled(time)";
+	
+}
+
+#else
+
+
 // Transient dependent - fan percent corrected speed
  // Dependent trans_Condition {
 
@@ -211,19 +258,14 @@ Independent trans_indep {
 // }
 
 // Transient dependent - fuel flow rate
-// Dependent trans_Condition {
-
-    // eq_lhs = "Burner.Wfuel";
-    // eq_rhs = "transientDriver(time)";
-	
-// }
-
 Dependent trans_Condition {
 
     eq_lhs = "Burner.Wfuel";
-    eq_rhs = "transientDriver_scaled(time)";
+    eq_rhs = "transientDriver(time)";
 	
 }
+
+#endif
 
 //-------------------------------------------------------------------------------------------------
 // Constraints 
@@ -352,7 +394,7 @@ Dependent Tt3_Max_Limit {
 Dependent Tt4_Max_Limit {
 
     eq_lhs = "Burner.Fl_O.Tt";
-    eq_rhs = "3000";
+    eq_rhs = "3550";
 
 }
 
