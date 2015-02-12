@@ -440,6 +440,7 @@ void linear_model(){
 
 	// Generating linear model
 	lin_mod.generate();
+	// lin_mod.execute();
 	
 	// Outputting linear model generation results to linearModels.out file
 	linear_model_output();

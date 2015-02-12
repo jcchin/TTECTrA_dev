@@ -5,8 +5,15 @@ real min_RU_limit, min_Ps3_limit; // Defining the necessary variables for minimu
 //-------------------------------------------------------------------------------------------------
 // Minimum RU limit case
 //-------------------------------------------------------------------------------------------------
+// Turning on the guess tables and declaring PC as the power management variable
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
+
+// Turning the VAFN off
+setOption( "switchVAFN", "ON" );
+
+// Turning the VAFN schedule off
+setOption( "switchVAFNSchedule", "OFF" );
 
 // Use PC in the guess logic for idle definition
 PC = 21;

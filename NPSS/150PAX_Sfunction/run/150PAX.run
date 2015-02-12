@@ -56,6 +56,9 @@ Ambient.alt = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 
+// Turning on the guess logic
+setOption( "switchGuess", "ON" ); //merge?
+
 // Switching the guess logic type to Fan NcPct
 setOption( "switchGuessType", "FanNcPct" );
 
@@ -68,22 +71,22 @@ RunMaxPower();
 
 // The case file for cycle maximum limits
 #ifdef MAXLIMITSCHEDULE
- #include <maxLimit.case>
+	#include <maxLimit.case>
 #endif
 
 // The case file for cycle minimum limits
 #ifdef MINLIMITSCHEDULE
- #include <minLimit.case>		
+	#include <minLimit.case>		
 #endif
 
 // The case file for creating a flight condition setpoint for  formatted for Matlab
 #ifdef SETPNT
- #include <setpoint.case>		
+	#include <setpoint.case>		
 #endif
 
 // The case file for creating setpoint values throughout the entire flight envelope
 #ifdef FLTENVSETPNT
- #include <powMan.case>		
+	#include <powMan.case>		
 #endif
 
 // The case file for creating the acceleration schedule and minimum RU limit in
@@ -95,13 +98,13 @@ RunMaxPower();
 // The case file for running the model in transient with an acceleration schedule 
 // at SLS, SL hot day take off, and 6,000 ft hot day take off
 #ifdef ACCELSCHEDULE
- #include <accel.case>		
+	#include <accel.case>
 #endif
 
 // The case file for creating linear models at several flight conditions throughout
 // the flight envelope and putting these linear model into Matlab format
 #ifdef LINEARMODEL
- #include <linearModel.case>		
+	#include <linearModel.case>		
 #endif
 
 // The case file for running the NPSS model in Matlab Simulink
@@ -118,4 +121,8 @@ RunMaxPower();
 	#include <matlab_model_info.fnc>
 	matlab_model_info();
 #endif
-	
+
+// The case file for generating the transient VAFN schedule
+#ifdef NOZZLESCHEDULE
+	#include <nozzle_schedule.case>		
+#endif

@@ -213,5 +213,4 @@ Subelement TurbineEfficiencyMap S_eff {
          PRdes.interp = "linear";
          PRdes.extrap = "none";      }
    }
-
 }

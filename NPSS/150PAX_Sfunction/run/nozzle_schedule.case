@@ -1,0 +1,490 @@
+// File for generating the fan variable area nozzle schedule
+
+// Defining the fan variable area nozzle independent and dependent
+
+// Cold throat area for the fan nozzle
+Independent FVAN {
+
+	// varName = "Byp_Nozz.s_AthDmd";
+	varName = "Byp_Nozz.delta_s_Ath";
+   
+} 
+
+// Constant fan Rline for the variable area nozzle
+Dependent Fan_Rline_FVAN {
+
+    eq_lhs = "Fan.S_map.RlineMap";
+	eq_rhs = "2.2";
+
+}
+
+// Constant fan SMN for the variable area nozzle
+Dependent Fan_SMN_FVAN {
+
+	eq_lhs = "Fan.SMN";
+	eq_rhs = "10.0";
+
+}
+
+// Constant fan SMW for the variable area nozzle
+Dependent Fan_SMW_FVAN {
+
+	eq_lhs = "Fan.SMW";
+	eq_rhs = "10.0";
+
+}
+
+// Minimum fan variable area nozzle
+Dependent FVAN_Min {
+
+	// eq_lhs = "Byp_Nozz.s_Ath";
+	eq_lhs = "Byp_Nozz.delta_s_Ath";
+	eq_rhs = "-0.50";
+
+}
+
+// Maximum fan variable area nozzle
+Dependent FVAN_Max {
+
+	eq_lhs = "Byp_Nozz.delta_s_Ath";
+	eq_rhs = "0.50";
+
+}
+
+Dependent T4_Limit {
+	
+	eq_lhs = "FS_4.Tt";
+	eq_rhs = "3550";
+	
+}
+
+// Adding the variable area constraints for the fan R-line condition
+Fan_Rline_FVAN.addConstraint("FVAN_Min", "MIN", 2, 1);
+Fan_Rline_FVAN.addConstraint("FVAN_Max", "MAX", 2, 1);
+Fan_Rline_FVAN.addConstraint("Fan_SMW_FVAN", "MIN", 1, 1);
+
+// Adding the variable area constraints for the fan SMW condition
+// Fan_SMW_FVAN.addConstraint("FVAN_Min", "MIN");
+// Fan_SMW_FVAN.addConstraint("FVAN_Max", "MAX");
+
+// Switching to off-design mode
+setOption( "switchDes", "OFFDESIGN" );
+setOption( "solutionMode", "STEADY_STATE" );
+
+// Turning on the guess logic
+setOption( "switchGuess", "ON" );
+setOption( "switchGuessType", "PC" );
+
+setOption( "switchVAFN", "ON" );
+setOption( "switchVAFNSchedule", "OFF" );
+
+// Clearing the solver
+solver.clear();
+
+// Switching the burner input to fuel to air ratio
+Burner.switchBurn = "FAR";
+
+// Automatically setting up the solver
+autoSolverSetup();
+
+// cout << "\nIndependents are as follows:" << endl;
+// cout << solver.list( "Independent", FALSE ) << endl;
+
+// cout << "\nDependents are as follows:" << endl;
+// cout << solver.list( "Dependent", FALSE ) << endl;
+
+// Setting the guess table variable
+PC = 50;
+
+// Running the model
+run();
+
+// Turning off the guess logic for the fan variable area nozzle run 
+setOption( "switchGuess", "OFF" );
+
+// Adding the independent and dependent to the solver for the fan variable area nozzle run
+solver.addIndependent("FVAN");
+solver.addDependent("Fan_Rline_FVAN");
+
+TargetThrust = Perf.myFn;
+// Adding the FAR independent and thrust dependent to the solver
+solver.addIndependent("FAR");
+solver.addDependent("Run_Condition_Thrust");
+
+// Running the model
+run();
+
+// Printing the variables to screen for the fan variable area nozzle case
+cout << "\nCold throat area: " << Byp_Nozz.AthCold << endl; 
+cout << "Throat area: " << Byp_Nozz.Ath << endl;
+cout << "Effective throat area: " << Byp_Nozz.AeTh << endl;
+cout << "Variable fan nozzle throat area scalar: " << Byp_Nozz.s_Ath << endl;
+// cout << "Throat discharge coefficient: " << Byp_Nozz.CdTh << endl;
+cout << "Net thrust: " << Perf.myFn << endl;
+cout << "Fuel flow rate: " << Burner.Wfuel << endl;
+cout << "Combustor Exit Temperature (T4): " << FS_4.Tt << endl;
+cout << "Thermal efficiency: " << Perf.Thrml_Eff << endl;
+// cout << "Propulsive efficiency: " << Perf.Prop_Eff << endl;
+// cout << "Overall efficiency: " << Perf.Thrml_Eff * Perf.Prop_Eff << endl; 
+cout << "Fan PR: " << Fan.PR << endl;
+cout << "Fan efficiency: " << Fan.eff << endl;
+cout << "Fan mass flow rate: " << Fan.Wc << endl;
+cout << "Fan percent corrected speed: " << Fan.NcPct << endl;
+cout << "Fan speed stall margin: " << Fan.SMN << endl;
+cout << "Fan mass flow rate stall margin: " << Fan.SMW << endl;
+cout << "Fan Rline: " << Fan.S_map.RlineMap << endl;
+
+// printPride();
+
+// Removing the independent and dependent for the fan variable area nozzle run from the solver
+solver.removeIndependent("FVAN");
+solver.removeDependent("Fan_Rline_FVAN");
+
+// Removing the FAR independent and thrust dependent from the solver
+solver.removeIndependent("FAR");
+solver.removeDependent("Run_Condition_Thrust");
+
+// Setting the fan nozzle variable area scalar back to its default value
+Byp_Nozz.delta_s_Ath = 0.0;
+
+// Turning on the guess logic for the guess table case 
+setOption( "switchGuess", "ON" );
+
+// Setting the guess table variable
+PC = 45;
+
+// Running the model
+run();
+
+// Turning off the guess logic for the fan variable area nozzle run 
+setOption( "switchGuess", "OFF" );
+
+// Adding the independent and dependent to the solver for the fan variable area nozzle run
+solver.addIndependent("FVAN");
+solver.addDependent("Fan_Rline_FVAN");
+
+TargetThrust = Perf.myFn;
+// Adding the FAR independent and thrust dependent to the solver
+solver.addIndependent("FAR");
+solver.addDependent("Run_Condition_Thrust");
+
+// Running the model
+run();
+
+// Printing the variables to screen for the fan variable area nozzle case
+cout << "\nCold throat area: " << Byp_Nozz.AthCold << endl; 
+cout << "Throat area: " << Byp_Nozz.Ath << endl;
+cout << "Effective throat area: " << Byp_Nozz.AeTh << endl;
+cout << "Variable fan nozzle throat area scalar: " << Byp_Nozz.s_Ath << endl;
+// cout << "Throat discharge coefficient: " << Byp_Nozz.CdTh << endl;
+cout << "Net thrust: " << Perf.myFn << endl;
+cout << "Fuel flow rate: " << Burner.Wfuel << endl;
+cout << "Combustor Exit Temperature (T4): " << FS_4.Tt << endl;
+cout << "Thermal efficiency: " << Perf.Thrml_Eff << endl;
+// cout << "Propulsive efficiency: " << Perf.Prop_Eff << endl;
+// cout << "Overall efficiency: " << Perf.Thrml_Eff * Perf.Prop_Eff << endl; 
+cout << "Fan PR: " << Fan.PR << endl;
+cout << "Fan efficiency: " << Fan.eff << endl;
+cout << "Fan mass flow rate: " << Fan.Wc << endl;
+cout << "Fan percent corrected speed: " << Fan.NcPct << endl;
+cout << "Fan speed stall margin: " << Fan.SMN << endl;
+cout << "Fan mass flow rate stall margin: " << Fan.SMW << endl;
+cout << "Fan Rline: " << Fan.S_map.RlineMap << endl;
+
+// printPride();
+
+// Removing the independent and dependent for the fan variable area nozzle run from the solver
+solver.removeIndependent("FVAN");
+solver.removeDependent("Fan_Rline_FVAN");
+
+// Removing the FAR independent and thrust dependent from the solver
+solver.removeIndependent("FAR");
+solver.removeDependent("Run_Condition_Thrust");
+
+// Setting the fan nozzle variable area scalar back to its default value
+Byp_Nozz.delta_s_Ath = 0.0;
+
+// Turning on the guess logic for the guess table case 
+setOption( "switchGuess", "ON" );
+
+// Setting the guess table variable
+PC = 40;
+
+// Running the model
+run();
+
+// Turning off the guess logic for the fan variable area nozzle run 
+setOption( "switchGuess", "OFF" );
+
+// Adding the independent and dependent to the solver for the fan variable area nozzle run
+solver.addIndependent("FVAN");
+solver.addDependent("Fan_Rline_FVAN");
+
+TargetThrust = Perf.myFn;
+// Adding the FAR independent and thrust dependent to the solver
+solver.addIndependent("FAR");
+solver.addDependent("Run_Condition_Thrust");
+
+// Running the model
+run();
+
+// Printing the variables to screen for the fan variable area nozzle case
+cout << "\nCold throat area: " << Byp_Nozz.AthCold << endl; 
+cout << "Throat area: " << Byp_Nozz.Ath << endl;
+cout << "Effective throat area: " << Byp_Nozz.AeTh << endl;
+cout << "Variable fan nozzle throat area scalar: " << Byp_Nozz.s_Ath << endl;
+// cout << "Throat discharge coefficient: " << Byp_Nozz.CdTh << endl;
+cout << "Net thrust: " << Perf.myFn << endl;
+cout << "Fuel flow rate: " << Burner.Wfuel << endl;
+cout << "Combustor Exit Temperature (T4): " << FS_4.Tt << endl;
+cout << "Thermal efficiency: " << Perf.Thrml_Eff << endl;
+// cout << "Propulsive efficiency: " << Perf.Prop_Eff << endl;
+// cout << "Overall efficiency: " << Perf.Thrml_Eff * Perf.Prop_Eff << endl; 
+cout << "Fan PR: " << Fan.PR << endl;
+cout << "Fan efficiency: " << Fan.eff << endl;
+cout << "Fan mass flow rate: " << Fan.Wc << endl;
+cout << "Fan percent corrected speed: " << Fan.NcPct << endl;
+cout << "Fan speed stall margin: " << Fan.SMN << endl;
+cout << "Fan mass flow rate stall margin: " << Fan.SMW << endl;
+cout << "Fan Rline: " << Fan.S_map.RlineMap << endl;
+
+// printPride();
+
+// Removing the independent and dependent for the fan variable area nozzle run from the solver
+solver.removeIndependent("FVAN");
+solver.removeDependent("Fan_Rline_FVAN");
+
+// Removing the FAR independent and thrust dependent from the solver
+solver.removeIndependent("FAR");
+solver.removeDependent("Run_Condition_Thrust");
+
+// Setting the fan nozzle variable area scalar back to its default value
+Byp_Nozz.delta_s_Ath = 0.0;
+
+// Turning on the guess logic for the guess table case 
+setOption( "switchGuess", "ON" );
+
+// Setting the guess table variable
+PC = 35;
+
+// Running the model
+run();
+
+// Turning off the guess logic for the fan variable area nozzle run 
+setOption( "switchGuess", "OFF" );
+
+// Adding the independent and dependent to the solver for the fan variable area nozzle run
+solver.addIndependent("FVAN");
+solver.addDependent("Fan_Rline_FVAN");
+
+TargetThrust = Perf.myFn;
+// Adding the FAR independent and thrust dependent to the solver
+solver.addIndependent("FAR");
+solver.addDependent("Run_Condition_Thrust");
+
+// Running the model
+run();
+
+// Printing the variables to screen for the fan variable area nozzle case
+cout << "\nCold throat area: " << Byp_Nozz.AthCold << endl; 
+cout << "Throat area: " << Byp_Nozz.Ath << endl;
+cout << "Effective throat area: " << Byp_Nozz.AeTh << endl;
+cout << "Variable fan nozzle throat area scalar: " << Byp_Nozz.s_Ath << endl;
+// cout << "Throat discharge coefficient: " << Byp_Nozz.CdTh << endl;
+cout << "Net thrust: " << Perf.myFn << endl;
+cout << "Fuel flow rate: " << Burner.Wfuel << endl;
+cout << "Combustor Exit Temperature (T4): " << FS_4.Tt << endl;
+cout << "Thermal efficiency: " << Perf.Thrml_Eff << endl;
+// cout << "Propulsive efficiency: " << Perf.Prop_Eff << endl;
+// cout << "Overall efficiency: " << Perf.Thrml_Eff * Perf.Prop_Eff << endl; 
+cout << "Fan PR: " << Fan.PR << endl;
+cout << "Fan efficiency: " << Fan.eff << endl;
+cout << "Fan mass flow rate: " << Fan.Wc << endl;
+cout << "Fan percent corrected speed: " << Fan.NcPct << endl;
+cout << "Fan speed stall margin: " << Fan.SMN << endl;
+cout << "Fan mass flow rate stall margin: " << Fan.SMW << endl;
+cout << "Fan Rline: " << Fan.S_map.RlineMap << endl;
+
+// printPride();
+
+// Removing the independent and dependent for the fan variable area nozzle run from the solver
+solver.removeIndependent("FVAN");
+solver.removeDependent("Fan_Rline_FVAN");
+
+// Removing the FAR independent and thrust dependent from the solver
+solver.removeIndependent("FAR");
+solver.removeDependent("Run_Condition_Thrust");
+
+// Setting the fan nozzle variable area scalar back to its default value
+Byp_Nozz.delta_s_Ath = 0.0;
+
+// Turning on the guess logic for the guess table case 
+setOption( "switchGuess", "ON" );
+
+// Setting the guess table variable
+PC = 30;
+
+// Running the model
+run();
+
+// Turning off the guess logic for the fan variable area nozzle run 
+setOption( "switchGuess", "OFF" );
+
+// Adding the independent and dependent to the solver for the fan variable area nozzle run
+solver.addIndependent("FVAN");
+solver.addDependent("Fan_Rline_FVAN");
+
+TargetThrust = Perf.myFn;
+// Adding the FAR independent and thrust dependent to the solver
+solver.addIndependent("FAR");
+solver.addDependent("Run_Condition_Thrust");
+
+// Running the model
+run();
+
+// Printing the variables to screen for the fan variable area nozzle case
+cout << "\nCold throat area: " << Byp_Nozz.AthCold << endl; 
+cout << "Throat area: " << Byp_Nozz.Ath << endl;
+cout << "Effective throat area: " << Byp_Nozz.AeTh << endl;
+cout << "Variable fan nozzle throat area scalar: " << Byp_Nozz.s_Ath << endl;
+// cout << "Throat discharge coefficient: " << Byp_Nozz.CdTh << endl;
+cout << "Net thrust: " << Perf.myFn << endl;
+cout << "Fuel flow rate: " << Burner.Wfuel << endl;
+cout << "Combustor Exit Temperature (T4): " << FS_4.Tt << endl;
+cout << "Thermal efficiency: " << Perf.Thrml_Eff << endl;
+// cout << "Propulsive efficiency: " << Perf.Prop_Eff << endl;
+// cout << "Overall efficiency: " << Perf.Thrml_Eff * Perf.Prop_Eff << endl; 
+cout << "Fan PR: " << Fan.PR << endl;
+cout << "Fan efficiency: " << Fan.eff << endl;
+cout << "Fan mass flow rate: " << Fan.Wc << endl;
+cout << "Fan percent corrected speed: " << Fan.NcPct << endl;
+cout << "Fan speed stall margin: " << Fan.SMN << endl;
+cout << "Fan mass flow rate stall margin: " << Fan.SMW << endl;
+cout << "Fan Rline: " << Fan.S_map.RlineMap << endl;
+
+// printPride();
+
+// Removing the independent and dependent for the fan variable area nozzle run from the solver
+solver.removeIndependent("FVAN");
+solver.removeDependent("Fan_Rline_FVAN");
+
+// Removing the FAR independent and thrust dependent from the solver
+solver.removeIndependent("FAR");
+solver.removeDependent("Run_Condition_Thrust");
+
+// Setting the fan nozzle variable area scalar back to its default value
+Byp_Nozz.delta_s_Ath = 0.0;
+
+// Turning on the guess logic for the guess table case 
+setOption( "switchGuess", "ON" );
+
+// Setting the guess table variable
+PC = 25;
+
+// Running the model
+run();
+
+// Turning off the guess logic for the fan variable area nozzle run 
+setOption( "switchGuess", "OFF" );
+
+// Adding the independent and dependent to the solver for the fan variable area nozzle run
+solver.addIndependent("FVAN");
+solver.addDependent("Fan_Rline_FVAN");
+
+TargetThrust = Perf.myFn;
+// Adding the FAR independent and thrust dependent to the solver
+solver.addIndependent("FAR");
+solver.addDependent("Run_Condition_Thrust");
+
+// Running the model
+run();
+
+// Printing the variables to screen for the fan variable area nozzle case
+cout << "\nCold throat area: " << Byp_Nozz.AthCold << endl; 
+cout << "Throat area: " << Byp_Nozz.Ath << endl;
+cout << "Effective throat area: " << Byp_Nozz.AeTh << endl;
+cout << "Variable fan nozzle throat area scalar: " << Byp_Nozz.s_Ath << endl;
+// cout << "Throat discharge coefficient: " << Byp_Nozz.CdTh << endl;
+cout << "Net thrust: " << Perf.myFn << endl;
+cout << "Fuel flow rate: " << Burner.Wfuel << endl;
+cout << "Combustor Exit Temperature (T4): " << FS_4.Tt << endl;
+cout << "Thermal efficiency: " << Perf.Thrml_Eff << endl;
+// cout << "Propulsive efficiency: " << Perf.Prop_Eff << endl;
+// cout << "Overall efficiency: " << Perf.Thrml_Eff * Perf.Prop_Eff << endl; 
+cout << "Fan PR: " << Fan.PR << endl;
+cout << "Fan efficiency: " << Fan.eff << endl;
+cout << "Fan mass flow rate: " << Fan.Wc << endl;
+cout << "Fan percent corrected speed: " << Fan.NcPct << endl;
+cout << "Fan speed stall margin: " << Fan.SMN << endl;
+cout << "Fan mass flow rate stall margin: " << Fan.SMW << endl;
+cout << "Fan Rline: " << Fan.S_map.RlineMap << endl;
+
+// printPride();
+
+// Removing the independent and dependent for the fan variable area nozzle run from the solver
+solver.removeIndependent("FVAN");
+solver.removeDependent("Fan_Rline_FVAN");
+
+// Removing the FAR independent and thrust dependent from the solver
+solver.removeIndependent("FAR");
+solver.removeDependent("Run_Condition_Thrust");
+
+// Setting the fan nozzle variable area scalar back to its default value
+Byp_Nozz.delta_s_Ath = 0.0;
+
+// Turning on the guess logic for the guess table case 
+setOption( "switchGuess", "ON" );
+
+// Setting the guess table variable
+PC = 21;
+
+// Running the model
+run();
+
+// Turning off the guess logic for the fan variable area nozzle run 
+setOption( "switchGuess", "OFF" );
+
+// Adding the independent and dependent to the solver for the fan variable area nozzle run
+solver.addIndependent("FVAN");
+solver.addDependent("Fan_Rline_FVAN");
+
+TargetThrust = Perf.myFn;
+// Adding the FAR independent and thrust dependent to the solver
+solver.addIndependent("FAR");
+solver.addDependent("Run_Condition_Thrust");
+
+// Running the model
+run();
+
+// Printing the variables to screen for the fan variable area nozzle case
+cout << "\nCold throat area: " << Byp_Nozz.AthCold << endl; 
+cout << "Throat area: " << Byp_Nozz.Ath << endl;
+cout << "Effective throat area: " << Byp_Nozz.AeTh << endl;
+cout << "Variable fan nozzle throat area scalar: " << Byp_Nozz.s_Ath << endl;
+// cout << "Throat discharge coefficient: " << Byp_Nozz.CdTh << endl;
+cout << "Net thrust: " << Perf.myFn << endl;
+cout << "Fuel flow rate: " << Burner.Wfuel << endl;
+cout << "Combustor Exit Temperature (T4): " << FS_4.Tt << endl;
+cout << "Thermal efficiency: " << Perf.Thrml_Eff << endl;
+// cout << "Propulsive efficiency: " << Perf.Prop_Eff << endl;
+// cout << "Overall efficiency: " << Perf.Thrml_Eff * Perf.Prop_Eff << endl; 
+cout << "Fan PR: " << Fan.PR << endl;
+cout << "Fan efficiency: " << Fan.eff << endl;
+cout << "Fan mass flow rate: " << Fan.Wc << endl;
+cout << "Fan percent corrected speed: " << Fan.NcPct << endl;
+cout << "Fan speed stall margin: " << Fan.SMN << endl;
+cout << "Fan mass flow rate stall margin: " << Fan.SMW << endl;
+cout << "Fan Rline: " << Fan.S_map.RlineMap << endl;
+
+// printPride();
+
+// Removing the independent and dependent for the fan variable area nozzle run from the solver
+solver.removeIndependent("FVAN");
+solver.removeDependent("Fan_Rline_FVAN");
+
+// Removing the FAR independent and thrust dependent from the solver
+solver.removeIndependent("FAR");
+solver.removeDependent("Run_Condition_Thrust");
+
+// Setting the fan nozzle variable area scalar back to its default value
+Byp_Nozz.delta_s_Ath = 0.0;

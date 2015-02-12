@@ -1,0 +1,193 @@
+//            TABLES FOR INSTALLED PERFORMANCE CALCULATIONS
+//
+//      M9SUB  10 SUBSONIC PITOT INLET, MDES =.9, NO BLEED OR BYPASS,T/O DOORS,T
+//             (based on Instal NVSTOL inlet performance)
+//
+// Inlet Table: Local Mach # vs. M0 
+// Inlet Table: Inlet Recovery vs. A0/AC & Local Mach #     (TABLE 2A)
+// Inlet Table: Reference Matched Recovery VS. Local Mach # (TABLE 2B)
+// Inlet Table: Reference Matched A0/AC VS. Local Mach #    (TABLE 2C)
+// Inlet Table: Buzz A0/AC VS. Local Mach #                 (TABLE 2D)
+// Inlet Table: Distortion A0/AC VS. Local Mach #           (TABLE 2E)
+// Inlet Table: CD Spill VS. A0I/AC & Local Mach #          (TABLE 3 )
+// Inlet Table: Reference CD Spill VS. Local Mach #         (TABLE 3A)
+// Inlet Table: Reference A0I/AC VS. Local Mach #           (TABLE 3B)
+// Inlet Table: CD Bleed VS. A0Bleed/AC & Local Mach #      (TABLE 4 )
+// Inlet Table: CD Bypass VS. A0Bypass/AC & Local Mach #    (TABLE 5 )
+// Inlet Table: A0Bleed/AC VS. A0/AC & Local Mach #         (TABLE 6A)
+// Inlet Table: Reference A0Bleed/AC VS. Local Mach #       (TABLE 6B)
+// Inlet Table: A0Bypass/AC VS. A0Engine/AC & Local Mach #  (TABLE 7 )
+//
+// Local Mach # VS. Freestream Mach #: 
+//Table Tb_localMN(real MNfree) {
+//  MNfree =  { 0.00, 0.20, 1.00 }
+//  MNlocal = { 0.00, 0.20, 1.00 } 
+//}
+// Inlet Recovery VS. A0/AC & Local Mach # (TABLE 2A) 
+// modified to make x-axis A0AC/eRam instead of A0AC - R. Denney 12-7-04 
+// Went with original Instal maps data - J.S. Wilson 12/05/2006
+
+/* Changed to remove mach number effect on recovery
+Table Tb_2A(real MNlocal, real A0AC) {
+  MNlocal = 0.0000 {                        // From EDS 300pax subsonic inlet - J.S. Wilson 12/05/2006
+    A0AC = { 0.0000, 1.0526, 21.0526 }
+    REC =  { 0.9950, 0.9950,  0.9950 } }
+  MNlocal = 0.1000 {                        // From EDS 300pax subsonic inlet - J.S. Wilson 12/05/2006
+    A0AC = { 3.1463, 6.8170 }
+    REC =  { 0.9960, 0.9960 } }
+  MNlocal = 0.2000 {
+    A0AC = { 1.5000,  1.8000,  2.0000,  2.1000,  2.2000 }
+    REC =  { 0.9947,  0.9936,  0.9935,  0.992,   0.9900 } }
+  MNlocal = 0.3000 {
+    A0AC = { 1.0000,  1.2000,  1.4000,  1.6000 }
+    REC =  { 0.9972,  0.9950,  0.9920,  0.9892 } }
+  MNlocal = 0.4000 {
+    A0AC = { 0.4000,  0.6000,  0.8000,  0.8900,  0.9500,  1.1000,  1.2000 }
+    REC =  { 0.9999,  0.9997,  0.9989,  0.9980,  0.9960,  0.9930,  0.9895 } }
+  MNlocal = 0.5000 {
+    A0AC = { 0.4000,  0.6000,  0.7000,  0.8000,  0.9000,  0.9600,  1.0000 }
+    REC =  { 0.9999,  0.9997,  0.9995,  0.9985,  0.9963,  0.9930,  0.9900 } }
+  MNlocal = 0.6000 {
+    A0AC = { 0.4000,  0.5700,  0.6000,  0.7000,  0.8000,  0.8800,  0.9000 }
+    REC =  { 0.9998,  0.9995,  0.9993,  0.9986,  0.9978,  0.9950,  0.9890 } }
+  MNlocal = 0.7000 {
+    A0AC = { 0.40000, 0.50000, 0.5700,  0.70000, 0.8000,  0.8500 }
+    REC =  { 0.99965, 0.99948, 0.9990,  0.99815, 0.9969,  0.9950 } }
+  MNlocal = 0.8000 {
+    A0AC = { 0.40000, 0.50000, 0.5700,  0.70000, 0.8000,  0.8500 }
+    REC =  { 0.99965, 0.99948, 0.9990,  0.99815, 0.9969,  0.9950 } }
+  MNlocal = 0.9000 {
+    A0AC = { 0.40000, 0.50000, 0.5700,  0.70000, 0.8000,  0.8500 }
+    REC =  { 0.99965, 0.99948, 0.9990,  0.99815, 0.9969,  0.9950 } }
+}
+
+*/
+/*
+Table Tb_2A(real MNlocal, real A0AC) {
+ MNlocal = 0.0000 {
+    A0AC = { 0.4000,  0.6000,  0.8000,  0.8900,  0.9500,  1.1000,  1.2000, 21.0 }
+    REC =  { 0.9999,  0.9997,  0.9995,  0.9992,  0.9988,  0.9983,  0.9977, 0.9970 } }
+
+ MNlocal = 0.9000 {
+    A0AC = { 0.4000,  0.6000,  0.8000,  0.8900,  0.9500,  1.1000,  1.2000, 21.0 }
+    REC =  { 0.9999,  0.9997,  0.9989,  0.9980,  0.9960,  0.9930,  0.9895, 0.9895 } }
+}
+*/
+
+Table Tb_2A(real MNlocal, real A0AC) {
+ MNlocal = 0.0000 {
+    A0AC = { 0.4000,  0.6000,  0.8000,  0.8900,  0.9500,  1.1000,  1.2000, 21.0 }
+    REC =  { 0.9999,  0.9997,  0.9995,  0.9992,  0.9988,  0.9983,  0.9977, 0.9970 } }
+
+  MNlocal = 0.4000 {
+    A0AC = { 0.4000,  0.6000,  0.8000,  0.8900,  0.9500,  1.1000,  1.2000, 21.0 }
+    REC =  { 0.9999,  0.9997,  0.9989,  0.9980,  0.9960,  0.9930,  0.9895, 0.9895 } }
+
+ MNlocal = 0.9000 {
+    A0AC = { 0.4000,  0.6000,  0.8000,  0.8900,  0.9500,  1.1000,  1.2000, 21.0 }
+    REC =  { 0.9999,  0.9997,  0.9989,  0.9980,  0.9960,  0.9930,  0.9895, 0.9895 } }
+}
+
+// Reference Matched Recovery VS. Local Mach # (TABLE 2B) 
+Table Tb_2B(real MNlocal) {
+  MNlocal = { 0.0000, 0.0250, 0.1000, 0.2000, 0.3000, 0.4000, 0.5000, 0.6000, 
+              0.7000, 0.9000 } 
+  Ref_REC = { 0.9925, 0.9955, 0.9950, 0.9925, 0.9920, 0.9980, 0.9975, 0.9973, 
+              0.9973, 0.9973 } 
+}
+
+// Reference Matched A0/AC VS. Local Mach # (TABLE 2C) 
+Table Tb_2C(real MNlocal) {
+  MNlocal =  { 0.2000, 0.3000, 0.4000, 0.5000, 0.6000, 0.7000, 0.8000, 0.9000 } 
+  Ref_A0AC = { 2.0700, 1.4000, 0.8900, 0.8500, 0.8200, 0.7700, 0.7700, 0.7700 } 
+}
+
+// Buzz A0/AC VS. Local Mach # (TABLE 2D) 
+Table Tb_2D(real MNlocal) {
+  MNlocal =  { 0.0000, 0.5000, 1.0000 } 
+  A0AC =     { 0.0000, 0.0000, 0.0000 } 
+}
+
+// Distortion A0/AC VS. Local Mach # (TABLE 2E) 
+Table Tb_2E(real MNlocal) {
+  MNlocal =  { 0.2000, 0.3000, 0.4000, 0.5000, 0.6000, 0.7000, 0.9000 } 
+  A0AC =     { 2.2000, 1.6000, 1.2000, 1.0500, 0.9000, 0.9000, 0.9000 } 
+}
+
+// CD Spill VS. A0I/AC & Local Mach # (TABLE 3) 
+Table Tb_3(real MNlocal, real A0I) {
+  MNlocal = 0.0000 {
+    A0I =     { 0.0000, 2.5000 } 
+    CdSpill = { 0.0000, 0.0000 } }
+  MNlocal = 0.7000 {
+    A0I =     { 0.4000, 0.5000,  0.6000,  0.6550,  2.5000 } 
+    CdSpill = { 0.0063, 0.0045,  0.0020,  0.0000,  0.0000 } }
+  MNlocal = 0.8000 {
+    A0I =     { 0.4000, 0.5000,  0.6000,  0.7000,  0.7700, 0.7850, 2.5000 } 
+    CdSpill = { 0.0088, 0.0069,  0.00455, 0.00275, 0.0010, 0.0000, 0.0000 } }
+  MNlocal = 0.8500 {
+    A0I =     { 0.4000, 0.5000,  0.6000,  0.7000,  0.7700, 0.7850, 2.5000 } 
+    CdSpill = { 0.0106, 0.00875, 0.00665, 0.0041,  0.0020, 0.0000, 0.0000 } }
+  MNlocal = 0.9000 {
+    A0I =     { 0.4000, 0.5000,  0.6000,  0.7000,  0.7700, 0.7850, 2.5000 } 
+    CdSpill = { 0.0170, 0.0149,  0.0120,  0.0067,  0.0028, 0.0000, 0.0000 } }
+}
+
+// Reference CD Spill VS. Local Mach # (TABLE 3A) 
+Table Tb_3A(real MNlocal) {
+    MNlocal = { 0.0000, 1.0000 }
+    Ref_Cd =  { 0.0000, 0.0000 }
+}
+
+// Reference A0I/AC VS. Local Mach # (TABLE 3B) 
+Table Tb_3B(real MNlocal) {
+    MNlocal = { 0.0000, 1.0000 }
+    Ref_A0I = { 0.0000, 0.0000 }
+}
+
+// CD Bleed VS. A0Bleed/AC & Local Mach # (TABLE 4) 
+Table Tb_4(real MNlocal, real A0bleed) {
+  MNlocal = 0.0000 {
+    A0bleed = { 0.0000, 4.0000 } 
+    CdBleed = { 0.0000, 0.0000 } }
+  MNlocal = 0.9000 {
+    A0bleed = { 0.0000, 4.0000 } 
+    CdBleed = { 0.0000, 0.0000 } }
+}
+
+// CD Bypass VS. A0Bypass/AC & Local Mach # (TABLE 5) 
+Table Tb_5(real MNlocal, real A0bypass) {
+  MNlocal = 0.0000 {
+    A0bypass = { 0.0000, 4.0000 }
+    CdBypass = { 0.0000, 0.0000} }
+  MNlocal = 0.9000 {
+    A0bypass = { 0.0000, 4.0000 }
+    CdBypass = { 0.0000, 0.0000} }
+}
+
+// A0Bleed/AC VS. A0/AC & Local Mach # (TABLE 6A) 
+Table Tb_6A(real MNlocal, real A0AC) {
+  MNlocal = 0.0000 {
+    A0AC =    { 0.0000, 1.0000 } 
+    A0bleed = { 0.0000, 0.0000 } }
+  MNlocal = 1.0000 {
+    A0AC =    { 0.0000, 1.0000 } 
+    A0bleed = { 0.0000, 0.0000 } }
+}
+
+// Reference A0Bleed/AC VS. Local Mach # (TABLE 6B) 
+Table Tb_6B(real MNlocal) {
+  MNlocal =   { 0.0000, 1.0000 } 
+  Ref_A0bld = { 0.0000, 0.0000 } 
+}
+
+// A0Bypass/AC VS. A0Engine/AC & Local Mach # (TABLE 7) 
+Table Tb_7(real MNlocal, real A0engine) {
+A0engine.extrap = "none";
+  MNlocal = 0.0000 {
+    A0engine = { 0.0000, 1.0000 } 
+    A0bypass = { 0.0000, 0.0000 } }
+  MNlocal = 1.0000 {
+    A0engine = { 0.0000, 1.0000 } 
+    A0bypass = { 0.0000, 0.0000 } }
+}
