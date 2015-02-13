@@ -208,7 +208,7 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 cla; %clear curent axes
 %save in compressor/turbine of interest
 popup_sel_index = get(handles.popupmenu1, 'Value');
-load('TTECTrA_Auto_Results3.mat')
+load('TTECTrA_Auto_Results31.mat')
 temp_map = extract(['mapData' handles.name_array{popup_sel_index}]);
 
 [~, ~, c, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
@@ -227,6 +227,16 @@ HPT_wc_scalar = 0.9040;
 HPT_pr_scalar = 1.9104;
 LPT_wc_scalar = 0.9585;
 LPT_pr_scalar = 1.5628;
+Fan2_wc_scalar = 1.0356;
+Fan2_pr_scalar = 1.0001;
+LPC2_wc_scalar = 1.0076;
+LPC2_pr_scalar = 1.0000;
+HPC2_wc_scalar = 1.0322;
+HPC2_pr_scalar = 1.0001;
+HPT2_wc_scalar = 0.9040;
+HPT2_pr_scalar = 1.9104;
+LPT2_wc_scalar = 0.9585;
+LPT2_pr_scalar = 1.5628;
 if (c == 6)  %compressors
     for i=1:1:d     %for every alpha, transpose row and column vectors
         Wc(:,:,i)= (temp_map(:,:,4,i)); %evaluates the assignment 'Wc_<#>_map'
@@ -413,7 +423,7 @@ catch err
     error('**--Load Maps before adjusting the IGV angle and plotting--**')
 end
 
-load('TTECTrA_Auto_Results3.mat')
+load('TTECTrA_Auto_Results31.mat')
 
 minA = min(min(min(handles.Alpha_index)));
 
