@@ -22,6 +22,8 @@
 %% Add custom file paths here
 set_paths;
 
+engine_name=inputs.in.engine_name;
+
 % Add input variables
 %input = {'Ambient.dTs','Ambient.Mn','Ambient.W','Ambient.alt','Burner.Wfuel'};
 input = {'Burner.Wfuel'};

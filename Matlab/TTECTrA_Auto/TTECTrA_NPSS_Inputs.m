@@ -23,6 +23,8 @@ set_paths;
 
 %Define home directory
 ttectra_in.in.HomeDirectory=model_location;
+ttectra_in.in.engine_name='150PAX_Sfunction';
+ttectra_in.in.filename='vafn';
 
 %---------------------------------------------------------
 % Define environmental variables
@@ -37,17 +39,18 @@ ttectra_in.in.dTamb=0;                            % deviation from STD temp
 ttectra_in.in.Ts=0.015;
 ttectra_in.in.simTime=20.0;                         % simulation time
 ttectra_in.in.simFileName='NPSS_TTECTrA.mdl';  % simulation file name 
-ttectra_in.in.filename='jtc_baseline.mat';
 
 %---------------------------------------------------------
 % Setpoint function setup
 %---------------------------------------------------------
 %Define points for the setpoint function and linear model
-ttectra_in.in.setpoint_vector = [10000.0000, 10952.3810, 11904.7619, 12857.1429, 13809.5238, ...
-             14761.9048, 15714.2857, 16666.6667, 17619.0476, 18571.4286,...
-             19523.8095, 20476.1905, 21428.5714, 22380.9524, 23333.3333,...
-             24285.7143, 25238.0952, 26190.4762, 26500.0000];
-         
+% ttectra_in.in.setpoint_vector = [10000.0000, 10952.3810, 11904.7619, 12857.1429, 13809.5238, ...
+%              14761.9048, 15714.2857, 16666.6667, 17619.0476, 18571.4286,...
+%              19523.8095, 20476.1905, 21428.5714, 22380.9524, 23333.3333,...
+%              24285.7143, 25238.0952, 26190.4762, 26500.0000];
+fnt_range=[5000 42000];
+%fnt_range=[5000 30000];
+ttectra_in.in.setpoint_vector=fnt_range(1): (fnt_range(2)-fnt_range(1))/12 : fnt_range(2);
 ttectra_in.in.linearModelfilename='NPSS_PWLM.mat';
          
 %---------------------------------------------------------

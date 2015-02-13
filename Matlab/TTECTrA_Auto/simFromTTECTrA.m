@@ -107,10 +107,10 @@ try
         % demand
         inputs.in.wf_vec = interp1(inputs.SP.FT_SP,inputs.SP.Wf_SP,inputs.in.FT_dmd,'linear','extrap');
         % Initializing NPSS for the net thrust demand case
-        initialize_NPSS(inputs.in.HomeDirectory,[inputs.in.alt inputs.in.MN inputs.in.dTamb],[inputs.in.t_vec' inputs.in.wf_vec']);
+        initialize_NPSS(inputs.in.HomeDirectory,[inputs.in.alt inputs.in.MN inputs.in.dTamb],[inputs.in.t_vec' inputs.in.wf_vec'],inputs.in.engine_name);
     else
         % Initializing NPSS for the fuel flow rate input case
-        initialize_NPSS(inputs.in.HomeDirectory,[inputs.in.alt inputs.in.MN inputs.in.dTamb],[inputs.in.t_vec' inputs.in.wf_vec']);
+        initialize_NPSS(inputs.in.HomeDirectory,[inputs.in.alt inputs.in.MN inputs.in.dTamb],[inputs.in.t_vec' inputs.in.wf_vec'],inputs.in.engine_name);
     end
     y=sim(inputs.in.simFileName,'SrcWorkspace','current','ReturnWorkspaceOutputs','on','StopTime',num2str(inputs.in.t_vec(end)));
 catch
@@ -140,7 +140,7 @@ if ~exist('outputs')
         outputs.T40 = y.get('T4');
         outputs.Ps3     = y.get('Ps3');
         outputs.NcR25_dot = y.get('N2dot')./sqrt(y.get('T25'));
-
+        
         % from controller block
         %  > Control variable feedback
         %  > Demand signals for control variables
@@ -182,6 +182,17 @@ if ~exist('outputs')
             outputs.Ps3     = y.find('Ps3');
             outputs.T40     = y.find('T4');
             outputs.NcR25_dot = y.find('N2dot')./sqrt(y.find('T25'));
+            outputs.Fan_Wc  = y.find('Fan_Wc');
+            outputs.Fan_pr  = y.find('Fan_pr');
+            outputs.LPC_Wc  = y.find('LPC_Wc');
+            outputs.LPC_pr  = y.find('LPC_pr');
+            outputs.HPC_Wc  = y.find('HPC_Wc');
+            outputs.HPC_pr  = y.find('HPC_pr');
+            outputs.HPT_Wc  = y.find('HPT_Wc');
+            outputs.HPT_pr  = y.find('HPT_pr');
+            outputs.LPT_Wc  = y.find('LPT_Wc');
+            outputs.LPT_pr  = y.find('LPT_pr');
+            
         catch
             try
                 outputs.t       = Time;
@@ -203,8 +214,19 @@ if ~exist('outputs')
                 outputs.Ps3     = Ps3;
                 outputs.T40     = T4;
                 outputs.NcR25_dot = N2dot./sqrt(T25);
+                outputs.Fan_Wc  = Fan_Wc;
+                outputs.Fan_pr  = Fan_pr;
+                outputs.LPC_Wc  = LPC_Wc;
+                outputs.LPC_pr  = LPC_pr;
+                outputs.HPC_Wc  = HPC_Wc;
+                outputs.HPC_pr  = HPC_pr;
+                outputs.HPT_Wc  = HPT_Wc;
+                outputs.HPT_pr  = HPT_pr;
+                outputs.LPT_Wc  = LPT_Wc;
+                outputs.LPT_pr  = LPT_pr;
+                
             catch
-
+                
                 errordlg({'Error running simulation:',ME.message})
                 outputs=[];
             end

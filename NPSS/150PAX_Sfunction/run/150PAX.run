@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+//
 //-------------------------------------------------------------------------------------------------
 //                                                                       						  |
 //   File Name:    150PAX.run                                 					        		  |
@@ -127,7 +127,7 @@ RunMaxPower();
 #ifdef NOZZLESCHEDULE
 	#include <nozzle_schedule.case>		
 #endif
-=======
+
 //-------------------------------------------------------------------------------------------------
 //                                                                       						  |
 //   File Name:    150PAX.run                                 					        		  |
@@ -142,7 +142,7 @@ RunMaxPower();
 //-------------------------------------------------------------------------------------------------
 //                            Model Definition 
 //-------------------------------------------------------------------------------------------------
-MODELNAME = "150 PAX High BPR SFTF Model"; 
+/*MODELNAME = "150 PAX High BPR SFTF Model"; 
 AUTHOR = "Metin F. Ozcan";
 
 // Defining the thermodynamics package
@@ -240,4 +240,4 @@ RunMaxPower();
 #ifdef NOZZLESCHEDULE
 	#include <nozzle_schedule.case>		
 #endif
->>>>>>> origin/master
+*/

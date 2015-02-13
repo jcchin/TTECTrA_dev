@@ -1,11 +1,12 @@
 % This function initializes NPSS for TTECTrA runs through S-function 
-function initialize_NPSS(HomeDirectory,flight_condition,input_signal)
+function initialize_NPSS(HomeDirectory,flight_condition,input_signal,engine_name)
 
     % Saving the current Matlab directory
     current_folder = pwd;
 
     % Engine model folder name - change accordingly
-    engine_name = '150PAX_Sfunction';
+    %engine_name = '150PAX_Sfunction';
+    %engine_name = '150PAX_Sfunction2';
     
     % Directory for the src folder in the engine model folder
     src_file = strcat(HomeDirectory,'\','NPSS','\',engine_name,'\src');

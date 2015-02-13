@@ -7,7 +7,7 @@ if (exist('paths.m', 'file') == 2) %load paths if supplied elsewhere
     paths
 end
 
-engine_name = '150PAX_Sfunction';
+%engine_name = '150PAX_Sfunction';
 run_file = '150PAX.run';
 flags = ' -DTRANSIENT';
 

@@ -1,7 +1,9 @@
-function [varargout]=GetNPSS_PWLM(inputs,vector,linearModelfilename,npss_location,model_location);
+function [varargout]=GetNPSS_PWLM(inputs,vector,linearModelfilename,npss_location,model_location)
 %-----------------------------------------------------------------
 % 
 %-----------------------------------------------------------------
+engine_name=inputs.in.engine_name;
+
 run_lm = true; %run linear model?
 
 % Setup begins here
@@ -16,10 +18,10 @@ eval(['addpath ',npss_location,'/bin'])
 %     error('NPSS S-function DLL not found, check ''npss_location'' path and try running this file again before running the simulink model')
 % end
 
-if (exist([model_location,'/NPSS/150PAX_Sfunction/run'],'file') && ...
-        exist([model_location,'/NPSS/150PAX_Sfunction/view'],'file') && ...
-        exist([model_location,'/NPSS/150PAX_Sfunction/src'],'file') && ...
-        exist([model_location,'/NPSS/150PAX_Sfunction/run/150PAX.run'],'file'))
+if (exist([model_location,'/NPSS/' engine_name '/run'],'file') && ...
+        exist([model_location,'/NPSS/' engine_name '/view'],'file') && ...
+        exist([model_location,'/NPSS/' engine_name '/src'],'file') && ...
+        exist([model_location,'/NPSS/' engine_name '/run/150PAX.run'],'file'))
     output_list = 'Success! Found NPSS model folder and subfolders, model should run. \n';
 else
     error('NPSS model folder not found, make sure they exist below the current top level directory')
@@ -35,12 +37,12 @@ disp(['commandLine += " -I ',npss_location, '/InterpIncludes";']);
 disp(['commandLine += " -I ',npss_location, '/InterpComponents";']);
 disp(['commandLine += " -I ',npss_location, '/DLMComponents/nt";']);
 disp(['commandLine += " -I ',npss_location, '/MetaData";']);
-disp(['commandLine += " -I ',model_location, '/NPSS/150PAX_Sfunction/run";']);
-disp(['commandLine += " -I ',model_location, '/NPSS/150PAX_Sfunction/view";']);
-disp(['commandLine += " -I ',model_location, '/NPSS/150PAX_Sfunction/src";']);
-disp(['commandLine += " -I ',model_location, '/NPSS/150PAX_Sfunction/maps";']);
-disp(['commandLine += " -I ',model_location, '/NPSS/150PAX_Sfunction";']);
-disp(['commandLine += " ',model_location, '/NPSS/150PAX_Sfunction/run/150PAX.run";']);
+disp(['commandLine += " -I ',model_location, '/NPSS/' engine_name '/run";']);
+disp(['commandLine += " -I ',model_location, '/NPSS/' engine_name '/view";']);
+disp(['commandLine += " -I ',model_location, '/NPSS/' engine_name '/src";']);
+disp(['commandLine += " -I ',model_location, '/NPSS/' engine_name '/maps";']);
+disp(['commandLine += " -I ',model_location, '/NPSS/' engine_name '";']);
+disp(['commandLine += " ',model_location, '/NPSS/' engine_name '/run/150PAX.run";']);
 
 diary off
 
@@ -60,7 +62,7 @@ dlmwrite(inputFile,vector,'-append')
 dlmwrite(inputFile,'};','-append','delimiter','')
 
 current_folder = pwd; %current matlab folder
-path2model = [model_location,'\NPSS\150PAX_Sfunction'];
+path2model = [model_location,'\NPSS\' engine_name ''];
 
 diary('run_shell.bat')
 %copy all of the newly created files to the model path

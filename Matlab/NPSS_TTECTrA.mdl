@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.261"
+    ComputedModelVersion    "1.263"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jcsank"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jan 27 09:56:53 2015"
-  RTWModifiedTimeStamp	  344253406
-  ModelVersionFormat	  "1.%<AutoIncrement:261>"
+  LastModifiedDate	  "Fri Feb 13 13:00:29 2015"
+  RTWModifiedTimeStamp	  345733224
+  ModelVersionFormat	  "1.%<AutoIncrement:263>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1147,7 +1147,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    180
+    SIDHighWatermark	    194
     Block {
       BlockType		      Clock
       Name		      "Clock"
@@ -1160,7 +1160,7 @@ Model {
       Name		      "Demux1"
       SID		      2
       Ports		      [1, 29]
-      Position		      [750, 177, 755, 863]
+      Position		      [740, 202, 745, 1188]
       ShowName		      off
       Outputs		      "29"
       DisplayOption	      "bar"
@@ -1170,7 +1170,7 @@ Model {
       Name		      "Discrete Derivative"
       SID		      3
       Ports		      [1, 1]
-      Position		      [1095, 172, 1155, 208]
+      Position		      [1285, 247, 1345, 283]
       LibraryVersion	      "1.216"
       SourceBlock	      "simulink/Discrete/Discrete Derivative"
       SourceType	      "Discrete Derivative"
@@ -1217,7 +1217,7 @@ Model {
       Name		      "Divide"
       SID		      6
       Ports		      [2, 1]
-      Position		      [1140, 612, 1170, 643]
+      Position		      [1135, 597, 1165, 628]
       Inputs		      "*/"
       InputSameDT	      off
       OutDataTypeMode	      "Inherit via internal rule"
@@ -1230,7 +1230,7 @@ Model {
       Name		      "Divide2"
       SID		      7
       Ports		      [2, 1]
-      Position		      [1175, 262, 1205, 293]
+      Position		      [1295, 312, 1325, 343]
       Inputs		      "*/"
       InputSameDT	      off
       OutDataTypeMode	      "Inherit via internal rule"
@@ -1243,7 +1243,7 @@ Model {
       Name		      "Divide3"
       SID		      8
       Ports		      [2, 1]
-      Position		      [1005, 82, 1035, 113]
+      Position		      [1130, 467, 1160, 498]
       Inputs		      "*/"
       InputSameDT	      off
       OutDataTypeMode	      "Inherit via internal rule"
@@ -1311,7 +1311,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto1"
       SID		      18
-      Position		      [1140, 90, 1190, 110]
+      Position		      [1205, 475, 1255, 495]
       GotoTag		      "Fdbk"
       TagVisibility	      "global"
     }
@@ -1319,7 +1319,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto2"
       SID		      19
-      Position		      [1205, 620, 1255, 640]
+      Position		      [1210, 605, 1260, 625]
       GotoTag		      "FnR"
       TagVisibility	      "global"
     }
@@ -1327,7 +1327,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto3"
       SID		      20
-      Position		      [1245, 270, 1295, 290]
+      Position		      [1365, 320, 1415, 340]
       GotoTag		      "NcR25"
       TagVisibility	      "global"
     }
@@ -1344,21 +1344,21 @@ Model {
       Name		      "ICFdbk"
       SID		      176
       Position		      [165, 444, 190, 476]
-      Value		      "4546.886"
+      Value		      "3902.1588"
     }
     Block {
       BlockType		      InitialCondition
       Name		      "ICFnR"
       SID		      178
       Position		      [230, 474, 255, 506]
-      Value		      "20944.236"
+      Value		      "21263.6985"
     }
     Block {
       BlockType		      InitialCondition
       Name		      "ICPs3"
       SID		      177
       Position		      [205, 558, 245, 602]
-      Value		      "313.2783"
+      Value		      "399.6648"
     }
     Block {
       BlockType		      Mux
@@ -1457,7 +1457,7 @@ Model {
 	  ForegroundColor	  "red"
 	  Numerator		  "[0.36872]"
 	  Denominator		  "[1    -0.63128]"
-	  InitialStates		  "[1.9401]"
+	  InitialStates		  "[1.1758]"
 	  SampleTime		  "-1"
 	}
 	Block {
@@ -1605,11 +1605,10 @@ Model {
 	      SID		      49
 	      Position		      [435, 33, 470, 67]
 	      ForegroundColor	      "red"
-	      InputValues	      "[10000  10952  11905  12857  13810  14762  15714  16667  17619  18571  19524  20476  21429  "
-	      "22381  23333  24286  25238  26190  26500]"
-	      Table		      "[3351.08        3485.18        3617.09        3736.41        3841.09         3946.6         4047."
-	      "8        4147.36        4243.83        4334.02        4423.46         4508.7        4586.42        4663.34     "
-	      "   4743.77        4827.12        4910.63         4994.1        5027.53]"
+	      InputValues	      "[5000          7083.3          9166.7           11250           13333           15417       "
+	      "    17500           19583           21667           23750           25833           27917           30000]"
+	      Table		      "[2821.33         3072.9        3291.99        3484.68        3199.58        3394.53        3586.4"
+	      "3        3766.09        3934.81        4100.04        4261.84        4416.66        4572.17]"
 	      LookUpMeth	      "Interpolation-Use End Values"
 	      SaturateOnIntegerOverflow	off
 	      SampleTime	      "0.02"
@@ -1724,7 +1723,7 @@ Model {
 	      Position		      [655, 171, 755, 199]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Value		      "1.9401"
+	      Value		      "1.1758"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -2383,7 +2382,7 @@ Model {
 		  SourceType		  "Discrete Derivative"
 		  ShowPortLabels	  "FromPortIcon"
 		  SystemSampleTime	  "-1"
-		  FunctionWithSeparateData "off"
+		  FunctionWithSeparateData off
 		  RTWMemSecFuncInitTerm	  "Inherit from model"
 		  RTWMemSecFuncExecute	  "Inherit from model"
 		  RTWMemSecDataConstants  "Inherit from model"
@@ -2397,9 +2396,9 @@ Model {
 		  OutputDataTypeScalingMode "Inherit via internal rule"
 		  OutDataType		  "fixdt(1, 16)"
 		  OutScaling		  "2^-10"
-		  LockScale		  "off"
+		  LockScale		  off
 		  RndMeth		  "Floor"
-		  DoSatur		  "off"
+		  DoSatur		  off
 		}
 		Block {
 		  BlockType		  DiscreteTransferFcn
@@ -2821,7 +2820,7 @@ Model {
 		  SID			  112
 		  Position		  [510, 78, 545, 112]
 		  ForegroundColor	  "red"
-		  X0			  "1.9401"
+		  X0			  "1.1758"
 		  SampleTime		  "-1"
 		}
 		Block {
@@ -3212,7 +3211,7 @@ Model {
 	  Position		  [425, 278, 460, 312]
 	  ForegroundColor	  "cyan"
 	  InputValues		  "[0  10  16  20]"
-	  Table			  "[1.9401      1.9401      1.2316      1.2316]"
+	  Table			  "[1.1758      1.1758      0.6312      0.6312]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
@@ -3470,7 +3469,7 @@ Model {
       Name		      "To Workspace"
       SID		      129
       Ports		      [1]
-      Position		      [790, 192, 850, 218]
+      Position		      [1010, 192, 1070, 218]
       VariableName	      "N1"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -3481,7 +3480,7 @@ Model {
       Name		      "To Workspace1"
       SID		      130
       Ports		      [1]
-      Position		      [1035, 227, 1095, 253]
+      Position		      [1145, 227, 1205, 253]
       VariableName	      "N2"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -3492,7 +3491,7 @@ Model {
       Name		      "To Workspace10"
       SID		      131
       Ports		      [1]
-      Position		      [785, 262, 850, 288]
+      Position		      [1010, 262, 1075, 288]
       VariableName	      "P2"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -3516,6 +3515,17 @@ Model {
       Ports		      [1]
       Position		      [785, 402, 845, 428]
       VariableName	      "Ps3"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace13"
+      SID		      183
+      Ports		      [1]
+      Position		      [865, 857, 925, 883]
+      VariableName	      "Fan_Wc"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Array"
@@ -3613,7 +3623,7 @@ Model {
       Name		      "To Workspace21"
       SID		      142
       Ports		      [1]
-      Position		      [1200, 677, 1260, 703]
+      Position		      [1195, 672, 1255, 698]
       VariableName	      "myFnR"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -3624,7 +3634,7 @@ Model {
       Name		      "To Workspace22"
       SID		      143
       Ports		      [1]
-      Position		      [1240, 307, 1300, 333]
+      Position		      [1360, 357, 1420, 383]
       VariableName	      "N2R25"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -3635,8 +3645,74 @@ Model {
       Name		      "To Workspace23"
       SID		      144
       Ports		      [1]
-      Position		      [1235, 177, 1295, 203]
+      Position		      [1375, 252, 1435, 278]
       VariableName	      "N2dot"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace24"
+      SID		      184
+      Ports		      [1]
+      Position		      [785, 892, 845, 918]
+      VariableName	      "Fan_pr"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace25"
+      SID		      185
+      Ports		      [1]
+      Position		      [865, 927, 925, 953]
+      VariableName	      "LPC_Wc"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace26"
+      SID		      186
+      Ports		      [1]
+      Position		      [785, 962, 845, 988]
+      VariableName	      "LPC_pr"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace27"
+      SID		      187
+      Ports		      [1]
+      Position		      [865, 997, 925, 1023]
+      VariableName	      "HPC_Wc"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace28"
+      SID		      188
+      Ports		      [1]
+      Position		      [785, 1032, 845, 1058]
+      VariableName	      "HPC_pr"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace29"
+      SID		      191
+      Ports		      [1]
+      Position		      [865, 1067, 925, 1093]
+      VariableName	      "HPT_Wc"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Array"
@@ -3648,6 +3724,39 @@ Model {
       Ports		      [1]
       Position		      [865, 647, 925, 673]
       VariableName	      "Wfuel"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace30"
+      SID		      192
+      Ports		      [1]
+      Position		      [785, 1102, 845, 1128]
+      VariableName	      "HPT_pr"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace31"
+      SID		      193
+      Ports		      [1]
+      Position		      [865, 1137, 925, 1163]
+      VariableName	      "LPT_Wc"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace32"
+      SID		      194
+      Ports		      [1]
+      Position		      [785, 1172, 845, 1198]
+      VariableName	      "LPT_pr"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Array"
@@ -3668,7 +3777,7 @@ Model {
       Name		      "To Workspace5"
       SID		      147
       Ports		      [1]
-      Position		      [930, 297, 990, 323]
+      Position		      [865, 297, 925, 323]
       VariableName	      "T2"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -3679,7 +3788,7 @@ Model {
       Name		      "To Workspace6"
       SID		      148
       Ports		      [1]
-      Position		      [1035, 367, 1095, 393]
+      Position		      [1010, 367, 1070, 393]
       VariableName	      "T25"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -3721,22 +3830,15 @@ Model {
     Block {
       BlockType		      Fcn
       Name		      "delta"
-      SID		      152
-      Position		      [1045, 620, 1105, 650]
+      SID		      182
+      Position		      [1010, 475, 1070, 505]
       Expr		      "u(1)/14.696"
     }
     Block {
       BlockType		      Fcn
-      Name		      "delta1"
-      SID		      153
-      Position		      [905, 100, 965, 130]
-      Expr		      "sqrt(u(1)/518.67)"
-    }
-    Block {
-      BlockType		      Fcn
-      Name		      "sqrt_theta"
+      Name		      "sqrt_theta25"
       SID		      154
-      Position		      [1095, 305, 1155, 335]
+      Position		      [1130, 330, 1190, 360]
       Expr		      "sqrt(u(1)/518.67)"
     }
     Line {
@@ -3744,6 +3846,7 @@ Model {
       SrcPort		      1
       Points		      [10, 0]
       Branch {
+	Points			[130, 0]
 	DstBlock		"Demux1"
 	DstPort			1
       }
@@ -3815,16 +3918,10 @@ Model {
 	DstPort			1
       }
       Branch {
-	Points			[0, 60]
+	Points			[0, 70]
 	DstBlock		"To Workspace21"
 	DstPort			1
       }
-    }
-    Line {
-      SrcBlock		      "delta"
-      SrcPort		      1
-      DstBlock		      "Divide"
-      DstPort		      2
     }
     Line {
       SrcBlock		      "Divide2"
@@ -3867,13 +3964,13 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      1
-      Points		      [0, -35; 5, 0]
+      Points		      [225, 0]
       Branch {
 	DstBlock		"To Workspace"
 	DstPort			1
       }
       Branch {
-	Points			[0, -115]
+	Points			[0, 260; 140, 0]
 	DstBlock		"Divide3"
 	DstPort			1
       }
@@ -3881,32 +3978,35 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      2
-      Points		      [0, -20; 235, 0]
+      Points		      [365, 0]
       Branch {
 	DstBlock		"To Workspace1"
 	DstPort			1
       }
       Branch {
-	Points			[0, -50]
-	DstBlock		"Discrete Derivative"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 30]
-	DstBlock		"Divide2"
-	DstPort			1
+	Points			[0, 45; 125, 0]
+	Branch {
+	  Points		  [0, 35]
+	  DstBlock		  "Divide2"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, -20]
+	  DstBlock		  "Discrete Derivative"
+	  DstPort		  1
+	}
       }
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      3
-      Points		      [0, -5; 5, 0]
+      Points		      [215, 0]
       Branch {
 	DstBlock		"To Workspace10"
 	DstPort			1
       }
       Branch {
-	Points			[0, -20; 150, 0; 0, 380]
+	Points			[0, 215]
 	DstBlock		"delta"
 	DstPort			1
       }
@@ -3914,42 +4014,33 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      4
-      Points		      [0, 10; 125, 0]
-      Branch {
-	DstBlock		"To Workspace5"
-	DstPort			1
-      }
-      Branch {
-	Points			[5, 0]
-	DstBlock		"delta1"
-	DstPort			1
-      }
+      DstBlock		      "To Workspace5"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      5
-      Points		      [0, 25]
       DstBlock		      "To Workspace11"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      6
-      Points		      [0, 40; 250, 0]
+      Points		      [165, 0]
       Branch {
 	DstBlock		"To Workspace6"
 	DstPort			1
       }
       Branch {
-	Points			[0, -60]
-	DstBlock		"sqrt_theta"
+	Points			[0, -35]
+	DstBlock		"sqrt_theta25"
 	DstPort			1
       }
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      7
-      Points		      [0, 55; 5, 0]
+      Points		      [15, 0]
       Branch {
 	DstBlock		"To Workspace12"
 	DstPort			1
@@ -3963,48 +4054,43 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      8
-      Points		      [0, 70]
       DstBlock		      "To Workspace7"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      10
-      Points		      [0, 100]
       DstBlock		      "To Workspace9"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      9
-      Points		      [0, 85]
       DstBlock		      "To Workspace14"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      11
-      Points		      [0, 115]
       DstBlock		      "To Workspace8"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      12
-      Points		      [0, 130]
       DstBlock		      "To Workspace20"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      13
-      Points		      [0, 145; 5, 0]
+      Points		      [15, 0]
       Branch {
 	DstBlock		"To Workspace2"
 	DstPort			1
       }
       Branch {
-	Points			[0, -20; 360, 0]
+	Points			[0, -20]
 	DstBlock		"Divide"
 	DstPort			1
       }
@@ -4012,56 +4098,44 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      14
-      Points		      [0, 160]
       DstBlock		      "To Workspace3"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      15
-      Points		      [0, 175]
       DstBlock		      "To Workspace15"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      16
-      Points		      [0, 190]
       DstBlock		      "To Workspace16"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      17
-      Points		      [0, 205]
       DstBlock		      "To Workspace17"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      18
-      Points		      [0, 220]
       DstBlock		      "To Workspace18"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      19
-      Points		      [0, 235]
       DstBlock		      "To Workspace19"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "sqrt_theta"
+      SrcBlock		      "sqrt_theta25"
       SrcPort		      1
+      Points		      [85, 0]
       DstBlock		      "Divide2"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "delta1"
-      SrcPort		      1
-      Points		      [10, 0; 0, -10]
-      DstBlock		      "Divide3"
       DstPort		      2
     }
     Line {
@@ -4103,6 +4177,80 @@ Model {
 	DstBlock		"Mux"
 	DstPort			3
       }
+    }
+    Line {
+      SrcBlock		      "delta"
+      SrcPort		      1
+      Points		      [15, 0]
+      Branch {
+	DstBlock		"Divide3"
+	DstPort			2
+      }
+      Branch {
+	Points			[0, 130]
+	DstBlock		"Divide"
+	DstPort			2
+      }
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      20
+      DstBlock		      "To Workspace13"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      21
+      DstBlock		      "To Workspace24"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      22
+      DstBlock		      "To Workspace25"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      23
+      DstBlock		      "To Workspace26"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      24
+      DstBlock		      "To Workspace27"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      25
+      DstBlock		      "To Workspace28"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      26
+      DstBlock		      "To Workspace29"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      27
+      DstBlock		      "To Workspace30"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      28
+      DstBlock		      "To Workspace31"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux1"
+      SrcPort		      29
+      DstBlock		      "To Workspace32"
+      DstPort		      1
     }
   }
 }
