@@ -1,0 +1,69 @@
+// This case file sets up the solver for transient simulation in Matlab Simulink
+// This case file is automatically called in the configuration file for the S-function
+
+// Determining the solver preferences
+solver.defaultTolerance = 0.0001;
+solver.maxIterations = 500;
+solver.maxJacobians = 250;
+solver.maxConvergeFailures = 250;
+
+// Including the flight condition from the file written by TTECTrA
+#include <Sfunction_flight_condition.data>
+#include <transientTrace.fnc>
+
+// Turning on the guess logic
+setOption( "switchGuess", "ON" );
+
+// Switching the guess logic type to fuel flow rate
+setOption( "switchGuessType", "Wfuel" );
+
+// Turning the VAFN off
+setOption( "switchVAFN", "ON" );
+
+// Turning the VAFN schedule off
+setOption( "switchVAFNSchedule", "ON" );
+
+// Assigning the initial fuel flow rate from the input signal to the power management variable
+Wfuel = transientDriver_scaled(0.0);
+
+// Switching burner input variable to fuel flow rate
+Burner.switchBurn = "FUEL";
+	
+// Automatically setting up the solver
+autoSolverSetup();
+
+// Adding transient demand variable to the solver
+solver.addIndependent("trans_indep"); 
+solver.addDependent("trans_Condition");
+
+// Running the model for initialization
+run();
+
+// Turning off the guess logic
+setOption( "switchGuess", "OFF" );
+
+// Automatically setting up the solver
+autoSolverSetup();
+
+// Initializing time
+time = 0.;
+
+// Setting the solution mode to transient
+setOption( "solutionMode", "TRANSIENT" );
+
+// Selecting the solver integration type
+transient.integrationType = "GEAR_2ND_ORDER";
+
+// Initializing the variable history
+initializeHistory();
+
+solver.addIndependent("trans_indep"); 
+solver.addDependent("trans_Condition");
+
+// Setting up the transient simulation time step
+transient.baseTimeStep = 0.01;
+transient.stopTime = 20.0;
+solver.postExecutionSequence = { "transientTrace" }; //CaseViewer function
+// Running the model for initialization
+run();
+transientTrace.display(); //write viewer variables to it's output file
