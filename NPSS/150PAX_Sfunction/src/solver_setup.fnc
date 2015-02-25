@@ -111,7 +111,7 @@ void transient_setup() {
 	
 	initializeHistory();
 
-    transient.baseTimeStep = 0.02;
+    transient.baseTimeStep = 0.01;
     
 }
 

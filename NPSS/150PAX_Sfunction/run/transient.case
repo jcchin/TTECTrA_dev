@@ -57,7 +57,7 @@ transient.integrationType = "GEAR_2ND_ORDER";
 initializeHistory();
 
 // Setting up the transient simulation time step
-transient.baseTimeStep = 0.02;
+transient.baseTimeStep = 0.01;
 
 // Running the model for initialization
 run();
