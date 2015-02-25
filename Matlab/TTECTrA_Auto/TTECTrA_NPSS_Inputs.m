@@ -48,7 +48,7 @@ ttectra_in.in.simFileName='NPSS_TTECTrA.mdl';  % simulation file name
 %              14761.9048, 15714.2857, 16666.6667, 17619.0476, 18571.4286,...
 %              19523.8095, 20476.1905, 21428.5714, 22380.9524, 23333.3333,...
 %              24285.7143, 25238.0952, 26190.4762, 26500.0000];
-fnt_range=[5000 42000];
+fnt_range=[7000 42000];
 %fnt_range=[5000 30000];
 ttectra_in.in.setpoint_vector=fnt_range(1): (fnt_range(2)-fnt_range(1))/20 : fnt_range(2);
 ttectra_in.in.linearModelfilename='NPSS_PWLM.mat';
