@@ -1,0 +1,243 @@
+//
+//-------------------------------------------------------------------------------------------------
+//                                                                       						  |
+//   File Name:    150PAX.run                                 					        		  |
+//   Date(s):      May 28, 2014           														  |
+//   Author:       Metin F. Ozcan																  |
+//   Modified by:  Jeffrey C. Chin                                       						  |
+//                                                                       					      |
+//   Description:   File to run 150 PAX high BPR SFTF model     						          |
+//                                                                       						  |
+//-------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------
+//                            Model Definition 
+//-------------------------------------------------------------------------------------------------
+MODELNAME = "150 PAX High BPR SFTF Model"; 
+AUTHOR = "Metin F. Ozcan";
+
+// Defining the thermodynamics package
+setThermoPackage("GasTbl");
+
+//Defining output routes
+#include <output_paths.fnc>
+set_output(); // view/output_paths.fnc
+
+// Including the model and model design point
+#include <High_BPR_150pax.mdl>
+#include <design_point_150pax.int>
+
+// Including view out files
+#include <npss.page.view>
+#include <print_macros.fnc>
+
+// Including necessary custom functions
+#include <solver_setup.fnc>
+#include <output_setup.fnc>
+#include <independents_dependents_constraints.fnc>
+#include <transientDriver.fnc>
+#include <transientDriver_scaled.fnc>
+#include <accelSchedule.fnc>
+#include <linear_model.fnc>
+
+// Determining the solver preferences
+solver.defaultTolerance = 0.000001;
+solver.maxIterations = 500;
+solver.maxJacobians = 250;
+solver.maxConvergeFailures = 250;
+
+//-------------------------------------------------------------------------------------------------
+//  RUN OFF-DESIGN POINT - SLS Max Thrust
+//-------------------------------------------------------------------------------------------------
+// Setting up the solver for the steady state case
+SS_Setup();
+
+// Inputting the flight condition for SLS
+Ambient.alt = 0.0;
+Ambient.MN = 0.0;
+Ambient.dTs = 0.0;
+
+// Turning on the guess logic
+setOption( "switchGuess", "ON" ); //merge?
+
+// Switching the guess logic type to Fan NcPct
+setOption( "switchGuessType", "FanNcPct" );
+
+// Because the default FanNcPct value is 100 and the same with
+// the current Fan_NcPct_target, there is no need to change or
+// assign a value to FanNcPct
+
+// Running the steady state case
+RunMaxPower();
+
+// The case file for cycle maximum limits
+#ifdef MAXLIMITSCHEDULE
+	#include <maxLimit.case>
+#endif
+
+// The case file for cycle minimum limits
+#ifdef MINLIMITSCHEDULE
+	#include <minLimit.case>		
+#endif
+
+// The case file for creating a flight condition setpoint for  formatted for Matlab
+#ifdef SETPNT
+	#include <setpoint.case>		
+#endif
+
+// The case file for creating setpoint values throughout the entire flight envelope
+#ifdef FLTENVSETPNT
+	#include <powMan.case>		
+#endif
+
+// The case file for creating the acceleration schedule and minimum RU limit in
+// Matlab format
+#ifdef MATLABOUTPUT
+ #include <matlabOutput.case>		
+#endif
+
+// The case file for running the model in transient with an acceleration schedule 
+// at SLS, SL hot day take off, and 6,000 ft hot day take off
+#ifdef ACCELSCHEDULE
+	#include <accel.case>
+#endif
+
+// The case file for creating linear models at several flight conditions throughout
+// the flight envelope and putting these linear model into Matlab format
+#ifdef LINEARMODEL
+	#include <linearModel.case>		
+#endif
+
+// The case file for running the NPSS model in Matlab Simulink
+#ifdef TRANSIENT
+ #include <transient.case>		
+#endif
+
+#ifdef PLOT
+	#include <mapplot_matlab.fnc>
+	createMapDataFiles_matlab();
+#endif
+
+#ifdef MODEL
+	#include <matlab_model_info.fnc>
+	matlab_model_info();
+#endif
+
+// The case file for generating the transient VAFN schedule
+#ifdef NOZZLESCHEDULE
+	#include <nozzle_schedule.case>		
+#endif
+
+//-------------------------------------------------------------------------------------------------
+//                                                                       						  |
+//   File Name:    150PAX.run                                 					        		  |
+//   Date(s):      May 28, 2014           														  |
+//   Author:       Metin F. Ozcan																  |
+//   Modified by:  Jeffrey C. Chin                                       						  |
+//                                                                       					      |
+//   Description:   File to run 150 PAX high BPR SFTF model     						          |
+//                                                                       						  |
+//-------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------
+//                            Model Definition 
+//-------------------------------------------------------------------------------------------------
+/*MODELNAME = "150 PAX High BPR SFTF Model"; 
+AUTHOR = "Metin F. Ozcan";
+
+// Defining the thermodynamics package
+setThermoPackage("GasTbl");
+
+//Defining output routes
+#include <output_paths.fnc>
+set_output(); // view/output_paths.fnc
+
+// Including the model and model design point
+#include <High_BPR_150pax.mdl>
+#include <design_point_150pax.int>
+
+// Including view out files
+#include <npss.page.view>
+#include <print_macros.fnc>
+
+// Including necessary custom functions
+#include <solver_setup.fnc>
+#include <output_setup.fnc>
+#include <independents_dependents_constraints.fnc>
+#include <transientDriver.fnc>
+#include <transientDriver_scaled.fnc>
+#include <accelSchedule.fnc>
+#include <linear_model.fnc>
+
+// Determining the solver preferences
+solver.defaultTolerance = 0.000001;
+solver.maxIterations = 500;
+solver.maxJacobians = 250;
+solver.maxConvergeFailures = 250;
+
+//-------------------------------------------------------------------------------------------------
+//  RUN OFF-DESIGN POINT - SLS Max Thrust
+//-------------------------------------------------------------------------------------------------
+// Setting up the solver for the steady state case
+SS_Setup();
+
+// Inputting the flight condition for SLS
+Ambient.alt = 0.0;
+Ambient.MN = 0.0;
+Ambient.dTs = 0.0;
+
+// Turning on the guess logic
+setOption( "switchGuess", "ON" );
+
+// Switching the guess logic type to Fan NcPct
+setOption( "switchGuessType", "FanNcPct" );
+
+// Because the default FanNcPct value is 100 and the same with
+// the current Fan_NcPct_target, there is no need to change or
+// assign a value to FanNcPct
+
+// Running the steady state case
+RunMaxPower();
+
+// The case file for cycle maximum limits
+#ifdef MAXLIMITSCHEDULE
+	#include <maxLimit.case>
+#endif
+
+// The case file for cycle minimum limits
+#ifdef MINLIMITSCHEDULE
+	#include <minLimit.case>		
+#endif
+
+// The case file for creating a flight condition setpoint for  formatted for Matlab
+#ifdef SETPNT
+	#include <setpoint.case>		
+#endif
+
+// The case file for creating setpoint values throughout the entire flight envelope
+#ifdef FLTENVSETPNT
+	#include <powMan.case>		
+#endif
+
+// The case file for running the model in transient with an acceleration schedule 
+// at SLS, SL hot day take off, and 6,000 ft hot day take off
+#ifdef ACCELSCHEDULE
+	#include <accel.case>
+#endif
+
+// The case file for creating linear models at several flight conditions throughout
+// the flight envelope and putting these linear model into Matlab format
+#ifdef LINEARMODEL
+	#include <linearModel.case>		
+#endif
+
+// The case file for running the NPSS model in Matlab Simulink
+#ifdef TRANSIENT
+	#include <transient.case>		
+#endif
+
+// The case file for generating the transient VAFN schedule
+#ifdef NOZZLESCHEDULE
+	#include <nozzle_schedule.case>		
+#endif
+*/

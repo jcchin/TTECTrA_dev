@@ -1,0 +1,1436 @@
+//-------------------------------------------------------------------------------------------------
+//                                                                       												   |
+//   File Name:     High_BPR_150pax.mdl                                  						               |
+//   Date(s):       May 20, 2014                                        									         |
+//   Author:        Metin F. Ozcan                                                                 |
+//                     modified by Jeff Chin                                      							   |
+//                                                                       												   |
+//   Description:   Separate Flow High BPR Turbofan Engine for 150 PAX   		                       |
+//                                                                       												   |
+//-------------------------------------------------------------------------------------------------
+
+// The design variables are overwritten in the design_point_150pax.int file. 
+// You can change the design variables in the 150PAX.run file after 
+// including the design_point_150pax.int file in the run file.
+#include <transientDriver.fnc>
+//-------------------------------------------------------------------------------------------------
+// Model Definition 
+//-------------------------------------------------------------------------------------------------
+// Defining the variables for the guess logic and setting their default values
+real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=3.93086, far_pc=0.0219794, EPR=2.55849, fnet=25800.0;
+
+// Guess logic element
+Element Guess { 
+  #include <Guess.ins> 
+}
+
+// Defining the Ambient element
+Element FlightConditions Ambient  {
+	alt = 0.;
+	MN = 0.00;
+	dTs = 27.;
+	W = 759.56;
+}
+
+// Defining the inlet element
+// Element Inlet Inlet  {
+    // Fl_O.MN = 0.5;
+    // eRamBase = 1.0; 
+// }
+
+Element InstalledInlet Inlet{
+   Afs = 3500.0;
+   Fl_O.MN = 0.63; 
+   real WC_Schedule, WC_DESIGN; 
+   Table TB_wcfactor(real Mach) { 
+     Mach =     {   0.00,   0.60,   0.80,   1.00 } 
+     wcfactor = { 1.0000, 1.0000, 1.0000, 1.0000 } 
+   } 
+
+   Table Tb_localMN(real MNfree) { 
+     MNfree =  { 0.00, 0.10, 0.20, 0.32, 0.45, 0.60, 0.80, 1.00 } 
+     MNlocal = { 0.00, 0.10, 0.20, 0.32, 0.45, 0.60, 0.80, 1.00 } 
+   } 
+
+   Subelement PipsiInletSub S_install { 
+     Acapture = 10000.0; 
+     #include <inlet_m9sub.maps>;
+     void preexecute() {
+     if (switchDes == "DESIGN") {
+       Acapture = 144.0*Ambient.W/Inlet.Fl_I.rhos/Inlet.Fl_I.Vflow/0.77;
+       }
+     }
+   } 
+}
+
+Element Bleed InletFlowControl  {
+   void preexecute() {
+      Fl_O.Aphy = Fl_I.Aphy;
+   }
+		BleedInPort FlowControlBld; 
+
+}
+
+// Defining the fan element
+Element Compressor Fan  {
+   
+   // Including the file for the fan map
+   #include <FAN.map> 
+
+   S_map.S_eff.TB_Wc.NcorrMap.extrap = "linear" ;
+   S_map.S_eff.TB_eff.NcorrMap.extrap = "linear" ;
+   S_map.S_eff.TB_PR.NcorrMap.extrap = "linear" ;
+   S_map.S_eff.TB_Wc.RlineMap.extrap = "linear" ;
+   S_map.S_eff.TB_eff.RlineMap.extrap = "linear" ;
+   S_map.S_eff.TB_PR.RlineMap.extrap = "linear" ;
+
+   Fl_O.MN = 0.45; 
+   S_map.alpha = 0.00;
+   S_map.RlineMap = 2.0000;
+   S_map.NcDes = 1.0;
+   S_map.PRdes = 1.658;
+   S_map.effDes = 0.875371;
+
+   real spec_flow_dsn = 42.0;
+   real hub_to_tip = 0.3;
+
+}
+
+// Defining the splitter element
+Element Splitter Splitter  {
+   BPR = 5.2;
+   Fl_01.MN = 0.45; 
+   Fl_02.MN = 0.45; 
+}
+
+Element Bleed  BypBld  {
+   BleedOutPort Lkg; 
+   Lkg.fracW = 0.0050;
+   Fl_O.MN = 0.45;
+   real HXBleedOn = 0;
+   real InterHXBleedOn = 0;
+
+   BleedOutPort HX {	              // Bypass Duct Cooled Cooling Flow
+     //fracW = HXBleedOn;
+   }  
+   BleedOutPort InterHX {	      // Bypass Duct InterCooling Flow
+     //fracW = InterHXBleedOn;
+   } 
+    void preexecute() { 
+	    if (Ambient.alt < 10000) {  //cooled cooling logic
+		    HX.fracW = HXBleedOn;
+		}			
+		else {			
+		    HX.fracW = 0.0;
+		}		
+	    if (Ambient.alt < 10000) {  //intercooler logic
+		    InterHX.fracW = InterHXBleedOn;
+		}			
+		else {			
+		    InterHX.fracW = InterHXBleedOn;
+		}	
+	}		
+}
+
+// Defining the element for the duct between the splitter and LPC
+Element Duct Duct4  {
+   dPqPbase = 0.010;
+   Fl_O.MN = 0.40; 
+}
+
+// Defining the LPC element
+Element Compressor LPC  {
+
+   // Including the file for the LPC map
+   #include <LPC.map> 
+
+   Fl_O.MN = 0.40; 
+   S_map.alpha = 0.00;
+   S_map.RlineMap = 1.8000;
+   S_map.NcDes = 1.0;
+   S_map.PRdes = 1.9103;
+   S_map.effDes = 0.875588;
+
+   real spec_flow_dsn = 32.83;
+   real hub_to_tip = 0.8; 
+
+   InterStageBleedOutPort  ABTC {    
+		 fracBldWork = 1.000;
+		 fracBldP = 1.0000;
+		 fracBldW = 0;
+   } 
+   Table ABTCschedule( real alt ) {      //schedule for ABTC
+	 alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+	 bleed = { 1, 1, 1, 1 }
+	 alt.interp = "linear";
+   } 
+   ABTCschedule.s_rtn = 0;
+
+   void preexecute() { 
+		#ifndef DF
+			ABTC.fracBldW = 0;
+		#else			
+			ABTC.fracBldW = ABTCschedule(Ambient.alt)*(Splitter.BPR + 1);   //ABTC flow is a function of fan flow
+		#endif
+   }
+   
+}
+
+// Defining the duct element between LPC and HPC
+Element Duct Duct6  {
+   dPqPbase = 0.015;
+   Fl_O.MN = 0.45; 
+}
+
+// Defining the element for HPC
+Element Compressor HPC  {
+   
+	// Including the file for HPC map
+	#include <HPC.map> 
+
+	Fl_O.MN = 0.30; 
+	S_map.alpha = 0.00;
+	real BleedFlow = 3.930;            // Customer Bleed fixed mass flow
+	S_map.RlineMap = 2.000;
+	S_map.NcDes = 0.95;
+	S_map.PRdes = 8.085;
+	S_map.effDes = 0.915061;
+
+	real spec_flow_dsn = 26.7;
+	real a_CustBldMap = 0;
+	real bleedInstall = 1;
+
+	//flow control logic
+	real nStagesFlowControl;
+	real flowControlFlow;
+	
+	real nStagesTurbineFlowControl;
+	real turbineFlowControlFlow;
+	//effiency logic calculated in mapgen.npss
+
+	//real hub_to_tip = 0.8;
+	
+	InterStageBleedOutPort ATD {    
+		fracBldWork = 1.0000;
+		fracBldP = 1.0000;
+		fracBldW = 0.005;
+	} 
+
+	InterStageBleedOutPort Cool1 {    // LPT inlet cooling flow
+		fracBldWork = 0.5000;
+		fracBldP = 0.5000;
+		fracBldW = 0.087;
+	} 
+
+	InterStageBleedOutPort Cool2 {    // LPT exit cooling flow
+		fracBldWork = 0.5000;
+		fracBldP = 0.5500;
+		fracBldW = 0.051;
+	} 
+
+	InterStageBleedOutPort  LPTFlowControl {    // LPT flow
+		fracBldWork = 0.5000;
+		fracBldP = 0.5500;
+		fracBldW = nStagesTurbineFlowControl*turbineFlowControlFlow;
+	} 
+	
+	InterStageBleedOutPort CustBld {    
+		fracBldWork = 0.5000;
+		fracBldP = 0.5000;
+		fracBldW = 0.02;
+	} 
+
+	InterStageBleedOutPort  FlowControl {    
+		fracBldWork = 0;
+		fracBldP = 0;
+		fracBldW = 0;
+	} 
+	InterStageBleedOutPort  InletFlowControl {    
+		fracBldWork = 0.5000;
+		fracBldP = 0.5000;
+		fracBldW = 0;
+	}
+	
+	Table BleedAdder( real alt ) {       //adder on customer bleed
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		bleed = { 1, 1, 0.0, 0.0 }
+		alt.interp = "linear";
+	} 
+	BleedAdder.s_rtn = 0;
+	
+	//Size Effects
+	real etaPolyBase, etaPolyDesign, d_etaSize, sizeWc, d_eff_size, effDesBase, gam_avg;	
+		
+	Table CompressorSizeEffect( real exitWc, real PR) { 
+		PR = 1 {
+				exitWc = {0.0    ,0.1    ,0.3    ,0.5    ,1.0    ,1.5    ,2.0    ,2.5    ,3.0    ,3.5    ,4.0    ,4.5    ,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,9.901,100.0}
+				d_etac = {-0.2485,-0.0710,-0.0383,-0.0285,-0.0183,-0.0135,-0.0105,-0.0084,-0.0068,-0.0055,-0.0045,-0.0037,-0.0030,-0.0024,-0.0019,-0.0015,-0.0011,-0.0009,-0.0006,-0.0004,-0.0002,-0.0001,0.0000,0.0000} 
+				}
+		PR = 30 {
+				exitWc = {0.0,0.1,0.3,0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,9.901,100.0}
+				d_etac = {-0.2485,-0.0710,-0.0383,-0.0285,-0.0183,-0.0135,-0.0105,-0.0084,-0.0068,-0.0055,-0.0045,-0.0037,-0.0030,-0.0024,-0.0019,-0.0015,-0.0011,-0.0009,-0.0006,-0.0004,-0.0002,-0.0001,0.0000,0.0000} 
+				}
+				
+		exitWc.interp = "linear" ;
+		exitWc.extrap = "linear" ;
+		//PR.interp = "linear";
+		//PR.extrap = "linear;
+	}
+	
+	void preexecute() { 
+		/* CustBld.fracBldW = BleedFlow / Fl_I.W ;  // calc fracW to give fixed flow
+		a_CustBldMap = BleedAdder(Ambient.alt);
+		CustBld.fracBldW += (a_CustBldMap); // adds more bleed flow if technology changes map
+		CustBld.fracBldW *= bleedInstall; */
+		FlowControl.fracBldWork = nStagesFlowControl/10;
+		FlowControl.fracBldP = 1.5335** nStagesFlowControl/20.033;
+		FlowControl.fracBldW = flowControlFlow*nStagesFlowControl;
+		CustBld.fracBldW = ( BleedFlow / Fl_I.W + BleedAdder(Ambient.alt) )* bleedInstall;
+		
+		if(switchDes == DESIGN) {
+			S_map.effDes = effDesBase+d_eff_size; 
+			//cout << "S_map.effDes = " << S_map.effDes << endl;
+			//cout << "d_eff_size = " << d_eff_size << endl;
+		}
+	}
+
+	void postexecute() {
+		if(switchDes == DESIGN) {
+			gam_avg = (Fl_O.gamt+Fl_I.gamt)/2;
+			
+			etaPolyBase = log(PR**((gam_avg-1)/gam_avg))/log((PR**((gam_avg-1)/gam_avg)-1)/effDesBase+1);
+			//cout << "etaPolyBase = " << etaPolyBase << endl;
+
+			//Size Effects		
+			sizeWc = Fl_O.Wc;
+			d_etaSize = CompressorSizeEffect(sizeWc, PR); 
+			//cout<<"effDesBase = "<<effDesBase<<endl;
+			//cout<<"sizeWc = "<<sizeWc<<endl;
+			//cout << "d_etaSize = " << d_etaSize << endl;
+			etaPolyDesign = etaPolyBase+d_etaSize;
+			//cout << "etaPolyDesign = " << etaPolyDesign << endl;
+
+		}
+	}
+
+}
+
+Element Bleed Bld3  {
+   Fl_O.MN = 0.30; 
+
+   BleedOutPort Cool1 {	              // HPT cooling flow
+     fracW = 0.087+0.051;
+   } 
+}
+
+Element Bleed  BldSplit  {
+   Fl_O.MN = 0.30; 
+
+   BleedOutPort Cool1 {	              // HPT exit cooling flow
+     fracW = 0.051/(0.087+0.051);
+   } 
+}
+
+// Defining the element for fuel flow start   
+Element FuelStart FUEL36  {
+   LHV = 18580.; 
+}
+
+// Defining the burner element
+Element Burner Burner  {
+   real meanRadius31 = 7;
+   real meanRadius40 = 14;
+   effBase = 0.999;
+   switchHotLoss = "input";
+   dPqPBase = 0.045;
+   Fl_O.MN = 0.10;
+
+   switchBurn = "FAR";
+   FAR = 0.0286;
+   TtCombOut = 3130.0;
+
+   void preexecute() { 
+	   //Burner.Wfuel = transientDriver2(time);
+   }
+   
+}
+
+// Defining the HPT element
+Element Turbine HPT  {
+   
+   // Including the file for HPT map
+   #include <HPT.map>
+
+   FlowStation FS_41;
+   Fl_O.MN = 0.30;
+
+   S_map.effDes = 0.9288;
+   S_map.parmMap = 3.290;
+   S_map.parmGeomDes  = 1.0;
+   S_map.parmMapDes = 6.000;
+   S_map.parmNcDes = 100.0;
+
+   InterStageBleedInPort Non_ChargeableBld { 
+         Pfract  = 1.0;
+         diaPump = 0.0;
+   } 
+
+   InterStageBleedInPort ChargeableBld { 
+         Pfract  = 0.0;
+         diaPump = 0.0;
+   } 
+
+   real delta_eff = 0.0; 
+   
+   Subelement CoolIt Cool { 
+     cool1 = "Non_ChargeableBld";
+     cool2 = "ChargeableBld";
+     desBladeTemp[1] = 2200;
+     desVaneTemp[1] = 2200;
+     desBladeTemp[2] = 2200;
+     desVaneTemp[2] = 2200;
+     nStages = 1;
+     xFactor =1.95; //1.95; 
+     xFactor1 =1.70; //2.38;
+   }
+   
+   void postexecute() { 
+     FS_41.copyFlow("Fl_I");
+     FS_41.add("Non_ChargeableBld");
+     Cool.run(); 
+
+     delta_eff = 0.0;
+   }
+   
+}
+
+// Defining the bleed input element
+Element Bleed ATD_Bleed  {
+   Fl_O.MN = 0.30;
+   BleedInPort ATDbld; 
+}
+
+// Defining the duct element between HPT and LPT
+Element Duct Duct11  {
+   dPqPbase = 0.005;
+   Fl_O.MN = 0.30; 
+
+}
+
+// Defining the LPT element
+Element Turbine LPT  {
+   
+   // Including the file for LPT map
+   #include <LPT.map>
+
+   FlowStation FS_49;
+   Fl_O.MN = 0.35;
+
+   S_map.effDes = 0.9276;
+   S_map.parmMap = 4.890;
+   S_map.parmGeomDes  = 1.0;
+   S_map.parmMapDes = 6.3200;
+   S_map.parmNcDes = 100.0;
+
+   InterStageBleedInPort Non_ChargeableBld { 
+         Pfract  = 1.0;
+         diaPump = 0.0;
+   } 
+
+   InterStageBleedInPort ChargeableBld { 
+         Pfract  = 0.0;
+         diaPump = 0.0;
+   }
+
+   InterStageBleedInPort LPTFlowControl { 
+         Pfract  = 0.0;
+         diaPump = 0.0;
+   }
+   
+   real delta_eff = 0.0; 
+   
+   Subelement CoolIt Cool { 
+     cool1 = "Non_ChargeableBld";
+     cool2 = "ChargeableBld";
+     desBladeTemp[1] = 2060;
+     desVaneTemp[1] = 2060;
+     desBladeTemp[2] = 2060;
+     desVaneTemp[2] = 2060;
+     desBladeTemp[3] = 2060;
+     desVaneTemp[3] = 2060;
+     nStages = 3;
+     xFactor =.425; //1.55; 
+     xFactor1 =0.63; //2.99;
+   }
+   
+   void postexecute() { 
+     FS_49.copyFlow("Fl_I");
+     FS_49.add("Non_ChargeableBld");
+     Cool.run(); 
+
+     delta_eff = 0.0;
+   }
+   
+}
+
+// Defining the element between LPT and core nozzle
+Element Duct Duct13  {
+   dPqPbase = 0.010;
+   Fl_O.MN = 0.25; 
+
+}
+
+// Defining the core nozzle element
+Element Nozzle Core_Nozz  {
+	switchType = "CONIC";
+	switchCoef = "CV";
+	// Cv = 0.9999;
+	// CdTh = 0.995;
+
+	Table DischargeCoeff( real PR ) { 
+		PR =   {1.0, 1.08, 1.25, 1.6, 2, 2.25,  2.5,   3.0,  4.0, 5.0, 7.0}
+		CdTh = {0.89, 0.907, 0.922, 0.945, 0.96, 0.966, 0.968, 0.97, 0.9725, 0.974, 0.975}
+		PR.interp = "linear";
+	}
+
+	Subelement CDTH S_CdTh {  
+	}
+	
+	Table VelCoeff( real PR ) { 
+		PR = {1.0,  2.1, 2.6444, 3.1889, 3.7333, 4.2778, 4.8222, 5.3667, 5.9111, 6.4556, 7.0}
+		Cv = {0.9962, 0.9952, 0.9936, 0.9886, 0.9825, 0.9757, 0.9691, 0.9631, 0.9574, 0.952, 0.947}
+		PR.interp = "linear";
+	}
+
+	Subelement CVELOCITY S_Cv { 
+	} 
+
+	Table CangScalar( real alt ) {       //scalar on Cang
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		cang = { 1, 1, 1, 1 }
+		alt.interp = "linear";
+	}
+	CangScalar.s_rtn = 1;
+
+	Table CvScalarLowAlt( real alt ) {       //scalar on Cv at low altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		cv = { 1, 1, 1, 1 }
+		alt.interp = "linear";
+	}
+	CvScalarLowAlt.s_rtn = 1;	
+
+	Table CvScalarHighAlt( real alt ) {       //scalar on Cv at high altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		cv = { 1, 1, 1, 1 }
+		alt.interp = "linear";
+	}
+	CvScalarHighAlt.s_rtn = 1;		
+
+	PsExhName = "Ambient.Ps"; 
+
+	void preexecute() {
+		VelCoeff.s_rtn = 1;
+		if (Ambient.alt < 18000) {  
+		VelCoeff.s_rtn *= CvScalarLowAlt(Ambient.alt);
+		}			
+		else {			
+		VelCoeff.s_rtn *= CvScalarHighAlt(Ambient.alt);
+		}	
+		Cang = 0.997*CangScalar(Ambient.alt);
+		//VelCoeff.s_rtn = CvScalarLowAlt(Ambient.alt)*CvScalarHighAlt(Ambient.alt);	 // scales Cv if technology changes map 
+	}
+
+}
+
+Element FlowEnd  Core_NozzEnd  {
+}
+
+// Defining the duct element between the splitter and bypass nozzle    
+Element Duct Duct15  {
+	dPqPbase = 0.015;
+	switchAud = "AUDIT";
+   
+	void preexecute() {
+		if (Splitter.BPR < 18) {	   
+			s_dPqPaud = 1;
+		} else {	
+			s_dPqPaud = (18/Splitter.BPR )**0.5; //turbulent coefficient of friction scales with Re^(0.25). Assuming rho, u, and viscosity ~constant d should scale to sqrt of mass flow (or BPR) thus 0.5
+		}
+		a_dPqPaud = BypBld.HXBleedOn*0.05 + BypBld.InterHXBleedOn*0.05; //assume the HX, when present, is located in bypass stream flowpath - that portion exposed has a 5% dp
+	}
+   Fl_O.MN = 0.45; 
+
+}
+
+Element Bleed Bld16  {
+	Fl_O.MN = 0.30;
+	real inletRhoV;
+	BleedInPort HX;	      // Bypass Duct Cooled Cooling Flow Return
+	BleedInPort InterHX;	      // Bypass Duct Inter Cooling Flow Return
+	BleedInPort HPC_FlowControl;	      // HPC Flow Control Cooling Flow Return
+	BleedInPort ABTC;	      // Bleed Flow from ABTC	
+	BleedOutPort CircControl ; //Bleed Flow for circulation control
+
+	Table CirculationControl( real MN ) {      // circulation control bleed
+		MN = {	0.0, 0.35, 0.351, 1.0 }
+		wbld = {1, 1, 0, 0 }
+		MN.interp =  "linear";
+	}
+	CirculationControl.s_rtn = 0;	
+
+  void preexecute() { 
+	   inletRhoV = Inlet.Fl_I.rhos*max(200,Inlet.Fl_I.Vflow)/Fl_I.W;
+	   CircControl.fracW = CirculationControl(Ambient.MN)*inletRhoV;
+   }     
+}
+
+/*
+
+Element Nozzle  Byp_Nozz  {
+   switchType = "CONIC";
+   switchCoef = "CV";
+//   Cv = 0.9999;
+//   CdTh = 0.995;
+   Cang = 0.997;
+   real ADP_Ath;
+   real s_Ath = 1;
+
+   Table DischargeCoeff( real PR ) { 
+		PR =   {1.0, 1.08, 1.25, 1.6, 2, 2.25,  2.5,   3.0,  4.0, 5.0, 7.0}
+		CdTh = {0.89, 0.907, 0.922, 0.945, 0.96, 0.966, 0.968, 0.97, 0.9725, 0.974, 0.975}
+		PR.interp = "linear";
+   }
+
+   Subelement CDTH S_CdTh {  
+		}
+   
+   Table VelCoeff( real PR ) { 
+	   PR = {1.0,  2.1, 2.6444, 3.1889, 3.7333, 4.2778, 4.8222, 5.3667, 5.9111, 6.4556, 7.0}
+	   Cv = {0.9962, 0.9952, 0.9936, 0.9886, 0.9825, 0.9757, 0.9691, 0.9631, 0.9574, 0.952, 0.947}
+	 PR.interp = "linear";
+	 }
+
+	 Subelement CVELOCITY S_Cv { 
+	   }
+	 
+	Table CvScalarLowAlt( real alt ) {       //scalar on Cv at low altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		cv = { 1, 1, 1, 1 }
+		alt.interp = "linear";
+	}
+	CvScalarLowAlt.s_rtn = 1;	
+	
+	Table CvScalarHighAlt( real alt ) {       //scalar on Cv at high altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		cv = { 1, 1, 1, 1 }
+		alt.interp = "linear";
+	}
+	CvScalarHighAlt.s_rtn = 1;	
+
+   PsExhName = "Ambient.Ps"; 
+
+   void preexecute() { 
+   
+		VelCoeff.s_rtn = 1;
+		if (Ambient.alt < 18000) {  
+			VelCoeff.s_rtn *= CvScalarLowAlt(Ambient.alt);
+		}			
+		else {			
+			VelCoeff.s_rtn *= CvScalarHighAlt(Ambient.alt);
+		}	
+ 
+		AthCold = ADP_Ath*s_Ath;
+
+   } 
+}
+
+*/
+
+// The part of the model where the new transient variable area fan nozzle (VAFN)
+// model inherits the nozzle model and expands on it
+class transient_Nozzle extends Nozzle {
+	
+	// The pre-execute function for the transient VAFN model 
+	// void preexecute() {
+		
+		// Calling the pre-execute function in the original nozzle element
+		// Nozzle::preexecute();
+		
+	// }
+	
+	// Defining the additional variables for the VAFN
+	real s_Ath {
+		value = 1; IOstatus = INPUT; units = NONE;
+		description = "Scalar for throat area";
+	}
+	
+	real s_AthPrev {
+		value = 1; IOstatus = INPUT; units = NONE;
+		description = "Scalar for throat area from the previous time step";
+	}
+	
+	real delta_s_Ath {
+		value = 0; IOstatus = INPUT; units = NONE;
+		description = "Deviation from the nominal for the throat area scalar";
+	}
+	
+	real s_AthDmd {
+		value = 1; IOstatus = INPUT; units = NONE;
+		description = "Demand in scalar for throat area";
+	}
+	
+	real s_AthDmdPrev {
+		value = 1; IOstatus = INPUT; units = NONE;
+		description = "Demand in scalar for throat area from the previous time step";
+	}
+	
+	real tau {
+		value = 0;  IOstatus = INPUT;  units = SEC;
+		description = "Equivalent time constant of the VAFN actuator system";
+	}
+	
+	// This variable is a place holder (zeroed out) until a physical actuator model 
+	// is used
+	real ds_Athqdt {
+		value = 0;  IOstatus = OUTPUT;  units = NONE;
+		description = "Throat area scalar time derivative";
+	}
+	
+	real FanNcPct {
+		value = 0; IOstatus = INPUT; units = NONE;
+		description = "Fan percent corrected speed (specify if only FanNcPctName is left unset)";
+	}
+	
+	string FanNcPctName {
+		units = NONE;
+		description = "Location of the fan corrected percent speed variable in the model (string variable)";
+	}
+	
+	real ADP_Ath {
+		value = 0; IOstatus = INPUT; units = INCH2;
+		description = "Aerodynamic design point nozzle throat area";
+	}
+	
+	// real leadLagRatio {
+		// value = 0;  IOstatus = OUTPUT;  units = NONE;
+		// description = "Equivalent lead lag ratio of the VAFN actuator system";
+	// }
+	
+	//-------------------------------------------------------------------------
+	// *** ADDITIONAL SETUP VARIABLES ***
+	//-------------------------------------------------------------------------
+	
+	Independent ind_s_Ath{
+		varName = "s_AthDmd";
+		description = "Independent for the nozzle throat area demand scalar";
+	}
+	
+	Integrator integ_s_Ath{
+		stateName = "s_Ath";
+		derivativeName = "ds_Athqdt";
+		eq_lhs = "s_AthDmd";
+		eq_rhs = "s_Ath";
+		eq_Ref = "s_AthDmd";
+		description = "Integrator for the nozzle throat area scalar";
+	}
+	
+	//-------------------------------------------------------------------------
+	// *** ADDITIONAL OPTION VARIABLE SETUP ***
+	//-------------------------------------------------------------------------
+	// Solution mode switch to set the nozzle throat area directly at steady state
+	Option solutionMode {
+		allowedValues = { STEADY_STATE, ONE_PASS, TRANSIENT } ;
+		description = "Solver solution switch";
+		rewritableValues = FALSE;  // Enables converter optimization.
+	}
+	
+	// Form switch for the step and ramp solutions with the time constant
+	Option switchForm {
+		allowedValues = { STEP, RAMP } ;
+		description = "Solution form switch";
+		rewritableValues = FALSE;
+	}
+	
+	// Time constant switch to determine if running with control characteristics 
+	// (time constant,...etc.) or physical model ("PHYSICAL" - when developed!)  
+	Option switchLagIn {
+		allowedValues = { CONTROLCHAR, PHYSICAL } ;
+		description = "Determines if the design inputs are time constant or physical values";
+		rewritableValues = FALSE;
+	}
+	
+	// The switch for turning on or off the transient VAFN 
+	Option switchVAFN {
+		allowedValues = { "OFF", "ON" };
+		description = "Determines if the transient VAFN is on or off";
+		rewritableValues = FALSE;
+	}
+	
+	// The switch for using the VAFN schedule for calculations 
+	Option switchVAFNSchedule {
+		allowedValues = { "OFF", "ON" };
+		description = "Determines if the transient VAFN calculations use the provided schedule";
+		rewritableValues = FALSE;
+	}
+	
+	//-------------------------------------------------------------------------
+	// *** ADDITIONAL SETUP PORTS, FLOW STATIONS, SOCKETS, TABLES ***
+	//-------------------------------------------------------------------------
+	
+	// ADDITIONAL FLUID PORTS
+	
+	// ADDITIONAL FUEL PORTS
+
+	// ADDITIONAL BLEED PORTS
+
+	// ADDITIONAL THERMAL PORTS
+  
+	// ADDITIONAL MECHANICAL PORTS
+  
+	// ADDITIONAL FLOW STATIONS
+	
+	// ADDITIONAL SOCKETS
+	
+	Socket TB_s_Ath_Schedule
+  {  
+    description = "VAFN throat area scalar versus Fan corrected percent speed";
+    socketType = "Function";
+    required = FALSE;
+    argTypes = { "real" }
+    returnType = "real";
+   }
+   
+   Socket TB_tau_Schedule
+  {  
+    description = "VAFN actuator time constant versus VAFN throat area scalar";
+    socketType = "Function";
+    required = FALSE;
+    argTypes = { "real"}
+    returnType = "real";
+   }
+	
+	// ADDITIONAL TABLES
+	
+	//-------------------------------------------------------------------------
+	// *** ADDITIONAL INTERNAL SOLVER SETUP ***
+	//-------------------------------------------------------------------------
+	
+	//-------------------------------------------------------------------------
+	// *** ADDITIONAL SOLVER INDEPENDENTS & DEPENDENTS ***
+	//-------------------------------------------------------------------------
+	
+	//-------------------------------------------------------------------------
+	// *** ADDITIONAL VARIABLE CHANGED METHODOLOGY ***
+	//-------------------------------------------------------------------------
+	// The function for changing variable input and output statuses for the 
+	// transient VAFN model
+	void variableChanged( string name, any oldVal ) {
+	
+		// Copied the function for changing variable input output statuses in the 
+		// original nozzle element to here for manipulation
+		if ( name == "switchCoef" ) {
+			if ( switchCoef == "CV" ) {
+				Cfg.IOstatus = OUTPUT;
+				Cv.IOstatus = INACTIVE;
+				Cang.IOstatus = INACTIVE;
+			}
+			else {
+				Cfg.IOstatus = INPUT;
+				Cv.IOstatus = OUTPUT;
+				Cang.IOstatus = OUTPUT;
+			}
+		}
+
+		if ( name == "switchDes" ) {
+			if ( switchDes == "DESIGN" ) {
+				AthCold.IOstatus = OUTPUT;
+				dep_Area.autoSetup = FALSE;
+			}
+			else {
+				AthCold.IOstatus = INPUT;
+				dep_Area.autoSetup = TRUE;
+			}
+		}
+
+		if ( name == "switchFrozen" ){
+			if ( switchFrozen == "FROZEN" ){
+				Fl_O.setOption( "reconstitute", "FROZEN" );
+				Fl_Oideal.setOption( "reconstitute", "FROZEN" );
+			}
+			else if ( switchFrozen == "EQUIL" ){
+				Fl_O.setOption( "reconstitute", "EQUIL" );
+				Fl_Oideal.setOption( "reconstitute", "EQUIL" );
+			}
+		}
+	
+		// Additional code for the option variables start here
+		// If the solutionMode option variable is changed
+		if ( name == "solutionMode" ) {
+			
+			// In transient include the independent and dependent in the solver
+			if ( solutionMode == "TRANSIENT" ) {
+				ind_s_Ath.autoSetup = TRUE;
+				integ_s_Ath.autoSetup = TRUE;
+				initializeHistory();
+			}
+			
+			// At steady state the independent and dependent are not needed in 
+			// the solver
+			else {
+				ind_s_Ath.autoSetup = FALSE;
+				integ_s_Ath.autoSetup = FALSE;
+			}
+		}
+		
+		// If the VAFN switch is changed
+		if (name == "switchVAFN") {
+			
+			// If the VAFN switch is turned off
+			if (switchVAFN == "OFF") {
+
+				s_AthDmd = 1.0;
+			
+			}
+			
+		}
+		
+		// If the VAFN switch for schedule is changed
+		if (name == "switchVAFNSchedule") {
+			
+			// If the VAFN switch for schedule is turned off
+			if (switchVAFNSchedule == "OFF") {
+
+				s_AthDmd = 1.0;
+			
+			}
+			
+		}
+	
+	}
+	
+	// The verify function for the transient VAFN model
+	int verify() {
+	
+		// Calling the original verify function in the original nozzle element
+		return Nozzle::verify();
+	
+		// If the user provided a Fan percent corrected speed variable name, 
+		// change the input output status to output for the variable name holder
+		if ( !FanNcPctName.isNull() ){
+			FanNcPctName.IOstatus = OUTPUT;
+		}
+		else if ( FanNcPct == 0 && !TB_s_Ath_Schedule.isEmpty() && switchVAFN == "ON" && switchVAFNSchedule == "ON"){
+			message("Nozzle trying to read a schedule when the schedule variable is not provided. Input a FanNcPctName.");
+			return 0;
+		}
+	
+	}
+	
+	// The calculate function for the transient VAFN model 
+	void calculate() {
+		
+		VelCoeff.s_rtn = 1;
+		if (Ambient.alt < 18000) {  
+			VelCoeff.s_rtn *= CvScalarLowAlt(Ambient.alt);
+		}			
+		else {			
+			VelCoeff.s_rtn *= CvScalarHighAlt(Ambient.alt);
+		}	
+
+		if (solutionMode == STEADY_STATE) {
+			if (switchVAFN == "OFF") {
+				s_AthDmd = 1.0;
+				s_Ath = s_AthDmd;
+				AthCold = ADP_Ath*s_Ath;
+			}
+			else if (switchVAFN == "ON") {
+				if (switchVAFNSchedule == "OFF" || TB_s_Ath_Schedule.isEmpty()) {
+					s_AthDmd = 1.0 + delta_s_Ath;
+					s_Ath = s_AthDmd;
+					AthCold = ADP_Ath*s_Ath;
+				}
+				else if (switchVAFNSchedule == "ON" && !TB_s_Ath_Schedule.isEmpty()) {
+					s_AthDmd = 1.0 + TB_s_Ath_Schedule(FanNcPct);
+					s_Ath = s_AthDmd;
+					AthCold = ADP_Ath*s_Ath;
+				}
+				else if (switchVAFNSchedule == "ON" && TB_s_Ath_Schedule.isEmpty()) {
+					message("Nozzle trying to read a schedule when the schedule is not provided. Switching to fixed area nozzle.");
+					s_AthDmd = 1.0;
+					s_Ath = s_AthDmd;
+					AthCold = ADP_Ath*s_Ath;
+				}
+			}
+		}
+
+		else if (solutionMode == TRANSIENT) {
+			if (switchVAFN == "OFF") {
+				s_AthDmd = 1.0;
+				s_Ath = s_AthDmd;
+				AthCold = ADP_Ath*s_Ath;
+			}
+			else if (switchVAFN == "ON") {
+				if (switchVAFNSchedule == "OFF" || TB_s_Ath_Schedule.isEmpty()) {
+					s_AthDmd = 1.0 + delta_s_Ath;
+					s_Ath = s_AthDmd;
+					AthCold = ADP_Ath*s_Ath;
+				}
+				else if (switchVAFNSchedule == "ON" && !TB_s_Ath_Schedule.isEmpty()) {
+					s_AthDmd = 1.0 + TB_s_Ath_Schedule(FanNcPct);
+					s_Ath = s_AthDmd;
+					AthCold = ADP_Ath*s_Ath;
+				}
+				else if (switchVAFNSchedule == "ON" && TB_s_Ath_Schedule.isEmpty()) {
+					message("Nozzle trying to read a schedule when the schedule is not provided. Switching to fixed area nozzle.");
+					s_AthDmd = 1.0;
+					s_Ath = s_AthDmd;
+					AthCold = ADP_Ath*s_Ath;
+				}
+			}
+		}
+		
+		// Calling the calculate function in the original nozzle element
+		Nozzle::calculate();
+		
+		if ( !FanNcPctName.isNull() ){
+			FanNcPct = FanNcPctName->value;
+		}
+		
+		// The transient case calculations
+		if ( solutionMode == TRANSIENT && switchVAFN == "ON" ) {
+			
+			// If there is a schedule, reading the demand from the schedule
+			// if (!TB_s_Ath_Schedule.isEmpty() && switchVAFNSchedule == "ON") {
+				// s_AthDmd = 1.0 + TB_s_Ath_Schedule(FanNcPct);
+			// }
+			
+			// else if (TB_s_Ath_Schedule.isEmpty() || switchVAFNSchedule == "OFF") {
+				// s_AthDmd = 1.0 + delta_s_Ath;
+			// }
+			
+			if ( switchForm == STEP ) {
+				// Calculating the nozzle throat area scalar using a step response 
+				// solution
+				s_Ath = s_AthPrev + ( s_AthDmd - s_AthPrev ) * 
+				( 1 - exp ( -( timeStep / tau )));
+			}
+			
+			else if ( switchForm == RAMP ) {
+				
+				// Calculating the nozzle throat area scalar using a step response 
+				// solution
+				s_Ath = s_AthPrev + 
+				( s_AthDmdPrev - s_AthPrev ) * ( 1 - exp ( -( timeStep / tau ))) +
+				( s_AthDmd - s_AthDmdPrev ) * ( 1 - tau / timeStep * 
+				( 1 - exp ( -( timeStep / tau ))));
+				
+			}
+			
+		}
+		
+	}
+
+	//-------------------------------------------------------------------------
+	// *** LET THE SYSTEM KNOW THAT UPDATING IS NECESSARY ***
+	//-------------------------------------------------------------------------
+	int hasTimeHistory(){
+		return TRUE;
+	}
+	
+	//-------------------------------------------------------------------------
+	// *** UPDATE THE PREVIOUS VALUE WHEN TIME STEPS ***
+	//-------------------------------------------------------------------------
+	void updateHistory(){
+		s_AthDmdPrev = s_AthDmd; 
+		s_AthPrev = s_Ath;
+	}
+	
+	//-------------------------------------------------------------------------
+	// *** INITIALIZE THE INTEGRATION ***
+	//-------------------------------------------------------------------------
+	void initializeHistory(){
+		s_AthDmdPrev = s_AthDmd; 
+		s_AthPrev = s_Ath;
+	}
+	
+	// Function for registering the appropriate errors at build time for the transient
+	// VAFN model
+	void VCinit() {
+	
+		// Calling the error registration function in the original nozzle element
+		Nozzle::VCinit();
+
+	}
+	
+	// The post-execute function for the transient VAFN model
+	void postexecute() {
+
+		
+
+	}
+
+}
+
+Element transient_Nozzle Byp_Nozz  {
+	
+	switchType = "CONIC";
+	switchCoef = "CV";
+	// Cv = 0.9999;
+	// CdTh = 0.995;
+	Cang = 0.997;
+	// real ADP_Ath;
+	// real s_Ath = 1;
+	
+	Table DischargeCoeff( real PR ) { 
+		PR =   {1.0, 1.08, 1.25, 1.6, 2, 2.25,  2.5,   3.0,  4.0, 5.0, 7.0}
+		CdTh = {0.89, 0.907, 0.922, 0.945, 0.96, 0.966, 0.968, 0.97, 0.9725, 0.974, 0.975}
+		PR.interp = "linear";
+	}
+
+	Subelement CDTH S_CdTh {  
+	}
+
+	Table VelCoeff( real PR ) { 
+		PR = {1.0,  2.1, 2.6444, 3.1889, 3.7333, 4.2778, 4.8222, 5.3667, 5.9111, 6.4556, 7.0}
+		Cv = {0.9962, 0.9952, 0.9936, 0.9886, 0.9825, 0.9757, 0.9691, 0.9631, 0.9574, 0.952, 0.947}
+		PR.interp = "linear";
+	}
+
+	Subelement CVELOCITY S_Cv { 
+	}
+
+	Table CvScalarLowAlt( real alt ) {       //scalar on Cv at low altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		cv = { 1, 1, 1, 1 }
+		alt.interp = "linear";
+	}
+	CvScalarLowAlt.s_rtn = 1;	
+
+	Table CvScalarHighAlt( real alt ) {       //scalar on Cv at high altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		cv = { 1, 1, 1, 1 }
+		alt.interp = "linear";
+	}
+	CvScalarHighAlt.s_rtn = 1;	
+
+	PsExhName = "Ambient.Ps";
+   
+	FanNcPctName = "Fan.NcPct";
+
+	tau = 0.5;
+
+	Table TB_s_Ath_Schedule(real Fan_NcPct) {
+		Fan_NcPct = {100.0, 96.023, 89.2604, 80.0026, 69.2854, 57.5679, 43.6016, 30.8661, 25.0}
+		delta_s_Ath = {0.3283, 0.3283, 0.43058, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5}
+	}
+	
+	// void preexecute() { 
+
+		// VelCoeff.s_rtn = 1;
+		// if (Ambient.alt < 18000) {  
+			// VelCoeff.s_rtn *= CvScalarLowAlt(Ambient.alt);
+		// }			
+		// else {			
+			// VelCoeff.s_rtn *= CvScalarHighAlt(Ambient.alt);
+		// }	
+
+		// if (solutionMode == STEADY_STATE) {
+			// if (switchVAFN == "OFF") {
+				// s_AthDmd = 1.0;
+				// s_Ath = s_AthDmd;
+				// AthCold = ADP_Ath*s_Ath;
+			// }
+			// else if (switchVAFN == "ON") {
+				// if (switchVAFNSchedule == "OFF" || TB_s_Ath_Schedule.isEmpty()) {
+					// s_AthDmd = 1.0 + delta_s_Ath;
+					// s_Ath = s_AthDmd;
+					// AthCold = ADP_Ath*s_Ath;
+				// }
+				// else if (switchVAFNSchedule == "ON" && !TB_s_Ath_Schedule.isEmpty()) {
+					// s_AthDmd = 1.0 + TB_s_Ath_Schedule(FanNcPct);
+					// s_Ath = s_AthDmd;
+					// AthCold = ADP_Ath*s_Ath;
+				// }
+				// else if (switchVAFNSchedule == "ON" && TB_s_Ath_Schedule.isEmpty()) {
+					// message("Nozzle trying to read a schedule when the schedule is not provided. Switching to fixed area nozzle.");
+					// s_AthDmd = 1.0;
+					// s_Ath = s_AthDmd;
+					// AthCold = ADP_Ath*s_Ath;
+				// }
+			// }
+		// }
+
+		// else if (solutionMode == TRANSIENT) {
+			// if (switchVAFN == "OFF") {
+				// s_AthDmd = 1.0;
+				// s_Ath = s_AthDmd;
+				// AthCold = ADP_Ath*s_Ath;
+			// }
+			// else if (switchVAFN == "ON") {
+				// if (switchVAFNSchedule == "OFF" || TB_s_Ath_Schedule.isEmpty()) {
+					// s_AthDmd = 1.0 + delta_s_Ath;
+					// s_Ath = s_AthDmd;
+					// AthCold = ADP_Ath*s_Ath;
+				// }
+				// else if (switchVAFNSchedule == "ON" && !TB_s_Ath_Schedule.isEmpty()) {
+					// s_AthDmd = 1.0 + TB_s_Ath_Schedule(FanNcPct);
+					// s_Ath = s_AthDmd;
+					// AthCold = ADP_Ath*s_Ath;
+				// }
+				// else if (switchVAFNSchedule == "ON" && TB_s_Ath_Schedule.isEmpty()) {
+					// message("Nozzle trying to read a schedule when the schedule is not provided. Switching to fixed area nozzle.");
+					// s_AthDmd = 1.0;
+					// s_Ath = s_AthDmd;
+					// AthCold = ADP_Ath*s_Ath;
+				// }
+			// }
+		// }
+
+	// }
+	
+}
+
+Element FlowEnd Byp_NozzEnd  {
+}
+	
+Element Shaft HP_Shaft  {
+	
+	ShaftInputPort HPC, HPT;
+
+	real HPXBase;
+	real HPInstall = 1;
+
+	HPX = 100.0;
+	Nmech = 10000;
+	inertia = 1.52; // old value: 5.3;
+
+	Table HPXLowAlt( real alt ) {       //horsepower extraction at low altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		hpx = { 1, 1, 0, 0 }
+		alt.interp = "linear";
+	}
+	HPXLowAlt.s_rtn = 0;
+
+	Table HPXHighAlt( real alt ) {       //horsepower extraction at high altitudes
+		alt = {	0.0, 18000.0, 18001.0, 50000.0 }
+		hpx = { 0, 0, 1, 1 }
+		alt.interp = "linear";
+	}
+	HPXHighAlt.s_rtn = 0;	
+
+	void preexecute() { 
+	 HPX = (HPXBase + HPXLowAlt(Ambient.alt) + HPXHighAlt(Ambient.alt))*HPInstall;
+	}
+
+	 real dNcqdt;
+
+	void postexecute(){
+
+		dNcqdt = HP_Shaft.dNqdt / (HPC.Fl_I.Pt / Ambient.Fl_O.Ps);
+
+	}
+   
+}
+
+Element Shaft LP_Shaft  {
+
+   ShaftInputPort FAN, LPC, LPT;
+	
+   Nmech = 2450;
+   fracLoss = 0.0;
+   inertia = 19.699; // old value: 20.5;
+   
+   real dNcqdt;
+
+	void postexecute(){
+   
+		dNcqdt = dNqdt / (LPC.Fl_I.Pt / Ambient.Fl_O.Ps);
+   
+   }
+
+}
+
+Element FlowEnd OverBrd1  {
+}
+
+Element FlowEnd OverBrd2  {
+}
+
+Element FlowEnd  OBsink1  {
+}
+
+Element FlowEnd  OBsink2  {
+}
+
+Element EngPerf Perf  {
+   real Nozzle_Atot, VjetRatio, OPR_Jon, myOPR, ThrustPct,myEPR;
+   real delta_KE, Thrml_Eff, Prop_Eff;
+   FlowStation FS_A, FS_B, PT_exit_ideal;
+   real myFn, myTSFC, myFg, myWfuelHr;
+   real theta, theta_n;
+   real exp_theta = 0.84;
+   real WfuelTarget;
+   real NcR25;
+
+   void postexecute() {   
+        Nozzle_Atot = Core_Nozz.Ath + Byp_Nozz.Ath; 
+        VjetRatio = Core_Nozz.Vactual / Byp_Nozz.Vactual;
+        OPR_Jon = Fan.PR * LPC.PR * HPC.PR;				
+        myFg = (Core_Nozz.Fg + Byp_Nozz.Fg) - Inlet.Dinstall;
+        myOPR = HPC.Fl_O.Pt/Fan.Fl_I.Pt;
+        theta = Fan.Fl_I.Tt/518.67;					
+		myFn = myFg - Inlet.Fram ;
+		myWfuelHr = Burner.Wfuel*3600.0;
+		myTSFC = myWfuelHr/myFn;
+		myEPR = FS_5.Pt / FS_2.Pt;
+		NcR25 = HP_Shaft.Nmech/(HPC.Fl_I.Tt/518.67)**0.5;
+
+		// calculations for core thermal efficiency and propulsive efficiency
+		//
+		FS_A.copyFlow( "HPC.Fl_I" ); 
+		FS_B.copyFlow( "HPT.Fl_O" ); 
+		FS_A.setStaticPs(Ambient.Ps);  // expand to Pamb to get ideal velocity
+		FS_B.setStaticPs(Ambient.Ps);  // expand to Pamb to get ideal velocity
+		delta_KE = (0.5*FS_B.W/C_GRAVITY)*FS_B.V**2.0 - 
+				(0.5*FS_A.W/C_GRAVITY)*FS_A.V**2.0 ; 
+		Thrml_Eff = delta_KE / (Burner.Wfuel*FUEL36.LHV*C_BTUtoFT_LBF); 
+		Prop_Eff = myFn*Ambient.Fl_O.V / delta_KE; 
+
+		theta_n = theta**exp_theta;
+
+   }
+
+}
+
+Element FlowEnd  OBsink3  {
+}
+
+//-------------------------------------------------------------------------------------------------
+// Component Linkages
+//-------------------------------------------------------------------------------------------------
+// linkPorts( "Ambient.Fl_O"    , "Inlet.Fl_I"       , "FS_1"  ) ;
+// linkPorts( "Inlet.Fl_O"      , "Fan.Fl_I"         , "FS_2"  ) ;
+// linkPorts( "Fan.Fl_O"        , "Splitter.Fl_I"    , "FS_21" ) ;
+// linkPorts( "Splitter.Fl_01"  , "Duct4.Fl_I"       , "FS_22" ) ;
+// linkPorts( "Duct4.Fl_O"      , "LPC.Fl_I"         , "FS_23" ) ;
+// linkPorts( "LPC.Fl_O"        , "Duct6.Fl_I"       , "FS_24" ) ;
+// linkPorts( "Duct6.Fl_O"      , "HPC.Fl_I"         , "FS_25" ) ;	
+// linkPorts( "HPC.Fl_O"        , "Bld3.Fl_I"        , "FS_3"  ) ;
+// linkPorts( "Bld3.Fl_O"       , "Burner.Fl_I"      , "FS_36" ) ;  
+// linkPorts( "FUEL36.Fu_O"     , "Burner.Fu_I"      , "FuelIn") ;
+// linkPorts( "Burner.Fl_O"     , "HPT.Fl_I"         , "FS_4"  ) ;
+// linkPorts( "HPT.Fl_O"        , "ATD_Bleed.Fl_I"   , "FS_45" ) ;
+// linkPorts( "ATD_Bleed.Fl_O"  , "Duct11.Fl_I"      , "FS_46" ) ;
+// linkPorts( "Duct11.Fl_O"     , "LPT.Fl_I"         , "FS_48" ) ;
+// linkPorts( "LPT.Fl_O"        , "Duct13.Fl_I"      , "FS_5"  ) ;
+// linkPorts( "Duct13.Fl_O"     , "Core_Nozz.Fl_I"   , "FS_7"  ) ;
+// linkPorts( "Core_Nozz.Fl_O"  , "Core_NozzEnd.Fl_I", "FS_9"  ) ;
+
+// linkPorts( "Splitter.Fl_02"  , "BypBld.Fl_I"      , "FS_13" ) ;
+// linkPorts( "BypBld.Fl_O"     , "Duct15.Fl_I"      , "FS_15" ) ;
+// linkPorts( "Duct15.Fl_O"     , "Byp_Nozz.Fl_I"    , "FS_17" ) ;
+// linkPorts( "Byp_Nozz.Fl_O"   , "Byp_NozzEnd.Fl_I" , "FS_19" ) ;
+
+linkPorts("Ambient.Fl_O", "Inlet.Fl_I", "FS_1");
+linkPorts("Inlet.Fl_O", "InletFlowControl.Fl_I", "FS_11");
+linkPorts("InletFlowControl.Fl_O", "Fan.Fl_I", "FS_2");
+linkPorts("Fan.Fl_O", "Splitter.Fl_I", "FS_21");
+linkPorts("Splitter.Fl_01", "Duct4.Fl_I", "FS_22");
+linkPorts("Duct4.Fl_O", "LPC.Fl_I", "FS_23");
+linkPorts("LPC.Fl_O", "Duct6.Fl_I", "FS_24");
+linkPorts("Duct6.Fl_O", "HPC.Fl_I", "FS_25");
+linkPorts("HPC.Fl_O", "Bld3.Fl_I", "FS_3");
+linkPorts("Bld3.Fl_O", "Burner.Fl_I", "FS_36");  
+linkPorts("FUEL36.Fu_O", "Burner.Fu_I", "FuelIn") ;
+linkPorts("Burner.Fl_O", "HPT.Fl_I", "FS_4");
+linkPorts("HPT.Fl_O", "ATD_Bleed.Fl_I", "FS_45");
+linkPorts("ATD_Bleed.Fl_O", "Duct11.Fl_I", "FS_46");
+linkPorts("Duct11.Fl_O", "LPT.Fl_I", "FS_48");
+linkPorts("LPT.Fl_O", "Duct13.Fl_I", "FS_5");
+linkPorts("Duct13.Fl_O", "Core_Nozz.Fl_I", "FS_7");
+linkPorts("Core_Nozz.Fl_O", "Core_NozzEnd.Fl_I", "FS_9");
+linkPorts("Splitter.Fl_02", "BypBld.Fl_I", "FS_13");
+linkPorts("BypBld.Fl_O", "Duct15.Fl_I", "FS_15");
+linkPorts("Duct15.Fl_O", "Bld16.Fl_I", "FS_16");
+linkPorts("Bld16.Fl_O", "Byp_Nozz.Fl_I", "FS_17");
+linkPorts("Byp_Nozz.Fl_O", "Byp_NozzEnd.Fl_I", "FS_19");
+
+//-------------------------------------------------------------------------------------------------
+// Bleed Connections
+//-------------------------------------------------------------------------------------------------
+// linkPorts( "Bld3.Cool1"      , "HPT.Non_ChargeableBld",  "C_HPTinlt" );
+// linkPorts( "HPC.Cool1"       , "LPT.Non_ChargeableBld",  "C_LPTinlt" );
+// linkPorts( "HPC.Cool2"       , "LPT.ChargeableBld"    ,  "C_LPTexit" );
+
+// linkPorts( "HPC.CustBld"     , "OverBrd2.Fl_I"        ,  "CstmrBld"  ) ;
+// linkPorts( "BypBld.Lkg"      , "OverBrd1.Fl_I"        ,  "Duct15Lk"  ) ;
+// linkPorts( "HPC.ATD"         , "ATD_Bleed.ATDbld"     ,  "ATDbleed"  ) ;
+
+linkPorts("Bld3.Cool1", "BldSplit.Fl_I", "C_HPT");
+linkPorts("BypBld.HX", "Bld16.HX", "HX_CE");
+linkPorts("BypBld.InterHX", "Bld16.InterHX", "HX_ICE");
+linkPorts("BldSplit.Fl_O" , "HPT.Non_ChargeableBld", "C_HPTi");
+linkPorts("BldSplit.Cool1", "HPT.ChargeableBld", "C_HPTe");
+linkPorts("HPC.Cool1", "LPT.Non_ChargeableBld", "C_LPTi");
+linkPorts("HPC.Cool2", "LPT.ChargeableBld", "C_LPTe");
+linkPorts("HPC.CustBld", "OverBrd2.Fl_I", "CstmrBld");
+linkPorts("BypBld.Lkg", "OverBrd1.Fl_I", "Duct15Lk");
+linkPorts("HPC.ATD", "ATD_Bleed.ATDbld", "ATDbleed");
+linkPorts("HPC.FlowControl", "Bld16.HPC_FlowControl", "FCbleed");
+linkPorts("LPC.ABTC", "Bld16.ABTC", "ABTC");
+linkPorts("HPC.InletFlowControl", "InletFlowControl.FlowControlBld", "IFCbleed");
+linkPorts("HPC.LPTFlowControl", "LPT.LPTFlowControl", "LPTFCbleed");
+linkPorts("Inlet.BleedOut", "OBsink1.Fl_I", "FS1bld"); 
+linkPorts("Inlet.BypassOut", "OBsink2.Fl_I", "FS1byp"); 
+linkPorts("Bld16.CircControl", "OBsink3.Fl_I", "Circbld"); 
+
+//-------------------------------------------------------------------------------------------------
+// Shaft Connections
+//-------------------------------------------------------------------------------------------------
+// linkPorts( "HPC.Sh_O"  , "HP_Shaft.HPC" ,  "HPCworkin"   ) ;
+// linkPorts( "HPT.Sh_O"  , "HP_Shaft.HPT" ,  "HPTworkout"  ) ;
+// linkPorts( "Fan.Sh_O"  , "LP_Shaft.FAN" ,  "FANworkin"   ) ;
+// linkPorts( "LPC.Sh_O"  , "LP_Shaft.LPC" ,  "LPCworkin"   ) ;
+// linkPorts( "LPT.Sh_O"  , "LP_Shaft.LPT" ,  "LPTworkout"  ) ;
+
+linkPorts( "HPC.Sh_O"  , "HP_Shaft.HPC" ,  "HPCworkin"   ) ;
+linkPorts( "HPT.Sh_O"  , "HP_Shaft.HPT" ,  "HPTworkout"  ) ;
+linkPorts( "Fan.Sh_O"  , "LP_Shaft.FAN" ,  "FANworkin"   ) ;
+linkPorts( "LPC.Sh_O"  , "LP_Shaft.LPC" ,  "LPCworkin"   ) ;
+linkPorts( "LPT.Sh_O"  , "LP_Shaft.LPT" ,  "LPTworkout"  ) ;
+
+// Linear model generator
+LinearModelGenerator lin_mod {
+	
+	// Declaring model variables for the input and output variables
+	// inputVars = {"Burner.Wfuel","Byp_Nozz.delta_s_Ath"}
+	inputVars = {"Burner.Wfuel"}
+	
+	//outputVars = {"LP_Shaft.Nmech","HP_Shaft.Nmech","Perf.myFn","FS_3.Ps", "FS_5.Pt", "FS_5.Tt", "Perf.myEPR"}
+	//outputVars = {"LP_Shaft.Nmech","HP_Shaft.Nmech","FS_2.Pt","FS_2.Tt","FS_25.Pt","FS_25.Tt","FS_3.Ps","FS_3.Tt","FS_5.Pt","FS_5.Tt","FS_4.Tt","Perf.myEPR","Perf.myFn","Burner.FAR","Burner.Wfuel","HPC.SMN","HPC.SMW","LPC.SMN","LPC.SMW","Perf.NcR25"}
+
+	//JTC - these are the required outputs to match with the PWLM
+	outputVars = {"LP_Shaft.Nmech","HP_Shaft.Nmech","FS_2.Pt","FS_2.Tt","FS_25.Pt","FS_25.Tt","FS_3.Ps","FS_3.Tt","FS_5.Pt", "FS_5.Tt","FS_4.Tt","Perf.myEPR","Perf.myFn","Perf.Wfuel","HPC.SMN","HPC.SMW","LPC.SMN","LPC.SMW","Burner.FAR"}
+	//outputVars = {"LP_Shaft.Nmech", "HP_Shaft.Nmech", "FS_3.Ps", "FS_5.Pt", "FS_5.Tt", "HPC.Nc", "Perf.myEPR", "Burner.FAR", "FS_25.Tt", "FS_2.Tt", "FS_2.Pt"}
+
+	// Adding the states to the linear model
+	addState("LP_Shaft.Nmech", "LP_Shaft.dNqdt", 0.005, "FRACTIONAL", 0.0);
+	addState("HP_Shaft.Nmech", "HP_Shaft.dNqdt", 0.005, "FRACTIONAL", 0.0);
+	
+	// Setting the perturbation type and percentage for fuel flow rate
+	setPerturbType("Burner.Wfuel", "FRACTIONAL");
+	setPerturb("Burner.Wfuel", 0.005);
+	
+	// Setting the perturbation type and percentage for VAFN
+	// setPerturbType("Byp_Nozz.delta_s_Ath", "ABSOLUTE");
+	// setPerturb("Byp_Nozz.delta_s_Ath", 0.005);
+	
+	// Default perturbation percentage for all of the variables 
+	// defaultPerturbation = 0.005;
+	
+	runInitialPass = 1;
+	
+	// Setting the repeatablility test flag
+	repeatabilityCheck = TRUE;
+	
+}

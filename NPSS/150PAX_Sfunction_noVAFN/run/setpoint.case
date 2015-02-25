@@ -1,0 +1,73 @@
+// This is the case file for creating Matlab formatted setpoint values
+// at a flight condition 
+#include <setpoint_display.fnc>
+#include <output_setup.fnc>
+#ifdef TTECTrA  //NASA Method
+	#include <TTECTrA_SP.input>	//Input from Matlab
+	
+	// Set the guess logic as you want
+	setOption( "switchGuess", "ON" );
+	setOption( "switchGuessType", "FanNcPct" );
+
+	// Turning the VAFN off
+	//setOption( "switchVAFN", "ON" );
+	setOption( "switchVAFN", "OFF" );
+
+	// Turning the VAFN schedule off
+	setOption( "switchVAFNSchedule", "OFF" );
+	
+	//Setup up steady state solver
+	TargetThrust = 20000;
+	//RunMaxPower();
+	run(); // Running the steady state case
+
+	SP_Setup(); //add Run_Condition_thrust
+	int z;
+	for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
+	    TargetThrust = myFn_targets[z];
+	    //cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
+	    run();
+	    setpoint_display(z, myFn_targets[z]);
+	}
+	SP_Remove();	
+#endif
+
+
+#ifndef TTECTrA  //GT's method (hardcoded power hook)
+	// Input the flight condition where you want to create the Matlab
+	// formatted setpoint output
+	Ambient.alt = 0.00;
+	Ambient.MN = 0.00;
+	Ambient.dTs = 0.00;
+
+	// Set the guess logic as you want
+	setOption( "switchGuess", "ON" );
+	setOption( "switchGuessType", "PC" );
+	
+	// Turning the VAFN off
+	setOption( "switchVAFN", "ON" );
+
+	// Turning the VAFN schedule off
+	setOption( "switchVAFNSchedule", "OFF" );
+	
+	PC = 50;
+	RunMaxPower();
+
+	// Setpoint function which creates the Matlab formatted output 
+	SetPoint();
+
+	if(solver.converged == 1 && errHandler.numErrors == 0) {
+
+		cout << "\nSet point generation at altitude" << Ambient.alt << " ft, " << "MN = " << Ambient.MN << ", and dTs = " << Ambient.dTs << " degF is successful!" << endl;
+
+	}
+
+	// Returning back to SLS maximum thrust condition
+	setOption( "switchGuess", "ON" );
+	setOption( "switchGuessType", "PC" );
+	PC = 50;
+	Ambient.alt = 0.0;
+	Ambient.MN = 0.0;
+	Ambient.dTs = 0.0;
+	RunMaxPower();
+#endif
