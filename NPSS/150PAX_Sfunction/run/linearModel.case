@@ -4,6 +4,12 @@
 #ifdef TTECTrA //NASA Method
 	// Turning the guess logic off
 	setOption( "switchGuess", "OFF" );
+
+	// Turning the VAFN on or off
+	setOption( "switchVAFN", "ON" );
+
+	// Turning the VAFN schedule on or off
+	setOption( "switchVAFNSchedule", "OFF" );
 	//----------------------------------------------------------------------------------
 	// TTECTrA PWLM - Linearization at each point requested from Matlab
 	//----------------------------------------------------------------------------------
