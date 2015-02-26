@@ -1,18 +1,47 @@
-%computer path dependent setup:
-%add your path here, or in a separate file called paths.m (if using version control):
-npss_location = ' '; %path location of the S-function capable NPSS executable
+%------------------------------------------------------
+% TTECTrA Setup
 
-%----No need to edit below here ---%
-if (exist('paths.m', 'file') == 2) %load paths if supplied elsewhere
-    paths
-end
+% Please input custom file locations and variable names here
+% The default inputs will run the example 150PAX engine
 
-%engine_name = '150PAX_Sfunction';
-run_file = '150PAX.run';
-flags = ' -DTRANSIENT';
+% *!IMPORTANT!* If an error is encountered immediatley after starting the
+% simulation, saying the MEX file "NPSSSfunction" is an invalid MEX file,
+% the error will not go away unless Matlab is completely closed and
+% restarted. This script proactively checks for errors related to this, if
+% it reports success, everything should work fine.
 
-if (exist(npss_location,'dir') == 7)
-    npss_location = npss_location;
-end
+% This model is known to run on:
+% R2008a 32-bit only
+% R2010a 32-bit only
+% This model is known to NOT run on:
+% R2103b
 
-model_location = cd(cd('..')); %path location of this particular engine model
+% *Advanced Users*
+% If using Git VCS, and you desire a private config file
+% 'paths.m' is ignored as a private file by default,
+% and all the following settings can be set there.
+%------------------------------------------------------
+
+% REQUIRED
+npss_location = ''; %path location of the S-function capable NPSS executable
+engine_name = '150PAX_Sfunction'; %name of the NPSS engine folder
+run_file = '150PAX.run'; %NPSS run script
+flags = ' -DTRANSIENT'; %flags for the NPSS run
+
+
+% Inputs
+% Add NPSS variables to be promoted as inputs to the s-function
+input = {'Burner.Wfuel'}; %'Ambient.dTs','Ambient.Mn','Ambient.W','Ambient.alt'
+
+% Outputs
+% Add NPSS variables to be promoted as outputs to the s-function
+output = {'LP_Shaft.Nmech','HP_Shaft.Nmech','FS_2.Pt','FS_2.Tt','FS_25.Pt',...
+    'FS_25.Tt','FS_3.Ps','FS_3.Tt','FS_5.Pt', 'FS_5.Tt','FS_4.Tt','Perf.myEPR',...
+    'Perf.myFn','Perf.Wfuel','HPC.SMN','HPC.SMW','LPC.SMN','LPC.SMW','Burner.FAR',...
+    'Fan.Wc','Fan.PR','LPC.Wc','LPC.PR','HPC.Wc','HPC.PR','HPT.WpIn','HPT.PR','LPT.WpIn','LPT.PR'};
+
+
+% OPTIONAL
+%can be left blank if using default TTECTrA folder structure
+model_location =''; %parent folder of the Matlab folder
+filename='vafn'; %saved output filename

@@ -10,7 +10,7 @@ set_paths;
 % Run NPSS to get linear model and steady-state data
 if ispc %don't even attempt on mac
     fprintf('Generating NPSS Data');
-    GetNPSS_PWLM(ttectra_in,ttectra_in.in.setpoint_vector,ttectra_in.in.linearModelfilename,npss_location,model_location);
+    GetNPSS_PWLM(ttectra_in);
 end
 
 [SP]=TTECTrA_NPSS_SPcalc(ttectra_in);

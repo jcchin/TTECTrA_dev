@@ -1,22 +1,18 @@
-function [varargout]=GetNPSS_PWLM(inputs,vector,linearModelfilename,npss_location,model_location)
+function [varargout]=GetNPSS_PWLM(inputs)
 %-----------------------------------------------------------------
-% 
+%     GetNPSS_PWLM(ttectra_in);
 %-----------------------------------------------------------------
-engine_name=inputs.in.engine_name;
+engine_name = inputs.in.engine_name;
+vector = ttectra_in.in.setpoint_vector;
+linearModelfilename = ttectra_in.in.linearModelfilename;
+npss_location = inputs.in.npss_location;
+model_location = inputs.in.HomeDirectory;
 
 run_lm = true; %run linear model?
 
 % Setup begins here
 eval(['addpath ', npss_location])
 eval(['addpath ',npss_location,'/bin'])
-
-% if (exist('NPSSSfunction.dll','file')==3)
-%     output_list = 'Success! Found NPSS S-function DLL, model should run. \n';
-% elseif (exist('NPSSSfunction.dll','file')==2)
-%     error('Found NPSS S-function DLL, but it was not recognized as MEX file, are you using Matlab R2010a 32-bit?');
-% else
-%     error('NPSS S-function DLL not found, check ''npss_location'' path and try running this file again before running the simulink model')
-% end
 
 if (exist([model_location,'/NPSS/' engine_name '/run'],'file') && ...
         exist([model_location,'/NPSS/' engine_name '/view'],'file') && ...

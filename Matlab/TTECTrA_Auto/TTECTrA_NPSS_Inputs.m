@@ -22,9 +22,10 @@ function [ttectra_in] = TTECTrA_NPSS_Inputs
 set_paths;
 
 %Define home directory
-ttectra_in.in.HomeDirectory=model_location;
-ttectra_in.in.engine_name='150PAX_Sfunction';
-ttectra_in.in.filename='vafn';
+ttectra_in.in.HomeDirectory = model_location;
+ttectra_in.in.engine_name = engine_name;
+ttectra_in.in.filename = filename;
+ttectra_in.in.npss_location = npss_location ;
 
 %---------------------------------------------------------
 % Define environmental variables

@@ -1,44 +1,12 @@
-%% Read before running %%
-% This is the only file that needs to be run before runnning the simulink
+% This file is called before runnning the simulink
 % model containing the NPSS S-Function. It is included in the simulink
 % model InitFcn (Model Properties -> Callbacks) so it will be run before
 % starting the model anyways.
-%
-% *!IMPORTANT!* If an error is encountered immediatley after starting the
-% simulation, saying the MEX file "NPSSSfunction" is an invalid MEX file,
-% the error will not go away unless Matlab is completely closed and
-% restarted. This script proactively checks for errors related to this, if
-% it reports success, everything should work fine.
-% 
-% This model is known to run on:
-% R2008a 32-bit only
-% R2010a 32-bit only
-% This model is known to NOT run on:
-% R2103b
-% 
-% -Jeff Chin jeffrey.c.chin@nasa.gov
+% It writes out a config file based on user inputs in set_paths.m
 
 
 %% Add custom file paths here
 set_paths;
-
-engine_name=inputs.in.engine_name;
-
-% Add input variables
-%input = {'Ambient.dTs','Ambient.Mn','Ambient.W','Ambient.alt','Burner.Wfuel'};
-input = {'Burner.Wfuel'};
-
-% Add output variables
-%output = {'HP_Shaft.Nmech','LP_Shaft.Nmech','Fan.PR','LPC.PR','Perf.myFn','Perf.myTFSC','Perf.Wfuel'};
-% output = {'LP_Shaft.Nmech','HP_Shaft.Nmech','Perf.myFn','Perf.Wfuel'...
-%     'FS_2.Tt','FS_25.Tt','FS_3.Tt','FS_4.Tt','FS_5.Tt' ...
-%     'FS_2.Pt','FS_25.Pt','FS_3.Pt','FS_4.Pt','FS_5.Pt' ...
-%     'HPC.SMN','HPC.SMW','LPC.SMN','LPC.SMW'...
-%     'Burner.FAR','Perf.myEPR'};
-output = {'LP_Shaft.Nmech','HP_Shaft.Nmech','FS_2.Pt','FS_2.Tt','FS_25.Pt',...
-    'FS_25.Tt','FS_3.Ps','FS_3.Tt','FS_5.Pt', 'FS_5.Tt','FS_4.Tt','Perf.myEPR',...
-    'Perf.myFn','Perf.Wfuel','HPC.SMN','HPC.SMW','LPC.SMN','LPC.SMW','Burner.FAR',...
-    'Fan.Wc','Fan.PR','LPC.Wc','LPC.PR','HPC.Wc','HPC.PR','HPT.WpIn','HPT.PR','LPT.WpIn','LPT.PR'};
 
 %% Setup begins here
 eval(['addpath ', npss_location])
@@ -50,6 +18,21 @@ input3 = input2(1:end-1);
 output2 = sprintf(sprintf(' "%s",',output{:}));
 output3 = output2(1:end-1);
 
+%---- error checking logic ---%
+%TODO: Add more error checking..
+if (exist('paths.m', 'file') == 2) %load paths if supplied elsewhere
+    paths
+    disp('loading paths from path.m')
+end
+if ~(exist(npss_location,'dir') == 7)
+    error('invalid npss location')
+end
+if ~(exist(model_location,'dir') == 7)
+    model_location = cd(cd('..'));
+    if ~(exist([model_location '\Matlab'],'dir') == 7)
+        error('model location invalid, please check folder structure')
+    end
+end
 %Proactively check against invalid path input
 if (exist('NPSSSfunction.dll','file')==3)
     output_list = 'Success! Found NPSS S-function DLL, model should run. \n';
