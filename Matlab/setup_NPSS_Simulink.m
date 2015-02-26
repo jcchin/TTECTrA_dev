@@ -3,20 +3,7 @@
 % model InitFcn (Model Properties -> Callbacks) so it will be run before
 % starting the model anyways.
 % It writes out a config file based on user inputs in set_paths.m
-
-
-%% Add custom file paths here
-set_paths;
-
-%% Setup begins here
-eval(['addpath ', npss_location])
-eval(['addpath ',npss_location,'/bin'])
-
-%format
-input2 = sprintf(sprintf(' "%s",',input{:}));
-input3 = input2(1:end-1);
-output2 = sprintf(sprintf(' "%s",',output{:}));
-output3 = output2(1:end-1);
+set_paths
 
 %---- error checking logic ---%
 %TODO: Add more error checking..
@@ -33,6 +20,18 @@ if ~(exist(model_location,'dir') == 7)
         error('model location invalid, please check folder structure')
     end
 end
+
+%% Setup begins here
+eval(['addpath ', npss_location])
+eval(['addpath ',npss_location,'/bin'])
+
+%format
+input2 = sprintf(sprintf(' "%s",',input{:}));
+input3 = input2(1:end-1);
+output2 = sprintf(sprintf(' "%s",',output{:}));
+output3 = output2(1:end-1);
+
+%%
 %Proactively check against invalid path input
 if (exist('NPSSSfunction.dll','file')==3)
     output_list = 'Success! Found NPSS S-function DLL, model should run. \n';
@@ -79,6 +78,8 @@ disp(['commandLine += " ',topDir, '/NPSS/',engine_name,'/run/',run_file, flags,'
 fprintf(['\nSimulinkInPortMapper inPort1 { \n\n   vars = { ',input3 ,' }\n\n}\n\ntimeStep = 0.02;\n\nSimulinkOutPortMapper outPort1 {\n\n   vars = { ', output3 ,' } \n\n }'])  
 diary off
 
+
+%%
 %clean-up
 clc
 fprintf(output_list)

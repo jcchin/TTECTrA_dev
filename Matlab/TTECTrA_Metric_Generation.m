@@ -21,7 +21,6 @@ addpath('TTECTrA_Auto')
 
 % Load input parameters
 ttectra_in=TTECTrA_NPSS_Inputs;
-set_paths;
 
 % Run NPSS to get linear model and steady-state data
 if ispc

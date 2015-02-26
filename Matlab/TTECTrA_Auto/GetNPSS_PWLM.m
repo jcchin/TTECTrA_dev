@@ -3,8 +3,8 @@ function [varargout]=GetNPSS_PWLM(inputs)
 %     GetNPSS_PWLM(ttectra_in);
 %-----------------------------------------------------------------
 engine_name = inputs.in.engine_name;
-vector = ttectra_in.in.setpoint_vector;
-linearModelfilename = ttectra_in.in.linearModelfilename;
+vector = inputs.in.setpoint_vector;
+linearModelfilename = inputs.in.linearModelfilename;
 npss_location = inputs.in.npss_location;
 model_location = inputs.in.HomeDirectory;
 
@@ -13,41 +13,6 @@ run_lm = true; %run linear model?
 % Setup begins here
 eval(['addpath ', npss_location])
 eval(['addpath ',npss_location,'/bin'])
-
-if (exist([model_location,'/NPSS/' engine_name '/run'],'file') && ...
-        exist([model_location,'/NPSS/' engine_name '/view'],'file') && ...
-        exist([model_location,'/NPSS/' engine_name '/src'],'file') && ...
-        exist([model_location,'/NPSS/' engine_name '/run/150PAX.run'],'file'))
-    output_list = 'Success! Found NPSS model folder and subfolders, model should run. \n';
-else
-    error('NPSS model folder not found, make sure they exist below the current top level directory')
-end
-
-%Write Config file if paths are valid
-configFile = '150_PAX_Sfunction.config';
-eval(['delete ', configFile]) %delete if it exists
-output_list = [output_list, 'writing new config file\n'];
-diary(configFile) %diary function saves command line output to a specified file
-disp(['commandLine = "-I. -I ',npss_location, '/bin";']);
-disp(['commandLine += " -I ',npss_location, '/InterpIncludes";']);
-disp(['commandLine += " -I ',npss_location, '/InterpComponents";']);
-disp(['commandLine += " -I ',npss_location, '/DLMComponents/nt";']);
-disp(['commandLine += " -I ',npss_location, '/MetaData";']);
-disp(['commandLine += " -I ',model_location, '/NPSS/' engine_name '/run";']);
-disp(['commandLine += " -I ',model_location, '/NPSS/' engine_name '/view";']);
-disp(['commandLine += " -I ',model_location, '/NPSS/' engine_name '/src";']);
-disp(['commandLine += " -I ',model_location, '/NPSS/' engine_name '/maps";']);
-disp(['commandLine += " -I ',model_location, '/NPSS/' engine_name '";']);
-disp(['commandLine += " ',model_location, '/NPSS/' engine_name '/run/150PAX.run";']);
-
-diary off
-
-%clean-up
-clc
-fprintf(output_list)
-clear output_list configFile
-delete *.log
-
 
 addpath('NPSSdata');
 %Write Input file if paths are valid

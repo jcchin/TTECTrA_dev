@@ -23,7 +23,6 @@ close all; clear; clc;
 
 % add paths for support and gui functions
 addpath('TTECTrA_Auto')
-
 h=waitbar(0,sprintf('Setting up TTECTrA ...'));
 %----------------------------------------
 % Load input parameters

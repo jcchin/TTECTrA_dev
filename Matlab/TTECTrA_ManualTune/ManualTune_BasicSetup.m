@@ -6,7 +6,6 @@
 
 % Basic Setup
 ttectra_in=TTECTrA_NPSS_Inputs;      % load input data
-set_paths;
 
 % Run NPSS to get linear model and steady-state data
 if ispc

@@ -3,7 +3,6 @@ function [output]=run_NPSS_setpoint(vector)
 CurrentDirectory=cd;
          
 %-------Shouldn't need to modify below here--------------------------------         
-setup_NPSS_Simulink %setup paths (other stuff doesn't really matter)
 addpath('NPSSdata');
 %Write Input file if paths are valid
 inputFile = 'TTECTrA_SP.input';

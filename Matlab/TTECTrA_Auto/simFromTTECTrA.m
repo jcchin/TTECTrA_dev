@@ -56,10 +56,7 @@ DEBUG_FLAG=0;
 % in.MN    = inputs.in.MN;
 % in.dTamb = inputs.in.dTamb;
 
-% run any setup code necessary to add paths, create workspace variables to
-% enable the simulation to run sucessfully
 % MWS=setup_workspace(in.t_vec,wf_0);
-setup_NPSS_Simulink
 
 % Model specific data required for simulation (RHS specified by model)
 % Would like to runnpss (steady state) to get the following parameters

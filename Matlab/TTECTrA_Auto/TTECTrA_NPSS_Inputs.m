@@ -19,7 +19,8 @@ function [ttectra_in] = TTECTrA_NPSS_Inputs
 %  REQUIREMENTS:   
 %       Maltab(R) control systems toolbox
 %**************************************************************************
-set_paths;
+
+setup_NPSS_Simulink;
 
 %Define home directory
 ttectra_in.in.HomeDirectory = model_location;

@@ -5,7 +5,6 @@ addpath('TTECTrA_Auto')
 
 % Load input parameters
 ttectra_in=TTECTrA_NPSS_Inputs;      % load input data
-set_paths;
 
 % Run NPSS to get linear model and steady-state data
 if ispc %don't even attempt on mac
@@ -55,5 +54,5 @@ if ~isempty(out)
 end
 
 if isfield(ttectra_in.in,'filename') && ~isempty(ttectra_in.in.filename)
-    save([model_location '\Matlab\TTECTrA_Data\OL_data_' ttectra_in.in.filename],'ttectra_in','out');
+    save([ttectra_in.in.HomeDirectory '\Matlab\TTECTrA_Data\OL_data_' ttectra_in.in.filename],'ttectra_in','out');
 end
