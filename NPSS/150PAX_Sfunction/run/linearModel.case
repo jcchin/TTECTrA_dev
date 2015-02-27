@@ -2,6 +2,7 @@
 // generates linear models about points of interest
 
 #ifdef TTECTrA //NASA Method
+	#include <TTECTrA_SP.input>	//Input from Matlab
 	// Turning the guess logic off
 	setOption( "switchGuess", "OFF" );
 
@@ -13,22 +14,39 @@
 	//----------------------------------------------------------------------------------
 	// TTECTrA PWLM - Linearization at each point requested from Matlab
 	//----------------------------------------------------------------------------------
-	real Fan_NcPct_targets[]={100, 90, 80, 70, 60, 50, 40, 30, 25}; 
+	//real Fan_NcPct_targets[]={100, 90, 80, 70, 60, 50, 40, 30, 25}; 
 	SS_Setup();
-	SP_Remove();
+
+	solver.removeIndependent("FAR");
+    solver.removeDependent("Run_Condition");
+
+	solver.addIndependent("FAR");
+    solver.addDependent("Run_Condition_Thrust");
+
 	int z;
 	// cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
-	for ( z=0; z < Fan_NcPct_targets.entries(); ++z ) { //loop through Fan_NcPct_targets
-	    Fan_NcPct_target = Fan_NcPct_targets[z];
-	    CASE++;
-	    run();
-	    //CaseView_SS.display();
-	    //page.display();
+	for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
+	    TargetThrust = myFn_targets[z];
 
-	    run_linear();
+	    //run_linear();
+		linear_model();
+
+		PC = 21;
+		// RunIdle();
+		run_current_point();
+		linear_model();
+
+
 	}
+	// Returning back to SLS maximum thrust condition
 	// Turning the guess logic back on
 	setOption( "switchGuess", "ON" );
+	setOption( "switchGuessType", "PC" );
+	PC = 50;
+	Ambient.alt = 0.0;
+	Ambient.MN = 0.0;
+	Ambient.dTs = 0.0;
+	RunMaxPower();
 #endif
 
 #ifndef TTECTrA  //Georgia Tech Method

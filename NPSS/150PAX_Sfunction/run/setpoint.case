@@ -32,7 +32,7 @@
 #endif
 
 
-#ifndef TTECTrA  //GT's method (hardcoded power hook)
+#ifndef TTECTrA  //GT's method
 	// Input the flight condition where you want to create the Matlab
 	// formatted setpoint output
 	Ambient.alt = 0.00;
