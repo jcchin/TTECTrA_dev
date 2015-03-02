@@ -30,10 +30,13 @@ void SP_Setup(){
 	// Switching the burner independent to FAR 
 	Burner.switchBurn = "FAR";
 
-    solver.removeIndependent("FAR");
-    solver.removeDependent("Run_Condition");
-    solver.removeDependent("Fan_Max_Nc");
+    // solver.removeIndependent("FAR");
+    // solver.removeDependent("Run_Condition");
+    // solver.removeDependent("Fan_Max_Nc");
 
+	solver.clear();
+	autoSolverSetup();
+	
     solver.addIndependent("FAR");
     solver.addDependent("Run_Condition_Thrust");
 }

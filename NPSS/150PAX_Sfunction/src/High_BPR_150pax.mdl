@@ -17,7 +17,7 @@
 // Model Definition 
 //-------------------------------------------------------------------------------------------------
 // Defining the variables for the guess logic and setting their default values
-real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=3.93086, far_pc=0.0219794, EPR=2.55849, fnet=25800.0;
+real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=3.93086, far_pc=0.0219794, EPR=2.55849, Fnet=25800.0;
 
 // Guess logic element
 Element Guess { 
@@ -977,7 +977,7 @@ class transient_Nozzle extends Nozzle {
 				}
 				else if (switchVAFNSchedule == "ON" && !TB_s_Ath_Schedule.isEmpty()) {
 					s_AthDmd = 1.0 + TB_s_Ath_Schedule(FanNcPct);
-					s_Ath = s_AthDmd;
+					// s_Ath = s_AthDmd;
 					AthCold = ADP_Ath*s_Ath;
 				}
 				else if (switchVAFNSchedule == "ON" && TB_s_Ath_Schedule.isEmpty()) {

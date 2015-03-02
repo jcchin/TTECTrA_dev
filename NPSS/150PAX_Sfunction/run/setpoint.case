@@ -7,28 +7,31 @@
 	
 	// Set the guess logic as you want
 	setOption( "switchGuess", "ON" );
-	setOption( "switchGuessType", "FanNcPct" );
+	setOption( "switchGuessType", "Fnet" );
 
 	// Turning the VAFN off
 	setOption( "switchVAFN", "ON" );
 
 	// Turning the VAFN schedule off
-	setOption( "switchVAFNSchedule", "OFF" );
+	setOption( "switchVAFNSchedule", "ON" );
+	
+	SP_Setup(); //add Run_Condition_thrust
 	
 	//Setup up steady state solver
 	TargetThrust = 20000;
+	Fnet = TargetThrust;
 	//RunMaxPower();
 	run(); // Running the steady state case
 
-	SP_Setup(); //add Run_Condition_thrust
 	int z;
 	for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
 	    TargetThrust = myFn_targets[z];
 	    //cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
-	    run();
+	    Fnet = TargetThrust;
+		run();
 	    setpoint_display(z, myFn_targets[z]);
 	}
-	SP_Remove();	
+	SP_Remove();
 #endif
 
 
