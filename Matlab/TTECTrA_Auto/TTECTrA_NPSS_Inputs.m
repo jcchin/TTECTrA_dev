@@ -50,7 +50,7 @@ ttectra_in.in.simFileName='NPSS_TTECTrA.mdl';  % simulation file name
 %              14761.9048, 15714.2857, 16666.6667, 17619.0476, 18571.4286,...
 %              19523.8095, 20476.1905, 21428.5714, 22380.9524, 23333.3333,...
 %              24285.7143, 25238.0952, 26190.4762, 26500.0000];
-fnt_range=[7000 42000];
+fnt_range=[10000 30000];
 %fnt_range=[5000 30000];
 ttectra_in.in.setpoint_vector=fnt_range(1): (fnt_range(2)-fnt_range(1))/20 : fnt_range(2);
 ttectra_in.in.linearModelfilename='NPSS_PWLM.mat';
@@ -63,24 +63,25 @@ ttectra_in.controller.PreFilterBW=6;
 ttectra_in.controller.FdbkFilterBW=[];
 ttectra_in.controller.CVoutput='Nf';
 ttectra_in.controller.bandwidth=2;
-ttectra_in.controller.phasemargin=60;
+ttectra_in.controller.phasemargin=50;
 ttectra_in.controller.IWP_gain=1000;
 
-% Acceleration controller settings
+
+% Acceleration controller settings 
 ttectra_in.controller.accel_k=2.9061e-004*.5;
 ttectra_in.controller.accel_bw=0.1250*8*3;
 ttectra_in.controller.Accel_IWP=7000;
 
 %---------------------------------------------------------
 % Transient Limiter setup
-%---------------------------------------------------------                           
+%---------------------------------------------------------
 % Parameters for accleration schedule
-ttectra_in.SMLimit.T40=5000;
-ttectra_in.SMLimit.Accel=11;
+ttectra_in.SMLimit.T40=3500;
+ttectra_in.SMLimit.Accel=12;
 
 % Parameters for decel limit
-ttectra_in.SMLimit.FARmin=0.0175;
-ttectra_in.SMLimit.Decel=11;
+ttectra_in.SMLimit.FARmin=0.0225;
+ttectra_in.SMLimit.Decel=12;
 
 % Fuel actuator bandwidth
-ttectra_in.actuator.wf_bw=23;
+ttectra_in.actuator.wf_bw=20;

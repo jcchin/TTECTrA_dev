@@ -58,6 +58,7 @@ clear SP
 close(h); h=waitbar(0.2,sprintf('Designing Set Point Controller ...'));
 
 [output]=TTECTrA_NPSS_SPController(ttectra_in);
+
 if ~issorted(output.Fdbk)
     [output.Fdbk,idx]=sort(output.Fdbk);
     output.Kp=output.Kp(idx);
@@ -146,7 +147,7 @@ else
 end
 
 if isfield(ttectra_in.in,'filename') && ~isempty(ttectra_in.in.filename)
-    save([model_location '\Matlab\TTECTrA_Data\' ttectra_in.in.filename],'ttectra_in');
+    save([ttectra_in.in.HomeDirectory '\Matlab\TTECTrA_Data\' ttectra_in.in.filename '_CL_data.mat'],'ttectra_in','out');
 end
 
 close(h);
