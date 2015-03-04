@@ -1,21 +1,35 @@
 close all; clear; clc;
 
-%addpath('TTECTrA_Auto/plot');
-load('TTECTrA_Data/vafn_CL_data.mat');
+addpath('TTECTrA_Auto/plot');
+
+load('TTECTrA_Data/150PAX_Sfunction/vafn_CL_data.mat');
 
 %% Investigate Maps
+a=1;
+fan_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/maps/'],a);
+figure(a);
+plot(out.Fan_Wc,out.Fan_pr,'k.');
+a=a+1;
 
-map_types={'LPC','HPC'}
+lpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/maps/'],a);
+figure(a);
+plot(out.LPC_Wc,out.LPC_pr,'k.');
+a=a+1;
 
-for i=1:length(map_types)
-    map_plot(ttectra_in,i,map_types{i})
-    
-    x=eval(['out.' map_types{i} '_Wc']);
-    y=eval(['out.' map_types{i} '_pr']);
-    
-    figure(i); hold on;
-    plot(x,y,'k.');
-end
+hpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/maps/'],a);
+figure(a);
+plot(out.HPC_Wc,out.HPC_pr,'k.');
+a=a+1;
+
+hpt_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/maps/'],a);
+figure(a);
+plot(out.HPT_Wc,out.HPT_pr,'k.');
+a=a+1;
+
+lpt_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/maps/'],a);
+figure(a);
+plot(out.LPT_Wc,out.LPT_pr,'k.');
+a=a+1;
 
     
 

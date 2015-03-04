@@ -43,7 +43,6 @@ for i=1:length(output);
     Ps3_SP(i)=output(i).Ps30;
 end
 
-
 [FT_SP,Nf_SP,EPR_SP,Nc_SP,Wf_SP,NcR25,WfPs3_SP,FAR_SP,Ps3_SP]=removeNaN(FT_SP,Nf_SP,EPR_SP,Nc_SP,Wf_SP,NcR25,WfPs3_SP,FAR_SP,Ps3_SP);  % remove cases where simulation did not run (FT_SP = NaN)
 end
 

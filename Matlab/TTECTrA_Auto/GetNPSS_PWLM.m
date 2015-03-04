@@ -14,7 +14,12 @@ run_lm = true; %run linear model?
 eval(['addpath ', npss_location])
 eval(['addpath ',npss_location,'/bin'])
 
-addpath('NPSSdata');
+%addpath('NPSSdata');
+if ~(exist(['NPSSdata/' engine_name]) == 7)
+    mkdir('NPSSdata',engine_name);
+end
+addpath(['NPSSdata/' engine_name]);
+
 %Write Input file if paths are valid
 inputFile = 'TTECTrA_SP.input';
 eval(['delete ', inputFile]) %delete if it exists already
@@ -35,7 +40,8 @@ if (run_lm)
     disp('call run_npss.bat run\150PAX.run -DSETPNT -DLINEARMODEL -DTTECTrA') %run npss
 end
 %copy npss output back to matlab
-fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model, current_folder) %*.m pattern matches and copies all files
+%fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model,current_folder) %*.m pattern matches and copies all files
+fprintf('xcopy %s\\output\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name]) %*.m pattern matches and copies all files
 disp('CD \') %switch to top drive
 fprintf('cd %s\n', current_folder) %move back to matlab folder
 diary off
@@ -44,7 +50,8 @@ clc
 [status, result] = system('run_shell.bat') %call command shell, all terminal output is displayed in matlab
 
 %Convert linearModels.m to PWLM.mat 
-cd('NPSSdata');
+%cd('NPSSdata');
+cd(['NPSSdata/' engine_name]);
 
 clear x;
 
@@ -84,7 +91,6 @@ for i=1:length(lmdata_temp)
     NfRtrack(tempb)=0;
     i2=i2+1;
 end
-
 
 save(linearModelfilename,'lmdata');
 
