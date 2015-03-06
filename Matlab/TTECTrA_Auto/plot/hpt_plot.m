@@ -1,6 +1,6 @@
 function [varargout]=hpt_plot(path,fig_num)
 
-addpath(path);
+addpath([path '/maps/']);
 
 temp_map = extract('mapDataHPT');
 
@@ -27,12 +27,13 @@ end
 Wc = monotonic(Wc); %make monotonically increasing
 %Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
 
+run([path '/info/model.m'])
 P = [2 1 3];
-wc_scalar = 0.9040;
-pr_scalar = 1.9104;
-Wc= Wc * wc_scalar;
-pr = ((pr-1)/pr_scalar)+1;%((pr_map-1)*pr_scalar)+1;
-
+%wc_scalar = 0.9040;
+%pr_scalar = 1.9104;
+Wc= Wc * wc_scalar(4);
+pr = ((pr-1)/pr_scalar(4))+1;%((pr_map-1)*pr_scalar)+1;
+eta = eta * ef_scalar(4);
 Wc_map = permute(Wc, P);
 eta_map = permute(eta, P);
 pr_map = permute(pr, P);

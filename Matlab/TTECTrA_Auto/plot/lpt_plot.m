@@ -1,7 +1,6 @@
 function [varargout]=lpt_plot(path,fig_num)
 
-addpath(path);
-
+addpath([path '/maps/']);
 temp_map = extract('mapDataLPT');
 
 [~, ~, ~, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
@@ -26,12 +25,13 @@ end
 
 Wc = monotonic(Wc); %make monotonically increasing
 %Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
-
+run([path '/info/model.m'])
 P = [2 1 3];
-wc_scalar = 0.9585;
-pr_scalar = 1.5628;
-Wc= Wc * wc_scalar;
-pr = ((pr-1)/pr_scalar)+1;%((pr_map-1)*pr_scalar)+1;
+%wc_scalar = 0.9585;
+%pr_scalar = 1.5628;
+Wc= Wc * wc_scalar(5);
+pr = ((pr-1)/pr_scalar(5))+1;%((pr_map-1)*pr_scalar)+1;
+eta = eta * ef_scalar(5);
 
 Wc_map = permute(Wc, P);
 eta_map = permute(eta, P);
