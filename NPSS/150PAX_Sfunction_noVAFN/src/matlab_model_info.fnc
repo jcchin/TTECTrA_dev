@@ -39,7 +39,7 @@ void matlab_model_info() {
    // write the component list file to initialize the component objects
    //-------------------------------------------------------------------------
 
-   COMPONENT_LIST.filename =  "output/maps/model.m"; //this is set in VCE5MEcool_low_NPSS.mdl
+   COMPONENT_LIST.filename =  "output/info/model.m"; //this is set in VCE5MEcool_low_NPSS.mdl
    COMPONENT_LIST << "%ss_engine_init_jcc12;" << endl;
    COMPONENT_LIST << "%load engine data" << endl;
    COMPONENT_LIST << "CycleDesignName" << endl;

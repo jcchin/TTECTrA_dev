@@ -2,7 +2,7 @@
 // of runs at steady state and transient
 
 // Defining the necessary variables for dependents
-real MaxThrust, TargetThrust;
+real MaxThrust, TargetThrust, MinThrust;
 real Fan_NcPct_target, LPC_NcPct_target, HPC_NcPct_target, Wfuel_target;
 real T4Target, T41Target;
 
@@ -153,7 +153,6 @@ void RunMaxPower(){
 	
 	// Storing the maximum thrust
 	MaxThrust = Perf.myFn;
-
 }
 
 // Function for running the model to an input part power
@@ -227,6 +226,7 @@ void RunIdle(){
 	// Removing all of the constraints from the solver
 	FAR_Idle.removeAllConstraints();
 
+	MinThrust = Perf.myFn;
 }
 
 // This function runs a steady state case at the point it is called in the code

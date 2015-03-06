@@ -37,11 +37,13 @@ disp('CD \') %switch to top drive
 fprintf('cd %s\n', path2model) %move to model directory
 disp('@echo off') %silence npss output
 if (run_lm)
-    disp('call run_npss.bat run\150PAX.run -DSETPNT -DLINEARMODEL -DTTECTrA') %run npss
+    disp('call run_npss.bat run\150PAX.run -DSETPNT -DLINEARMODEL -DMODEL -DPLOT -DTTECTrA') %run npss
 end
 %copy npss output back to matlab
 %fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model,current_folder) %*.m pattern matches and copies all files
-fprintf('xcopy %s\\output\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name]) %*.m pattern matches and copies all files
+fprintf('xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name '\info']) %*.m pattern matches and copies all files
+fprintf('xcopy %s\\output\\maps\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name '\maps']) %*.m pattern matches and copies all files
+
 disp('CD \') %switch to top drive
 fprintf('cd %s\n', current_folder) %move back to matlab folder
 diary off

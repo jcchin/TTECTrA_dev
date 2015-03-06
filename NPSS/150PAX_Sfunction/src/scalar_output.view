@@ -1,0 +1,66 @@
+//---------------------------------------------------------------------------------------------------------------- Beginning of myFormatPageView
+// Open an output file stream named "myCycleSheetStream" that writes to a newfile named "VCE4.output"
+OutFileStream myCycleData {filename = "output/info/model.m"; } //CycleDataName string saved in run file
+
+
+DataViewer PageViewer mat_opData {
+
+  
+  GroupBlock Ablock {
+    SimpleBlock Vars1 { 
+   
+    body = "%
+    %
+    wc_scalar = 
+    ]; pr_scalar = 
+    ]; ef_scalar = 
+    ]; %Nc_Des
+    %effRe
+    %WcRe";
+  
+    vars = {}
+    }
+
+  
+    GroupBlock ScaleGroup {
+      DRowTBlock compScale {
+        titleBody = "%ADDERS AND SCALARS  Compressors";
+        compType = "Compressor";
+        compTypeFormat = "?????????";
+        compAttr = { "S_map.s_WcDes:?.????=[", "S_map.s_PRdes:?.????=[", "S_map.s_effDes:?.????=[", 
+          "S_map.s_NcDes:???.??????=[", "S_map.s_effRe:?.????=[", "S_map.s_WcRe:?.????=["  } 
+      }
+      DRowTBlock turbScale {
+        titleBody = "|  Turbines";
+        compType = "Turbine";
+        compTypeFormat = "????????";
+        compAttr = { "S_map.s_Wp:??.????=,", "S_map.s_dPqP:?.????=,", "S_map.s_eff:?.????=,", 
+          "S_map.s_Np:?.????=,", "S_map.s_effRe:?.????=,", "S_map.s_WpRe:?.????=,"  } 
+        //showRowHeader=FALSE;
+      }
+      compScale.right = "turbScale";
+      addGutter = FALSE;
+    }
+    SimpleBlock Vars2 { 
+   
+    body = "%
+    %
+    MaxThrust = ?????.??;
+    MinThrust = ?????.??;";
+  
+    vars = {"MaxThrust", "MinThrust"}
+    }
+  Vars1.right = "ScaleGroup";
+  Vars1.bottom = "Vars2";
+  }
+	
+// Arrange how user-defined and STANDARD blocks will be printed together:  
+  anchor = "Ablock";
+
+  pageWidth = 0;
+  pageHeight = 0;
+  
+  
+// Close the defined output file stream named "myCycleSheetStream" that writes to a newfile named "VCE4.output"
+  outStreamHandle = "myCycleData";
+}

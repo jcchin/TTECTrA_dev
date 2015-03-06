@@ -6,7 +6,7 @@ OutFileStream LMGreport {
 
 // Creating the output file stream for linear models in Matlab format
 OutFileStream MatlabLinearReport {
-	filename = OutputPath +"linearModels.m";
+	filename = OutputPath +"info/linearModels.m";
 	append = FALSE;
 }
 

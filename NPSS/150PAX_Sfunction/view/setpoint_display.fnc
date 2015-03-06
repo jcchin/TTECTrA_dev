@@ -1,7 +1,7 @@
 
 // Creating the setpoint output file stream
 OutFileStream MatlabSetpointsReport {
-	filename = "setpoints.m";
+	filename = "info/setpoints.m";
 	append = FALSE;
 }
 
@@ -22,7 +22,7 @@ void setpoint_output() {
 
 void setpoint_display(real z, real target){
     OutFileStream SetPt {
-        filename = OutputPath + "setpoints.m";
+        filename = OutputPath + "info/setpoints.m";
         append = FALSE;
     }
 

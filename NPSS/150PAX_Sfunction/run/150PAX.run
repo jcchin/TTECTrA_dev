@@ -118,11 +118,13 @@ RunMaxPower();
 #endif
 
 #ifdef MODEL
-	#include <matlab_model_info.fnc>
-	matlab_model_info();
+	#include <scalar_output.view>
+	#include <minLimit.case>
+	#include <maxLimit.case>
+	mat_opData.display();
 #endif
 
 // The case file for generating the transient VAFN schedule
 #ifdef NOZZLESCHEDULE
-	#include <nozzle_schedule.case>		
+	#include <nozzle_schedule.case>
 #endif
