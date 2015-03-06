@@ -16,9 +16,17 @@ eval(['addpath ',npss_location,'/bin'])
 
 %addpath('NPSSdata');
 if ~(exist(['NPSSdata/' engine_name]) == 7)
-    mkdir('NPSSdata',engine_name);
+    mkdir(['NPSSdata' engine_name]);
 end
 addpath(['NPSSdata/' engine_name]);
+if ~(exist(['NPSSdata/' engine_name '/maps']) == 7)
+    mkdir(['NPSSdata' engine_name '/maps']);
+end
+addpath(['NPSSdata/' engine_name '/maps']);
+if ~(exist(['NPSSdata/' engine_name '/info']) == 7)
+    mkdir(['NPSSdata' engine_name '/info']);
+end
+addpath(['NPSSdata/' engine_name '/info']);
 
 %Write Input file if paths are valid
 inputFile = 'TTECTrA_SP.input';
@@ -57,7 +65,7 @@ cd(['NPSSdata/' engine_name]);
 
 clear x;
 
-linearModels
+run(['NPSSdata/' engine_name '/maps/linearModels']); %just in case there are multiple files with same name added to the path
 
 NfRtrack=[];
 clear lmdata;
@@ -94,7 +102,7 @@ for i=1:length(lmdata_temp)
     i2=i2+1;
 end
 
-save(linearModelfilename,'lmdata');
+save('NPSSdata\' inputs.in.engine_name '\' inputs.in.linearModelfilename],'lmdata');
 
 cd(current_folder);
 
