@@ -11,7 +11,7 @@ figure(a);
 plot(out.Fan_Wc,out.Fan_pr,'k.');
 a=a+1;
 
-lpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name'],a);
+lpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],a);
 figure(a);
 plot(out.LPC_Wc,out.LPC_pr,'k.');
 a=a+1;

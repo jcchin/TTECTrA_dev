@@ -3,6 +3,8 @@ close all; clear; clc;
 % add paths for support and gui functions
 addpath('TTECTrA_Auto')
 
+GetNPSS_Model          % retrieve performance maps, min/max thrust setpoints
+
 % Load input parameters
 ttectra_in=TTECTrA_NPSS_Inputs;      % load input data
 
