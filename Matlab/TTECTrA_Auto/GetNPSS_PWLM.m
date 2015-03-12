@@ -45,12 +45,11 @@ disp('CD \') %switch to top drive
 fprintf('cd %s\n', path2model) %move to model directory
 disp('@echo off') %silence npss output
 if (run_lm)
-    disp('call run_npss.bat run\150PAX.run -DSETPNT -DLINEARMODEL -DMODEL -DPLOT -DTTECTrA') %run npss
+    disp('call run_npss.bat run\150PAX.run -DSETPNT -DLINEARMODEL -DTTECTrA') %run npss
 end
 %copy npss output back to matlab
 %fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model,current_folder) %*.m pattern matches and copies all files
 fprintf('xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name '\info']) %*.m pattern matches and copies all files
-fprintf('xcopy %s\\output\\maps\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name '\maps']) %*.m pattern matches and copies all files
 
 disp('CD \') %switch to top drive
 fprintf('cd %s\n', current_folder) %move back to matlab folder
@@ -65,7 +64,7 @@ cd(['NPSSdata/' engine_name]);
 
 clear x;
 
-run(['NPSSdata/' engine_name '/maps/linearModels']); %just in case there are multiple files with same name added to the path
+run('info\linearModels.m'); %just in case there are multiple files with same name added to the path
 
 NfRtrack=[];
 clear lmdata;
@@ -102,7 +101,7 @@ for i=1:length(lmdata_temp)
     i2=i2+1;
 end
 
-save('NPSSdata\' inputs.in.engine_name '\' inputs.in.linearModelfilename],'lmdata');
+save(inputs.in.linearModelfilename, 'lmdata');
 
 cd(current_folder);
 

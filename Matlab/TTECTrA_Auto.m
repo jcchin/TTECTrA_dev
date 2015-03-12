@@ -27,8 +27,10 @@ h=waitbar(0,sprintf('Setting up TTECTrA ...'));
 %----------------------------------------
 % Load input parameters
 %----------------------------------------
-ttectra_in=TTECTrA_NPSS_Inputs;      % load input data
+GetNPSS_Model          % retrieve performance maps, min/max thrust setpoints
 
+ttectra_in=TTECTrA_NPSS_Inputs;      % load input data
+addpath(['NPSSdata\' ttectra_in.in.engine_name '\info'],['NPSSdata\' ttectra_in.in.engine_name '\maps'])
 %----------------------------------------
 % Run NPSS to get linear model and steady-state data
 %----------------------------------------
@@ -41,7 +43,7 @@ end
 % Design Power Management Function
 %---------------------------------------
 close(h); h=waitbar(0.1,sprintf('Designing Power Management Function ...'));
-
+addpath('TTECTrA_Auto')
 [SP]=TTECTrA_NPSS_SPcalc(ttectra_in);
 ttectra_in.SP=SP;
 
