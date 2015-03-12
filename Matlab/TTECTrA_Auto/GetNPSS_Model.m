@@ -8,7 +8,7 @@ run([cd(cd('..')) '\Matlab\setup_NPSS_Simulink.m'])
 eval(['addpath ', npss_location])
 eval(['addpath ',npss_location,'/bin'])
 
-if ~(exist(['NPSSdata/' engine_name '/info/setpoints.m']) == 7)
+if ~(exist(['NPSSdata/' engine_name '/info/setpoints.m']) == 2)
     
     disp('Retrieving engine model info for the first time')
     
