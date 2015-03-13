@@ -13,21 +13,21 @@ if ~(exist(['NPSSdata/' engine_name '/info/setpoints.m']) == 2)
     disp('Retrieving engine model info for the first time')
     
     if ~(exist(['NPSSdata/' engine_name]) == 7)
-        mkdir(['NPSSdata' engine_name]);
+        mkdir(['NPSSdata/' engine_name]);
     end
     addpath(['NPSSdata/' engine_name]);
     if ~(exist(['NPSSdata/' engine_name '/maps']) == 7)
-        mkdir(['NPSSdata' engine_name '/maps']);
+        mkdir(['NPSSdata/' engine_name '/maps']);
     end
     addpath(['NPSSdata/' engine_name '/maps']);
     if ~(exist(['NPSSdata/' engine_name '/info']) == 7)
-        mkdir(['NPSSdata' engine_name '/info']);
+        mkdir(['NPSSdata/' engine_name '/info']);
     end
     addpath(['NPSSdata/' engine_name '/info']);
 
     %Write Input file if paths are valid
     current_folder = pwd; %current matlab folder
-    path2model = [model_location,'\NPSS\' engine_name ''];
+    path2model = [model_location '\NPSS\' engine_name];
 
     diary('run_shell.bat')
     %copy all of the newly created files to the model path
@@ -39,6 +39,7 @@ if ~(exist(['NPSSdata/' engine_name '/info/setpoints.m']) == 2)
     %fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model,current_folder) %*.m pattern matches and copies all files
     fprintf('xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name '\info']) %*.m pattern matches and copies all files
     fprintf('xcopy %s\\output\\maps\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name '\maps']) %*.m pattern matches and copies all files
+    %fprintf('xcopy %s\\maps\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name '\maps']) %*.m pattern matches and copies all files
 
     disp('CD \') %switch to top drive
     fprintf('cd %s\n', current_folder) %move back to matlab folder
