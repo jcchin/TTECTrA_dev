@@ -1147,16 +1147,16 @@ Element transient_Nozzle Byp_Nozz  {
 	tau = 0.5;
 
 	// Schedule for the Fan R-line target = 2.2 case
-	Table TB_s_Ath_Schedule(real Fan_NcPct) {
-		Fan_NcPct = {100.0, 96.9687, 93.4714, 89.6713, 84.9732, 77.5817, 68.0069, 56.3701, 50}
-		delta_s_Ath = {0.31766, 0.31766, 0.36448, 0.4245, 0.49839, 0.5, 0.5, 0.5, 0.5}
-	}
+	// Table TB_s_Ath_Schedule(real Fan_NcPct) {
+		// Fan_NcPct = {100.0, 96.9687, 93.4714, 89.6713, 84.9732, 77.5817, 68.0069, 56.3701, 50}
+		// delta_s_Ath = {0.31766, 0.31766, 0.36448, 0.4245, 0.49839, 0.5, 0.5, 0.5, 0.5}
+	// }
 	
 	// Schedule for the Fan R-line target = 1.8 case
-	// Table TB_s_Ath_Schedule(real Fan_NcPct) {
-		// Fan_NcPct = {100.0, 91.7923, 91.5435, 87.0581, 80.684, 72.4671, 62.4186, 60.0}
-		// delta_s_Ath = {0.32997, 0.32997, 0.33169, 0.35782, 0.39965, 0.46055, 0.5, 0.5}
-	// }
+	Table TB_s_Ath_Schedule(real Fan_NcPct) {
+		Fan_NcPct = {100.0, 91.7923, 91.5435, 87.0581, 80.684, 72.4671, 62.4186, 60.0}
+		delta_s_Ath = {0.32997, 0.32997, 0.33169, 0.35782, 0.39965, 0.46055, 0.5, 0.5}
+	}
 	
 	// void preexecute() { 
 
