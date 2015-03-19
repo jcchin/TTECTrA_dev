@@ -172,7 +172,7 @@ Dependent T41_Demand{
 Dependent FAR_Idle{
 
 	eq_lhs = "Burner.FAR";
-	eq_rhs = "0.0055";
+	eq_rhs = "0.01";
 	
 } 
 
@@ -322,7 +322,7 @@ Dependent Min_BPR_Limit {
 Dependent LPC_SMN_Limit {
 
     eq_lhs = "LPC.SMN";
-    eq_rhs = "10.0";
+    eq_rhs = "2.0";
 
 }
 
@@ -330,7 +330,7 @@ Dependent LPC_SMN_Limit {
 Dependent LPC_SMW_Limit {
 
     eq_lhs = "LPC.SMW";
-    eq_rhs = "10.0";
+    eq_rhs = "2.0";
 
 }
 
@@ -354,7 +354,7 @@ Dependent LPC_Rline_Max_Limit {
 Dependent HPC_SMN_Limit {
 
     eq_lhs = "HPC.SMN";
-    eq_rhs = "10.0";
+    eq_rhs = "15.0";
 
 }
 
@@ -362,7 +362,7 @@ Dependent HPC_SMN_Limit {
 Dependent HPC_SMW_Limit {
 
     eq_lhs = "HPC.SMW";
-    eq_rhs = "10.0";
+    eq_rhs = "15.0";
 
 }
 
@@ -426,7 +426,7 @@ Dependent Wfuel_Max_Limit {
 Dependent Min_FAR_Limit {
 
     eq_lhs = "Burner.FAR";
-    eq_rhs = "0.002";
+    eq_rhs = "0.02";
 
 }
 
@@ -546,6 +546,6 @@ Dependent LP_Shaft_Acceleration_Limit {
 Dependent LP_Shaft_Deceleration_Limit {
 
 	eq_lhs = "HP_Shaft.dNqdt";
-	eq_rhs = "-2000.0";
+	eq_rhs = "-1000.0";
 
 }

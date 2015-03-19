@@ -17,7 +17,7 @@
 // Model Definition 
 //-------------------------------------------------------------------------------------------------
 // Defining the variables for the guess logic and setting their default values
-real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=3.93086, far_pc=0.0219794, EPR=2.55849, Fnet=25800.0;
+real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=2.29315, far_pc=0.0347834, EPR=1.33495, Fnet=31286.6;
 
 // Guess logic element
 Element Guess { 
@@ -734,6 +734,16 @@ class transient_Nozzle extends Nozzle {
 		description = "Integrator for the nozzle throat area scalar";
 	}
 	
+	Independent ind_schedule {
+		varName = "delta_s_Ath";
+		description = "Independent for the nozzle throat area delta from the schedule";
+	}
+	
+	Dependent schedule{
+		eq_lhs = "delta_s_Ath";
+		eq_rhs = "TB_s_Ath_Schedule(FanNcPct)";
+	}
+	
 	//-------------------------------------------------------------------------
 	// *** ADDITIONAL OPTION VARIABLE SETUP ***
 	//-------------------------------------------------------------------------
@@ -882,29 +892,45 @@ class transient_Nozzle extends Nozzle {
 			}
 		}
 		
-		// If the VAFN switch is changed
-		if (name == "switchVAFN") {
+		// If the VAFN switch for schedule is changed
+		if ( name == "switchVAFNSchedule" ) {
 			
-			// If the VAFN switch is turned off
-			if (switchVAFN == "OFF") {
-
-				s_AthDmd = 1.0;
-			
+			// If the VAFN switch for schedule is turned on, adding the solver independent and dependent pair
+			// for solver robustness
+			if (switchVAFNSchedule == "ON") {
+				ind_schedule.autoSetup = TRUE;
+				schedule.autoSetup = TRUE;
+			}
+			else if ( switchVAFNSchedule == "OFF" ) {
+				ind_schedule.autoSetup = FALSE;
+				schedule.autoSetup = FALSE;
 			}
 			
 		}
 		
+		// If the VAFN switch is changed
+		// if (name == "switchVAFN") {
+			
+			// If the VAFN switch is turned off
+			// if (switchVAFN == "OFF") {
+
+				// s_AthDmd = 1.0;
+			
+			// }
+			
+		// }
+		
 		// If the VAFN switch for schedule is changed
-		if (name == "switchVAFNSchedule") {
+		// if (name == "switchVAFNSchedule") {
 			
 			// If the VAFN switch for schedule is turned off
-			if (switchVAFNSchedule == "OFF") {
+			// if (switchVAFNSchedule == "OFF") {
 
-				s_AthDmd = 1.0;
+				// s_AthDmd = 1.0;
 			
-			}
+			// }
 			
-		}
+		// }
 	
 	}
 	
@@ -950,7 +976,8 @@ class transient_Nozzle extends Nozzle {
 					AthCold = ADP_Ath*s_Ath;
 				}
 				else if (switchVAFNSchedule == "ON" && !TB_s_Ath_Schedule.isEmpty()) {
-					s_AthDmd = 1.0 + TB_s_Ath_Schedule(FanNcPct);
+					// delta_s_Ath = TB_s_Ath_Schedule(FanNcPct)
+					s_AthDmd = 1.0 + delta_s_Ath;
 					s_Ath = s_AthDmd;
 					AthCold = ADP_Ath*s_Ath;
 				}
@@ -1119,9 +1146,16 @@ Element transient_Nozzle Byp_Nozz  {
 
 	tau = 0.5;
 
+	// Schedule for the Fan R-line target = 2.2 case
+	// Table TB_s_Ath_Schedule(real Fan_NcPct) {
+		// Fan_NcPct = {100.0, 96.9687, 93.4714, 89.6713, 84.9732, 77.5817, 68.0069, 56.3701, 50}
+		// delta_s_Ath = {0.31766, 0.31766, 0.36448, 0.4245, 0.49839, 0.5, 0.5, 0.5, 0.5}
+	// }
+	
+	// Schedule for the Fan R-line target = 1.8 case
 	Table TB_s_Ath_Schedule(real Fan_NcPct) {
-		Fan_NcPct = {100.0, 96.023, 89.2604, 80.0026, 69.2854, 57.5679, 43.6016, 30.8661, 25.0}
-		delta_s_Ath = {0.3283, 0.3283, 0.43058, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5}
+		Fan_NcPct = {100.0, 91.7923, 91.5435, 87.0581, 80.684, 72.4671, 62.4186, 60.0}
+		delta_s_Ath = {0.32997, 0.32997, 0.33169, 0.35782, 0.39965, 0.46055, 0.5, 0.5}
 	}
 	
 	// void preexecute() { 
@@ -1422,12 +1456,10 @@ LinearModelGenerator lin_mod {
 	setPerturb("Burner.Wfuel", 0.005);
 	
 	// Setting the perturbation type and percentage for VAFN
-	// setPerturbType("Byp_Nozz.delta_s_Ath", "ABSOLUTE");
+	// setPerturbType("Byp_Nozz.delta_s_Ath", "FRACTIONAL");
 	// setPerturb("Byp_Nozz.delta_s_Ath", 0.005);
 	
-	// Default perturbation percentage for all of the variables 
-	// defaultPerturbation = 0.005;
-	
+	// Runs all the execution sequences before determining the baseline values
 	runInitialPass = 1;
 	
 	// Setting the repeatablility test flag

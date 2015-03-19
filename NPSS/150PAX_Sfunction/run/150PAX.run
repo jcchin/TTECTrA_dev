@@ -40,7 +40,7 @@ set_output(); // view/output_paths.fnc
 #include <linear_model.fnc>
 
 // Determining the solver preferences
-solver.defaultTolerance = 0.000001;
+solver.defaultTolerance = 0.0001;
 solver.maxIterations = 500;
 solver.maxJacobians = 250;
 solver.maxConvergeFailures = 250;
@@ -57,16 +57,17 @@ Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 
 // Turning on the guess logic
-setOption( "switchGuess", "ON" ); //merge?
+setOption( "switchGuess", "ON" );
 
 // Switching the guess logic type to Fan NcPct
 setOption( "switchGuessType", "FanNcPct" );
 
-// Because the default FanNcPct value is 100 and the same with
-// the current Fan_NcPct_target, there is no need to change or
-// assign a value to FanNcPct
+// Turning on the VAFN and its schedule
+setOption( "switchVAFN", "ON" );
+setOption( "switchVAFNSchedule", "ON" );
 
-// Running the steady state case
+// Running the maximum thrust case
+FanNcPct = 100;
 RunMaxPower();
 
 // The case file for cycle maximum limits

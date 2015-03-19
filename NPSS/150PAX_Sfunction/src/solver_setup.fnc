@@ -74,11 +74,11 @@ void transient_setup() {
 	// FanNcPct = transientDriver(0);
 	
 	setOption( "switchGuessType", "Wfuel" );    
-	Wfuel = transientDriver(0.0);
-	
-	solver.forceNewJacobian = TRUE;
+	Wfuel = transientDriver(0.0);	
+	// solver.forceNewJacobian = TRUE;
 	time = 0.;
 	run();
+	// printPride();
 	
 	// Adding transient demand variable to the solver
     solver.addIndependent("trans_indep"); 
@@ -133,7 +133,8 @@ void RunMaxPower(){
 	// additional independent and dependent
 	autoSolverSetup();
 	
-	Fan_Max_Nc.addConstraint("Tt4_Max_Limit","MAX",1,1);
+	Fan_Max_Nc.addConstraint("Tt4_Max_Limit","MAX",2,1);
+	Fan_Max_Nc.addConstraint("Fan_SMW_Limit","MIN",1,1);
 	
 	solver.addIndependent( "FAR" );
 	solver.addDependent( "Fan_Max_Nc" );
