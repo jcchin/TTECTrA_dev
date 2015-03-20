@@ -384,6 +384,7 @@ function masterplot(hObject, eventdata, handles)
 %does the actual plotting
 
 popup_sel_index = get(handles.popupmenu1, 'Value');
+popup2_sel_index = get(handles.popupmenu2, 'Value');
 temp_map = extract(['mapData' handles.name_array{popup_sel_index}]);
 
 [~, ~, c, d] = size(temp_map);  %a=Rline, b=speed, c=compressor variable, d=alpha dimension,
@@ -409,7 +410,7 @@ catch err
 end
 
 %load('TTECTrA_Auto_Results31.mat')
-load([cd(cd('..')) '\Matlab\TTECTrA_Data/150PAX_Sfunction/vafn_CL_data.mat'])
+load([cd(cd('..')) '\Matlab\TTECTrA_Data/' handles.engine_array{popup2_sel_index} '/vafn_CL_data.mat'])
 
 minA = min(min(min(handles.Alpha_index)));
 
