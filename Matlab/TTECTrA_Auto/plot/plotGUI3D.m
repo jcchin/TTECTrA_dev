@@ -1,6 +1,6 @@
 function varargout = plotGUI3D(varargin)
 % PLOTGUI3D MATLAB code for plotGUI3D.fig
-% Last Modified by GUIDE v2.5 25-Jan-2015 17:35:52
+% Last Modified by GUIDE v2.5 20-Mar-2015 17:51:24
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -125,7 +125,7 @@ end
 set(hObject, 'Value', 1.0); %reset pop up menu
 set(hObject, 'String', {'(No Compressors or Turbine Objects in the Workspace)'}); %error message
 
-x = evalin('base','dir');
+x = evalin('base','dir([cd(cd(''..'')) ''\Matlab\NPSSdata\150PAX_Sfunction\maps''])');
 j = 1;
 for i = 1:length(x)
     if strfind(x(i).name, 'mapData') %if compressor class
@@ -208,6 +208,7 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 cla; %clear curent axes
 %save in compressor/turbine of interest
 popup_sel_index = get(handles.popupmenu1, 'Value');
+popup2_sel_index = get(handles.popupmenu2, 'Value');
 load('TTECTrA_Auto_Results31.mat')
 temp_map = extract(['mapData' handles.name_array{popup_sel_index}]);
 
@@ -217,26 +218,8 @@ temp_map = extract(['mapData' handles.name_array{popup_sel_index}]);
 Alpha = zeros(1,d);
 P = [2 1 3]; %reshape in this order
 %hardcoded scalars for 150pax
-Fan_wc_scalar = 1.0356;
-Fan_pr_scalar = 1.0001;
-LPC_wc_scalar = 1.0076;
-LPC_pr_scalar = 1.0000;
-HPC_wc_scalar = 1.0322;
-HPC_pr_scalar = 1.0001;
-HPT_wc_scalar = 0.9040;
-HPT_pr_scalar = 1.9104;
-LPT_wc_scalar = 0.9585;
-LPT_pr_scalar = 1.5628;
-Fan2_wc_scalar = 1.0356;
-Fan2_pr_scalar = 1.0001;
-LPC2_wc_scalar = 1.0076;
-LPC2_pr_scalar = 1.0000;
-HPC2_wc_scalar = 1.0322;
-HPC2_pr_scalar = 1.0001;
-HPT2_wc_scalar = 0.9040;
-HPT2_pr_scalar = 1.9104;
-LPT2_wc_scalar = 0.9585;
-LPT2_pr_scalar = 1.5628;
+run([cd(cd('..')) '\Matlab\NPSSdata\' handles.engine_array{popup2_sel_index} '\info\model.m'])
+
 if (c == 6)  %compressors
     for i=1:1:d     %for every alpha, transpose row and column vectors
         Wc(:,:,i)= (temp_map(:,:,4,i)); %evaluates the assignment 'Wc_<#>_map'
@@ -256,10 +239,11 @@ if (c == 6)  %compressors
 
     Wc = monotonic(Wc); %make monotonically increasing
     %Wc = mass_conversion(Wc,'lbm2kg'); %convert units to SI
-    wc_scalar = eval([ handles.name_array{popup_sel_index} '_wc_scalar']);
-    pr_scalar = eval([ handles.name_array{popup_sel_index} '_pr_scalar']);
-    Wc= Wc * wc_scalar;
-    pr = ((pr-1)/pr_scalar)+1;%((pr_map-1)*pr_scalar)+1;
+    %wc_scalar = eval([ handles.name_array{popup_sel_index} '_wc_scalar']);
+    %pr_scalar = eval([ handles.name_array{popup_sel_index} '_pr_scalar']);
+    Wc= Wc * wc_scalar(popup_sel_index);
+    pr = ((pr-1)/pr_scalar(popup_sel_index))+1;%((pr_map-1)*pr_scalar)+1;
+    eta = eta * ef_scalar(popup_sel_index);
     
     handles.Wc_map = permute(Wc, P);
     handles.eta_map = permute(eta, P);
@@ -290,10 +274,11 @@ elseif (c==5) %turbines
     end
 
     Wc = monotonic(Wc); %make monotonically increasing
-    wc_scalar = eval([ handles.name_array{popup_sel_index} '_wc_scalar']);
-    pr_scalar = eval([ handles.name_array{popup_sel_index} '_pr_scalar']);
+    wc_scalar = wc_scalar(popup_sel_index);%eval([ handles.name_array{popup_sel_index} '_wc_scalar']);
+    pr_scalar = pr_scalar(popup_sel_index);%eval([ handles.name_array{popup_sel_index} '_pr_scalar']);
     Wc= Wc * wc_scalar;
     pr = ((pr-1)/pr_scalar)+1;%((pr_map-1)*pr_scalar)+1;
+    eta = eta * ef_scalar(popup_sel_index);
     
     handles.Wc_map = permute(Wc, P);
     handles.eta_map = permute(eta, P);
@@ -549,3 +534,49 @@ end
 
 set(gca,'XMinorTick','on', 'YMinorTick', 'on', 'ZMinorTick', 'on')
 hold off
+
+
+% --- Executes on selection change in popupmenu2.
+function popupmenu2_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu2 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu2
+
+
+% --- Executes during object creation, after setting all properties.
+function popupmenu2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupmenu2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+x = evalin('base','dir([cd(cd(''..'')) ''\Matlab\NPSSdata\''])');
+x = x(3:end); %ignore '.' and '..' folders;
+j = 1;
+for i = 1:length(x)
+    if x(i).isdir
+        handles.engine_array{j} = x(i).name;
+        j = j+1;
+        %scal = eval([x(i).name '.scalar']); %determine the scalar index
+        %eval([x(i).name '.read(' scal ',2)']); %execute load/plot function
+    end
+%     if strcmp(x(i).class, 'Turbine') %if turbine class
+%         handles.name_array{j} = x(i).name;
+%         j = j+1;
+%         %scal = eval([x(i).name '.scalar']);
+%         %eval([x(i).name '.read(' scal ',2)']);
+%     end
+end
+
+% Update handles structure
+guidata(hObject, handles);
+% Update drop down menu
+set(hObject, 'String', handles.engine_array);
