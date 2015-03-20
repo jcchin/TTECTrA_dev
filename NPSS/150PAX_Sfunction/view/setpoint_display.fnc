@@ -29,7 +29,7 @@ void setpoint_display(real z, real target){
     if (z == 0){ //passed in from setpoint.case
         SetPt << "output = [];" << endl;
     }
-    SetPt << "a.('Fn')=" << Perf.myFn << ";a.('Wf')=" << Burner.Wfuel << ";a.('Nf')=" <<  LP_Shaft.Nmech << ";a.('Nc')=" << HP_Shaft.Nmech << ";a.('EPR')=" << Perf.myEPR << ";a.('NCR25')=" << Perf.NcR25 << ";a.('Ps30')=" << FS_3.Ps << ";a.('FAR')=" << Burner.FAR << ";"<< endl;
+    SetPt << "a.('Fn')=" << Perf.myFn << ";a.('Wf')=" << Burner.Wfuel << ";a.('Nf')=" <<  LP_Shaft.Nmech << ";a.('Nc')=" << HP_Shaft.Nmech << ";a.('EPR')=" << Perf.myEPR << ";a.('NCR25')=" << Perf.NcR25 << ";a.('Ps30')=" << FS_3.Ps << ";a.('FAR')=" << Burner.FAR << ";a.('converged')=" << solver.converged << ";"  << endl;
     SetPt << "output = [output a]; clear a; %thrust target: " << target << endl;
 }
 
