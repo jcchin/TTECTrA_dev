@@ -408,7 +408,8 @@ catch err
     error('**--Load Maps before adjusting the IGV angle and plotting--**')
 end
 
-load('TTECTrA_Auto_Results31.mat')
+%load('TTECTrA_Auto_Results31.mat')
+load([cd(cd('..')) '\Matlab\TTECTrA_Data/150PAX_Sfunction/vafn_CL_data.mat'])
 
 minA = min(min(min(handles.Alpha_index)));
 
