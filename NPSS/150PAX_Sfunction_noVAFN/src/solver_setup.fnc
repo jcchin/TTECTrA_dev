@@ -2,7 +2,7 @@
 // of runs at steady state and transient
 
 // Defining the necessary variables for dependents
-real MaxThrust, TargetThrust;
+real MaxThrust, TargetThrust, MinThrust;
 real Fan_NcPct_target, LPC_NcPct_target, HPC_NcPct_target, Wfuel_target;
 real T4Target, T41Target;
 
@@ -30,10 +30,13 @@ void SP_Setup(){
 	// Switching the burner independent to FAR 
 	Burner.switchBurn = "FAR";
 
-    solver.removeIndependent("FAR");
-    solver.removeDependent("Run_Condition");
-    solver.removeDependent("Fan_Max_Nc");
+    // solver.removeIndependent("FAR");
+    // solver.removeDependent("Run_Condition");
+    // solver.removeDependent("Fan_Max_Nc");
 
+	solver.clear();
+	autoSolverSetup();
+	
     solver.addIndependent("FAR");
     solver.addDependent("Run_Condition_Thrust");
 }
@@ -71,11 +74,11 @@ void transient_setup() {
 	// FanNcPct = transientDriver(0);
 	
 	setOption( "switchGuessType", "Wfuel" );    
-	Wfuel = transientDriver(0.0);
-	
-	solver.forceNewJacobian = TRUE;
+	Wfuel = transientDriver(0.0);	
+	// solver.forceNewJacobian = TRUE;
 	time = 0.;
 	run();
+	// printPride();
 	
 	// Adding transient demand variable to the solver
     solver.addIndependent("trans_indep"); 
@@ -111,7 +114,7 @@ void transient_setup() {
 	
 	initializeHistory();
 
-    transient.baseTimeStep = 0.02;
+    transient.baseTimeStep = 0.01;
     
 }
 
@@ -130,7 +133,8 @@ void RunMaxPower(){
 	// additional independent and dependent
 	autoSolverSetup();
 	
-	Fan_Max_Nc.addConstraint("Tt4_Max_Limit","MAX",1,1);
+	Fan_Max_Nc.addConstraint("Tt4_Max_Limit","MAX",2,1);
+	Fan_Max_Nc.addConstraint("Fan_SMW_Limit","MIN",1,1);
 	
 	solver.addIndependent( "FAR" );
 	solver.addDependent( "Fan_Max_Nc" );
@@ -150,7 +154,6 @@ void RunMaxPower(){
 	
 	// Storing the maximum thrust
 	MaxThrust = Perf.myFn;
-
 }
 
 // Function for running the model to an input part power
@@ -224,6 +227,7 @@ void RunIdle(){
 	// Removing all of the constraints from the solver
 	FAR_Idle.removeAllConstraints();
 
+	MinThrust = Perf.myFn;
 }
 
 // This function runs a steady state case at the point it is called in the code

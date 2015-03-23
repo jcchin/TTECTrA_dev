@@ -1,7 +1,7 @@
 
 // Creating the setpoint output file stream
 OutFileStream MatlabSetpointsReport {
-	filename = "setpoints.m";
+	filename = "info/setpoints.m";
 	append = FALSE;
 }
 
@@ -22,14 +22,14 @@ void setpoint_output() {
 
 void setpoint_display(real z, real target){
     OutFileStream SetPt {
-        filename = OutputPath + "setpoints.m";
+        filename = OutputPath + "info/setpoints.m";
         append = FALSE;
     }
 
     if (z == 0){ //passed in from setpoint.case
         SetPt << "output = [];" << endl;
     }
-    SetPt << "a.('Fn')=" << Perf.myFn << ";a.('Wf')=" << Burner.Wfuel << ";a.('Nf')=" <<  LP_Shaft.Nmech << ";a.('Nc')=" << HP_Shaft.Nmech << ";a.('EPR')=" << Perf.myEPR << ";a.('NCR25')=" << Perf.NcR25 << ";a.('Ps30')=" << FS_3.Ps << ";a.('FAR')=" << Burner.FAR << ";"<< endl;
+    SetPt << "a.('Fn')=" << Perf.myFn << ";a.('Wf')=" << Burner.Wfuel << ";a.('Nf')=" <<  LP_Shaft.Nmech << ";a.('Nc')=" << HP_Shaft.Nmech << ";a.('EPR')=" << Perf.myEPR << ";a.('NCR25')=" << Perf.NcR25 << ";a.('Ps30')=" << FS_3.Ps << ";a.('FAR')=" << Burner.FAR << ";a.('converged')=" << solver.converged << ";"  << endl;
     SetPt << "output = [output a]; clear a; %thrust target: " << target << endl;
 }
 

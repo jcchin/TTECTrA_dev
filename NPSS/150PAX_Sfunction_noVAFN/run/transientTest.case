@@ -9,6 +9,7 @@ solver.maxConvergeFailures = 250;
 
 // Including the flight condition from the file written by TTECTrA
 #include <Sfunction_flight_condition.data>
+#include <transientTrace.fnc>
 
 // Turning on the guess logic
 setOption( "switchGuess", "ON" );
@@ -56,8 +57,13 @@ transient.integrationType = "GEAR_2ND_ORDER";
 // Initializing the variable history
 initializeHistory();
 
+solver.addIndependent("trans_indep"); 
+solver.addDependent("trans_Condition");
+
 // Setting up the transient simulation time step
 transient.baseTimeStep = 0.01;
-
+transient.stopTime = 20.0;
+solver.postExecutionSequence = { "transientTrace" }; //CaseViewer function
 // Running the model for initialization
 run();
+transientTrace.display(); //write viewer variables to it's output file

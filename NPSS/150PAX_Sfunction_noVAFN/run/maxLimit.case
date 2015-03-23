@@ -78,3 +78,11 @@ Ambient.alt = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 RunMaxPower();
+
+#ifdef TTECTrA  //NASA Method
+	PC = 50;
+	Ambient.alt = 0.0;
+	Ambient.MN = 0.0;
+	Ambient.dTs = 0.0;
+	RunMaxPower();
+#endif
