@@ -25,9 +25,10 @@
 % REQUIRED
 npss_location = ''; %path location of the S-function capable NPSS executable
 engine_name = '150PAX_Sfunction'; %name of the NPSS engine folder
+%engine_name = '150PAX_Sfunction_noVAFN'; %name of the NPSS engine folder
+%engine_name = '150PAX_Sfunction2'; %name of the NPSS engine folder
 run_file = '150PAX.run'; %NPSS run script
 flags = ' -DTRANSIENT'; %flags for the NPSS run
-
 
 % Inputs
 % Add NPSS variables to be promoted as inputs to the s-function
@@ -39,7 +40,6 @@ output = {'LP_Shaft.Nmech','HP_Shaft.Nmech','FS_2.Pt','FS_2.Tt','FS_25.Pt',...
     'FS_25.Tt','FS_3.Ps','FS_3.Tt','FS_5.Pt', 'FS_5.Tt','FS_4.Tt','Perf.myEPR',...
     'Perf.myFn','Perf.Wfuel','HPC.SMN','HPC.SMW','LPC.SMN','LPC.SMW','Burner.FAR',...
     'Fan.Wc','Fan.PR','LPC.Wc','LPC.PR','HPC.Wc','HPC.PR','HPT.WpIn','HPT.PR','LPT.WpIn','LPT.PR'};
-
 
 % OPTIONAL
 %can be left blank if using default TTECTrA folder structure

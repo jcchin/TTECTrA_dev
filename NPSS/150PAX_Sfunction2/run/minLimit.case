@@ -5,15 +5,8 @@ real min_RU_limit, min_Ps3_limit; // Defining the necessary variables for minimu
 //-------------------------------------------------------------------------------------------------
 // Minimum RU limit case
 //-------------------------------------------------------------------------------------------------
-// Turning on the guess tables and declaring PC as the power management variable
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
-
-// Turning the VAFN off
-setOption( "switchVAFN", "OFF" );
-
-// Turning the VAFN schedule off
-setOption( "switchVAFNSchedule", "OFF" );
 
 // Use PC in the guess logic for idle definition
 PC = 21;
@@ -37,15 +30,6 @@ RunIdle();
 
 cout << "Min Ps3 Limit: " << FS_3.Ps << " psia" << endl;
 min_Ps3_limit = FS_3.Ps;
-
-#ifdef TTECTrA  //NASA Method
-	Ambient.alt = 0.0;
-	Ambient.MN = 0.0;
-	Ambient.dTs = 0.0;
-	RunIdle();
-#endif
-
-
 
 // Returning back to SLS maximum thrust condition
 setOption( "switchGuess", "ON" );

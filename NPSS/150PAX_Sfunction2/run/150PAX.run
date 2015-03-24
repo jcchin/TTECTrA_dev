@@ -33,14 +33,14 @@ set_output(); // view/output_paths.fnc
 // Including necessary custom functions
 #include <solver_setup.fnc>
 #include <output_setup.fnc>
+#include <debug.fnc>
 #include <independents_dependents_constraints.fnc>
 #include <transientDriver.fnc>
-#include <transientDriver_scaled.fnc>
 #include <accelSchedule.fnc>
 #include <linear_model.fnc>
 
 // Determining the solver preferences
-solver.defaultTolerance = 0.0001;
+solver.defaultTolerance = 0.000001;
 solver.maxIterations = 500;
 solver.maxJacobians = 250;
 solver.maxConvergeFailures = 250;
@@ -56,38 +56,38 @@ Ambient.alt = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 
-// Turning on the guess logic
-setOption( "switchGuess", "ON" );
-
 // Switching the guess logic type to Fan NcPct
 setOption( "switchGuessType", "FanNcPct" );
 
-// Turning on the VAFN and its schedule
-setOption( "switchVAFN", "OFF" );
-setOption( "switchVAFNSchedule", "OFF" );
+// Because the default FanNcPct value is 100 and the same with
+// the current Fan_NcPct_target, there is no need to change or
+// assign a value to FanNcPct
 
-// Running the maximum thrust case
-FanNcPct = 100;
+// Running the steady state case
 RunMaxPower();
+
+#ifdef EBUG
+	solver.preExecutionSequence.append("debug_output");
+#endif
 
 // The case file for cycle maximum limits
 #ifdef MAXLIMITSCHEDULE
-	#include <maxLimit.case>
+ #include <maxLimit.case>
 #endif
 
 // The case file for cycle minimum limits
 #ifdef MINLIMITSCHEDULE
-	#include <minLimit.case>		
+ #include <minLimit.case>		
 #endif
 
 // The case file for creating a flight condition setpoint for  formatted for Matlab
 #ifdef SETPNT
-	#include <setpoint.case>		
+ #include <setpoint.case>		
 #endif
 
 // The case file for creating setpoint values throughout the entire flight envelope
 #ifdef FLTENVSETPNT
-	#include <powMan.case>		
+ #include <powMan.case>		
 #endif
 
 // The case file for creating the acceleration schedule and minimum RU limit in
@@ -99,13 +99,13 @@ RunMaxPower();
 // The case file for running the model in transient with an acceleration schedule 
 // at SLS, SL hot day take off, and 6,000 ft hot day take off
 #ifdef ACCELSCHEDULE
-	#include <accel.case>
+ #include <accel.case>		
 #endif
 
 // The case file for creating linear models at several flight conditions throughout
 // the flight envelope and putting these linear model into Matlab format
 #ifdef LINEARMODEL
-	#include <linearModel.case>		
+ #include <linearModel.case>		
 #endif
 
 // The case file for running the NPSS model in Matlab Simulink
@@ -113,19 +113,10 @@ RunMaxPower();
  #include <transient.case>		
 #endif
 
-#ifdef PLOT
-	#include <mapplot_matlab.fnc>
-	createMapDataFiles_matlab();
+#ifdef DEBUG
+ #include <debug.case>
 #endif
 
-#ifdef MODEL
-	#include <scalar_output.view>
-	#include <minLimit.case>
-	#include <maxLimit.case>
-	mat_opData.display();
-#endif
-
-// The case file for generating the transient VAFN schedule
-#ifdef NOZZLESCHEDULE
-	#include <nozzle_schedule.case>
+#ifdef GUESSCHECK
+ #include <guesscheck.case>
 #endif

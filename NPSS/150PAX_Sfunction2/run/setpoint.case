@@ -2,40 +2,29 @@
 // at a flight condition 
 #include <setpoint_display.fnc>
 #include <output_setup.fnc>
-#ifdef TTECTrA  //NASA Method
+#ifdef CSANK  //NASA Method
 	#include <TTECTrA_SP.input>	//Input from Matlab
 	
 	// Set the guess logic as you want
 	setOption( "switchGuess", "ON" );
-	setOption( "switchGuessType", "Fnet" );
+	setOption( "switchGuessType", "FanNcPct" );
 
-	// Turning the VAFN off
-	setOption( "switchVAFN", "OFF" );
-
-	// Turning the VAFN schedule off
-	setOption( "switchVAFNSchedule", "OFF" );
-	
-	SP_Setup(); //add Run_Condition_thrust
-	
 	//Setup up steady state solver
-	TargetThrust = 20000;
-	Fnet = TargetThrust;
-	//RunMaxPower();
+	real myFn_target = 20000;
+	RunMaxPower();
 	run(); // Running the steady state case
+
 
 	int z;
 	for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
-	    TargetThrust = myFn_targets[z];
-	    //cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
-	    Fnet = TargetThrust;
-		run();
-	    setpoint_display(z, myFn_targets[z]);
-	}
-	SP_Remove();
+	    myFn_target = myFn_targets[z];
+	    run();
+	    setpoint_display(z);
+	}	
 #endif
 
 
-#ifndef TTECTrA  //GT's method
+#ifndef CSANK  //GT's method (hardcoded power hook)
 	// Input the flight condition where you want to create the Matlab
 	// formatted setpoint output
 	Ambient.alt = 0.00;
@@ -45,13 +34,6 @@
 	// Set the guess logic as you want
 	setOption( "switchGuess", "ON" );
 	setOption( "switchGuessType", "PC" );
-	
-	// Turning the VAFN off
-	setOption( "switchVAFN", "OFF" );
-
-	// Turning the VAFN schedule off
-	setOption( "switchVAFNSchedule", "OFF" );
-	
 	PC = 50;
 	RunMaxPower();
 

@@ -18,7 +18,7 @@ function outputs=simFromTTECTrA(inputs)
 %   contain the following fields for control design:
 %     t -- simulation time instants
 %     Fnet -- uncorrected thrust
-%     Wf_vec -- fuel flow
+%     Wf-- fuel flow
 %     P2 -- pressure at station 2 (use to correct Fnet)
 %     T25 -- temperature at station 25 (use to correct Nc)
 %     Nc -- core speed
@@ -103,7 +103,7 @@ try
     if(isfield(inputs.in,'FT_dmd'))
         % Creating the fuel flow rate input signal based on the net thrust
         % demand
-        inputs.in.wf_vec = interp1(inputs.SP.FT_SP,inputs.SP.Wf_SP,inputs.in.FT_dmd,'linear','extrap');
+        inputs.in.wf_vec= interp1(inputs.SP.FT_SP,inputs.SP.Wf_SP,inputs.in.FT_dmd,'linear','extrap');
         % Initializing NPSS for the net thrust demand case
         initialize_NPSS(inputs.in.HomeDirectory,[inputs.in.alt inputs.in.MN inputs.in.dTamb],[inputs.in.t_vec' inputs.in.wf_vec'],inputs.in.engine_name);
     else
@@ -126,7 +126,7 @@ if ~exist('outputs')
         outputs.t       = y.get('Time');
         outputs.P2      = y.get('P2');
         outputs.Fnet    = y.get('myFnR');
-        outputs.Wf_vec  = y.get('Wfuel');
+        outputs.Wf = y.get('Wfuel');
         outputs.T25     = y.get('T25');
         outputs.Nc      = y.get('N2');
         outputs.Nf      = y.get('N1');
@@ -164,7 +164,7 @@ if ~exist('outputs')
             outputs.t       = y.find('Time');
             outputs.P2      = y.find('P2');
             outputs.Fnet    = y.find('myFnR');
-            outputs.Wf_vec  = y.find('Wfuel');
+            outputs.Wf = y.find('Wfuel');
             outputs.T25     = y.find('T25');
             outputs.Nc      = y.find('N2');
             outputs.Nf      = y.find('N1');
@@ -196,7 +196,7 @@ if ~exist('outputs')
                 outputs.t       = Time;
                 outputs.P2      = P2;
                 outputs.Fnet    = myFnR;
-                outputs.Wf_vec  = Wfuel;
+                outputs.Wf = Wfuel;
                 outputs.T25     = T25;
                 outputs.Nc      = N2;
                 outputs.Nf      = N1;

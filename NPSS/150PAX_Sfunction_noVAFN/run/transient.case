@@ -17,10 +17,10 @@ setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "Wfuel" );
 
 // Turning the VAFN off
-setOption( "switchVAFN", "ON" );
+setOption( "switchVAFN", "OFF" );
 
 // Turning the VAFN schedule off
-setOption( "switchVAFNSchedule", "ON" );
+setOption( "switchVAFNSchedule", "OFF" );
 
 // Assigning the initial fuel flow rate from the input signal to the power management variable
 Wfuel = transientDriver_scaled(0.0);

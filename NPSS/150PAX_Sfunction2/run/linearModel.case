@@ -1,60 +1,26 @@
 // This case file runs the model throughout the flight envelope and
 // generates linear models about points of interest
 
-#ifdef TTECTrA //NASA Method
-	#include <TTECTrA_SP.input>	//Input from Matlab
-	// Turning the guess logic off
-	setOption( "switchGuess", "ON" );
-	setOption( "switchGuessType", "Fnet" );
+#ifdef CSANK //NASA Method
 	
-	// Turning the VAFN on or off
-	setOption( "switchVAFN", "OFF" );
-
-	// Turning the VAFN schedule on or off
-	setOption( "switchVAFNSchedule", "OFF" );
 	//----------------------------------------------------------------------------------
-	// TTECTrA PWLM - Linearization at each point requested from Matlab
+	// CSANK PWLM - Linearization at each point requested from Matlab
 	//----------------------------------------------------------------------------------
-	//real Fan_NcPct_targets[]={100, 90, 80, 70, 60, 50, 40, 30, 25}; 
-	SS_Setup();
-
-	// solver.removeIndependent("FAR");
-    // solver.removeDependent("Run_Condition");
-
-	solver.addIndependent("FAR");
-    solver.addDependent("Run_Condition_Thrust");
-
+	real Fan_NcPct_targets[]={100, 90, 80, 70, 60, 50, 40, 30, 20}; 
 	int z;
-	// cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
-	for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
-	    TargetThrust = myFn_targets[z];
-		Fnet = TargetThrust;
-		run();		
-		
-	    //run_linear();
-		linear_model();
+	for ( z=0; z < Fan_NcPct_targets.entries(); ++z ) { //loop through Fan_NcPct_targets
+	    Fan_NcPct_target = Fan_NcPct_targets[z];
+	    CASE++;
+	    run();
+	    CaseView_SS.display();
+	    page.display();
 
-		// PC = 21;
-		// RunIdle();
-		// run_current_point();
-		// linear_model();
-
-		solver.addIndependent("FAR");
-		solver.addDependent("Run_Condition_Thrust");
-
+	    run_linear();
 	}
-	// Returning back to SLS maximum thrust condition
-	// Turning the guess logic back on
-	setOption( "switchGuess", "ON" );
-	setOption( "switchGuessType", "PC" );
-	PC = 50;
-	Ambient.alt = 0.0;
-	Ambient.MN = 0.0;
-	Ambient.dTs = 0.0;
-	RunMaxPower();
+
 #endif
 
-#ifndef TTECTrA  //Georgia Tech Method
+#ifndef CSANK  //Georgia Tech Method
 
 	//----------------------------------------------------------------------------------
 	//  Refactored GT Method - Linearization at power hook at multiple flight conditions
@@ -64,13 +30,7 @@
 	// Setting up the guess logic
 	setOption( "switchGuess", "ON" );
 	setOption( "switchGuessType", "PC" );
-	
-	// Turning the VAFN on or off
-	setOption( "switchVAFN", "ON" );
 
-	// Turning the VAFN schedule on or off
-	setOption( "switchVAFNSchedule", "OFF" );
-	
 	real alt_targets[]={0,    0, 5000, 10000, 15000, 20000, 25000, 30000, 35000};
 	real MN_targets[]= {0, 0.25, 0.40,  0.50,  0.65,  0.65,  0.65,  0.75,  0.80};
 	real dTs_targets[]={0,   50,    0,     0,     0,     0,     0,     0,     0};
@@ -96,8 +56,7 @@
 		}
 
 		PC = 21;
-		// RunIdle();
-		run_current_point();
+		RunIdle();
 		linear_model();
 	}
 	// Returning back to SLS maximum thrust condition

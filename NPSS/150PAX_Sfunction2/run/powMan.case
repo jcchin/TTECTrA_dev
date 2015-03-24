@@ -1,14 +1,8 @@
 // This is the case file for creating setpoint values 
 // throughout the entire flight envelope
 
-setOption( "switchGuess", "OFF" );
+setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
-
-// Turning the VAFN off
-setOption( "switchVAFN", "OFF" );
-
-// Turning the VAFN schedule off
-setOption( "switchVAFNSchedule", "OFF" );
 
 //-------------------------------------------------------------------------------------------------
 // Power Management Runs

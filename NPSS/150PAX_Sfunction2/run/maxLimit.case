@@ -5,15 +5,8 @@
 //-------------------------------------------------------------------------------------------------
 real max_Ps3_limit, max_Nc_limit, max_Nf_limit; // Defining the necessary variables for maximum limits
 
-// Turning on the guess tables and declaring PC as the power management variable
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
-
-// Turning the VAFN off
-setOption( "switchVAFN", "OFF" );
-
-// Turning the VAFN schedule off
-setOption( "switchVAFNSchedule", "OFF" );
 
 PC = 50;
 
@@ -78,11 +71,3 @@ Ambient.alt = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 RunMaxPower();
-
-#ifdef TTECTrA  //NASA Method
-	PC = 50;
-	Ambient.alt = 0.0;
-	Ambient.MN = 0.0;
-	Ambient.dTs = 0.0;
-	RunMaxPower();
-#endif

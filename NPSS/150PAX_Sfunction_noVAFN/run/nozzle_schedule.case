@@ -77,7 +77,7 @@ setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "Fnet" );
 
 // Turning on the VAFN but turning off its schedule
-setOption( "switchVAFN", "ON" );
+setOption( "switchVAFN", "OFF" );
 setOption( "switchVAFNSchedule", "OFF" );
 
 // Clearing the solver

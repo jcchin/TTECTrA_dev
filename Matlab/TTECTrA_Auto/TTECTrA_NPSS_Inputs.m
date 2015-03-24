@@ -51,7 +51,7 @@ ttectra_in.in.simFileName='NPSS_TTECTrA.mdl';  % simulation file name
 %              19523.8095, 20476.1905, 21428.5714, 22380.9524, 23333.3333,...
 %              24285.7143, 25238.0952, 26190.4762, 26500.0000];
 %fnt_range=[10000 30000];
-fnt_min=15000;  %if no min, enter 0
+fnt_min=12000;  %if no min, enter 0
 run([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name '/info/model.m'])
 fnt_range(1) = MinThrust - mod(MinThrust,100) + 100; %round down to nearest 100 then increase by 100
 fnt_range(1) = max(fnt_min, fnt_range(1)); %ensure the min is met
