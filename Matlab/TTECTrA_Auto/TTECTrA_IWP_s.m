@@ -126,7 +126,7 @@ while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp
         %------------------------------------------------------
         itemp_ktemp=min(find(temp_out.t>=(itemp_in.in.t_vec(2)-1)));
         itemp_fdata(itemp_icount,1)= (max(temp_out.CV_fdbk(itemp_ktemp:end)) - max(temp_out.CV_dmd(itemp_ktemp:end))) / max(temp_out.CV_dmd(itemp_ktemp:end));
-        itemp_fdata(itemp_icount,2)=temp_out.t(min(find(temp_out.Fnet(itemp_ktemp:end)>=0.95*max(itemp_in.SP.FT_SP))))-itemp_in.in.t_vec(2);
+        itemp_fdata(itemp_icount,2)=temp_out.t(itemp_ktemp+min(find(temp_out.Fnet(itemp_ktemp:end)>=0.95*max(itemp_in.SP.FT_SP))))-itemp_in.in.t_vec(2);
         itemp_fdata(itemp_icount,3)= itemp_in.controller.IWP_gain;
         itemp_fdata(itemp_icount,4)=(temp_out.CV_fdbk(end)-temp_out.CV_dmd(end))/temp_out.CV_dmd(end);
         itemp_in.controller.IWP_gain = itemp_in.controller.IWP_gain + itemp_fdata(itemp_icount,1)*itemp_IPW_0;

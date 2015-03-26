@@ -66,7 +66,7 @@ if ~isempty(out)
     plot(out.t,out.FAR,'b-',out.t([1 end]),ttectra_in.SMLimit.FARmin([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);ylabel('FAR','FontSize',12); grid on;
     subplot(313); set(gca,'FontSize',12);
-    plot(out.t,out.Wf_vec./out.Ps3,'b-',out.t([1 end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
+    plot(out.t,out.Wf./out.Ps3,'b-',out.t([1 end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);ylabel('W_f/P_{s3}, lb/(psi*s)','FontSize',12); grid on;
 
 else

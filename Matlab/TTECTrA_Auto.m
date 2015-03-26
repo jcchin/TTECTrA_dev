@@ -89,7 +89,7 @@ TTECTrA_NPSS_DecelLimiter_s
 %---------------------------------------
 % Integrate Limiters and Setpoint Controller
 %---------------------------------------
-close(h); h=waitbar(0.8,sprintf('Tuning Integral Windup Protection ...'));
+%close(h); h=waitbar(0.8,sprintf('Tuning Integral Windup Protection ...'));
 TTECTrA_IWP_s
 
 %------------------------------
@@ -145,6 +145,28 @@ if ~isempty(out)
     subplot(313); set(gca,'FontSize',12);
     plot(out.t,out.Wf./out.Ps3,'b-',out.t([1 end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);ylabel('W_f/P_{s3}, lb/(psi*s)','FontSize',12); grid on;
+    
+    addpath('TTECTrA_Auto/plot')
+    
+    fan_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],114);
+    figure(114);
+    plot(out.Fan_Wc,out.Fan_pr,'kx')
+    
+    lpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],115);
+    figure(115);
+    plot(out.LPC_Wc,out.LPC_pr,'kx');
+    
+    hpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],116);
+    figure(116);
+    plot(out.HPC_Wc,out.HPC_pr,'kx');
+    
+%     hpt_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],117);
+%     figure(117);
+%     plot(out.HPT_pr,out.HPT_Wc,'k.');
+%     
+%     lpt_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],118);
+%     figure(118);
+%     plot(out.LPT_pr,out.LPT_Wc,'k.');
     
 else
     disp('WARNING -- Simulation failed, no output generated')
