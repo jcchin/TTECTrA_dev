@@ -52,7 +52,6 @@ end
 dtemp_watchdog=1;
 dtemp_WfPs3lim=dtemp_in.Limiter.WfPs3lim;
 dtemp_error=(dtemp_in.SMLimit.FARmin-min(dtemp_out.FAR(dtemp_trimi:end)))/dtemp_in.SMLimit.FARmin;
-
 while abs(dtemp_error)>0.10 && dtemp_watchdog<dtemp_watchdog_limit   
     WfPs3lim_prev=dtemp_WfPs3lim;
     
@@ -75,8 +74,6 @@ while abs(dtemp_error)>0.10 && dtemp_watchdog<dtemp_watchdog_limit
        
     try
         %if we have good data, save
-        figure(10); plot(dtemp_out.t,dtemp_out.Fnet,'b-'); hold on;
-    
         dtemp_save_error(dtemp_watchdog)=dtemp_error;
         dtemp_error=(dtemp_in.SMLimit.FARmin-min(dtemp_out.FAR(dtemp_trimi:end)))/dtemp_in.SMLimit.FARmin;
         dtemp_watchdog=dtemp_watchdog+1;        
@@ -93,33 +90,35 @@ end
 % Fine tune the decel limiter for LPC (if violated)
 %-------------------------------------------
 dtemp_watchdog=1;
-dtemp_error=(dtemp_in.SMLimit.Decel-min(dtemp_out.LPC_SM(dtemp_trimi:end)))/dtemp_in.SMLimit.Decel;
-if dtemp_error<0
-    while abs(dtemp_error)>0.10 && dtemp_watchdog<dtemp_watchdog_limit
+
+dtemp_error=(min(dtemp_out.LPC_SM(dtemp_trimi:end))-dtemp_in.SMLimit.Decel)/dtemp_in.SMLimit.Decel;
+if dtemp_error<0 || min(dtemp_out.LPC_SM(dtemp_trimi:end))<0
+    while abs(dtemp_error)>0.01 && dtemp_watchdog<dtemp_watchdog_limit
         WfPs3lim_prev=dtemp_WfPs3lim;
-        
+
         %Update limiter based on error
-        dtemp_WfPs3lim=dtemp_WfPs3lim+dtemp_error*0.0075;
-        
+        dtemp_WfPs3lim=dtemp_WfPs3lim-dtemp_error*0.00075;
+
         %check for fault, if fault exists, go back to previous
         if dtemp_WfPs3lim<0
             dtemp_WfPs3lim=WfPs3lim_prev;
             dtemp_watchdog=dtemp_watchdog_limit;
         end
-        
+
         dtemp_in.Limiter.WfPs3lim=dtemp_WfPs3lim; %update limiter
-        
+
         if isfield(dtemp_in.in,'PWLM_Flag') && dtemp_in.in.PWLM_Flag==1
             [dtemp_out]=simFromTTECTrA_PWLM(dtemp_in);   % run initial simulation
         else
             [dtemp_out]=simFromTTECTrA(dtemp_in);   % run initial simulation
         end
-        
+
         try
             %if we have good data, save
             dtemp_save_error(dtemp_watchdog)=dtemp_error;
-            dtemp_error=(dtemp_in.SMLimit.Decel-min(dtemp_out.LPC_SM(dtemp_trimi:end)))/dtemp_in.SMLimit.Decel;
+            dtemp_error=(min(dtemp_out.LPC_SM(dtemp_trimi:end))-dtemp_in.SMLimit.Decel)/dtemp_in.SMLimit.Decel;
             dtemp_watchdog=dtemp_watchdog+1;
+            %figure(22); plot(dtemp_out.t,dtemp_out.LPC_SM); hold on;
         catch
             %Faulty data
             dtemp_WfPs3lim=WfPs3lim_prev;

@@ -34,7 +34,7 @@ if ~isempty(out)
     plot(out.t,out.LPC_SM,'b-',out.t([1 end]),ttectra_in.SMLimit.Decel([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);ylabel('LPC surge margin, %','FontSize',12); grid on;
     subplot(224); set(gca,'FontSize',12);
-    plot(out.t,out.Wf_vec./out.Ps3,'b.',out.t([1 end]),ttectra_in.Limiter.WfPs3lim*[1 1],'r--','LineWidth',2);
+    plot(out.t,out.Wf./out.Ps3,'b.',out.t([1 end]),ttectra_in.Limiter.WfPs3lim*[1 1],'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12); ylabel('Wf/Ps3, lbf/psi','FontSize',12); grid on;
 end
 

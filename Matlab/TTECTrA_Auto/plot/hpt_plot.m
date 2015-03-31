@@ -68,7 +68,6 @@ surf(pr3(:,:,2),Wc3(:,:,2),ones(size(Wc3(:,:,2)))*2,eta3(:,:,1)), shading interp
 
 hold on
 colors = ['y' 'm' 'c' 'b' 'r' 'r' 'r' 'r' 'r' 'r'];
-
 for i = 1:Nlength
     %if handles.check1 %wireframe checkbox
         for j = 1:1%Alength
