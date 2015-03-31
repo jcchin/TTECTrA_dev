@@ -25,8 +25,6 @@
 % REQUIRED
 npss_location = ''; %path location of the S-function capable NPSS executable
 engine_name = '150PAX_Sfunction'; %name of the NPSS engine folder
-%engine_name = '150PAX_Sfunction_noVAFN'; %name of the NPSS engine folder
-%engine_name = '150PAX_Sfunction2'; %name of the NPSS engine folder
 run_file = '150PAX.run'; %NPSS run script
 flags = ' -DTRANSIENT'; %flags for the NPSS run
 
