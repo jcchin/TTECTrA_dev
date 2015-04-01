@@ -94,7 +94,7 @@ void SetPoint() {
 	// Minimum power
 	//----------------------------------------------------------------------------------
 	PC = 21;
-	RunIdle();
+	run_current_point();
 
 	setpoint_output();
 

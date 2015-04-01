@@ -4,11 +4,13 @@
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
 
-// Turning the VAFN off
+#ifdef GEAREDFAN
+// Turning the VAFN on
 setOption( "switchVAFN", "ON" );
 
-// Turning the VAFN schedule off
-setOption( "switchVAFNSchedule", "OFF" );
+// Turning the VAFN schedule on
+setOption( "switchVAFNSchedule", "ON" );
+#endif
 
 //-------------------------------------------------------------------------------------------------
 // Power Management Runs
@@ -31,7 +33,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 // Idle at SLS
 //----------------------------------------------------------------------------------
 PC = 21;
-RunIdle();
+run_current_point();
 
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
@@ -50,7 +52,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 // Idle at SL, MN = 0.25, and dTs = 50 F
 //----------------------------------------------------------------------------------
 PC = 21;
-RunIdle();
+run_current_point();
 
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
@@ -70,7 +72,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 // Idle at 15,000 ft and Mach number 0.4
 //----------------------------------------------------------------------------------
 PC = 21;
-RunIdle();
+run_current_point();
 
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
@@ -89,7 +91,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 // Idle at 20,000 ft and Mach number 0.60
 //----------------------------------------------------------------------------------
 PC = 21;
-RunIdle();
+run_current_point();
 
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
@@ -108,7 +110,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 // Idle at 40,000 ft and Mach number 0.80
 //----------------------------------------------------------------------------------
 PC = 21;
-RunIdle();
+run_current_point();
 
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 

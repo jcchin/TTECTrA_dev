@@ -10,18 +10,32 @@ Option switchGuessType {
 	trigger=FALSE;
 }
 
-#include <Ambient.map>
-#include <BPR.map>
-#include <FanRline.map>
-#include <LPCRline.map>
-#include <HPCRline.map>
-#include <FAR.map>
-#include <Wfuel.map>
-#include <HPTParm.map>
-#include <LPTParm.map>
-#include <HPNmech.map>
-#include <LPNmech.map>
-#include <delta_s_Ath.map>
+#ifdef GEAREDFAN
+	#include <Ambient_GF.map>
+	#include <BPR_GF.map>
+	#include <FanRline_GF.map>
+	#include <LPCRline_GF.map>
+	#include <HPCRline_GF.map>
+	#include <FAR_GF.map>
+	#include <Wfuel_GF.map>
+	#include <HPTParm_GF.map>
+	#include <LPTParm_GF.map>
+	#include <HPNmech_GF.map>
+	#include <LPNmech_GF.map>
+	#include <delta_s_Ath_GF.map>
+#else
+	#include <Ambient_DD.map>
+	#include <BPR_DD.map>
+	#include <FanRline_DD.map>
+	#include <LPCRline_DD.map>
+	#include <HPCRline_DD.map>
+	#include <FAR_DD.map>
+	#include <Wfuel_DD.map>
+	#include <HPTParm_DD.map>
+	#include <LPTParm_DD.map>
+	#include <HPNmech_DD.map>
+	#include <LPNmech_DD.map>
+#endif
 
 void calculate() {
 
@@ -42,7 +56,10 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
 				HP_Shaft.Nmech = TB_HPNmech_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
 				LP_Shaft.Nmech = TB_LPNmech_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
-				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
+				
+				#ifdef GEAREDFAN
+					Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
+				#endif
 
 			}
 
@@ -59,7 +76,10 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
 				HP_Shaft.Nmech = TB_HPNmech_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
 				LP_Shaft.Nmech = TB_LPNmech_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
+				
+				#ifdef GEAREDFAN
 				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
+				#endif
 
 			}
 
@@ -76,7 +96,10 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
 				HP_Shaft.Nmech = TB_HPNmech_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
 				LP_Shaft.Nmech = TB_LPNmech_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
+				
+				#ifdef GEAREDFAN
 				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
+				#endif
 
 			}
 
@@ -93,7 +116,10 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
 				HP_Shaft.Nmech = TB_HPNmech_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
 				LP_Shaft.Nmech = TB_LPNmech_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
+				
+				#ifdef GEAREDFAN
 				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
+				#endif
 
 			}
 
@@ -110,7 +136,10 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
 				HP_Shaft.Nmech = TB_HPNmech_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
 				LP_Shaft.Nmech = TB_LPNmech_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
+				
+				#ifdef GEAREDFAN
 				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
+				#endif
 
 			}
 
@@ -127,7 +156,10 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,far_pc);
 				HP_Shaft.Nmech = TB_HPNmech_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,far_pc);
 				LP_Shaft.Nmech = TB_LPNmech_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,far_pc);
+				
+				#ifdef GEAREDFAN
 				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,FAR);
+				#endif
 
 			}
 
@@ -144,7 +176,10 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
 				HP_Shaft.Nmech = TB_HPNmech_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
 				LP_Shaft.Nmech = TB_LPNmech_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
+				
+				#ifdef GEAREDFAN
 				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
+				#endif
 
 			}
 
@@ -161,7 +196,10 @@ void calculate() {
 				LPT.S_map.parmMap = TB_LPTParm_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
 				HP_Shaft.Nmech = TB_HPNmech_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
 				LP_Shaft.Nmech = TB_LPNmech_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				
+				#ifdef GEAREDFAN
 				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+				#endif
 
 			}
 

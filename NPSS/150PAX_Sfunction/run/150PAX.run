@@ -24,7 +24,12 @@ set_output(); // view/output_paths.fnc
 
 // Including the model and model design point
 #include <High_BPR_150pax.mdl>
-#include <design_point_150pax.int>
+
+#ifdef GEAREDFAN
+	#include <design_point_150pax_GF.int>
+#else
+	#include <design_point_150pax_DD.int>
+#endif
 
 // Including view out files
 #include <npss.page.view>
@@ -40,7 +45,7 @@ set_output(); // view/output_paths.fnc
 #include <linear_model.fnc>
 
 // Determining the solver preferences
-solver.defaultTolerance = 0.0001;
+solver.defaultTolerance = 0.000001;
 solver.maxIterations = 500;
 solver.maxJacobians = 250;
 solver.maxConvergeFailures = 250;
@@ -62,13 +67,20 @@ setOption( "switchGuess", "ON" );
 // Switching the guess logic type to Fan NcPct
 setOption( "switchGuessType", "FanNcPct" );
 
-// Turning on the VAFN and its schedule
-setOption( "switchVAFN", "ON" );
-setOption( "switchVAFNSchedule", "ON" );
+#ifdef GEAREDFAN
+	// Turning on the VAFN and its schedule
+	setOption( "switchVAFN", "ON" );
+	setOption( "switchVAFNSchedule", "ON" );
+#endif
 
 // Running the maximum thrust case
 FanNcPct = 100;
 RunMaxPower();
+
+// The case file for minimum and maximum thrust
+#ifdef THRUSTLIMITS
+	#include <thrustLimits.case>
+#endif
 
 // The case file for cycle maximum limits
 #ifdef MAXLIMITSCHEDULE
@@ -126,6 +138,8 @@ RunMaxPower();
 #endif
 
 // The case file for generating the transient VAFN schedule
-#ifdef NOZZLESCHEDULE
-	#include <nozzle_schedule.case>
+#ifdef GEAREDFAN
+	#ifdef NOZZLESCHEDULE
+		#include <nozzle_schedule.case>
+	#endif
 #endif

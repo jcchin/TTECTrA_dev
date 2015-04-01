@@ -108,7 +108,7 @@ Dependent Fan_Max_Nc{
 Dependent Fan_Rline_Target{
 
     eq_lhs = "Fan.S_map.RlineMap";
-    eq_rhs = "2.2";
+    eq_rhs = "1.8";
 
 }
 
@@ -322,7 +322,7 @@ Dependent Min_BPR_Limit {
 Dependent LPC_SMN_Limit {
 
     eq_lhs = "LPC.SMN";
-    eq_rhs = "2.0";
+    eq_rhs = "10.0";
 
 }
 
@@ -330,7 +330,7 @@ Dependent LPC_SMN_Limit {
 Dependent LPC_SMW_Limit {
 
     eq_lhs = "LPC.SMW";
-    eq_rhs = "2.0";
+    eq_rhs = "10.0";
 
 }
 

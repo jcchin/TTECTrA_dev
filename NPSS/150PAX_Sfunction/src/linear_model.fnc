@@ -431,16 +431,22 @@ void linear_model(){
 
 	// Turning the guess logic off
 	setOption( "switchGuess", "OFF" );
-
+	
 	// Switching the burner independent to fuel flow rate
 	Burner.switchBurn = "FUEL";
 	
 	// Clearing the solver for linear model generation
 	solver.clear();
-
+	
+	autoSolverSetup();
+	solver.removeIndependent("HP_Shaft.ind_Nmech");
+	solver.removeDependent("HP_Shaft.integrate_Nmech");
+	
+	solver.removeIndependent("LP_Shaft.ind_Nmech");
+	solver.removeDependent("LP_Shaft.integrate_Nmech");
+	
 	// Generating linear model
 	lin_mod.generate();
-	// lin_mod.execute();
 	
 	// Outputting linear model generation results to linearModels.out file
 	linear_model_output();

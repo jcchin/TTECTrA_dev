@@ -1,0 +1,233 @@
+//-------------------------------------------------------------------------------------------------
+//
+//  This file overwrites the design settings in the model file with the correct
+// design values
+//
+//  Please do not change the values in this file for consistency in results
+//
+//-------------------------------------------------------------------------------------------------
+
+// Design mass flow rate
+Ambient.W           = 726.1478732;
+
+// Inlet design variable values
+Inlet.S_install.s_eRam		 = 1;
+Inlet.Wengine		 = 726.1478732;
+Inlet.eRam 		 = 0.9990200007;
+// Inlet.eRamBase 		 = 0.9990200007;
+Inlet.Fl_O.Aphy    	 = 6153.554396;
+InletFlowControl.Fl_O.Aphy    	 = 6153.554396;
+Inlet.S_install.Acapture = 7362.298698;
+
+// Fan design variable values
+Fan.S_map.s_effDes 	 = 1.000136152;
+Fan.S_map.s_NcDes  	 = 0.0001876765646;
+Fan.S_map.s_PRdes  	 = 1.00020004;
+Fan.S_map.s_WcDes  	 = 2.386429553;
+Fan.Fl_O.Aphy      	 = 6153.031491;
+Fan.NcDes   		 = 5222.282291;
+// real Fan_NcDes2   	 = 1.035100214;
+// real Fan_NcDes3   	 = 0.8957211673;
+// real Fan_NcDes4   	 = 0.8136320959;
+Fan.S_map.WcDes		 = 1875.979431;
+Fan.S_map.ReDes		 = 399125;
+Fan.S_map.RNI_des	 = 0.4376700857;
+Fan.S_map.RlineMap           = 1.8;
+// real FanRlineMapTarget           = 1.8;
+Fan.S_map.NcDes           = 0.99;
+Fan.S_map.PRdes           = 1.3;
+Fan.S_map.effDes           = 0.932907;
+
+// Splitter design variable values
+Splitter.Fl_01.Aphy	 = 405.9370583;
+Splitter.Fl_02.Aphy	 = 5747.094433;
+Splitter.BPR           = 20.29205265;
+
+// Duct 4 (duct between the splitter and LPC) design variable values
+Duct4.Fl_O.Aphy    	 = 405.9370583;
+Duct4.dPqPbase		 = 0.004825;
+
+// LPC design variable values
+LPC.S_map.s_effDes 	 = 1.000147601;
+LPC.S_map.s_NcDes  	 = 0.0001993596232;
+LPC.S_map.s_PRdes  	 = 1.000038647;
+LPC.S_map.s_WcDes  	 = 0.8089437306;
+LPC.Fl_O.Aphy      	 = 236.5801176;
+LPC.S_map.WcDes   	 = 70.90310905;
+LPC.S_map.ReDes   	 = 399125;
+LPC.S_map.RNI_des	 = 0.5098898272;
+LPC.S_map.RlineMap           = 2.15;
+LPC.S_map.NcDes           = 1;
+LPC.S_map.PRdes           = 2.2938;
+LPC.S_map.effDes           = 0.921536;
+LPC.NcDes = 5016.060845;
+// real LPC_NcDes2   	 = 1.032361843;
+// real LPC_NcDes3   	 = 0.903312008;
+// real LPC_NcDes4   	 = 0.8255443372;
+
+// Duct 6 (duct between LPC and HPC) design variable values
+Duct6.Fl_O.Aphy    	 = 181.3358455;
+Duct6.dPqPbase		 = 0.010125;
+
+// HPC design variable values
+HPC.S_map.s_effDes 	 = 1.000243705;
+HPC.S_map.s_NcDes  	 = 7.725964046e-005;
+HPC.S_map.s_PRdes  	 = 1.00043596;
+HPC.S_map.s_WcDes  	 = 0.7287950583;
+HPC.Fl_O.Aphy      	 = 34.24346106;
+HPC.Cool1.fracBldW 	 = 0.0599842514;
+HPC.Cool2.fracBldW 	 = 0.00507702351;
+HPC.FlowControl.fracBldW  = 0;
+HPC.ATD.fracBldW     = 0;
+HPC.flowControlFlow		 = 0;
+HPC.nStagesFlowControl		 = 0;
+HPC.turbineFlowControlFlow		 = 0;
+HPC.nStagesTurbineFlowControl		 = 0;
+HPC.S_map.WcDes   	 = 35.49296578;
+HPC.S_map.ReDes   	 = 507300;
+HPC.S_map.RNI_des	 = 0.8370095331;
+HPC.Cool1.fracBldWork	 = 0.5;
+HPC.Cool2.fracBldWork	 = 0.5;
+HPC.CustBld.fracBldWork	 = 0.5;
+HPC.Cool1.fracBldP	 = 0.5;
+HPC.Cool2.fracBldP	 = 0.5;
+HPC.CustBld.fracBldP	 = 0.5;
+HPC.BleedAdder.s_rtn		 = 0;
+HPC.BleedFlow = 2.35;
+HPC.S_map.RlineMap = 2.05;
+HPC.S_map.NcDes = 0.97591;
+HPC.S_map.PRdes = 16;
+HPC.S_map.effDes = 0.8656270867;
+HPC.NcDes = 12240.1;
+
+// Bleed from the HPC design variable values
+Bld3.Cool1.fracW   	 = 0.139183752;
+Bld3.Fl_O.Aphy     	 = 29.47732767;
+
+// Burner design variable values
+Burner.Fl_O.Aphy   	 = 95.18276359;
+Burner.dPqPBase		 = 0.05402;
+Burner.effBase		 = 0.982745;
+// Burner.Emissions.PCT_NOx = 1006;
+// Burner.Emissions.PNT5_Tt4 = 3037.184535;
+// Burner.Emissions.PNT5_Pt3 = 459.3780862;
+// Burner.Emissions.PNT5_Tt3 = 1475.207115;
+// Burner.Emissions.PNT5_W3 = 49.46239897;
+// Burner.Emissions.PNT5_Wfuel = 1.342931066;
+Burner.FAR           = 0.03205415928;
+Burner.meanRadius31       =  7.605;
+Burner.meanRadius40       =  8.665;
+
+// HPT design variable values
+HPT.S_map.s_eff    	 = 0.9989108691;
+HPT.S_map.s_Np     	 = 0.01855875744;
+HPT.S_map.s_dPqP   	 = 1.519912049;
+HPT.S_map.s_Wp     	 = 0.4069057696;
+HPT.Fl_O.Aphy      	 = 89.35410953;
+// HPT.S_map.TtMap		 = 3255.790543;
+HPT.S_map.PtMap		 = 234.0624763;
+// HPT.S_map.RNImap	 = 2.111505607;
+HPT.Cool.xFactor	 = 0.7749;
+HPT.Cool.xFactor1	 = 0.41;
+HPT.S_map.effDes           = 0.89882;
+HPT.S_map.parmMapDes           = 6;
+HPT.S_map.parmMap           = 4.289664033;
+HPT.Cool.nStages           = 2;
+
+// Bleed from HPC design variable values
+ATD_Bleed.Fl_O.Aphy	 = 89.35410953;
+
+// Duct 11 (duct between HPT and LPT) design variable values
+Duct11.Fl_O.Aphy   	 = 76.50779825;
+Duct11.dPqPbase		 = 0.005055;
+
+// LPT design variable values
+LPT.S_map.s_eff    	 = 0.9889027296;
+LPT.S_map.s_Np     	 = 0.04370116495;
+LPT.S_map.s_dPqP   	 = 0.6524927215;
+LPT.S_map.s_Wp     	 = 0.4916067504;
+LPT.Fl_O.Aphy      	 = 525.9466188;
+// LPT.S_map.TtMap		 = 2313.719718;
+LPT.S_map.PtMap		 = 54.28846844;
+// LPT.S_map.RNImap	 = 0.7130965149;
+LPT.Cool.xFactor	 = 0.819;
+LPT.Cool.xFactor1	 = 1.98;
+LPT.S_map.effDes           = 0.912955;
+LPT.S_map.parmMapDes           = 6.32;
+LPT.S_map.parmMap           = 9.153347653;
+
+// Bypass after splitter design variable values
+BypBld.Fl_O.Aphy   	 = 5747.094433;
+BypBld.HXBleedOn   	 = 0;
+
+// Duct 13 (duct between LPT and core nozzle) design variable values
+Duct13.Fl_O.Aphy   	 = 499.6492879;
+Duct13.dPqPbase		 = 0.010685;
+
+// Core nozzle design variable values
+Core_Nozz.AthCold  	 = 423.3385277;
+Core_Nozz.CangScalar.s_rtn		 = 1;
+Core_Nozz.CvScalarLowAlt.s_rtn		 = 0.995;
+Core_Nozz.CvScalarHighAlt.s_rtn		 = 0.995;
+Core_Nozz.DischargeCoeff.s_rtn		 = 1.3593;
+Core_Nozz.DischargeCoeff.a_rtn		 = -0.3503175;
+
+// Duct 15 (duct between splitter and bypass nozzle) design variable values
+Duct15.Fl_O.Aphy   	 = 5747.094433;
+Duct15.dPqPbase		 = 0.014892;
+
+// Bypass nozzle design variable values
+Byp_Nozz.ADP_Ath   	 = 4475.055901;
+Byp_Nozz.CvScalarLowAlt.s_rtn		 = 1;
+Byp_Nozz.CvScalarHighAlt.s_rtn		 = 1;
+Byp_Nozz.DischargeCoeff.s_rtn		 = 1.7723;
+Byp_Nozz.DischargeCoeff.a_rtn		 = -0.7529925;
+
+BldSplit.Cool1.fracW = 0.6286943239;
+
+// Max_T4.eq_rhs		 = "3550";
+// real Rating		 = 1;
+
+// real PNT1_MN   		 = 0.8;
+// real PNT1_Alt  		 = 35000;
+// real PNT1_dTs  		 = 0;
+// real PNT2_MN   		 = 0.8;
+// real PNT2_Alt  		 = 35000;
+// real PNT2_dTs  		 = 0;
+// real PNT3_MN   		 = 0.25;
+// real PNT3_Alt  		 = 0;
+// real PNT3_dTs  		 = 27;
+// real PNT4_MN   		 = 0;
+// real PNT4_Alt  		 = 0;
+// real PNT4_dTs  		 = 27;
+// real Flat_dTs  		 = 27;
+
+// con_maxcontinousT4.eq_rhs  = "3403.9";
+// con_maxTOthrust.eq_rhs  = "26176.7";
+// con_T4SLS.eq_rhs  = "3550";
+// real tempT4margin         = -146.1;
+// real tempMCTT4         = -146.1;
+// real OperBleed           = 1.75;
+
+// real VariableAreaNozzleSwitch           = 1;
+// MaxNozzleArea.eq_rhs       =  "1.5";
+// MinNozzleArea.eq_rhs       =  "0.5";
+
+// LPC.ABTCschedule.s_rtn       =  0;
+// HPC.InletFlowControl.fracBldW       =  0;
+
+Bld16.CirculationControl.s_rtn       =  0;
+
+// Low pressure shaft design variable values
+LP_Shaft.Nmech		 = 4833;
+LP_Shaft.fracLoss       =  0.02;
+
+// High pressure shaft design variable values
+HP_Shaft.Nmech		 = 13500;
+HP_Shaft.HPX		 = 250;
+HP_Shaft.HPXBase		 = 250;
+HP_Shaft.HPXLowAlt.s_rtn		 = 0;
+HP_Shaft.HPXHighAlt.s_rtn		 = 0;
+
+// Defining the gear ratio
+real GearRatio = 5;

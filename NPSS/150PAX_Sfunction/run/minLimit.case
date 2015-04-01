@@ -9,11 +9,13 @@ real min_RU_limit, min_Ps3_limit; // Defining the necessary variables for minimu
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
 
-// Turning the VAFN off
+#ifdef GEAREDFAN
+// Turning the VAFN on
 setOption( "switchVAFN", "ON" );
 
-// Turning the VAFN schedule off
-setOption( "switchVAFNSchedule", "OFF" );
+// Turning the VAFN schedule on
+setOption( "switchVAFNSchedule", "ON" );
+#endif
 
 // Use PC in the guess logic for idle definition
 PC = 21;
@@ -22,7 +24,7 @@ PC = 21;
 Ambient.alt = 38000;
 Ambient.MN = 0.70;
 Ambient.dTs = 0.0;
-RunIdle();
+run_current_point();
 
 cout << "\nMin RU Limit: " << Burner.Wfuel / FS_3.Ps << " lbm/(psia-s)" << endl;
 min_RU_limit = Burner.Wfuel / FS_3.Ps;
@@ -33,7 +35,7 @@ min_RU_limit = Burner.Wfuel / FS_3.Ps;
 // Running the minimum Ps3 limit at 40,000 ft, MN = 0.65, and dTs = 0.0
 Ambient.alt = 40000;
 Ambient.MN = 0.65;
-RunIdle();
+run_current_point();
 
 cout << "Min Ps3 Limit: " << FS_3.Ps << " psia" << endl;
 min_Ps3_limit = FS_3.Ps;
@@ -42,10 +44,8 @@ min_Ps3_limit = FS_3.Ps;
 	Ambient.alt = 0.0;
 	Ambient.MN = 0.0;
 	Ambient.dTs = 0.0;
-	RunIdle();
+	run_current_point();
 #endif
-
-
 
 // Returning back to SLS maximum thrust condition
 setOption( "switchGuess", "ON" );

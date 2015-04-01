@@ -9,11 +9,13 @@
 	setOption( "switchGuess", "ON" );
 	setOption( "switchGuessType", "Fnet" );
 
-	// Turning the VAFN off
+	#ifdef GEAREDFAN
+	// Turning the VAFN on
 	setOption( "switchVAFN", "ON" );
 
-	// Turning the VAFN schedule off
+	// Turning the VAFN schedule on
 	setOption( "switchVAFNSchedule", "ON" );
+	#endif
 	
 	SP_Setup(); //add Run_Condition_thrust
 	
@@ -22,7 +24,7 @@
 	Fnet = TargetThrust;
 	//RunMaxPower();
 	run(); // Running the steady state case
-
+	
 	int z;
 	for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
 	    TargetThrust = myFn_targets[z];
@@ -50,7 +52,7 @@
 	setOption( "switchVAFN", "ON" );
 
 	// Turning the VAFN schedule off
-	setOption( "switchVAFNSchedule", "OFF" );
+	setOption( "switchVAFNSchedule", "ON" );
 	
 	PC = 50;
 	RunMaxPower();

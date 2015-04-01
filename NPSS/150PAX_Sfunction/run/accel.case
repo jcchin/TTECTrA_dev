@@ -26,11 +26,12 @@ setOption( "switchGuessType", "PC" );
 setOption( "switchVAFN", "ON" );
 
 // Turning the VAFN schedule off
-setOption( "switchVAFNSchedule", "OFF" );
+setOption( "switchVAFNSchedule", "ON" );
 
 // Running for maximum thrust
 PC = 50;
 RunMaxPower();
+// run_current_point();
 // printPride();
 // CaseView_SS.update();
 // page.display();
@@ -49,7 +50,8 @@ if(solver.converged == 1 && errHandler.numErrors == 0) {
 	cout << "NH: " << HP_Shaft.Nmech << endl;
 
 	cout << "\n" << "Maximum fuel flow rate: " << Burner.Wfuel << endl;
-
+	cout << "FAR: " << Burner.FAR << endl;
+	
 	// Recording the transient driver for the maximum power setting
 	// driver_max = Fan.NcPct;
 	// driver_max = LPC.NcPct;
@@ -84,6 +86,7 @@ if(solver.converged == 1 && errHandler.numErrors == 0){
 	cout << "NH: " << HP_Shaft.Nmech << endl;
 
 	cout << "\n" << "Min fuel flow rate: " << Burner.Wfuel << endl;
+	cout << "FAR: " << Burner.FAR << endl;
 
 	// Recording the transient driver for idle
 	// driver_min = Fan.NcPct;
@@ -104,14 +107,18 @@ if(solver.converged == 1 && errHandler.numErrors == 0){
 // Running transient at SLS
 //-------------------------------------------------------------------------------------------------
 // Adding the constraints to the solver
-trans_Condition.addConstraint("accel_limit", "MAX",1,1);
-trans_Condition.addConstraint("HPC_SMW_Limit" ,"MAX",1,-1);
+// trans_Condition.addConstraint("accel_limit", "MAX",1,1);
+// trans_Condition.addConstraint("HPC_SMW_Limit" ,"MAX",1,-1);
+
+// trans_Condition.addConstraint("HPC_SMN_Limit" ,"MAX",1,-1);
+
+trans_Condition.addConstraint("LP_Shaft_Deceleration_Limit" ,"MIN",1,1);
 
 // Setting up the solver for transient mode
 transient_setup();
 
 // Changing the name of the transient out file name
-caseRow.filename = "transientRunsSLS.out";
+caseRow.filename = "transientRunsSLS_test.out";
 
 // Adding the transient out file stream to the execution sequence
 solver.postExecutionSequence.append("CaseView");
@@ -123,12 +130,12 @@ transient.stopTime = 20.0;
 // transient.stopTime = 0.015;
 
 // Solver tolerance scalar for transient run
-transient.toleranceScaleFactor=100.0;
+transient.toleranceScaleFactor=1000.0;
 
 // transient.maxIterations = 5;
 
 run();
-// printPride();
+printPride();
 CaseView.display();
 
 cout << "Finished running transient now!\n" << endl;
@@ -350,7 +357,7 @@ if(solver.converged == 1 && errHandler.numErrors == 0) {
 
 // Running for idle
 PC = 21;
-RunIdle();
+run_current_point();
 // printPride();
 // CaseView_SS.update();
 // page.display();

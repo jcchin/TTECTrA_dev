@@ -9,11 +9,13 @@ real max_Ps3_limit, max_Nc_limit, max_Nf_limit; // Defining the necessary variab
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
 
-// Turning the VAFN off
+#ifdef GEAREDFAN
+// Turning the VAFN on
 setOption( "switchVAFN", "ON" );
 
-// Turning the VAFN schedule off
-setOption( "switchVAFNSchedule", "OFF" );
+// Turning the VAFN schedule on
+setOption( "switchVAFNSchedule", "ON" );
+#endif
 
 PC = 50;
 

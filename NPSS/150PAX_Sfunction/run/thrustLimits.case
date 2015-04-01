@@ -1,0 +1,38 @@
+// Creating thrust limits output stream
+OutFileStream thrust_limits {
+    filename = OutputPath + "info\\thrustLimits.out";
+}
+
+// Including the guess tables for Ambient.W (total mass flow rate)
+#include <Ambient.map>
+
+// Defining the variables for low and high total mass flow rate and thrust
+real Ambient_W_Low, Ambient_W_High;
+real Thrust_Low, Thrust_High;
+
+// Inputting the flight condition - Added here for running a case other than SLS
+// because the main run file executes the maximum power at SLS
+Ambient.alt = 0.0;
+Ambient.MN = 0.0;
+Ambient.dTs = 0.0;
+
+// Reading the low and high total mass flow rate values from the guess tables
+Ambient_W_Low = TB_Ambient_PC(Ambient.alt, Ambient.MN, Ambient.dTs, 21);
+Ambient_W_High = TB_Ambient_PC(Ambient.alt, Ambient.MN, Ambient.dTs, 50);
+
+// Printing the low and high total mass flow rate values to the screen for debugging
+// cout << Ambient_W_Low << endl;
+// cout << Ambient_W_High << endl;
+
+// Inverse reading the low and high thrust values from the guess tables for the low and high
+// total mass flow rate values 
+Thrust_Low = TB_Ambient_Fnet.evalYX(Ambient.alt, Ambient.MN, Ambient.dTs, Ambient_W_Low);
+Thrust_High = TB_Ambient_Fnet.evalYX(Ambient.alt, Ambient.MN, Ambient.dTs, Ambient_W_High);
+
+// Printing the low and high thrust values to the screen for debugging
+// cout << Thrust_Low << endl;
+// cout << Thrust_High << endl;
+
+// Outputting the minimum and maximum thrust to the scalar_output.view file in the output\info folder
+thrust_limits << "MinThrust = " << Thrust_Low << ";" << endl; 
+thrust_limits << "MaxThrust = " << Thrust_High << ";" << endl; 
