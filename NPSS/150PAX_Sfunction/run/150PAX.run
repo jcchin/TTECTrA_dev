@@ -128,7 +128,6 @@ RunMaxPower();
 #ifdef MODEL
 	#include <scalar_output.view>
 	#include <thrustLimits.case>
-	mat_opData.display();
 #endif
 
 // The case file for generating the transient VAFN schedule

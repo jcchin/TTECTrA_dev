@@ -34,7 +34,7 @@ if ~(exist(['NPSSdata/' engine_name '/info/setpoints.m']) == 2)
     disp('CD \') %switch to top drive
     fprintf('cd %s\n', path2model) %move to model directory
     disp('@echo off') %silence npss output
-    disp('call run_npss.bat run\150PAX.run  -DMODEL -DPLOT -DTTECTrA') %run npss
+    disp('call run_npss.bat run\150PAX.run  -DMODEL -DPLOT -DTTECTrA -DGEAREDFAN') %run npss
     %copy npss output back to matlab
     %fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model,current_folder) %*.m pattern matches and copies all files
     fprintf('xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name '\info']) %*.m pattern matches and copies all files
