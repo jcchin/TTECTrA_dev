@@ -40,13 +40,6 @@ run_current_point();
 cout << "Min Ps3 Limit: " << FS_3.Ps << " psia" << endl;
 min_Ps3_limit = FS_3.Ps;
 
-#ifdef TTECTrA  //NASA Method
-	Ambient.alt = 0.0;
-	Ambient.MN = 0.0;
-	Ambient.dTs = 0.0;
-	run_current_point();
-#endif
-
 // Returning back to SLS maximum thrust condition
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );

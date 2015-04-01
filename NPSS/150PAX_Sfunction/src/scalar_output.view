@@ -48,7 +48,7 @@ DataViewer PageViewer mat_opData {
     MaxThrust = ?????.??;
     MinThrust = ?????.??;";
   
-    vars = {"MaxThrust", "MinThrust"}
+    vars = {"Thrust_High", "Thrust_Low"}
     }
   Vars1.right = "ScaleGroup";
   Vars1.bottom = "Vars2";

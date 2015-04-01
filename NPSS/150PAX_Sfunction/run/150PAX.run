@@ -77,11 +77,6 @@ setOption( "switchGuessType", "FanNcPct" );
 FanNcPct = 100;
 RunMaxPower();
 
-// The case file for minimum and maximum thrust
-#ifdef THRUSTLIMITS
-	#include <thrustLimits.case>
-#endif
-
 // The case file for cycle maximum limits
 #ifdef MAXLIMITSCHEDULE
 	#include <maxLimit.case>
@@ -132,8 +127,7 @@ RunMaxPower();
 
 #ifdef MODEL
 	#include <scalar_output.view>
-	#include <minLimit.case>
-	#include <maxLimit.case>
+	#include <thrustLimits.case>
 	mat_opData.display();
 #endif
 
