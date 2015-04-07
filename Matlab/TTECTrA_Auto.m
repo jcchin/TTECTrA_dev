@@ -160,14 +160,6 @@ if ~isempty(out)
     figure(116);
     plot(out.HPC_Wc,out.HPC_pr,'kx');
     
-%     hpt_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],117);
-%     figure(117);
-%     plot(out.HPT_pr,out.HPT_Wc,'k.');
-%     
-%     lpt_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],118);
-%     figure(118);
-%     plot(out.LPT_pr,out.LPT_Wc,'k.');
-    
 else
     disp('WARNING -- Simulation failed, no output generated')
 end

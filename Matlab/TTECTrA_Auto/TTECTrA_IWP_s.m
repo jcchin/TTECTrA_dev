@@ -170,9 +170,16 @@ if itemp_icount<itemp_max_count && itemp_ifail<itemp_max_fail
 else
     itemp_temp_i=min(find(itemp_fdata(:,1)==min(itemp_fdata(:,1))));
     if isempty(itemp_temp_i)
+        %we did not receive any good data, so do not set value
         ttectra_in.controller.IWP_gain=[];
     else
-        ttectra_in.controller.IWP_gain=itemp_fdata(itemp_temp_i,3);
+        if itemp_icount>1
+            ttectra_in.controller.IWP_gain=itemp_fdata(itemp_temp_i,3);
+        else
+            %we did not recieve any good data
+            %ttectra_in.controller.IWP_gain=[];
+            ttectra_in.controller.IWP_gain=itemp_IPW_0
+        end
     end
 end
 
