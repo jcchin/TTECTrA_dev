@@ -53,9 +53,6 @@ solver.maxConvergeFailures = 250;
 //-------------------------------------------------------------------------------------------------
 //  RUN OFF-DESIGN POINT - SLS Max Thrust
 //-------------------------------------------------------------------------------------------------
-// Setting up the solver for the steady state case
-SS_Setup();
-
 // Inputting the flight condition for SLS
 Ambient.alt = 0.0;
 Ambient.MN = 0.0;
@@ -68,9 +65,13 @@ setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "FanNcPct" );
 
 #ifdef GEAREDFAN
-	// Turning on the VAFN and its schedule
+	// Turning on the VAFN
 	setOption( "switchVAFN", "ON" );
-	setOption( "switchVAFNSchedule", "ON" );
+	
+	#ifdef SCHEDULE
+		// Turning on the VAFN schedule
+		setOption( "switchVAFNSchedule", "ON" );
+	#endif
 #endif
 
 // Running the maximum thrust case

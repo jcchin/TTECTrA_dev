@@ -2,29 +2,35 @@
 // generates linear models about points of interest
 
 #ifdef TTECTrA //NASA Method
-	#include <TTECTrA_SP.input>	//Input from Matlab
+	
+	#ifndef SETPNT
+		#include <TTECTrA_SP.input>	//Input from Matlab
+	#endif
+	
 	// Turning the guess logic on
 	setOption("switchGuess", "ON");
 	setOption("switchGuessType", "Fnet");
 	
 	#ifdef GEAREDFAN
-	// Turning the VAFN on
-	setOption("switchVAFN", "ON");
+		// Turning the VAFN on
+		setOption("switchVAFN", "ON");
 
-	// Turning the VAFN schedule on
-	setOption("switchVAFNSchedule", "ON");
+		#ifdef SCHEDULE
+		// Turning the VAFN schedule on
+		setOption("switchVAFNSchedule", "ON");
+		#endif
 	#endif
 	
 	//----------------------------------------------------------------------------------
 	// TTECTrA PWLM - Linearization at each point requested from Matlab
 	//----------------------------------------------------------------------------------
 	//real Fan_NcPct_targets[]={100, 90, 80, 70, 60, 50, 40, 30, 25}; 
-	SS_Setup();
-
-	solver.addIndependent("FAR");
-    solver.addDependent("Run_Condition_Thrust");
-
-	int z;
+	SP_Setup();
+	
+	#ifndef SETPNT
+		int z;
+	#endif
+	
 	// cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
 	for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
 	    TargetThrust = myFn_targets[z];
@@ -33,10 +39,8 @@
 		
 		linear_model();
 
-		solver.addIndependent("FAR");
-		solver.addDependent("Run_Condition_Thrust");
-
 	}
+	
 	// Returning back to SLS maximum thrust condition
 	// Turning the guess logic back on
 	setOption( "switchGuess", "ON" );

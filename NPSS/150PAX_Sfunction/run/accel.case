@@ -168,9 +168,6 @@ cout << "\n---------------------------------------------------------------------
 // Clearing post execution sequence from the transient out file stream
 solver.postExecutionSequence = {};
 
-// Setting up the solver for steady state
-SS_Setup();
-
 //-------------------------------------------------------------------------------------------------
 //  Running off-design for transient input limits
 //-------------------------------------------------------------------------------------------------
@@ -307,9 +304,6 @@ cout << "\n---------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 // Clearing post execution sequence from the transient out file stream
 solver.postExecutionSequence = {};
-
-// Setting up the solver for steady state
-SS_Setup();
 
 //-------------------------------------------------------------------------------------------------
 //  Running off-design for transient input limits

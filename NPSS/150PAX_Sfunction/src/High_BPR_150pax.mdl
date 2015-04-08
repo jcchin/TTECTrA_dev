@@ -843,8 +843,16 @@ class transient_Nozzle extends Nozzle {
 			// If the VAFN switch for schedule is turned on, adding the solver independent and dependent pair
 			// for solver robustness
 			if (switchVAFNSchedule == "ON") {
-				ind_schedule.autoSetup = TRUE;
-				schedule.autoSetup = TRUE;
+				#ifdef SETPNT
+					ind_schedule.autoSetup = TRUE;
+					schedule.autoSetup = TRUE;
+				#endif
+				#ifdef LINEARMODEL
+					#ifdef SCHEDULE
+						ind_schedule.autoSetup = FALSE;
+						schedule.autoSetup = FALSE;
+					#endif
+				#endif
 			}
 			else if ( switchVAFNSchedule == "OFF" ) {
 				ind_schedule.autoSetup = FALSE;
@@ -921,7 +929,14 @@ class transient_Nozzle extends Nozzle {
 					AthCold = ADP_Ath*s_Ath;
 				}
 				else if (switchVAFNSchedule == "ON" && !TB_s_Ath_Schedule.isEmpty()) {
-					s_AthDmd = 1.0 + delta_s_Ath;
+					#ifdef SETPNT
+						s_AthDmd = 1.0 + delta_s_Ath;
+					#endif
+					#ifdef LINEARMODEL
+						#ifdef SCHEDULE
+							s_AthDmd = 1.0 + TB_s_Ath_Schedule(FanNcPct);
+						#endif
+					#endif
 					s_Ath = s_AthDmd;
 					AthCold = ADP_Ath*s_Ath;
 				}
@@ -1263,6 +1278,7 @@ Element EngPerf Perf  {
 Element FlowEnd  OBsink3  {
 }
 
+
 // The element for checking if the major cycle limits were violated or not
 Element Cycle_Limit_Check { 
 	
@@ -1302,7 +1318,7 @@ Element Cycle_Limit_Check {
 		}
 		
 		// Condition for steady state runs
-		if (switchDes == "OFFDESIGN" && solutionMode == "STEADY_STATE") {
+		if (switchDes == "OFFDESIGN" && solutionMode == "STEADY_STATE" && solver.varNameIsActiveIndep("Burner.FAR")) {
 		
 			// Condition for the initial convergence check
 			if (solver.converged == 1 && errHandler.numErrors == 0) {
@@ -1348,61 +1364,61 @@ Element Cycle_Limit_Check {
 				// Nested if statements checking for major cycle limit violation 
 				if(Perf.myEPR < EPR_limit){
 					EPR_flag = 0;
-					cout << "\nEPR limit is violated!" << endl;
+					cout << "\nEPR limit is violated! EPR = " << Perf.myEPR << endl;
 				}
-				else if(FS_4.Tt > Tt4_limit){
+				else if(floor(FS_4.Tt) > Tt4_limit){
 					Tt4_flag = 0;
-					cout << "\nTt4 limit is violated!" << endl;
+					cout << "\nTt4 limit is violated! Tt4 = " << FS_4.Tt << " degR" << endl;
 				}
 				else if(Burner.FAR < FAR_limit){
 					FAR_flag = 0;
-					cout << "\nFAR limit is violated!" << endl;
+					cout << "\nFAR limit is violated! FAR = " << Burner.FAR << endl;
 				}
 				else if(Fan.PR < Fan_PR_limit){
 					Fan_PR_flag = 0;
-					cout << "\nFan PR limit is violated!" << endl;
+					cout << "\nFan PR limit is violated! Fan PR = " << Fan.PR << endl;
 				}
 				else if(LPC.PR < LPC_PR_limit){
 					LPC_PR_flag = 0;
-					cout << "\nLPC PR limit is violated!" << endl;
+					cout << "\nLPC PR limit is violated! LPC PR = " << LPC.PR << endl;
 				}
 				else if(HPC.PR < HPC_PR_limit){
 					HPC_PR_flag = 0;
-					cout << "\nHPC PR limit is violated!" << endl;
+					cout << "\nHPC PR limit is violated! HPC PR = " << HPC.PR << endl;
 				}
 				else if(Fan.SMW < Fan_SMW_limit){
 					Fan_SMW_flag = 0;
-					cout << "\nFan SMW limit is violated!" << endl;
+					cout << "\nFan SMW limit is violated! Fan SMW = " << Fan.SMW << endl;
 				}
 				else if(LPC.SMW < LPC_SMW_limit){
 					LPC_SMW_flag = 0;
-					cout << "\nLPC SMW limit is violated!" << endl;
+					cout << "\nLPC SMW limit is violated! LPC SMW = " << LPC.SMW << endl;
 				}
 				else if(HPC.SMW < HPC_SMW_limit){
 					HPC_SMW_flag = 0;
-					cout << "\nHPC SMW limit is violated!" << endl;
+					cout << "\nHPC SMW limit is violated! HPC SMW = " << HPC.SMW << endl;
 				}
 				else if(Fan.S_map.RlineMap < Fan_Rline_limit){
 					Fan_Rline_flag = 0;
-					cout << "\nFan R-line limit is violated!" << endl;
+					cout << "\nFan R-line limit is violated! Fan R-line = " << Fan.S_map.RlineMap << endl;
 				}
 				else if(LPC.S_map.RlineMap < LPC_Rline_limit){
 					LPC_Rline_flag = 0;
-					cout << "\nLPC R-line limit is violated!" << endl;
+					cout << "\nLPC R-line limit is violated! LPC R-line = " << LPC.S_map.RlineMap << endl;
 				}
 				else if(HPC.S_map.RlineMap < HPC_Rline_limit){
 					HPC_Rline_flag = 0;
-					cout << "\nHPC R-line limit is violated!" << endl;
+					cout << "\nHPC R-line limit is violated! HPC R-line = " << HPC.S_map.RlineMap << endl;
 				}
 				
 				#ifdef GEAREDFAN
 					else if(Byp_Nozz.s_Ath < VAFN_min_limit){
 						VAFN_min_flag = 0;
-						cout << "VAFN minimum throat area limit is violated!" << endl;
+						cout << "VAFN minimum throat area limit is violated! VAFN throat area scalar = " << Byp_Nozz.s_Ath << endl;
 					}
 					else if(Byp_Nozz.s_Ath > VAFN_max_limit){
 						VAFN_max_flag = 0;
-						cout << "VAFN maximum throat area limit is violated!" << endl;
+						cout << "VAFN maximum throat area limit is violated! VAFN throat area scalar = " << Byp_Nozz.s_Ath << endl;
 					}
 				#endif
 				
@@ -1434,14 +1450,13 @@ Element Cycle_Limit_Check {
 LinearModelGenerator lin_mod {
 	
 	// Declaring model variables for the input and output variables
-	inputVars = {"Burner.Wfuel"}
 	#ifdef GEAREDFAN
 		#ifdef SCHEDULE
 			inputVars = {"Burner.Wfuel"}
 		#else
 			inputVars = {"Burner.Wfuel","Byp_Nozz.delta_s_Ath"}
 			setPerturbType("Byp_Nozz.delta_s_Ath", "ABSOLUTE");
-			setPerturb("Byp_Nozz.delta_s_Ath", 0.01);
+			setPerturb("Byp_Nozz.delta_s_Ath", 0.001);
 		#endif
 	#else
 		inputVars = {"Burner.Wfuel"}
@@ -1459,12 +1474,12 @@ LinearModelGenerator lin_mod {
 	//outputVars = {"LP_Shaft.Nmech", "HP_Shaft.Nmech", "FS_3.Ps", "FS_5.Pt", "FS_5.Tt", "HPC.Nc", "Perf.myEPR", "Burner.FAR", "FS_25.Tt", "FS_2.Tt", "FS_2.Pt"}
 
 	// Adding the states to the linear model
-	addState("LP_Shaft.Nmech", "LP_Shaft.dNqdt", 0.01, "FRACTIONAL", 0.0);
-	addState("HP_Shaft.Nmech", "HP_Shaft.dNqdt", 0.01, "FRACTIONAL", 0.0);
+	addState("LP_Shaft.Nmech", "LP_Shaft.dNqdt", 0.001, "FRACTIONAL", 0.0);
+	addState("HP_Shaft.Nmech", "HP_Shaft.dNqdt", 0.001, "FRACTIONAL", 0.0);
 	
 	// Setting the perturbation type and percentage for fuel flow rate
 	setPerturbType("Burner.Wfuel", "FRACTIONAL");
-	setPerturb("Burner.Wfuel", 0.01);
+	setPerturb("Burner.Wfuel", 0.001);
 	
 	// Setting the perturbation type and percentage for VAFN
 	// setPerturbType("Byp_Nozz.delta_s_Ath", "ABSOLUTE");

@@ -2,26 +2,9 @@
 // of runs at steady state and transient
 
 // Defining the necessary variables for dependents
-real MaxThrust, TargetThrust, MinThrust;
+real TargetThrust;
 real Fan_NcPct_target, LPC_NcPct_target, HPC_NcPct_target, Wfuel_target;
 real T4Target, T41Target;
-
-// Function for setting up the solver for steady state
-void SS_Setup(){
-
-    solver.clear();
-
-	// Switching to off-design mode
-	setOption( "switchDes", "OFFDESIGN" );
-	setOption( "solutionMode", "STEADY_STATE" );
-	
-	// Switching the burner input to fuel to air ratio
-    Burner.switchBurn = "FAR";
-	
-	// Automatically setting up the solver
-    autoSolverSetup();
-	
-}
 
 void SP_Setup(){
 	setOption( "switchDes", "OFFDESIGN" );
@@ -30,23 +13,46 @@ void SP_Setup(){
 	// Switching the burner independent to FAR 
 	Burner.switchBurn = "FAR";
 
-    // solver.removeIndependent("FAR");
-    // solver.removeDependent("Run_Condition");
-    // solver.removeDependent("Fan_Max_Nc");
+	// Removing the constraints left from other functions
+    Run_Condition_Thrust.removeAllConstraints();
+    Fan_Rline_Target.removeAllConstraints();
 
 	solver.clear();
 	autoSolverSetup();
 	
+	Run_Condition_Thrust.addConstraint("Tt4_Max_Limit","MAX",1,1);
+	
     solver.addIndependent("FAR");
     solver.addDependent("Run_Condition_Thrust");
+	
+	#ifdef GEAREDFAN
+		#ifndef SCHEDULE
+			Fan_Rline_Target.addConstraint("Fan_SMW_Limit", "MAX", 1, -1);
+			Fan_Rline_Target.addConstraint("LPC_SMW_Limit", "MAX", 1, -1);
+			Fan_Rline_Target.addConstraint("HPC_SMW_Limit", "MAX", 1, -1);
+			
+			Fan_Rline_Target.addConstraint("Byp_Nozz_Min_Area", "MIN", 2, 1);
+			Fan_Rline_Target.addConstraint("Byp_Nozz_Max_Area", "MAX", 2, 1);
+			
+			solver.addIndependent("Byp_Nozz_VA");
+			solver.addDependent("Fan_Rline_Target");
+		#endif
+	#endif
 }
 
 void SP_Remove(){
-    solver.removeIndependent("FAR");
+	Run_Condition_Thrust.removeAllConstraints();
+	solver.removeIndependent("FAR");
     solver.removeDependent("Run_Condition_Thrust");
 
-    solver.addIndependent("FAR");
-    solver.addDependent("Run_Condition");
+	#ifdef GEAREDFAN
+		#ifndef SCHEDULE
+			Fan_Rline_Target.removeAllConstraints();
+	
+			solver.removeIndependent("Byp_Nozz_VA");
+			solver.removeDependent("Fan_Rline_Target");
+		#endif
+	#endif
 }
 
 // This function sets up the solver for transient operation
@@ -122,6 +128,10 @@ void RunMaxPower(){
 	// Switching the burner independent to FAR 
 	Burner.switchBurn = "FAR";
 	
+	// Removing the constraints left from other functions
+	Fan_Max_Nc.removeAllConstraints();
+	Fan_Rline_Target.removeAllConstraints();
+	
 	// Setting up the solver and adding the 
 	// additional independent and dependent
 	autoSolverSetup();
@@ -129,12 +139,11 @@ void RunMaxPower(){
 	Fan_Max_Nc.addConstraint("Tt4_Max_Limit","MAX",1,1);
 	
 	#ifdef GEAREDFAN
-		if(Byp_Nozz.switchVAFNSchedule == "ON"){
+		#ifdef SCHEDULE
 			Fan_Max_Nc.addConstraint("Fan_SMW_Limit","MAX",2,-1);
 			Fan_Max_Nc.addConstraint("LPC_SMW_Limit","MAX",2,-1);
 			Fan_Max_Nc.addConstraint("HPC_SMW_Limit","MAX",2,-1);
-		}
-		else if(Byp_Nozz.switchVAFNSchedule == "OFF"){
+		#else
 			Fan_Rline_Target.addConstraint("Fan_SMW_Limit", "MAX", 1, -1);
 			Fan_Rline_Target.addConstraint("LPC_SMW_Limit", "MAX", 1, -1);
 			Fan_Rline_Target.addConstraint("HPC_SMW_Limit", "MAX", 1, -1);
@@ -144,7 +153,7 @@ void RunMaxPower(){
 			
 			solver.addIndependent( "Byp_Nozz_VA" );
 			solver.addDependent( "Fan_Rline_Target" );
-		}
+		#endif
 	#else	
 		Fan_Max_Nc.addConstraint("Fan_SMW_Limit","MAX",2,-1);
 		Fan_Max_Nc.addConstraint("LPC_SMW_Limit","MAX",2,-1);
@@ -160,9 +169,9 @@ void RunMaxPower(){
 	Fan_Max_Nc.removeAllConstraints();
 	
 	#ifdef GEAREDFAN
-		if(Byp_Nozz.switchVAFNSchedule == "OFF"){
+		#ifndef SCHEDULE
 			Fan_Rline_Target.removeAllConstraints();
-		}
+		#endif
 	#endif
 }
 

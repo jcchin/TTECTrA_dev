@@ -330,7 +330,7 @@ Dependent LPC_SMN_Limit {
 Dependent LPC_SMW_Limit {
 
     eq_lhs = "LPC.SMW";
-    eq_rhs = "10.0";
+    eq_rhs = "5.0";
 
 }
 

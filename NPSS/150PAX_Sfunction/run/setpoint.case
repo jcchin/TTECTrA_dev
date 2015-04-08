@@ -10,11 +10,13 @@
 	setOption( "switchGuessType", "Fnet" );
 
 	#ifdef GEAREDFAN
-	// Turning the VAFN on
-	setOption( "switchVAFN", "ON" );
-
-	// Turning the VAFN schedule on
-	setOption( "switchVAFNSchedule", "ON" );
+		// Turning the VAFN on
+		setOption( "switchVAFN", "ON" );
+		
+		#ifdef SCHEDULE
+			// Turning the VAFN schedule on
+			setOption( "switchVAFNSchedule", "ON" );
+		#endif
 	#endif
 	
 	SP_Setup(); //add Run_Condition_thrust

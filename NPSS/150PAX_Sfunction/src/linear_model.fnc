@@ -439,6 +439,7 @@ void linear_model(){
 	solver.clear();
 	
 	autoSolverSetup();
+	
 	solver.removeIndependent("HP_Shaft.ind_Nmech");
 	solver.removeDependent("HP_Shaft.integrate_Nmech");
 	
@@ -454,14 +455,11 @@ void linear_model(){
 	// Outputting linear model generation results to linearModels.m file
 	linear_model_matlab_output();
 	
-	// Switching the burner independent to fuel-to-air ratio
-	Burner.switchBurn = "FAR";
-	
-	// Setting up the solver automatically
-	autoSolverSetup();
-	
 	// Turning the guess logic on
 	setOption( "switchGuess", "ON" );
+	
+	// Setting up the solver for set point runs
+	SP_Setup();
 
 }
 

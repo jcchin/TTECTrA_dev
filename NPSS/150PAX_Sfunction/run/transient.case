@@ -16,11 +16,15 @@ setOption( "switchGuess", "ON" );
 // Switching the guess logic type to fuel flow rate
 setOption( "switchGuessType", "Wfuel" );
 
-// Turning the VAFN off
-setOption( "switchVAFN", "ON" );
-
-// Turning the VAFN schedule off
-setOption( "switchVAFNSchedule", "ON" );
+#ifdef GEAREDFAN
+	// Turning the VAFN off
+	setOption( "switchVAFN", "ON" );
+	
+	#ifdef SCHEDULE
+		// Turning the VAFN schedule off
+		setOption( "switchVAFNSchedule", "ON" );
+	#endif
+#endif
 
 // Assigning the initial fuel flow rate from the input signal to the power management variable
 Wfuel = transientDriver_scaled(0.0);
