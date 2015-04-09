@@ -29,7 +29,7 @@ function [FT_SP,Nf_SP,EPR_SP,Nc_SP,Wf_SP,NcR25,WfPs3_SP,FAR_SP,Ps3_SP]=setpointC
 %----------------------------------------------------
 % Calculate thrust setpoints
 %----------------------------------------------------
-run([in.in.HomeDirectory '\Matlab\NPSSdata\' in.in.engine_name '\info\setpoints.m'])
+run([in.in.HomeDirectory '\Matlab\NPSSdata\' in.in.ttectra_engine_name '\info\setpoints.m'])
 
 for i=1:length(output);
     FT_SP(i)=output(i).Fn;

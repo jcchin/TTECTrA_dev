@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.264"
+    ComputedModelVersion    "1.265"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jcsank"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Mar 24 10:08:42 2015"
-  RTWModifiedTimeStamp	  349092512
-  ModelVersionFormat	  "1.%<AutoIncrement:264>"
+  LastModifiedDate	  "Wed Apr 08 16:43:56 2015"
+  RTWModifiedTimeStamp	  350412091
+  ModelVersionFormat	  "1.%<AutoIncrement:265>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1133,7 +1133,7 @@ Model {
   }
   System {
     Name		    "NPSS_TTECTrA"
-    Location		    [540, 219, 1743, 991]
+    Location		    [540, 219, 1754, 991]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1358,7 +1358,7 @@ Model {
       Name		      "ICPs3"
       SID		      177
       Position		      [205, 558, 245, 602]
-      Value		      "288.256"
+      Value		      "288.259"
     }
     Block {
       BlockType		      Mux
@@ -1397,7 +1397,7 @@ Model {
       System {
 	Name			"TTECTrA Simulink Block"
 	Location		[324, 102, 1548, 895]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1457,7 +1457,7 @@ Model {
 	  ForegroundColor	  "red"
 	  Numerator		  "[0.32968]"
 	  Denominator		  "[1    -0.67032]"
-	  InitialStates		  "[0.80289]"
+	  InitialStates		  "[0.8029]"
 	  SampleTime		  "-1"
 	}
 	Block {
@@ -1474,8 +1474,8 @@ Model {
 	  Name			  "Fnet_dmd_profile"
 	  SID			  33
 	  Position		  [165, 628, 200, 662]
-	  InputValues		  "[0           10         10.5           20]"
-	  Table			  "[30000  30000  30000  30000]"
+	  InputValues		  "[0  10  11  30  32  60]"
+	  Table			  "[15000  15000  36260  36260  15000  15000]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
@@ -1541,7 +1541,7 @@ Model {
 	  Position		  [255, 627, 315, 663]
 	  Numerator		  "[0.52951]"
 	  Denominator		  "[1    -0.47049]"
-	  InitialStates		  "[30000]"
+	  InitialStates		  "[15000]"
 	  SampleTime		  "-1"
 	}
 	Block {
@@ -1605,13 +1605,11 @@ Model {
 	      SID		      49
 	      Position		      [435, 33, 470, 67]
 	      ForegroundColor	      "red"
-	      InputValues	      "[15000           16100         17199.9         18300.2         19400.1         20499.9      "
-	      "   21599.9         22699.3           23800         24900.2         25999.9           27100           28200     "
-	      "    29299.9           30400         31499.9         32598.8           33701         34799.4           35900    "
-	      "     36999.8]"
-	      Table		      "[3325.23        3427.93        3530.33        3632.42        3727.56         3814.4        3903.3"
-	      "7        3990.88        4076.84        4162.24        4245.47        4324.93        4403.74        4482.08     "
-	      "   4554.24           4626        4697.14        4767.91        4837.66        4908.05        4978.45]"
+	      InputValues	      "[15000  16100  17200  18300  19400  20500  21600  22700  23800  24900  26000  27100  28200  "
+	      "29300  30400  31500  32600  33700  34800  35900  37000]"
+	      Table		      "[3325.23        3427.94        3530.35         3632.4        3727.55         3814.4        3903.3"
+	      "7        3990.93        4076.84        4162.24        4245.48        4324.93        4403.74        4482.08     "
+	      "   4554.24           4626        4697.19        4767.81        4837.69        4908.05        4978.43]"
 	      LookUpMeth	      "Interpolation-Use End Values"
 	      SaturateOnIntegerOverflow	off
 	      SampleTime	      "0.02"
@@ -1702,7 +1700,7 @@ Model {
 	      Position		      [345, 515, 380, 555]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Gain		      "1128.7223"
+	      Gain		      "33.2523"
 	      ParameterDataTypeMode   "Inherit via internal rule"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeMode	      "Inherit via internal rule"
@@ -1726,7 +1724,7 @@ Model {
 	      Position		      [655, 171, 755, 199]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Value		      "0.80289"
+	      Value		      "0.8029"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -1745,14 +1743,13 @@ Model {
 	      Position		      [360, 398, 410, 442]
 	      ForegroundColor	      "red"
 	      NumberOfTableDimensions "1"
-	      BreakpointsForDimension1 "[3325.23        3427.94        3530.35         3632.4        3727.62        3814.43  "
-	      "       3903.4        3990.96        4076.85        4162.25         4245.5        4324.95        4403.74        "
-	      "4482.24        4554.31           4626        4697.34        4767.79        4837.67        4908.05        4978.4"
-	      "3]"
+	      BreakpointsForDimension1 "[0        3325.23        3530.35         3632.4        3727.55         3814.4        "
+	      "3903.37        3990.93        4076.84        4162.24        4245.48        4324.93        4403.74        4482.0"
+	      "8        4554.24           4626        4697.19        4767.81        4837.69        4908.05        4978.43]"
 	      IndexSearchMethod	      "Binary search"
-	      Table		      "[0.014358    0.014168    0.013976    0.013436    0.014359    0.014579    0.014646    0.015026    "
-	      "0.015136    0.015352     0.01583    0.015678    0.015686    0.016039    0.016517    0.016415    0.016591    0.0"
-	      "17333    0.017573    0.017797    0.018169]"
+	      Table		      "[0.015597    0.015597    0.015638    0.016009    0.019369    0.019941    0.020617     0.02152    "
+	      "0.022165    0.022715     0.02402    0.025205    0.026376    0.027773    0.030307    0.030624    0.031528      0"
+	      ".0323    0.031554    0.032089    0.031978]"
 	      SampleTime	      "0.02"
 	      RndMeth		      "Simplest"
 	      Port {
@@ -1770,14 +1767,13 @@ Model {
 	      Position		      [360, 308, 410, 352]
 	      ForegroundColor	      "red"
 	      NumberOfTableDimensions "1"
-	      BreakpointsForDimension1 "[3325.23        3427.94        3530.35         3632.4        3727.62        3814.43  "
-	      "       3903.4        3990.96        4076.85        4162.25         4245.5        4324.95        4403.74        "
-	      "4482.24        4554.31           4626        4697.34        4767.79        4837.67        4908.05        4978.4"
-	      "3]"
+	      BreakpointsForDimension1 "[0        3325.23        3530.35         3632.4        3727.55         3814.4        "
+	      "3903.37        3990.93        4076.84        4162.24        4245.48        4324.93        4403.74        4482.0"
+	      "8        4554.24           4626        4697.19        4767.81        4837.69        4908.05        4978.43]"
 	      IndexSearchMethod	      "Binary search"
-	      Table		      "[0.00033598  0.00033579  0.00033753  0.00030835  0.00027138  0.00027992    0.000279  0.00027046  "
-	      "0.00027699  0.00027864  0.00026832  0.00026339  0.00025411  0.00025021  0.00024775  0.00024869  0.00024637   0."
-	      "0002366  0.00023987  0.00024293  0.00023983]"
+	      Table		      "[0.0033823   0.0033823   0.0034436   0.0034615   0.0034241   0.0034292   0.0034405   0.0034514   "
+	      "0.0034326   0.0034603   0.0034531   0.0034089   0.0033779   0.0033286   0.0034129   0.0034206   0.0034819   0.0"
+	      "034962   0.0036431   0.0037022   0.0038233]"
 	      SampleTime	      "0.02"
 	      RndMeth		      "Simplest"
 	    }
@@ -2262,7 +2258,7 @@ Model {
 	  System {
 	    Name		    "Tranisent Limiter Logic"
 	    Location		    [480, 135, 1704, 928]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2363,12 +2359,12 @@ Model {
 		  InputValues		  "[11330  11371  11412  11453  11494  11535  11576  11617  11658  11699  11740  11781  11822  11863 "
 		  " 11904  11945  11986  12027  12068  12109  12150  12191  12232  12273  12314  12355  12396  12437  12478  12519  1"
 		  "2560  12601  12642  12683  12724  12765  12806  12847  12888  12929  12970]"
-		  Table			  "[817.13497      817.13497      817.13497      817.13497      817.13497      817.13497      817.13497   "
-		  "   817.13497      817.13497      817.13497      817.13497      817.13497      817.13497      817.13497      817.13"
-		  "497      2006.9879      4091.9417      5189.4496      5918.1633      6457.0831      6873.1366      7201.2715      "
-		  "7458.4513      7651.5502      7835.0625      7945.6426      7986.8508      7970.8531      7897.3135      7768.0516"
-		  "       7587.798      7275.0038       6656.744      817.13497      817.13497      817.13497      817.13497      817"
-		  ".13497      817.13497      817.13497      817.13497]"
+		  Table			  "[861.69416      861.69416      861.69416      861.69416      861.69416      861.69416      861.69416   "
+		  "   861.69416      861.69416      861.69416      861.69416      861.69416      861.69416      861.69416      861.69"
+		  "416       2006.892      4091.9205      5189.5472      5918.3847      6457.4301      6873.4058      7201.3391      "
+		  "7459.0402      7651.9654      7835.5349      7946.0979      7987.5904      7970.8812      7896.9217      7768.2983"
+		  "      7588.4256      7275.5963      6657.8795      861.69416      861.69416      861.69416      861.69416      861"
+		  ".69416      861.69416      861.69416      861.69416]"
 		  SaturateOnIntegerOverflow off
 		  SampleTime		  "0.02"
 		}
@@ -2840,7 +2836,7 @@ Model {
 		  SID			  112
 		  Position		  [510, 78, 545, 112]
 		  ForegroundColor	  "red"
-		  X0			  "0.80289"
+		  X0			  "0.8029"
 		  SampleTime		  "-1"
 		}
 		Block {
@@ -2849,7 +2845,7 @@ Model {
 		  SID			  113
 		  Position		  [145, 35, 305, 65]
 		  ForegroundColor	  "red"
-		  Value			  "0.0027853"
+		  Value			  "0.002941"
 		}
 		Block {
 		  BlockType		  Outport
@@ -3230,8 +3226,8 @@ Model {
 	  SID			  123
 	  Position		  [425, 278, 460, 312]
 	  ForegroundColor	  "cyan"
-	  InputValues		  "[0           10         10.5           20]"
-	  Table			  "[2.1552      2.1552     0.87406     0.87406]"
+	  InputValues		  "[0  10  11  30  32  60]"
+	  Table			  "[0.5         0.5         0.5         0.5         0.5         0.5]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
@@ -3252,7 +3248,6 @@ Model {
 	  SID			  125
 	  Position		  [385, 180, 460, 200]
 	  ForegroundColor	  "gray"
-	  Value			  "3"
 	}
 	Block {
 	  BlockType		  Constant
@@ -3261,7 +3256,6 @@ Model {
 	  Position		  [900, 305, 975, 325]
 	  ForegroundColor	  "gray"
 	  ShowName		  off
-	  Value			  "3"
 	}
 	Block {
 	  BlockType		  Outport

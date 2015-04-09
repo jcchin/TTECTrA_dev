@@ -4,6 +4,8 @@
 % *************************************************************************
 dtemp_in=ttectra_in;
 
+dtemp_DEBUG=1;
+
 dtemp_watchdog_limit=30;  %define watchdog limit
 dtemp_trimi=round(8/dtemp_in.in.Ts); %determine trim time
 
@@ -76,7 +78,15 @@ while abs(dtemp_error)>0.10 && dtemp_watchdog<dtemp_watchdog_limit
         %if we have good data, save
         dtemp_save_error(dtemp_watchdog)=dtemp_error;
         dtemp_error=(dtemp_in.SMLimit.FARmin-min(dtemp_out.FAR(dtemp_trimi:end)))/dtemp_in.SMLimit.FARmin;
-        dtemp_watchdog=dtemp_watchdog+1;        
+        dtemp_watchdog=dtemp_watchdog+1;    
+        
+        if dtemp_DEBUG==1
+            figure(511);
+            plot(dtemp_out.t,dtemp_out.FAR,'b-','Linewidth',1.5); hold on;
+            plot(dtemp_out.t([1 end]),dtemp_in.SMLimit.FARmin*[1 1],'r--');
+            hold on;
+        end
+            
     catch
         %Faulty data
         dtemp_WfPs3lim=WfPs3lim_prev;
@@ -93,11 +103,11 @@ dtemp_watchdog=1;
 
 dtemp_error=(min(dtemp_out.LPC_SM(dtemp_trimi:end))-dtemp_in.SMLimit.Decel)/dtemp_in.SMLimit.Decel;
 if dtemp_error<0 || min(dtemp_out.LPC_SM(dtemp_trimi:end))<0
-    while abs(dtemp_error)>0.01 && dtemp_watchdog<dtemp_watchdog_limit
+    while abs(dtemp_error)>0.001 && dtemp_watchdog<dtemp_watchdog_limit
         WfPs3lim_prev=dtemp_WfPs3lim;
 
         %Update limiter based on error
-        dtemp_WfPs3lim=dtemp_WfPs3lim-dtemp_error*0.00075;
+        dtemp_WfPs3lim=dtemp_WfPs3lim-dtemp_error*0.00125;
 
         %check for fault, if fault exists, go back to previous
         if dtemp_WfPs3lim<0
@@ -118,7 +128,13 @@ if dtemp_error<0 || min(dtemp_out.LPC_SM(dtemp_trimi:end))<0
             dtemp_save_error(dtemp_watchdog)=dtemp_error;
             dtemp_error=(min(dtemp_out.LPC_SM(dtemp_trimi:end))-dtemp_in.SMLimit.Decel)/dtemp_in.SMLimit.Decel;
             dtemp_watchdog=dtemp_watchdog+1;
-            %figure(22); plot(dtemp_out.t,dtemp_out.LPC_SM); hold on;
+            
+            if dtemp_DEBUG==1
+                figure(512); 
+                plot(dtemp_out.t,dtemp_out.LPC_SM,'b-','Linewidth',1.5); hold on;
+                plot(dtemp_out.t([1 end]),dtemp_in.SMLimit.Decel*[1 1],'r--');
+            end
+            
         catch
             %Faulty data
             dtemp_WfPs3lim=WfPs3lim_prev;

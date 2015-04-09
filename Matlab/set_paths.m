@@ -24,9 +24,17 @@
 
 % REQUIRED
 npss_location = ''; %path location of the S-function capable NPSS executable
-engine_name = '150PAX_Sfunction'; %name of the NPSS engine folder
+npss_engine_name = '150PAX_Sfunction'; %name of the NPSS engine folder
+ttectra_engine_name= '150PAX_VAFN';
 run_file = '150PAX.run'; %NPSS run script
 flags = ' -DTRANSIENT -DGEAREDFAN'; %flags for the NPSS run
+
+%npss_engine_name = '150PAX_Sfunction_noVAFN'; %name of the NPSS engine folder
+%ttectra_engine_name= '150PAX_noVAFN';
+%run_file = '150PAX.run'; %NPSS run script
+%flags = ' -DTRANSIENT'; %flags for the NPSS run
+
+
 
 % Inputs
 % Add NPSS variables to be promoted as inputs to the s-function
@@ -42,4 +50,3 @@ output = {'LP_Shaft.Nmech','HP_Shaft.Nmech','FS_2.Pt','FS_2.Tt','FS_25.Pt',...
 % OPTIONAL
 %can be left blank if using default TTECTrA folder structure
 model_location =''; %parent folder of the Matlab folder
-filename='vafn'; %saved output filename

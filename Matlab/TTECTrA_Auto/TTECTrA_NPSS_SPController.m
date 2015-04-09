@@ -17,7 +17,7 @@ elseif strcmpi(inputs.controller.CVoutput(1:3),'EPR')
 end
 
 %Load PWLM saved in .mat file
-load(['NPSSdata\' inputs.in.engine_name '\' inputs.in.linearModelfilename]);
+load(['NPSSdata\' inputs.in.ttectra_engine_name '\' inputs.in.linearModelfilename]);
 
 %opt = pidtuneOptions('CrossoverFrequency',inputs.controller.bandwidth*2*pi,'PhaseMargin',inputs.controller.phasemargin);      
 for ilm=1:1:length(lmdata)

@@ -2,7 +2,8 @@ function [varargout]=GetNPSS_PWLM(inputs)
 %-----------------------------------------------------------------
 %     GetNPSS_PWLM(ttectra_in);
 %-----------------------------------------------------------------
-engine_name = inputs.in.engine_name;
+npss_engine_name = inputs.in.npss_engine_name;
+ttectra_engine_name = inputs.in.ttectra_engine_name;
 vector = inputs.in.setpoint_vector;
 linearModelfilename = inputs.in.linearModelfilename;
 npss_location = inputs.in.npss_location;
@@ -15,18 +16,18 @@ eval(['addpath ', npss_location])
 eval(['addpath ',npss_location,'/bin'])
 
 %addpath('NPSSdata');
-if ~(exist(['NPSSdata/' engine_name]) == 7)
-    mkdir(['NPSSdata' engine_name]);
+if ~(exist(['NPSSdata/' ttectra_engine_name]) == 7)
+    mkdir(['NPSSdata' ttectra_engine_name]);
 end
-addpath(['NPSSdata/' engine_name]);
-if ~(exist(['NPSSdata/' engine_name '/maps']) == 7)
-    mkdir(['NPSSdata' engine_name '/maps']);
+addpath(['NPSSdata/' ttectra_engine_name]);
+if ~(exist(['NPSSdata/' ttectra_engine_name '/maps']) == 7)
+    mkdir(['NPSSdata' ttectra_engine_name '/maps']);
 end
-addpath(['NPSSdata/' engine_name '/maps']);
-if ~(exist(['NPSSdata/' engine_name '/info']) == 7)
-    mkdir(['NPSSdata' engine_name '/info']);
+addpath(['NPSSdata/' ttectra_engine_name '/maps']);
+if ~(exist(['NPSSdata/' ttectra_engine_name '/info']) == 7)
+    mkdir(['NPSSdata' ttectra_engine_name '/info']);
 end
-addpath(['NPSSdata/' engine_name '/info']);
+addpath(['NPSSdata/' ttectra_engine_name '/info']);
 
 %Write Input file if paths are valid
 inputFile = 'TTECTrA_SP.input';
@@ -36,7 +37,7 @@ dlmwrite(inputFile,vector,'-append')
 dlmwrite(inputFile,'};','-append','delimiter','')
 
 current_folder = pwd; %current matlab folder
-path2model = [model_location,'\NPSS\' engine_name ''];
+path2model = [model_location,'\NPSS\' npss_engine_name];
 
 diary('run_shell.bat')
 %copy all of the newly created files to the model path
@@ -49,7 +50,7 @@ if (run_lm)
 end
 %copy npss output back to matlab
 %fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model,current_folder) %*.m pattern matches and copies all files
-fprintf('xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name '\info']) %*.m pattern matches and copies all files
+fprintf('xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' ttectra_engine_name '\info']) %*.m pattern matches and copies all files
 
 disp('CD \') %switch to top drive
 fprintf('cd %s\n', current_folder) %move back to matlab folder
@@ -60,7 +61,7 @@ clc
 
 %Convert linearModels.m to PWLM.mat 
 %cd('NPSSdata');
-cd(['NPSSdata/' engine_name]);
+cd(['NPSSdata/' ttectra_engine_name]);
 
 clear x;
 

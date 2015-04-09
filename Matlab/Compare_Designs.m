@@ -1,7 +1,7 @@
 close all; clear; clc;
 
-data(1)=load('TTECTrA_Data/150PAX_Sfunction_noVAFN/vafn_CL_data.mat');
-data(2)=load('TTECTrA_Data/150PAX_Sfunction/vafn_CL_data.mat');
+data(1)=load('NPSSdata/150PAX_VAFN/Closed_Loop_Data.mat');
+%data(2)=load('TTECTrA_Data/150PAX_Sfunction/vafn_CL_data.mat');
 plotst1={'b-','r--'};
 
 %calculate TSFC

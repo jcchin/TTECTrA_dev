@@ -24,8 +24,8 @@ setup_NPSS_Simulink;
 
 %Define home directory
 ttectra_in.in.HomeDirectory = model_location;
-ttectra_in.in.engine_name = engine_name;
-ttectra_in.in.filename = filename;
+ttectra_in.in.npss_engine_name = npss_engine_name;
+ttectra_in.in.ttectra_engine_name = ttectra_engine_name;
 ttectra_in.in.npss_location = npss_location ;
 
 %---------------------------------------------------------
@@ -52,7 +52,7 @@ ttectra_in.in.simFileName='NPSS_TTECTrA.mdl';  % simulation file name
 %              24285.7143, 25238.0952, 26190.4762, 26500.0000];
 %fnt_range=[10000 30000];
 fnt_min=15000;  %if no min, enter 0
-run([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name '/info/model.m'])
+run([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.ttectra_engine_name '/info/model.m'])
 fnt_range(1) = MinThrust - mod(MinThrust,100) + 100; %round down to nearest 100 then increase by 100
 fnt_range(1) = max(fnt_min, fnt_range(1)); %ensure the min is met
 fnt_range(2) = MaxThrust - mod(MaxThrust,1000); %round down to nearest 1000
@@ -68,7 +68,7 @@ ttectra_in.controller.PreFilterBW=6;
 ttectra_in.controller.FdbkFilterBW=[];
 ttectra_in.controller.CVoutput='Nf';
 ttectra_in.controller.bandwidth=2*2;
-ttectra_in.controller.phasemargin=50;
+ttectra_in.controller.phasemargin=60;
 ttectra_in.controller.IWP_gain=1000;
 
 
@@ -83,12 +83,12 @@ ttectra_in.controller.Accel_IWP=7000;
 % Parameters for accleration schedule
 ttectra_in.SMLimit.T40=3500;
 %ttectra_in.SMLimit.Accel=14;
-ttectra_in.SMLimit.Accel=8;
+ttectra_in.SMLimit.Accel=12;
 
 % Parameters for decel limit
 %ttectra_in.SMLimit.FARmin=0.020;
 ttectra_in.SMLimit.FARmin=0.025;
-ttectra_in.SMLimit.Decel=8;
+ttectra_in.SMLimit.Decel=12;
 
 % Fuel actuator bandwidth
 ttectra_in.actuator.wf_bw=20;

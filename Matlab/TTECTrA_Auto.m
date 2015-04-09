@@ -30,7 +30,7 @@ h=waitbar(0,sprintf('Setting up TTECTrA ...'));
 GetNPSS_Model          % retrieve performance maps, min/max thrust setpoints
 
 ttectra_in=TTECTrA_NPSS_Inputs;      % load input data
-addpath(['NPSSdata\' ttectra_in.in.engine_name '\info'],['NPSSdata\' ttectra_in.in.engine_name '\maps'])
+addpath(['NPSSdata\' ttectra_in.in.ttectra_engine_name '\info'],['NPSSdata\' ttectra_in.in.ttectra_engine_name '\maps'])
 %----------------------------------------
 % Run NPSS to get linear model and steady-state data
 %----------------------------------------
@@ -90,6 +90,7 @@ TTECTrA_NPSS_DecelLimiter_s
 % Integrate Limiters and Setpoint Controller
 %---------------------------------------
 %close(h); h=waitbar(0.8,sprintf('Tuning Integral Windup Protection ...'));
+save tempdata.mat ttectra_in 
 TTECTrA_IWP_s
 
 %------------------------------
@@ -148,15 +149,15 @@ if ~isempty(out)
     
     addpath('TTECTrA_Auto/plot')
     
-    fan_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],114);
+    fan_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.ttectra_engine_name],114);
     figure(114);
     plot(out.Fan_Wc,out.Fan_pr,'kx')
     
-    lpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],115);
+    lpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.ttectra_engine_name],115);
     figure(115);
     plot(out.LPC_Wc,out.LPC_pr,'kx');
     
-    hpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.engine_name],116);
+    hpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.ttectra_engine_name],116);
     figure(116);
     plot(out.HPC_Wc,out.HPC_pr,'kx');
     
