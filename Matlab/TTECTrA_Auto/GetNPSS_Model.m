@@ -37,7 +37,8 @@ if ~(exist(['NPSSdata/' ttectra_engine_name '/info/setpoints.m']) == 2)
     
     % why do we have a second set of flags here????  reduce thsi somehow
     % (if not using DGEAREDFAN, make changes in two spots?????
-    disp('call run_npss.bat run\150PAX.run  -DMODEL -DPLOT -DTTECTrA -DGEAREDFAN') %run npss
+    %disp('call run_npss.bat run\150PAX.run  -DMODEL -DPLOT -DTTECTrA -DGEAREDFAN') %run npss
+    disp('call run_npss.bat run\150PAX.run  -DMODEL -DPLOT -DTTECTrA') %run npss
     
     %copy npss output back to matlab
     %fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model,current_folder) %*.m pattern matches and copies all files

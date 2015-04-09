@@ -67,7 +67,7 @@ ttectra_in.in.linearModelfilename='NPSS_PWLM.mat';
 ttectra_in.controller.PreFilterBW=6;
 ttectra_in.controller.FdbkFilterBW=[];
 ttectra_in.controller.CVoutput='Nf';
-ttectra_in.controller.bandwidth=2*2;
+ttectra_in.controller.bandwidth=2;
 ttectra_in.controller.phasemargin=60;
 ttectra_in.controller.IWP_gain=1000;
 
@@ -87,7 +87,7 @@ ttectra_in.SMLimit.Accel=12;
 
 % Parameters for decel limit
 %ttectra_in.SMLimit.FARmin=0.020;
-ttectra_in.SMLimit.FARmin=0.0225;
+ttectra_in.SMLimit.FARmin=0.015;
 ttectra_in.SMLimit.Decel=8;
 
 % Fuel actuator bandwidth
