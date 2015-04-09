@@ -81,14 +81,14 @@ ttectra_in.controller.Accel_IWP=7000;
 % Transient Limiter setup
 %---------------------------------------------------------
 % Parameters for accleration schedule
-ttectra_in.SMLimit.T40=3500;
+ttectra_in.SMLimit.T40=4000;
 %ttectra_in.SMLimit.Accel=14;
 ttectra_in.SMLimit.Accel=12;
 
 % Parameters for decel limit
 %ttectra_in.SMLimit.FARmin=0.020;
-ttectra_in.SMLimit.FARmin=0.025;
-ttectra_in.SMLimit.Decel=12;
+ttectra_in.SMLimit.FARmin=0.0225;
+ttectra_in.SMLimit.Decel=8;
 
 % Fuel actuator bandwidth
 ttectra_in.actuator.wf_bw=20;

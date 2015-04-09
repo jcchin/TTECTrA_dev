@@ -48,7 +48,10 @@ itemp_ssburst_indx=max(find(temp_out.t<=itemp_tstart_burst));
 itemp_sschop_indx=max(find(temp_out.t<=itemp_tstart_chop));
 itemp_data(1,1)=itemp_in.controller.IWP_gain;
 itemp_data(2,1)=(max(temp_out.CV_fdbk(itemp_ssburst_indx:end)) - max(temp_out.CV_dmd(itemp_ssburst_indx:end))) / max(temp_out.CV_dmd(itemp_ssburst_indx:end));
-itemp_temp_i=temp_out.t(min(find(temp_out.Fnet>=0.95*max(itemp_in.SP.FT_SP))))-itemp_tstart_burst;
+
+%problem here if limited by t40
+%itemp_temp_i=temp_out.t(min(find(temp_out.Fnet>=0.95*max(itemp_in.SP.FT_SP))))-itemp_tstart_burst;
+itemp_temp_i=temp_out.t(min(find(temp_out.Fnet>=0.95*max(temp_out.Fnet))))-itemp_tstart_burst;
 if isempty(itemp_temp_i)
     itemp_data(3,1)=-999;
 else
@@ -128,7 +131,7 @@ while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp
         %------------------------------------------------------
         itemp_ktemp=min(find(temp_out.t>=(itemp_in.in.t_vec(2)-1)));
         itemp_fdata(itemp_icount,1)= (max(temp_out.CV_fdbk(itemp_ktemp:end)) - max(temp_out.CV_dmd(itemp_ktemp:end))) / max(temp_out.CV_dmd(itemp_ktemp:end));
-        itemp_fdata(itemp_icount,2)=temp_out.t(itemp_ktemp+min(find(temp_out.Fnet(itemp_ktemp:end)>=0.95*max(itemp_in.SP.FT_SP))))-itemp_in.in.t_vec(2);
+        itemp_fdata(itemp_icount,2)=temp_out.t(itemp_ktemp+min(find(temp_out.Fnet(itemp_ktemp:end)>=0.95*max(temp_out.Fnet(itemp_ktemp:end)))))-itemp_in.in.t_vec(2);
         itemp_fdata(itemp_icount,3)= itemp_in.controller.IWP_gain;
         itemp_fdata(itemp_icount,4)=(temp_out.CV_fdbk(end)-temp_out.CV_dmd(end))/temp_out.CV_dmd(end);
         itemp_in.controller.IWP_gain = itemp_in.controller.IWP_gain + itemp_fdata(itemp_icount,1)*itemp_IPW_0;

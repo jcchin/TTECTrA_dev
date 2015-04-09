@@ -103,7 +103,7 @@ dtemp_watchdog=1;
 
 dtemp_error=(min(dtemp_out.LPC_SM(dtemp_trimi:end))-dtemp_in.SMLimit.Decel)/dtemp_in.SMLimit.Decel;
 if dtemp_error<0 || min(dtemp_out.LPC_SM(dtemp_trimi:end))<0
-    while abs(dtemp_error)>0.001 && dtemp_watchdog<dtemp_watchdog_limit
+    while abs(dtemp_error)>0.0001 && dtemp_watchdog<dtemp_watchdog_limit
         WfPs3lim_prev=dtemp_WfPs3lim;
 
         %Update limiter based on error
