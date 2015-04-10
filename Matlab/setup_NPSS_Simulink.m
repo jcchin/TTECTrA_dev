@@ -62,21 +62,21 @@ end
 configFile = '150_PAX_Sfunction.config';
 eval(['delete ', configFile]) %delete if it exists
 output_list = [output_list, 'writing new config file\n'];
-diary(configFile) %diary function saves command line output to a specified file
-disp(['commandLine = "-I. -I ',npss_location, '/bin";']);
-disp(['commandLine += " -I ',npss_location, '/InterpIncludes";']);
-disp(['commandLine += " -I ',npss_location, '/InterpComponents";']);
-disp(['commandLine += " -I ',npss_location, '/DLMComponents/nt";']);
-disp(['commandLine += " -I ',npss_location, '/MetaData";']);
-disp(['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/run";']);
-disp(['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/view";']);
-disp(['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/src";']);
-disp(['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/maps";']);
-disp(['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'";']);
-disp(['commandLine += " ',topDir, '/NPSS/',npss_engine_name,'/run/',run_file, flags,'";']);
+fileID = fopen([configFile],'w'); %save command line output to a specified file
+fprintf(fileID,['commandLine = "-I. -I ',npss_location, '/bin";\n']);
+fprintf(fileID,['commandLine += " -I ',npss_location, '/InterpIncludes";\n']);
+fprintf(fileID,['commandLine += " -I ',npss_location, '/InterpComponents";\n']);
+fprintf(fileID,['commandLine += " -I ',npss_location, '/DLMComponents/nt";\n']);
+fprintf(fileID,['commandLine += " -I ',npss_location, '/MetaData";\n']);
+fprintf(fileID,['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/run"\n;']);
+fprintf(fileID,['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/view"\n;']);
+fprintf(fileID,['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/src";\n']);
+fprintf(fileID,['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/maps";\n']);
+fprintf(fileID,['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'";\n']);
+fprintf(fileID,['commandLine += " ',topDir, '/NPSS/',npss_engine_name,'/run/',run_file, transient_flags,'";\n']);
 
 fprintf(['\nSimulinkInPortMapper inPort1 { \n\n   vars = { ',input3 ,' }\n\n}\n\ntimeStep = 0.02;\n\nSimulinkOutPortMapper outPort1 {\n\n   vars = { ', output3 ,' } \n\n }'])  
-diary off
+fclose(fileID);
 
 
 %%

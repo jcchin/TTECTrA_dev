@@ -1,7 +1,7 @@
 
-%-----------------------------------------------------------------
-%     GetNPSS_PWLM(ttectra_in);
-%-----------------------------------------------------------------
+%---------------------------------------------------------------------
+%   Similar to GetNPSS_PWLM, except runs one time only setup
+%---------------------------------------------------------------------
 run([cd(cd('..')) '\Matlab\setup_NPSS_Simulink.m'])
 
 % Setup begins here
@@ -29,26 +29,21 @@ if ~(exist(['NPSSdata/' ttectra_engine_name '/info/setpoints.m']) == 2)
     current_folder = pwd; %current matlab folder
     path2model = [model_location '\NPSS\' npss_engine_name];
 
-    diary('run_shell.bat')
+    fileID = fopen('run_shell.bat','w');
     %copy all of the newly created files to the model path
-    disp('CD \') %switch to top drive
-    fprintf('cd %s\n', path2model) %move to model directory
-    disp('@echo off') %silence npss output
-    
-    % why do we have a second set of flags here????  reduce thsi somehow
-    % (if not using DGEAREDFAN, make changes in two spots?????
-    %disp('call run_npss.bat run\150PAX.run  -DMODEL -DPLOT -DTTECTrA -DGEAREDFAN') %run npss
-    disp('call run_npss.bat run\150PAX.run  -DMODEL -DPLOT -DTTECTrA') %run npss
-    
+    fprintf(fileID,'copy "%s\\TTECTrA_SP.input" "%s\\run\\TTECTrA_SP.input" /Y\n', current_folder, path2model);%/Y switch overwrites
+    fprintf(fileID,'CD \\\n'); %switch to top drive
+    fprintf(fileID, 'cd %s\n', path2model); %move to model directory
+    fprintf(fileID,'@echo off\n'); %silence npss output
+    fprintf(fileID,'call run_npss.bat run\\150PAX.run %s\n',model_flags); %run npss
     %copy npss output back to matlab
     %fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model,current_folder) %*.m pattern matches and copies all files
-    fprintf('xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' ttectra_engine_name '\info']) %*.m pattern matches and copies all files
-    fprintf('xcopy %s\\output\\maps\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' ttectra_engine_name '\maps']) %*.m pattern matches and copies all files
-    %fprintf('xcopy %s\\maps\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' engine_name '\maps']) %*.m pattern matches and copies all files
-
-    disp('CD \') %switch to top drive
-    fprintf('cd %s\n', current_folder) %move back to matlab folder
-    diary off
+    fprintf(fileID,'xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' ttectra_engine_name '\info']); %*.m pattern matches and copies all files
+    fprintf(fileID,'xcopy %s\\output\\maps\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' ttectra_engine_name '\maps']); %*.m pattern matches and copies all files
+    %[current_folder '\NPSSdata\' engine_name '\maps']) %*.m pattern matches and copies all files
+    fprintf(fileID,'CD \\\n'); %switch to top drive
+    fprintf(fileID,'cd %s\n', current_folder); %move back to matlab folder
+    fclose('all');
     clc
 
     [status, result] = system('run_shell.bat') %call command shell, all terminal output is displayed in matlab

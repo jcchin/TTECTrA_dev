@@ -24,11 +24,12 @@
 % REQUIRED
 npss_location = ''; %path location of the S-function capable NPSS executable
 npss_engine_name = '150PAX_Sfunction'; %name of the NPSS engine folder
-%ttectra_engine_name= '150PAX_VAFN';
-ttectra_engine_name= '150PAX_noVAFN';
+ttectra_engine_name= '150PAX_VAFN';
+%ttectra_engine_name= '150PAX_noVAFN';
 run_file = '150PAX.run'; %NPSS run script
-%flags = ' -DTRANSIENT -DGEAREDFAN'; %flags for the NPSS run
-flags = ' -DTRANSIENT'; %flags for the NPSS run
+model_flags = '-DTTECTrA -DMODEL -DPLOT -DGEAREDFAN'; %flags for the very first NPSS trip (if files don't exist)
+ss_flags = '-DTTECTrA -DSETPNT -DLINEARMODEL -DGEAREDFAN'; %flags for the NPSS steady-state runs 
+transient_flags = ' -DTRANSIENT -DGEAREDFAN'; %flags for the S-function transient runs
 
 % Inputs
 % Add NPSS variables to be promoted as inputs to the s-function

@@ -8,8 +8,7 @@ vector = inputs.in.setpoint_vector;
 linearModelfilename = inputs.in.linearModelfilename;
 npss_location = inputs.in.npss_location;
 model_location = inputs.in.HomeDirectory;
-
-run_lm = true; %run linear model?
+ss_flags = inputs.in.ss_flags;
 
 % Setup begins here
 eval(['addpath ', npss_location])
@@ -39,22 +38,19 @@ dlmwrite(inputFile,'};','-append','delimiter','')
 current_folder = pwd; %current matlab folder
 path2model = [model_location,'\NPSS\' npss_engine_name];
 
-diary('run_shell.bat')
+fileID = fopen('run_shell.bat','w');
 %copy all of the newly created files to the model path
-fprintf('copy "%s\\TTECTrA_SP.input" "%s\\run\\TTECTrA_SP.input" /Y\n', current_folder, path2model)%/Y switch overwrites
-disp('CD \') %switch to top drive
-fprintf('cd %s\n', path2model) %move to model directory
-disp('@echo off') %silence npss output
-if (run_lm)
-    disp('call run_npss.bat run\150PAX.run -DSETPNT -DLINEARMODEL -DTTECTrA -DGEAREDFAN') %run npss
-end
+fprintf(fileID,'copy "%s\\TTECTrA_SP.input" "%s\\run\\TTECTrA_SP.input" /Y\n', current_folder, path2model);%/Y switch overwrites
+fprintf(fileID,'CD \\\n'); %switch to top drive
+fprintf(fileID, 'cd %s\n', path2model); %move to model directory
+fprintf(fileID,'@echo off\n'); %silence npss output
+fprintf(fileID,'call run_npss.bat run\\150PAX.run %s\n',ss_flags); %run npss
 %copy npss output back to matlab
-%fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model,current_folder) %*.m pattern matches and copies all files
-fprintf('xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' ttectra_engine_name '\info']) %*.m pattern matches and copies all files
+fprintf(fileID,'xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' ttectra_engine_name '\info']); %*.m pattern matches and copies all files
 
-disp('CD \') %switch to top drive
-fprintf('cd %s\n', current_folder) %move back to matlab folder
-diary off
+fprintf(fileID,'CD \\\n'); %switch to top drive
+fprintf(fileID,'cd %s\n', current_folder); %move back to matlab folder
+fclose('all'); %fileID doesn't seem to work...
 clc
 
 [status, result] = system('run_shell.bat') %call command shell, all terminal output is displayed in matlab

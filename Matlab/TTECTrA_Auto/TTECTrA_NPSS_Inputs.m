@@ -26,7 +26,8 @@ setup_NPSS_Simulink;
 ttectra_in.in.HomeDirectory = model_location;
 ttectra_in.in.npss_engine_name = npss_engine_name;
 ttectra_in.in.ttectra_engine_name = ttectra_engine_name;
-ttectra_in.in.npss_location = npss_location ;
+ttectra_in.in.npss_location = npss_location;
+ttectra_in.in.ss_flags = ss_flags;
 
 %---------------------------------------------------------
 % Define environmental variables
