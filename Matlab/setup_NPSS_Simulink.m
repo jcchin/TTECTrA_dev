@@ -62,21 +62,21 @@ end
 configFile = '150_PAX_Sfunction.config';
 eval(['delete ', configFile]) %delete if it exists
 output_list = [output_list, 'writing new config file\n'];
-fileID = fopen([configFile],'w'); %save command line output to a specified file
-fprintf(fileID,['commandLine = "-I. -I ',npss_location, '/bin";\n']);
-fprintf(fileID,['commandLine += " -I ',npss_location, '/InterpIncludes";\n']);
-fprintf(fileID,['commandLine += " -I ',npss_location, '/InterpComponents";\n']);
-fprintf(fileID,['commandLine += " -I ',npss_location, '/DLMComponents/nt";\n']);
-fprintf(fileID,['commandLine += " -I ',npss_location, '/MetaData";\n']);
-fprintf(fileID,['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/run"\n;']);
-fprintf(fileID,['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/view"\n;']);
-fprintf(fileID,['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/src";\n']);
-fprintf(fileID,['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'/maps";\n']);
-fprintf(fileID,['commandLine += " -I ',topDir, '/NPSS/',npss_engine_name,'";\n']);
-fprintf(fileID,['commandLine += " ',topDir, '/NPSS/',npss_engine_name,'/run/',run_file, transient_flags,'";\n']);
+fileID = fopen(configFile,'w'); %save command line output to a specified file
+fprintf(fileID,'commandLine = "-I. -I  %s/bin";\n',npss_location);
+fprintf(fileID,'commandLine += " -I %s/InterpIncludes";\n',npss_location);
+fprintf(fileID,'commandLine += " -I %s/InterpComponents";\n',npss_location);
+fprintf(fileID,'commandLine += " -I %s/DLMComponents/nt";\n',npss_location);
+fprintf(fileID,'commandLine += " -I %s/MetaData";\n',npss_location);
+fprintf(fileID,'commandLine += " -I %s/NPSS/%s/run";\n',topDir,npss_engine_name);
+fprintf(fileID,'commandLine += " -I %s/NPSS/%s/view";\n',topDir,npss_engine_name);
+fprintf(fileID,'commandLine += " -I %s/NPSS/%s/src";\n',topDir,npss_engine_name);
+fprintf(fileID,'commandLine += " -I %s/NPSS/%s/maps";\n',topDir,npss_engine_name);
+fprintf(fileID,'commandLine += " -I %s/NPSS/%s";\n',topDir,npss_engine_name);
+fprintf(fileID,'commandLine += " %s/NPSS/%s/run/%s %s";\n', topDir, npss_engine_name, run_file, transient_flags);
 
-fprintf(['\nSimulinkInPortMapper inPort1 { \n\n   vars = { ',input3 ,' }\n\n}\n\ntimeStep = 0.02;\n\nSimulinkOutPortMapper outPort1 {\n\n   vars = { ', output3 ,' } \n\n }'])  
-fclose(fileID);
+fprintf(fileID,'\nSimulinkInPortMapper inPort1 { \n\n   vars = { %s }\n\n}\n\ntimeStep = 0.02;\n\nSimulinkOutPortMapper outPort1 {\n\n   vars = { %s } \n\n }',input3,output3)  
+fclose('all');
 
 
 %%
