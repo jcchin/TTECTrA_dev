@@ -19,8 +19,10 @@ end
 %--------------------------------
 minWf=min(ttectra_in.SP.Wf_SP);
 dWf=max(ttectra_in.SP.Wf_SP)-minWf;
-ttectra_in.in.t_vec  = [0, 10, 10.5, 20];
-ttectra_in.in.wf_vec = [0.1, 0.1,.95,.95]*dWf + minWf;
+%ttectra_in.in.t_vec  = [0, 10, 10.5, 20];
+%ttectra_in.in.wf_vec = [0.1, 0.1,.95,.95]*dWf + minWf;
+ttectra_in.in.t_vec  = [0,  10, 12,  24, 26,30,30.5, 40];
+ttectra_in.in.wf_vec = [0.1,0.1,0.4,0.4,0.0,0.0,.95,.95]*dWf + minWf;
 ttectra_in.in.loop = 4;
 
 %--------------------------------
@@ -31,22 +33,26 @@ out=simFromTTECTrA(ttectra_in);  %simulate
 %figure out how long the simulation results should be
 try
     tend=min(out.t(min(find(out.Fnet>=out.Fnet(end)*0.98))+round(4.0/ttectra_in.in.Ts)),max(ttectra_in.in.t_vec));
+    t1=28;
 catch
     tend=max(ttectra_in.in.t_vec);
+    t1=28;
 end
 
 %plot the results
 if ~isempty(out)
     figure(103);
     subplot(221); set(gca,'FontSize',12); plot(out.t,(out.Fnet-min(out.Fnet))/(max(out.Fnet)-min(out.Fnet)),'-','LineWidth',2);
-    xlabel('Time, s','FontSize',12);ylabel('F_{net}R, fractional unit','FontSize',12); grid on; xlim([9 tend]);
+    xlabel('Time, s','FontSize',12);ylabel('F_{net}R, fractional unit','FontSize',12); grid on; xlim([t1 tend]);
+    %subplot(221); set(gca,'FontSize',12); plot(out.t,out.Wf,'b-',out.t,out.Wf_dmd,'r--','LineWidth',2);
+    %xlabel('Time, s','FontSize',12);ylabel('Wf,','FontSize',12); grid on; xlim([t1 tend]);
     subplot(223); set(gca,'FontSize',12);
     legend('feedback','command','Location','NorthWest');
     plot(out.t,out.HPC_SM,'b-',out.t([1 end]),ttectra_in.SMLimit.Accel([1 1]),'r--','LineWidth',2);
-    xlabel('Time, s','FontSize',12);ylabel('HPC surge margin, %','FontSize',12); grid on; xlim([9 tend]);
+    xlabel('Time, s','FontSize',12);ylabel('HPC surge margin, %','FontSize',12); grid on; xlim([t1 tend]);
     subplot(224); set(gca,'FontSize',12);
     plot(out.t,out.T40,'b-',out.t([1 end]),ttectra_in.SMLimit.T40([1 1]),'r--','LineWidth',2);
-    xlabel('Time, s','FontSize',12);ylabel('T40, \circR','FontSize',12); grid on; xlim([9 tend]);
+    xlabel('Time, s','FontSize',12);ylabel('T40, \circR','FontSize',12); grid on; xlim([t1 tend]);
     subplot(222); set(gca,'FontSize',12);
     plot(out.NcR25,out.Nc_dot,'b.', ...
         ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'r--','LineWidth',2);

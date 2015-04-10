@@ -1,117 +1,99 @@
 close all; clear; clc;
 
-data(1)=load('NPSSdata/150PAX_VAFN/Closed_Loop_Data.mat');
-%data(2)=load('TTECTrA_Data/150PAX_Sfunction/vafn_CL_data.mat');
+engine_names={'150PAX_VAFN';'150PAX_noVAFN'};
 plotst1={'b-','r--'};
+toffset=38;
 
-%calculate TSFC
-for idata=1:length(data);
-    data(idata).ttectra_in.SP.TSFC= data(idata).ttectra_in.SP.Wf_SP./data(idata).ttectra_in.SP.FT_SP;
-    data(idata).out.TSFC=data(idata).out.Wf./data(idata).out.Fnet;
+for i=1:length(engine_names)
+    data(i)=load(['NPSSdata/' engine_names{i} '/Closed_Loop_Data.mat']);
     
+    %calculate TSFC
+    data(i).ttectra_in.SP.TSFC= data(i).ttectra_in.SP.Wf_SP./data(i).ttectra_in.SP.FT_SP;
+    data(i).out.TSFC=data(i).out.Wf./data(i).out.Fnet;
 end    
 
-%define steady-state comparisons
-ssplot_type={'Nf_SP','FAR_SP','Wf_SP','TSFC'};
-ssplot_ref='FT_SP';
-figure(1);
-for idata=1:length(data);    
-    ssplot_l=round(length(ssplot_type)/2);
-    for i=1:length(ssplot_type)        
-        subplot(2,ssplot_l,i);
-        plot(data(idata).ttectra_in.SP.(ssplot_ref),...
-            data(idata).ttectra_in.SP.(ssplot_type{i}),...
-            plotst1{idata},'Linewidth',2); 
+%add names
+for i=1:length(engine_names)
+    temp=engine_names{i}
+    temp2=find(temp=='_');
+    temp(temp2)=' ';
+    data(i).name=temp;
+    
+end
+
+%deteremine offset
+itoffset=min(find(data(1).out.t>=toffset));
+
+% Fnet,TSFC
+figure; hold on;
+plotvars={'Fnet','TSFC'};
+j1=min(find(data(1).out.t>=55));
+for i=1:length(data)
+    for i2=1:length(plotvars)
+        subplot(2,1,i2);
+        plot(data(i).out.t(j1:end),data(i).out.(plotvars{i2})(j1:end),plotst1{i},'Linewidth',2); 
         hold on;
-        ylabel(ssplot_type{i},'fontsize',12);
-        xlabel(ssplot_ref,'fontsize',12);
         grid on;
+        ylabel(plotvars{i2});
+        xlabel('Time');
     end
 end
 
-tlim=[25 45];
-
-%dynamic plots
-figure(2); hold on;
-dyn_plot={'Fnet','TSFC','Nf','Nc'};
-for idata=1:length(data);    
-    for i=1:length(dyn_plot)        
-        subplot(2,2,i);
-        plot(data(idata).out.t,...
-            data(idata).out.(dyn_plot{i}),...
-            plotst1{idata},'Linewidth',2); 
+% Accel
+figure; hold on;
+plotvars={'Fnet','HPC_SM','T40'};
+j1=min(find(data(1).out.t>=38));
+j2=min(find(data(1).out.t>=50));
+for i=1:length(data)
+    for i2=1:length(plotvars)
+        subplot(3,1,i2);
+        plot(data(i).out.t(j1:j2),data(i).out.(plotvars{i2})(j1:j2),plotst1{i},'Linewidth',2); 
         hold on;
-        ylabel(dyn_plot{i},'fontsize',12);
-        xlabel('Time','fontsize',12);
         grid on;
-        xlim(tlim);
+        ylabel(plotvars{i2});
+        xlabel('Time');
     end
 end
 
-figure(3); hold on;
-dyn_plot={'HPC_SM','T40','LPC_SM','FAR'};
-for idata=1:length(data);    
-    for i=1:length(dyn_plot)        
-        subplot(2,2,i);
-        plot(data(idata).out.t,...
-            data(idata).out.(dyn_plot{i}),...
-            plotst1{idata},'Linewidth',2); 
+% Decel
+figure; hold on;
+plotvars={'Fnet','LPC_SM','FAR'};
+j1=min(find(data(1).out.t>=48));
+j2=min(find(data(1).out.t>=60));
+for i=1:length(data)
+    for i2=1:length(plotvars)
+        subplot(3,1,i2);
+        plot(data(i).out.t(j1:j2),data(i).out.(plotvars{i2})(j1:j2),plotst1{i},'Linewidth',2); 
         hold on;
-        ylabel(dyn_plot{i},'fontsize',12);
-        xlabel('Time','fontsize',12);
         grid on;
-        xlim(tlim);
+        ylabel(plotvars{i2});
+        xlabel('Time');
     end
 end
 
-
-% figure(4); hold on;
-% dyn_plot={'LPC_SM','T40','Nc_dot'};
-% for idata=1:length(data);    
-%     for i=1:length(dyn_plot)        
-%         subplot(3,1,i);
-%         plot(data(idata).out.t,...
-%             data(idata).out.(dyn_plot{i}),...
-%             plotst1{idata},'Linewidth',2); 
-%         ylabel(dyn_plot{i},'fontsize',12);
-%         xlabel('Time','fontsize',12);
-%         grid on;
-%     end
-% end
+%Maps
+current_fig=figure;
+for i=1:length(data)
+    subplot(1,2,i);
+    fan_plot(['NPSSdata/' engine_names{i}],current_fig);
+    plot(data(i).out.Fan_Wc(itoffset:end),data(i).out.Fan_pr(itoffset:end),'kx')
+    title([data(i).name ' Fan'])
+end
 
 
+current_fig=figure;
+for i=1:length(data)
+    subplot(1,2,i);
+    lpc_plot(['NPSSdata/' engine_names{i}],current_fig);
+    plot(data(i).out.LPC_Wc(itoffset:end),data(i).out.LPC_pr(itoffset:end),'kx')
+    title([data(i).name ' LPC'])
+end
 
-%     
-%     figure(111);
-%     subplot(211); set(gca,'FontSize',12); plot(out.t,out.Fnet,'-',out.t,out.FT_dmd,'r--','LineWidth',2);
-%     xlabel('Time, s','FontSize',12);ylabel('F_{net}R, lbf','FontSize',12); grid on;
-%     legend('feedback','command','Location','NorthEast');  
-%     subplot(212); set(gca,'FontSize',12); plot(out.t,out.CV_fdbk,'-',out.t,out.CV_dmd,'r--','LineWidth',2);
-%     xlabel('Time, s','FontSize',12);ylabel('Control variable','FontSize',12); grid on; 
-% 
-%     figure(112);
-%     subplot(311); set(gca,'FontSize',12);
-%     plot(out.t,out.HPC_SM,'b-',out.t([1 end]),ttectra_in.SMLimit.Accel([1 1]),'r--','LineWidth',2);
-%     xlabel('Time, s','FontSize',12);ylabel('HPC SM, %','FontSize',12); grid on;
-%     legend('feedback','limit','Location','NorthEast');
-%     subplot(312); set(gca,'FontSize',12);
-%     plot(out.t,out.T40,'b-',out.t([1 end]),ttectra_in.SMLimit.T40*([1 1]),'r--','LineWidth',2);
-%     xlabel('Time, s','FontSize',12);ylabel('T40, \circR','FontSize',12); grid on;
-%     subplot(313); set(gca,'FontSize',12);
-%     plot(out.NcR25,out.Nc_dot,'b.', ...
-%         ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'r--','LineWidth',2);
-% %     xlim([min(ttectra_in.Limiter.NcR25_sched) max(ttectra_in.Limiter.NcR25_sched)]);
-%     ylim([min(ttectra_in.Limiter.Ncdot_sched)*.8 max(ttectra_in.Limiter.Ncdot_sched)*1.2]);
-%     xlabel('NcR, rpm','FontSize',12); ylabel('Nc_{dot}, rpm/s','FontSize',12); grid on;
-%     
-%     figure(113);
-%     subplot(311); set(gca,'FontSize',12);
-%     plot(out.t,out.LPC_SM,'b-',out.t([1 end]),ttectra_in.SMLimit.Decel([1 1]),'r--','LineWidth',2);
-%     xlabel('Time, s','FontSize',12);ylabel('LPC SM, %','FontSize',12); grid on;
-%     legend('feedback','limit','Location','NorthEast');
-%     subplot(312); set(gca,'FontSize',12);
-%     plot(out.t,out.FAR,'b-',out.t([1 end]),ttectra_in.SMLimit.FARmin([1 1]),'r--','LineWidth',2);
-%     xlabel('Time, s','FontSize',12);ylabel('FAR','FontSize',12); grid on;
-%     subplot(313); set(gca,'FontSize',12);
-%     plot(out.t,out.Wf_vec./out.Ps3,'b-',out.t([1 end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
-%     xlabel('Time, s','FontSize',12);ylabel('W_f/P_{s3}, lb/(psi*s)','FontSize',12); grid on;
+
+current_fig=figure;
+for i=1:length(data)
+    subplot(1,2,i);
+    HPC_plot(['NPSSdata/' engine_names{i}],current_fig);
+    plot(data(i).out.HPC_Wc(itoffset:end),data(i).out.HPC_pr(itoffset:end),'kx')
+    title([data(i).name ' HPC'])
+en
