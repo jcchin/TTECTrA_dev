@@ -89,8 +89,8 @@ TTECTrA_NPSS_DecelLimiter_s
 %---------------------------------------
 % Integrate Limiters and Setpoint Controller
 %---------------------------------------
-%close(h); h=waitbar(0.8,sprintf('Tuning Integral Windup Protection ...'));
-save tempdata.mat ttectra_in 
+close(h); h=waitbar(0.8,sprintf('Tuning Integral Windup Protection ...'));
+
 TTECTrA_IWP_s
 
 %------------------------------

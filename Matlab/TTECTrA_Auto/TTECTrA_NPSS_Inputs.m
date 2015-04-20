@@ -68,8 +68,8 @@ ttectra_in.in.linearModelfilename='NPSS_PWLM.mat';
 ttectra_in.controller.PreFilterBW=6;
 ttectra_in.controller.FdbkFilterBW=[];
 ttectra_in.controller.CVoutput='Nf';
-%ttectra_in.controller.bandwidth=2*3;  %geared fan
-ttectra_in.controller.bandwidth=2;
+ttectra_in.controller.bandwidth=2*2;  %geared fan
+%ttectra_in.controller.bandwidth=2;
 ttectra_in.controller.phasemargin=50;
 ttectra_in.controller.IWP_gain=1000;
 
@@ -82,15 +82,15 @@ ttectra_in.controller.Accel_IWP=5000;
 % Transient Limiter setup
 %---------------------------------------------------------
 % Parameters for accleration schedule
-%ttectra_in.SMLimit.T40=4000;  %geared fan
+ttectra_in.SMLimit.T40=3800;  %geared fan
+ttectra_in.SMLimit.Accel=10;
+
+%ttectra_in.SMLimit.T40=3500;  
 %ttectra_in.SMLimit.Accel=12;
 
-ttectra_in.SMLimit.T40=3500;  
-ttectra_in.SMLimit.Accel=12;
-
 % Parameters for decel limit
-%ttectra_in.SMLimit.FARmin=0.020; %geared fan
-ttectra_in.SMLimit.FARmin=0.015;
+ttectra_in.SMLimit.FARmin=0.020; %geared fan
+%ttectra_in.SMLimit.FARmin=0.015;
 ttectra_in.SMLimit.Decel=8;
 
 % Fuel actuator bandwidth
