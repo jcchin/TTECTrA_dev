@@ -29,15 +29,38 @@ setOption( "switchGuessType", "Wfuel" );
 // Assigning the initial fuel flow rate from the input signal to the power management variable
 Wfuel = transientDriver_scaled(0.0);
 
+#ifdef GEAREDFAN
+
+	#ifndef SCHEDULE
+	
+		// Assigning the initial VAFN from the input signal to the power management variable
+		Byp_Nozz.delta_s_Ath = transientDriver_VAFN(0.0);
+	
+	#endif
+
+#endif
+
 // Switching burner input variable to fuel flow rate
 Burner.switchBurn = "FUEL";
 	
 // Automatically setting up the solver
 autoSolverSetup();
 
-// Adding transient demand variable to the solver
+// Adding transient demand variable for fuel flow rate to the solver
 solver.addIndependent("trans_indep"); 
 solver.addDependent("trans_Condition");
+
+#ifdef GEAREDFAN
+
+	#ifndef SCHEDULE
+
+		// Adding transient demand variable for VAFN to the solver
+		solver.addIndependent("trans_VAFN_indep"); 
+		solver.addDependent("trans_VAFN_Condition");
+	
+	#endif
+	
+#endif
 
 // Running the model for initialization
 run();

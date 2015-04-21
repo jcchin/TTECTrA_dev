@@ -41,6 +41,7 @@ set_output(); // view/output_paths.fnc
 #include <independents_dependents_constraints.fnc>
 #include <transientDriver.fnc>
 #include <transientDriver_scaled.fnc>
+#include <transientDriver_VAFN.fnc>
 #include <accelSchedule.fnc>
 #include <linear_model.fnc>
 

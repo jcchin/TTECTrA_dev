@@ -843,15 +843,14 @@ class transient_Nozzle extends Nozzle {
 			// If the VAFN switch for schedule is turned on, adding the solver independent and dependent pair
 			// for solver robustness
 			if (switchVAFNSchedule == "ON") {
-				#ifdef SETPNT
-					ind_schedule.autoSetup = TRUE;
-					schedule.autoSetup = TRUE;
-				#endif
 				#ifdef LINEARMODEL
 					#ifdef SCHEDULE
 						ind_schedule.autoSetup = FALSE;
 						schedule.autoSetup = FALSE;
 					#endif
+				#else
+					ind_schedule.autoSetup = TRUE;
+					schedule.autoSetup = TRUE;
 				#endif
 			}
 			else if ( switchVAFNSchedule == "OFF" ) {
@@ -929,13 +928,12 @@ class transient_Nozzle extends Nozzle {
 					AthCold = ADP_Ath*s_Ath;
 				}
 				else if (switchVAFNSchedule == "ON" && !TB_s_Ath_Schedule.isEmpty()) {
-					#ifdef SETPNT
-						s_AthDmd = 1.0 + delta_s_Ath;
-					#endif
 					#ifdef LINEARMODEL
 						#ifdef SCHEDULE
 							s_AthDmd = 1.0 + TB_s_Ath_Schedule(FanNcPct);
 						#endif
+					#else
+							s_AthDmd = 1.0 + delta_s_Ath;	
 					#endif
 					s_Ath = s_AthDmd;
 					AthCold = ADP_Ath*s_Ath;

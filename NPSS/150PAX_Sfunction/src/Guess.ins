@@ -58,7 +58,9 @@ void calculate() {
 				LP_Shaft.Nmech = TB_LPNmech_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
 				
 				#ifdef GEAREDFAN
-					Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
+					#ifdef SCHEDULE
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_PC(Ambient.alt,Ambient.MN,Ambient.dTs,PC);
+					#endif
 				#endif
 
 			}
@@ -78,7 +80,9 @@ void calculate() {
 				LP_Shaft.Nmech = TB_LPNmech_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
 				
 				#ifdef GEAREDFAN
-				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
+					#ifdef SCHEDULE
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_FanNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,FanNcPct);
+					#endif
 				#endif
 
 			}
@@ -98,7 +102,9 @@ void calculate() {
 				LP_Shaft.Nmech = TB_LPNmech_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
 				
 				#ifdef GEAREDFAN
-				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
+					#ifdef SCHEDULE
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_LPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,LPCNcPct);
+					#endif
 				#endif
 
 			}
@@ -118,7 +124,9 @@ void calculate() {
 				LP_Shaft.Nmech = TB_LPNmech_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
 				
 				#ifdef GEAREDFAN
-				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
+					#ifdef SCHEDULE
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_HPCNcPct(Ambient.alt,Ambient.MN,Ambient.dTs,HPCNcPct);
+					#endif
 				#endif
 
 			}
@@ -138,7 +146,9 @@ void calculate() {
 				LP_Shaft.Nmech = TB_LPNmech_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
 				
 				#ifdef GEAREDFAN
-				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
+					#ifdef SCHEDULE
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Wfuel(Ambient.alt,Ambient.MN,Ambient.dTs,Wfuel);
+					#endif
 				#endif
 
 			}
@@ -158,7 +168,9 @@ void calculate() {
 				LP_Shaft.Nmech = TB_LPNmech_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,far_pc);
 				
 				#ifdef GEAREDFAN
-				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,FAR);
+					#ifdef SCHEDULE
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_FAR(Ambient.alt,Ambient.MN,Ambient.dTs,FAR);
+					#endif
 				#endif
 
 			}
@@ -178,7 +190,9 @@ void calculate() {
 				LP_Shaft.Nmech = TB_LPNmech_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
 				
 				#ifdef GEAREDFAN
-				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
+					#ifdef SCHEDULE
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_EPR(Ambient.alt,Ambient.MN,Ambient.dTs,EPR);
+					#endif
 				#endif
 
 			}
@@ -198,7 +212,9 @@ void calculate() {
 				LP_Shaft.Nmech = TB_LPNmech_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
 				
 				#ifdef GEAREDFAN
-				Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+					#ifdef SCHEDULE
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Fnet(Ambient.alt,Ambient.MN,Ambient.dTs,Fnet);
+					#endif
 				#endif
 
 			}

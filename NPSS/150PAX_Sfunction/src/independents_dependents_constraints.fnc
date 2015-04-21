@@ -218,6 +218,21 @@ Independent trans_indep {
 
 }
 
+#ifdef GEAREDFAN
+
+	#ifndef SCHEDULE
+	
+		// Independent for transient operation - VAFN
+		Independent trans_VAFN_indep {
+
+			varName = "Byp_Nozz.delta_s_Ath";
+
+		}
+	
+	#endif
+	
+#endif
+
 //-------------------------------------------------------------------------------------------------
 // Dependents 
 //-------------------------------------------------------------------------------------------------
@@ -265,6 +280,21 @@ Dependent trans_Condition {
 	
 }
 
+#endif
+
+#ifdef GEAREDFAN
+
+	#ifndef SCHEDULE
+	
+		Dependent trans_VAFN_Condition {
+
+			eq_lhs = "Byp_Nozz.delta_s_Ath";
+			eq_rhs = "transientDriver_VAFN(time)";
+			
+		}
+	
+	#endif
+	
 #endif
 
 //-------------------------------------------------------------------------------------------------
