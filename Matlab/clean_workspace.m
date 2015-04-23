@@ -34,5 +34,5 @@ end
 
 cd('Matlab');
 
-disp('Cleared NPSS and TTECTrA Matlab Directories')
-
+disp(['Cleared ' ttectra_engine_name ' NPSS and TTECTrA Matlab Directories'])
+clear all;
