@@ -3,7 +3,7 @@ close all; clear; clc;
 addpath('TTECTrA_Auto','TTECTrA_Auto/plot');
 
 
-engine_names={'150PAX_VAFN';'150PAX_noVAFN'};
+engine_names={'150PAX_noVAFN2';'150PAX_noVAFN'};
 plotst1={'b-','r--'};
 plotst2={'bx','ro'};
 toffset=38;
