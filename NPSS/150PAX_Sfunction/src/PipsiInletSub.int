@@ -22,7 +22,7 @@ class PipsiInletSub extends Subelement {
 	 value = 0.0 ;
 	 IOstatus = "input" ;
 	 description = "Projected area of the inlet" ;
-	 units = "IN2" ; 
+	 units = "in2" ; 
   }
   real eRamMap {
 	 value = 1.0 ;
@@ -143,7 +143,7 @@ class PipsiInletSub extends Subelement {
 	 value = 0.0 ;
 	 IOstatus = "output" ;
 	 description = "Airflow through the capture area." ;
-	 units = "LBM/SEC" ; 
+	 units = "lbm/sec" ; 
   }
 
   // O P T I O N   A N D   T R I G G E R   P A R A M E T E R S
