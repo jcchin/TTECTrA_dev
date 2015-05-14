@@ -165,6 +165,7 @@ void RunMaxPower(){
 
 	// Running the case
 	run();
+	quit();
 	
 	Fan_Max_Nc.removeAllConstraints();
 	

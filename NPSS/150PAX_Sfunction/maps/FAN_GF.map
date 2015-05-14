@@ -1,6 +1,6 @@
 //This map is generated using the CMPGEN program NPSSOUTPUT subroutine in the CMPGEN program
 Subelement CompressorRlineMap S_map {
-    alpha = 0.0; //unused variable geom dim
+    alphaMap = 0.0; //unused variable geom dim
 
 // RlineMap and NcDes determine the map point to be used as the
 // design point for cycle analysis. Note, this point can be any
@@ -16,9 +16,9 @@ Subelement CompressorRlineMap S_map {
 // values to the design PR and efficiency.
     PRdes    =  1.290;
     effDes   = 0.934;
-    ReDes    = 399125;
-    RtMap    = 0.0685512;
-    gamtMap  = 1.400520;
+    //ReDes    = 399125;
+    //RtMap    = 0.0685512;
+    //gamtMap  = 1.400520;
     SMWmap   = 30.890;
     SMNmap   = 30.890;
     // Declare new subelement of CompressorEfficiencyMap

@@ -1,24 +1,25 @@
 //This map is generated using the CMPGEN program NPSSOUTPUT subroutine in the CMPGEN program
 Subelement CompressorRlineMap S_map {
-    alpha = 0.0; //unused variable geom dim
+    alphaMapDes = 0.0; //unused variable geom dim
    
 // RlineMap and NcDes determine the map point to be used as the
 // design point for cycle analysis. Note, this point can be any
 // point on the map. It is not required to be the design point used
 // to generate the map.
-    RlineMap = 2.000;
-    NcDes    = 1.000;
-
+    RlineMapDes = 2.000;
+    NcMapDes    = 1.000;
+    RlineStall = 1.0;
+    
 // Specify the desired design pressure ratio and efficiency. The
 // WcDes is set equal to corrected flowinto the parent compressor.
 // When in design mode scalars are calculated to scale
 // the map values at the point specified by the RlineMap and NcDes
 // values to the design PR and efficiency.
-    PRdes    =  1.754;
-    effDes   = 0.903;
-    ReDes    = 399125;
-    RtMap    = 0.0685512;
-    gamtMap  = 1.400520;
+    //PRdes    =  1.754;
+    //effDes   = 0.903;
+    //ReDes    = 399125;
+    //RtMap    = 0.0685512;
+    //gamtMap  = 1.400520;
     SMWmap   = 30.890;
     SMNmap   = 30.890;
     // Declare new subelement of CompressorEfficiencyMap

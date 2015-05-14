@@ -20,7 +20,7 @@ InletFlowControl.Fl_O.Aphy    	 = 2729.683021;
 Inlet.S_install.Acapture = 3265.875372;
 
 // Fan design variable values
-Fan.S_map.NcDes		 = 0.99;
+Fan.S_map.NcMapDes		 = 0.99;
 Fan.S_map.s_effDes 	 = 1.000115125;
 Fan.S_map.s_NcDes  	 = 1/0.0001876765646;
 Fan.S_map.s_PRdes  	 = 1.000102184;
@@ -30,14 +30,14 @@ Fan.NcDes   		 = 5222.282291;
 // real Fan_NcDes2   	 = 1.058416129;
 // real Fan_NcDes3   	 = 0.9603942192;
 // real Fan_NcDes4   	 = 0.9534868993;
-Fan.S_map.WcDes		 = 832.1741989;
-Fan.S_map.ReDes		 = 399125;
-Fan.S_map.RNI_des	 = 0.4376700857;
+Fan.WcDes		 = 832.1741989;
+////Fan.S_map.ReDes		 = 399125;
+////Fan.S_map.RNI_des	 = 0.4376700857;
 Fan.S_map.RlineMap           = 2.2;
 // real FanRlineMapTarget           = 2.2;
-Fan.S_map.NcDes           = 0.99;
-Fan.S_map.PRdes           = 1.68511;
-Fan.S_map.effDes           = 0.894783;
+Fan.S_map.NcMapDes           = 0.99;
+Fan.PRdes           = 1.68511;
+Fan.effDes           = 0.894783;
 
 // Splitter design variable values
 Splitter.Fl_O1.Aphy	 = 505.7138566;
@@ -46,27 +46,27 @@ Splitter.BPR           = 5.106632765;
 
 // Duct 4 (duct between the splitter and LPC) design variable values
 Duct4.Fl_O.Aphy    	 = 505.7138566;
-Duct4.dPqPbase		 = 0.004825;
+Duct4.dPqP_in		 = 0.004825;
 
 // LPC design variable values
-LPC.S_map.NcDes  	 = 1;
+LPC.S_map.NcMapDes  	 = 1;
 LPC.S_map.s_effDes 	 = 1.000128757;
 LPC.S_map.s_NcDes  	 = 1/0.0002081451801;
 LPC.S_map.s_PRdes  	 = 1.000026739;
 LPC.S_map.s_WcDes  	 = 1.007578757;
 LPC.Fl_O.Aphy      	 = 294.7300356;
-LPC.S_map.WcDes   	 = 88.33065123;
-LPC.S_map.ReDes   	 = 399125;
-LPC.S_map.RNI_des	 = 0.5916841137;
+LPC.WcDes   	 = 88.33065123;
+////LPC.S_map.ReDes   	 = 399125;
+////LPC.S_map.RNI_des	 = 0.5916841137;
 LPC.S_map.RlineMap           = 2.15;
-LPC.S_map.NcDes           = 1;
-LPC.S_map.PRdes           = 1.935;
-LPC.S_map.effDes           = 0.924344;
+LPC.S_map.NcMapDes           = 1;
+LPC.PRdes           = 1.935;
+LPC.effDes           = 0.924344;
 LPC.NcDes = 4817.09;
 
 // Duct 6 (duct between LPC and HPC) design variable values
 Duct6.Fl_O.Aphy    	 = 260.7096328;
-Duct6.dPqPbase		 = 0.010125;
+Duct6.dPqP_in		 = 0.010125;
 
 // HPC design variable values
 HPC.S_map.s_effDes 	 = 0.9999667259;
@@ -82,9 +82,9 @@ HPC.flowControlFlow		 = 0;
 HPC.nStagesFlowControl		 = 0;
 HPC.turbineFlowControlFlow		 = 0;
 HPC.nStagesTurbineFlowControl		 = 0;
-HPC.S_map.WcDes   	 = 51.02884126;
-HPC.S_map.ReDes   	 = 507300;
-HPC.S_map.RNI_des	 = 0.8790022075;
+HPC.WcDes   	 = 51.02884126;
+////HPC.S_map.ReDes   	 = 507300;
+////HPC.S_map.RNI_des	 = 0.8790022075;
 HPC.Cool1.fracBldWork	 = 0.5;
 HPC.Cool2.fracBldWork	 = 0.5;
 HPC.CustBld.fracBldWork	 = 0.5;
@@ -94,9 +94,9 @@ HPC.CustBld.fracBldP	 = 0.5;
 HPC.BleedAdder.s_rtn		 = 0;
 HPC.BleedFlow		 = 2.35;
 HPC.S_map.RlineMap           = 2.05;
-HPC.S_map.NcDes           = 0.97591;
-HPC.S_map.PRdes           = 9.36895;
-HPC.S_map.effDes           = 0.8706244698;
+HPC.S_map.NcMapDes           = 0.97591;
+HPC.PRdes           = 9.36895;
+HPC.effDes           = 0.8706244698;
 HPC.NcDes = 12286.4;
 
 // Bleed from the HPC design variable values
@@ -105,7 +105,7 @@ Bld3.Fl_O.Aphy     	 = 33.92636158;
 
 // Burner design variable values
 Burner.Fl_O.Aphy   	 = 158.7234053;
-Burner.dPqPBase		 = 0.05402;
+Burner.dPqP_dmd		 = 0.05402;
 Burner.effBase		 = 0.982745;
 // Burner.Emissions.PCT_NOx = 0;
 // Burner.Emissions.PNT5_Tt4 = 3038.565382;
@@ -118,19 +118,19 @@ Burner.meanRadius31       =  9.225;
 Burner.meanRadius40       =  12.87;
 
 // HPT design variable values
-HPT.S_map.s_eff    	 = 0.9877972883;
-HPT.S_map.s_Np     	 = 0.01738461935;
-HPT.S_map.s_dPqP   	 = 1.910440814;
-HPT.S_map.s_Wp     	 = 0.9039712315;
+HPT.S_map.s_effDes    	 = 0.9877972883;
+HPT.S_map.s_NpDes     	 = 0.01738461935;
+HPT.S_map.s_PRdes   	 = 1.910440814;
+HPT.S_map.s_WpDes     	 = 0.9039712315;
 HPT.Fl_O.Aphy      	 = 173.4603231;
 // HPT.S_map.TtMap		 = 2856.860522;
-HPT.S_map.PtMap		 = 149.869431;
+////HPT.S_map.PtMap		 = 149.869431;
 // HPT.S_map.RNImap	 = 1.561053055;
 HPT.Cool.xFactor	 = 3.01588;
 HPT.Cool.xFactor1	 = 0.695323;
-HPT.S_map.effDes           = 0.88882;
-HPT.S_map.parmMapDes           = 6;
-HPT.S_map.parmMap           = 3.617197017;
+HPT.effDes           = 0.88882;
+HPT.S_map.PRmapDes           = 6;
+HPT.PRbase          = 3.617197017;
 HPT.Cool.nStages           = 1;
 
 // Bleed from HPC design variable values
@@ -138,22 +138,22 @@ ATD_Bleed.Fl_O.Aphy	 = 173.4603231;
 
 // Duct 11 (duct between HPT and LPT) design variable values
 Duct11.Fl_O.Aphy   	 = 208.6593433;
-Duct11.dPqPbase		 = 0.005055;
+Duct11.dPqP_in		 = 0.005055;
 
 // LPT design variable values
-LPT.S_map.s_eff    	 = 0.9744042461;
-LPT.S_map.s_Np     	 = 0.04117569463;
-LPT.S_map.s_dPqP   	 = 1.562808146;
-LPT.S_map.s_Wp     	 = 0.9585251013;
+LPT.S_map.s_effDes    	 = 0.9744042461;
+LPT.S_map.s_NpDes     	 = 0.04117569463;
+LPT.S_map.s_PRdes   	 = 1.562808146;
+LPT.S_map.s_WpDes     	 = 0.9585251013;
 LPT.Fl_O.Aphy      	 = 620.7876502;
 // LPT.S_map.TtMap		 = 2054.029082;
-LPT.S_map.PtMap		 = 41.2230355;
+////LPT.S_map.PtMap		 = 41.2230355;
 // LPT.S_map.RNImap	 = 0.6172417131;
 LPT.Cool.xFactor	 = 0.786985;
 LPT.Cool.xFactor1	 = 1.85763;
-LPT.S_map.effDes           = 0.89957;
-LPT.S_map.parmMapDes           = 6.32;
-LPT.S_map.parmMap           = 4.40412866;
+LPT.effDes           = 0.89957;
+LPT.S_map.PRmapDes           = 6.32;
+LPT.PRbase           = 4.40412866;
 
 // Bypass after splitter design variable values
 BypBld.Fl_O.Aphy   	 = 1889.327162;
@@ -161,7 +161,7 @@ BypBld.HXBleedOn   	 = 0;
 
 // Duct 13 (duct between LPT and core nozzle) design variable values
 Duct13.Fl_O.Aphy   	 = 589.7482677;
-Duct13.dPqPbase		 = 0.010685;
+Duct13.dPqP_in		 = 0.010685;
 
 // Core nozzle design variable values
 Core_Nozz.AthCold  	 = 416.3933605;
@@ -173,7 +173,7 @@ Core_Nozz.DischargeCoeff.a_rtn		 = -0.3503175;
 
 // Duct 15 (duct between splitter and bypass nozzle) design variable values
 Duct15.Fl_O.Aphy   	 = 1889.327162;
-Duct15.dPqPbase		 = 0.014892;
+Duct15.dPqP_in		 = 0.014892;
 
 // Bypass nozzle design variable values
 Byp_Nozz.ADP_Ath   	 = 1367.36687;

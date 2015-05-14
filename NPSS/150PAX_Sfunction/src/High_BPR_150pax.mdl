@@ -104,8 +104,8 @@ Element Compressor Fan  {
 	S_map.alphaMapDes = 0.00;
 	S_map.RlineMapDes = 2.0000;
 	S_map.NcMapDes = 1.0;
-	S_map.PRdes = 1.658;
-	S_map.effDes = 0.875371;
+	PRdes = 1.658;
+	effDes = 0.875371;
 
 	real spec_flow_dsn = 42.0;
 	real hub_to_tip = 0.3;
@@ -116,7 +116,7 @@ Element Compressor Fan  {
 
 // Defining the splitter element
 Element Splitter Splitter  {
-   BPR = 5.2;
+   BPRdes = 5.2;
    Fl_O1.MN = 0.45; 
    Fl_O2.MN = 0.45; 
 }
@@ -170,8 +170,8 @@ Element Compressor LPC  {
 	S_map.alphaMapDes = 0.00;
 	S_map.RlineMapDes = 1.8000;
 	S_map.NcMapDes = 1.0;
-	S_map.PRdes = 1.9103;
-	S_map.effDes = 0.875588;
+	PRdes = 1.9103;
+	effDes = 0.875588;
 
 	real spec_flow_dsn = 32.83;
 	real hub_to_tip = 0.8; 
@@ -222,12 +222,12 @@ Element Compressor HPC  {
 	#endif
 
 	Fl_O.MN = 0.30; 
-	S_map.alpha = 0.00;
+	S_map.alphaMapDes = 0.00;
 	real BleedFlow = 3.930;            // Customer Bleed fixed mass flow
 	S_map.RlineMapDes = 2.000;
 	S_map.NcMapDes = 0.95;
-	S_map.PRdes = 8.085;
-	S_map.effDes = 0.915061;
+	PRdes = 8.085;
+	effDes = 0.915061;
 
 	real spec_flow_dsn = 26.7;
 	real a_CustBldMap = 0;
@@ -321,8 +321,8 @@ Element Compressor HPC  {
 		CustBld.fracBldW = ( BleedFlow / Fl_I.W + BleedAdder(Atmosphere.alt_in) )* bleedInstall;
 		
 		if(switchDes == DESIGN) {
-			S_map.effDes = effDesBase+d_eff_size; 
-			//cout << "S_map.effDes = " << S_map.effDes << endl;
+			effDes = effDesBase+d_eff_size; 
+			//cout << "effDes = " << effDes << endl;
 			//cout << "d_eff_size = " << d_eff_size << endl;
 		}
 	}

@@ -45,21 +45,21 @@ void calculate() {
 
 			if(switchGuessType == "PC") {
 
-				Ambient.W_in = TB_Ambient_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
-				Splitter.BPR = TB_BPR_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
-				Fan.S_map.RlineMap = TB_FanRline_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
-				LPC.S_map.RlineMap = TB_LPCRline_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
-				HPC.S_map.RlineMap = TB_HPCRline_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
-				Burner.FAR = TB_FAR_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
-				Burner.Wfuel = TB_Wfuel_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
-				HPT.PRbase = TB_HPTParm_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
-				LPT.PRbase = TB_LPTParm_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
-				HP_Shaft.Nmech = TB_HPNmech_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
-				LP_Shaft.Nmech = TB_LPNmech_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
+				Ambient.W_in = TB_Ambient_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
+				Splitter.BPR = TB_BPR_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
+				Fan.S_map.RlineMap = TB_FanRline_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
+				LPC.S_map.RlineMap = TB_LPCRline_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
+				HPC.S_map.RlineMap = TB_HPCRline_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
+				Burner.FAR = TB_FAR_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
+				Burner.Wfuel = TB_Wfuel_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
+				HPT.PRbase = TB_HPTParm_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
+				LPT.PRbase = TB_LPTParm_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
+				HP_Shaft.Nmech = TB_HPNmech_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
+				LP_Shaft.Nmech = TB_LPNmech_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
 				
 				#ifdef GEAREDFAN
 					#ifdef SCHEDULE
-						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_PC(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,PC);
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_PC(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,PC);
 					#endif
 				#endif
 
@@ -111,21 +111,21 @@ void calculate() {
 
 			else if(switchGuessType == "HPCNcPct") {
 
-				Ambient.W_in = TB_Ambient_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
-				Splitter.BPR = TB_BPR_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
-				Fan.S_map.RlineMap = TB_FanRline_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
-				LPC.S_map.RlineMap = TB_LPCRline_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
-				HPC.S_map.RlineMap = TB_HPCRline_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
-				Burner.FAR = TB_FAR_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
-				Burner.Wfuel = TB_Wfuel_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
-				HPT.PRbase = TB_HPTParm_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
-				LPT.PRbase = TB_LPTParm_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
-				HP_Shaft.Nmech = TB_HPNmech_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
-				LP_Shaft.Nmech = TB_LPNmech_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
+				Ambient.W_in = TB_Ambient_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
+				Splitter.BPR = TB_BPR_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
+				Fan.S_map.RlineMap = TB_FanRline_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
+				LPC.S_map.RlineMap = TB_LPCRline_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
+				HPC.S_map.RlineMap = TB_HPCRline_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
+				Burner.FAR = TB_FAR_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
+				Burner.Wfuel = TB_Wfuel_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
+				HPT.PRbase = TB_HPTParm_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
+				LPT.PRbase = TB_LPTParm_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
+				HP_Shaft.Nmech = TB_HPNmech_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
+				LP_Shaft.Nmech = TB_LPNmech_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
 				
 				#ifdef GEAREDFAN
 					#ifdef SCHEDULE
-						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,HPCNcPct);
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_HPCNcPct(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,HPCNcPct);
 					#endif
 				#endif
 
@@ -133,21 +133,21 @@ void calculate() {
 
 			else if(switchGuessType == "Wfuel") {
 
-				Ambient.W_in = TB_Ambient_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
-				Splitter.BPR = TB_BPR_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
-				Fan.S_map.RlineMap = TB_FanRline_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
-				LPC.S_map.RlineMap = TB_LPCRline_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
-				HPC.S_map.RlineMap = TB_HPCRline_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
-				Burner.FAR = TB_FAR_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
-				Burner.Wfuel = TB_Wfuel_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
-				HPT.PRbase = TB_HPTParm_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
-				LPT.PRbase = TB_LPTParm_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
-				HP_Shaft.Nmech = TB_HPNmech_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
-				LP_Shaft.Nmech = TB_LPNmech_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
+				Ambient.W_in = TB_Ambient_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
+				Splitter.BPR = TB_BPR_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
+				Fan.S_map.RlineMap = TB_FanRline_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
+				LPC.S_map.RlineMap = TB_LPCRline_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
+				HPC.S_map.RlineMap = TB_HPCRline_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
+				Burner.FAR = TB_FAR_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
+				Burner.Wfuel = TB_Wfuel_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
+				HPT.PRbase = TB_HPTParm_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
+				LPT.PRbase = TB_LPTParm_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
+				HP_Shaft.Nmech = TB_HPNmech_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
+				LP_Shaft.Nmech = TB_LPNmech_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
 				
 				#ifdef GEAREDFAN
 					#ifdef SCHEDULE
-						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Wfuel);
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Wfuel(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Wfuel);
 					#endif
 				#endif
 
@@ -155,21 +155,21 @@ void calculate() {
 
 			else if(switchGuessType == "FAR") {
 
-				Ambient.W_in = TB_Ambient_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
-				Splitter.BPR = TB_BPR_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
-				Fan.S_map.RlineMap = TB_FanRline_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
-				LPC.S_map.RlineMap = TB_LPCRline_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
-				HPC.S_map.RlineMap = TB_HPCRline_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
-				Burner.FAR = TB_FAR_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
-				Burner.Wfuel = TB_Wfuel_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
-				HPT.PRbase = TB_HPTParm_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
-				LPT.PRbase = TB_LPTParm_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
-				HP_Shaft.Nmech = TB_HPNmech_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
-				LP_Shaft.Nmech = TB_LPNmech_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,far_pc);
+				Ambient.W_in = TB_Ambient_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
+				Splitter.BPR = TB_BPR_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
+				Fan.S_map.RlineMap = TB_FanRline_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
+				LPC.S_map.RlineMap = TB_LPCRline_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
+				HPC.S_map.RlineMap = TB_HPCRline_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
+				Burner.FAR = TB_FAR_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
+				Burner.Wfuel = TB_Wfuel_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
+				HPT.PRbase = TB_HPTParm_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
+				LPT.PRbase = TB_LPTParm_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
+				HP_Shaft.Nmech = TB_HPNmech_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
+				LP_Shaft.Nmech = TB_LPNmech_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,far_pc);
 				
 				#ifdef GEAREDFAN
 					#ifdef SCHEDULE
-						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,FAR);
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_FAR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,FAR);
 					#endif
 				#endif
 
@@ -177,21 +177,21 @@ void calculate() {
 
 			else if(switchGuessType == "EPR") {
 
-				Ambient.W_in = TB_Ambient_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
-				Splitter.BPR = TB_BPR_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
-				Fan.S_map.RlineMap = TB_FanRline_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
-				LPC.S_map.RlineMap = TB_LPCRline_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
-				HPC.S_map.RlineMap = TB_HPCRline_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
-				Burner.FAR = TB_FAR_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
-				Burner.Wfuel = TB_Wfuel_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
-				HPT.PRbase = TB_HPTParm_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
-				LPT.PRbase = TB_LPTParm_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
-				HP_Shaft.Nmech = TB_HPNmech_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
-				LP_Shaft.Nmech = TB_LPNmech_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
+				Ambient.W_in = TB_Ambient_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
+				Splitter.BPR = TB_BPR_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
+				Fan.S_map.RlineMap = TB_FanRline_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
+				LPC.S_map.RlineMap = TB_LPCRline_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
+				HPC.S_map.RlineMap = TB_HPCRline_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
+				Burner.FAR = TB_FAR_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
+				Burner.Wfuel = TB_Wfuel_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
+				HPT.PRbase = TB_HPTParm_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
+				LPT.PRbase = TB_LPTParm_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
+				HP_Shaft.Nmech = TB_HPNmech_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
+				LP_Shaft.Nmech = TB_LPNmech_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
 				
 				#ifdef GEAREDFAN
 					#ifdef SCHEDULE
-						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,EPR);
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_EPR(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,EPR);
 					#endif
 				#endif
 
@@ -199,21 +199,21 @@ void calculate() {
 
 			else if(switchGuessType == "Fnet") {
 
-				Ambient.W_in = TB_Ambient_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
-				Splitter.BPR = TB_BPR_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
-				Fan.S_map.RlineMap = TB_FanRline_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
-				LPC.S_map.RlineMap = TB_LPCRline_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
-				HPC.S_map.RlineMap = TB_HPCRline_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
-				Burner.FAR = TB_FAR_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
-				Burner.Wfuel = TB_Wfuel_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
-				HPT.PRbase = TB_HPTParm_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
-				LPT.PRbase = TB_LPTParm_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
-				HP_Shaft.Nmech = TB_HPNmech_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
-				LP_Shaft.Nmech = TB_LPNmech_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
+				Ambient.W_in = TB_Ambient_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
+				Splitter.BPR = TB_BPR_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
+				Fan.S_map.RlineMap = TB_FanRline_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
+				LPC.S_map.RlineMap = TB_LPCRline_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
+				HPC.S_map.RlineMap = TB_HPCRline_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
+				Burner.FAR = TB_FAR_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
+				Burner.Wfuel = TB_Wfuel_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
+				HPT.PRbase = TB_HPTParm_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
+				LPT.PRbase = TB_LPTParm_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
+				HP_Shaft.Nmech = TB_HPNmech_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
+				LP_Shaft.Nmech = TB_LPNmech_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
 				
 				#ifdef GEAREDFAN
 					#ifdef SCHEDULE
-						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Amtosphere.dTs_in,Fnet);
+						Byp_Nozz.delta_s_Ath = TB_delta_s_Ath_Fnet(Atmosphere.alt_in,Atmosphere.MN_in,Atmosphere.dTs_in,Fnet);
 					#endif
 				#endif
 

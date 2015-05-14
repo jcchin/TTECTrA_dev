@@ -26,8 +26,10 @@
 	Fnet = TargetThrust;
 	//RunMaxPower();
 	run(); // Running the steady state case
-	
 	int z;
+	real myFn_targets[]={
+10000,10952,11905,12857,13810,14762,15714,16667,17619,18571,19524,20476,21429,22381,23333,24286,25238,26190,26500
+};
 	for ( z=0; z < myFn_targets.entries(); ++z ) { //loop through myFn_targets
 	    TargetThrust = myFn_targets[z];
 	    //cout << solver.independentNames << " " << solver.dependentNames << endl; //debug
@@ -43,8 +45,8 @@
 	// Input the flight condition where you want to create the Matlab
 	// formatted setpoint output
 	Atmosphere.alt_in = 0.00;
-	Ambient.MN = 0.00;
-	Ambient.dTs = 0.00;
+	Atmosphere.MN = 0.00;
+	Atmosphere.dTs = 0.00;
 
 	// Set the guess logic as you want
 	setOption( "switchGuess", "ON" );
@@ -64,7 +66,7 @@
 
 	if(solver.converged == 1 && errHandler.numErrors == 0) {
 
-		cout << "\nSet point generation at altitude" << Atmosphere.alt_in << " ft, " << "MN = " << Ambient.MN << ", and dTs = " << Ambient.dTs << " degF is successful!" << endl;
+		cout << "\nSet point generation at altitude" << Atmosphere.alt_in << " ft, " << "MN = " << Atmosphere.MN << ", and dTs = " << Atmosphere.dTs << " degF is successful!" << endl;
 
 	}
 
@@ -73,7 +75,7 @@
 	setOption( "switchGuessType", "PC" );
 	PC = 50;
 	Atmosphere.alt_in = 0.0;
-	Ambient.MN = 0.0;
-	Ambient.dTs = 0.0;
+	Atmosphere.MN = 0.0;
+	Atmosphere.dTs = 0.0;
 	RunMaxPower();
 #endif
