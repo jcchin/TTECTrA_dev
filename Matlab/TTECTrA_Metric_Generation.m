@@ -73,8 +73,14 @@ itrim=round(25/ttectra_in.in.Ts);
 %Plot the results
 if ~isempty(out)
     data(1,1)=min(out.HPC_SM(itrim:end));
+    
+    try
     data(1,2)=out.t(min(find(out.Fnet>=(0.95*dFn+minFn))))-ttectra_in.in.t_vec(7);
     data(1,3)=out.t(min(find(out.Fnet>=(0.98*dFn+minFn))))-ttectra_in.in.t_vec(7);
+    catch
+        data(1,2)=out.t(min(find(out.Fnet>=(0.95*(max(out.Fnet))))))-ttectra_in.in.t_vec(7);
+        data(1,3)=out.t(min(find(out.Fnet>=(0.98*(max(out.Fnet))))))-ttectra_in.in.t_vec(7);
+    end
 end
 
 %% Redesign and Test Accel Schedule Designs for other surge margins
@@ -90,10 +96,6 @@ for iaccel=1:length(HPC_SM_vec)
     
     kdata(iaccel).NcR25_sched=ttectra_in.Limiter.NcR25_sched;
     kdata(iaccel).Ncdot_sched=ttectra_in.Limiter.Ncdot_sched;
-    
-    %figure(101);
-    %plot(ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,ps{mod(iaccel,length(ps)-1)+1},'Linewidth',2); grid on; hold on;
-    %xlabel('NcR25'); ylabel('Ncdot');
     
     TTECTrA_IWP_s
     
@@ -112,16 +114,6 @@ for iaccel=1:length(HPC_SM_vec)
         
         kdata(iaccel).HPC_SM=out.HPC_SM;
         kdata(iaccel).Fnet=out.Fnet;
-        
-%         figure(102);
-%         subplot(311); set(gca,'FontSize',12); plot(out.t,out.Fnet,ps{mod(iaccel,length(ps)-1)+1},'LineWidth',2);
-%         xlabel('Time (sec)','FontSize',12);ylabel('F_{net}R, lbf','FontSize',12); grid on; hold on;
-%         subplot(312); set(gca,'FontSize',12);
-%         plot(out.t,out.HPC_SM,ps{mod(iaccel,length(ps)-1)+1},'LineWidth',2);
-%         xlabel('Time (sec)','FontSize',12);ylabel('HPC SM, %','FontSize',12); grid on; hold on;
-%         subplot(313); set(gca,'FontSize',12);
-%         plot(out.t,out.T40,ps{mod(iaccel,length(ps)-1)+1},'LineWidth',2);
-%         xlabel('Time (sec)','FontSize',12);ylabel('T40, \circR','FontSize',12); grid on; hold on;
     else
         disp('WARNING -- Simulation failed, no output generated')
     end

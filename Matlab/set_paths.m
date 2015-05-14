@@ -26,16 +26,15 @@ npss_location = ''; %path location of the S-function capable NPSS executable
 npss_engine_name = '150PAX_Sfunction'; %name of the NPSS engine folder
 run_file = '150PAX.run'; %NPSS run script
 
-ttectra_engine_name= '150PAX_VAFN';
-model_flags = '-DTTECTrA -DMODEL -DPLOT -DGEAREDFAN'; %flags for the very first NPSS trip (if files don't exist)
-ss_flags = '-DTTECTrA -DSETPNT -DLINEARMODEL -DGEAREDFAN'; %flags for the NPSS steady-state runs 
-transient_flags = ' -DTRANSIENT -DGEAREDFAN'; %flags for the S-function transient runs
+%ttectra_engine_name= '150PAX_VAFN';
+%model_flags = '-DTTECTrA -DMODEL -DPLOT -DGEAREDFAN -DSCHEDULE'; %flags for the very first NPSS trip (if files don't exist)
+%ss_flags = '-DTTECTrA -DSETPNT -DLINEARMODEL -DGEAREDFAN -DSCHEDULE'; %flags for the NPSS steady-state runs 
+%transient_flags = ' -DTRANSIENT -DGEAREDFAN -DSCHEDULE'; %flags for the S-function transient runs
 
-%ttectra_engine_name= '150PAX_noVAFN';
-%model_flags = '-DTTECTrA -DMODEL -DPLOT'; %flags for the very first NPSS trip (if files don't exist)
-%ss_flags = '-DTTECTrA -DSETPNT -DLINEARMODEL'; %flags for the NPSS steady-state runs 
-%transient_flags = ' -DTRANSIENT'; %flags for the S-function transient runs
-
+ttectra_engine_name= '150PAX_noVAFN2';
+model_flags = '-DTTECTrA -DMODEL -DPLOT'; %flags for the very first NPSS trip (if files don't exist)
+ss_flags = '-DTTECTrA -DSETPNT -DLINEARMODEL'; %flags for the NPSS steady-state runs 
+transient_flags = ' -DTRANSIENT'; %flags for the S-function transient runs
 
 % Inputs
 % Add NPSS variables to be promoted as inputs to the s-function
