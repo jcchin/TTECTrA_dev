@@ -19,11 +19,9 @@
 // Defining the variables for the guess logic and setting their default values
 real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=2.29315, far_pc=0.0347834, EPR=1.33495, Fnet=31286.6;
 
-// real PC=50;
-
 // Guess logic element
 Element Guess { 
-  #include <Guess.ins> 
+  #include <Guess.ins>
 }
 
 // Defining the Ambient element
@@ -352,20 +350,16 @@ Element FuelStart FUEL36  {
 
 // Defining the burner element
 Element Burner Burner  {
-   real meanRadius31 = 7;
-   real meanRadius40 = 14;
-   effBase = 0.999;
-   switchHotLoss = "input";
-   dPqPBase = 0.045;
-   Fl_O.MN = 0.10;
+	real meanRadius31 = 7;
+	real meanRadius40 = 14;
+	effBase = 0.999;
+	switchHotLoss = "input";
+	dPqPBase = 0.045;
+	Fl_O.MN = 0.10;
 
-   switchBurn = "FAR";
-   FAR = 0.0286;
-   TtCombOut = 3130.0;
-
-   void preexecute() { 
-	   //Burner.Wfuel = transientDriver2(time);
-   }
+	switchBurn = "FAR";
+	FAR = 0.0286;
+	TtCombOut = 3130.0;
    
 }
 
@@ -992,7 +986,7 @@ class transient_Nozzle extends Nozzle {
 			
 			else if ( switchForm == RAMP ) {
 				
-				// Calculating the nozzle throat area scalar using a step response 
+				// Calculating the nozzle throat area scalar using a ramp response 
 				// solution
 				s_Ath = s_AthPrev + 
 				( s_AthDmdPrev - s_AthPrev ) * ( 1 - exp ( -( timeStep / tau ))) +
@@ -1085,7 +1079,7 @@ Element transient_Nozzle Byp_Nozz  {
    
 	FanNcPctName = "Fan.NcPct";
 
-	tau = 0.5;
+	tau = 10.0;
 
 	// Schedule for the Fan R-line target = 2.2 case
 	// Table TB_s_Ath_Schedule(real Fan_NcPct) {
@@ -1095,8 +1089,8 @@ Element transient_Nozzle Byp_Nozz  {
 	
 	// Schedule for the Fan R-line target = 1.8 case
 	Table TB_s_Ath_Schedule(real Fan_NcPct) {
-		Fan_NcPct = {100.0, 91.7923, 91.5435, 87.0581, 80.684, 72.4671, 62.4186, 60.0}
-		delta_s_Ath = {0.32997, 0.32997, 0.33169, 0.35782, 0.39965, 0.46055, 0.5, 0.5}
+		Fan_NcPct = {46.0671, 63.0211, 74.0523, 81.4725, 81.8542, 87.1216, 87.4131, 91.6784, 91.9176, 95.6326, 95.8449}
+		delta_s_Ath = {0.5, 0.494778, 0.410003, 0.3639, 0.362342, 0.344095, 0.342791, 0.325262, 0.323854, 0.304633, 0.303749}
 	}
 	
 }
@@ -1325,7 +1319,7 @@ Element Cycle_Limit_Check {
 				Fan_PR_limit = 1.00;
 				LPC_PR_limit = 1.00;
 				HPC_PR_limit = 1.00;
-				Fan_SMW_limit = 10.00;
+				Fan_SMW_limit = 5.00;
 				LPC_SMW_limit = 10.00;
 				HPC_SMW_limit = 15.00;
 				Fan_Rline_limit = 1.00;

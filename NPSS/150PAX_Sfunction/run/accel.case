@@ -22,11 +22,14 @@ Ambient.dTs = 0.0;
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
 
-// Turning the VAFN off
-setOption( "switchVAFN", "ON" );
-
-// Turning the VAFN schedule off
-setOption( "switchVAFNSchedule", "ON" );
+#ifdef GEAREDFAN
+	// Turning the VAFN on
+	setOption( "switchVAFN", "ON" );
+	#ifdef SCHEDULE
+		// Turning the VAFN schedule off
+		setOption( "switchVAFNSchedule", "ON" );
+	#endif
+#endif
 
 // Running for maximum thrust
 PC = 50;
@@ -110,9 +113,10 @@ if(solver.converged == 1 && errHandler.numErrors == 0){
 // trans_Condition.addConstraint("accel_limit", "MAX",1,1);
 // trans_Condition.addConstraint("HPC_SMW_Limit" ,"MAX",1,-1);
 
-// trans_Condition.addConstraint("HPC_SMN_Limit" ,"MAX",1,-1);
+// trans_Condition.addConstraint("HP_Shaft_Acceleration_Limit" ,"MAX",1,1);
+// trans_Condition.addConstraint("Tt4_Max_Limit" ,"MAX",1,1);
 
-trans_Condition.addConstraint("LP_Shaft_Deceleration_Limit" ,"MIN",1,1);
+trans_Condition.addConstraint("HP_Shaft_Deceleration_Limit" ,"MIN",1,1);
 
 // Setting up the solver for transient mode
 transient_setup();
