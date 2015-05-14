@@ -14,10 +14,16 @@
 
 Subelement TurbinePRmap S_map {
 	
-
-	
+	s_parmMap  = 1.0;
+	a_parmMap  = 0.0;
+	s_parmGeom = 1.0;
+	a_parmGeom = 0.0;
+	s_RNI = 1.0;
+	a_RNI = 0.0;
 	effDes     = 0.9288;
-
+	parmGeomDes= 1.0;
+	parmMapDes = 6.000;
+	parmNcDes  = 100.0;
   	PRmapDes   = 4.975; // unscaled map design point pressure ratio
 	NpMapDes = 100.0; // unscaled map design point speed
 	
@@ -119,11 +125,10 @@ Subelement TurbinePRmap S_map {
 			10.144,  10.144,  10.144,  10.144,  10.144,  10.144 }
 		}
 		
-	
+	}
 	
 	NcDes.interp = "linear";
 	NcDes.extrap = "none";
 	PRdes.interp = "linear";
-PRdes.extrap = "none";    
-}
+PRdes.extrap = "none";      
 }

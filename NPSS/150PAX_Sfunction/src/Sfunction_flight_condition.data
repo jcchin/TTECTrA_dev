@@ -1,4 +1,4 @@
 // Inputting the flight condition
-Ambient.alt = 0.000000;
+Atmosphere.alt_in = 0.000000;
 Ambient.MN = 0.000000;
 Ambient.dTs = 0.000000;

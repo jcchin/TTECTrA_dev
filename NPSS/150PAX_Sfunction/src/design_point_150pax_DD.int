@@ -22,7 +22,7 @@ Inlet.S_install.Acapture = 3265.875372;
 // Fan design variable values
 Fan.S_map.NcDes		 = 0.99;
 Fan.S_map.s_effDes 	 = 1.000115125;
-Fan.S_map.s_NcDes  	 = 0.0001876765646;
+Fan.S_map.s_NcDes  	 = 1/0.0001876765646;
 Fan.S_map.s_PRdes  	 = 1.000102184;
 Fan.S_map.s_WcDes  	 = 1.035614185;
 Fan.Fl_O.Aphy      	 = 2395.041018;
@@ -40,8 +40,8 @@ Fan.S_map.PRdes           = 1.68511;
 Fan.S_map.effDes           = 0.894783;
 
 // Splitter design variable values
-Splitter.Fl_01.Aphy	 = 505.7138566;
-Splitter.Fl_02.Aphy	 = 1889.327162;
+Splitter.Fl_O1.Aphy	 = 505.7138566;
+Splitter.Fl_O2.Aphy	 = 1889.327162;
 Splitter.BPR           = 5.106632765;
 
 // Duct 4 (duct between the splitter and LPC) design variable values
@@ -51,7 +51,7 @@ Duct4.dPqPbase		 = 0.004825;
 // LPC design variable values
 LPC.S_map.NcDes  	 = 1;
 LPC.S_map.s_effDes 	 = 1.000128757;
-LPC.S_map.s_NcDes  	 = 0.0002081451801;
+LPC.S_map.s_NcDes  	 = 1/0.0002081451801;
 LPC.S_map.s_PRdes  	 = 1.000026739;
 LPC.S_map.s_WcDes  	 = 1.007578757;
 LPC.Fl_O.Aphy      	 = 294.7300356;
@@ -70,7 +70,7 @@ Duct6.dPqPbase		 = 0.010125;
 
 // HPC design variable values
 HPC.S_map.s_effDes 	 = 0.9999667259;
-HPC.S_map.s_NcDes  	 = 7.852980541e-005;
+HPC.S_map.s_NcDes  	 = 1/7.852980541e-005;
 HPC.S_map.s_PRdes  	 = 1.000084498;
 HPC.S_map.s_WcDes  	 = 1.032203274;
 HPC.Fl_O.Aphy      	 = 49.23240706;

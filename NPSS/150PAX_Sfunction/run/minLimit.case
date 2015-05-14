@@ -21,7 +21,7 @@ setOption( "switchVAFNSchedule", "ON" );
 PC = 21;
 
 // Running the minimum RU limit at 38,000 ft, MN = 0.70, and dTs = 0.0
-Ambient.alt = 38000;
+Atmosphere.alt_in = 38000;
 Ambient.MN = 0.70;
 Ambient.dTs = 0.0;
 run_current_point();
@@ -33,7 +33,7 @@ min_RU_limit = Burner.Wfuel / FS_3.Ps;
 // Minimum Ps3 limit case
 //-------------------------------------------------------------------------------------------------
 // Running the minimum Ps3 limit at 40,000 ft, MN = 0.65, and dTs = 0.0
-Ambient.alt = 40000;
+Atmosphere.alt_in = 40000;
 Ambient.MN = 0.65;
 run_current_point();
 
@@ -44,7 +44,7 @@ min_Ps3_limit = FS_3.Ps;
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
 PC = 50;
-Ambient.alt = 0.0;
+Atmosphere.alt_in = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 RunMaxPower();

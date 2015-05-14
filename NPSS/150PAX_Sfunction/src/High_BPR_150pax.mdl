@@ -25,14 +25,24 @@ real PC=50, FanNcPct=100, LPCNcPct=100, HPCNcPct=100, Wfuel=2.29315, far_pc=0.03
 Element Guess { 
   #include <Guess.ins> 
 }
+#include <Duct_new.int>;
+
 
 // Defining the Ambient element
-Element FlightConditions Ambient  {
-	alt = 0.;
-	MN = 0.00;
-	dTs = 27.;
-	W = 759.56;
+Element  Ambient Atmosphere {
+        switchMode = "ALDTMN";
+	alt_in = 0.;
+	MN_in = 0.00;
+	dTs_in = 27.;
+
 }
+
+Element InletStart Ambient{
+  AmbientName = "Atmosphere";
+  W_in = 759.56;
+}
+
+
 
 // Defining the inlet element
 // Element Inlet Inlet  {
@@ -83,30 +93,32 @@ Element Compressor Fan  {
 		#include <FAN_DD.map>
 	#endif
 
-	S_map.S_eff.TB_Wc.NcorrMap.extrap = "linear" ;
-	S_map.S_eff.TB_eff.NcorrMap.extrap = "linear" ;
-	S_map.S_eff.TB_PR.NcorrMap.extrap = "linear" ;
-	S_map.S_eff.TB_Wc.RlineMap.extrap = "linear" ;
-	S_map.S_eff.TB_eff.RlineMap.extrap = "linear" ;
-	S_map.S_eff.TB_PR.RlineMap.extrap = "linear" ;
+	S_map.TB_Wc.NcorrMap.extrap = "linear" ;
+	S_map.TB_eff.NcorrMap.extrap = "linear" ;
+	S_map.TB_PR.NcorrMap.extrap = "linear" ;
+	S_map.TB_Wc.RlineMap.extrap = "linear" ;
+	S_map.TB_eff.RlineMap.extrap = "linear" ;
+	S_map.TB_PR.RlineMap.extrap = "linear" ;
 
 	Fl_O.MN = 0.45; 
-	S_map.alpha = 0.00;
-	S_map.RlineMap = 2.0000;
-	S_map.NcDes = 1.0;
+	S_map.alphaMapDes = 0.00;
+	S_map.RlineMapDes = 2.0000;
+	S_map.NcMapDes = 1.0;
 	S_map.PRdes = 1.658;
 	S_map.effDes = 0.875371;
 
 	real spec_flow_dsn = 42.0;
 	real hub_to_tip = 0.3;
-
+	
+	
+	
 }
 
 // Defining the splitter element
 Element Splitter Splitter  {
    BPR = 5.2;
-   Fl_01.MN = 0.45; 
-   Fl_02.MN = 0.45; 
+   Fl_O1.MN = 0.45; 
+   Fl_O2.MN = 0.45; 
 }
 
 Element Bleed  BypBld  {
@@ -123,13 +135,13 @@ Element Bleed  BypBld  {
      //fracW = InterHXBleedOn;
    } 
     void preexecute() { 
-	    if (Ambient.alt < 10000) {  //cooled cooling logic
+	    if (Atmosphere.alt_in < 10000) {  //cooled cooling logic
 		    HX.fracW = HXBleedOn;
 		}			
 		else {			
 		    HX.fracW = 0.0;
 		}		
-	    if (Ambient.alt < 10000) {  //intercooler logic
+	    if (Atmosphere.alt_in < 10000) {  //intercooler logic
 		    InterHX.fracW = InterHXBleedOn;
 		}			
 		else {			
@@ -140,7 +152,7 @@ Element Bleed  BypBld  {
 
 // Defining the element for the duct between the splitter and LPC
 Element Duct Duct4  {
-   dPqPbase = 0.010;
+   dPqP_in = 0.010;
    Fl_O.MN = 0.40; 
 }
 
@@ -155,9 +167,9 @@ Element Compressor LPC  {
 	#endif
 
 	Fl_O.MN = 0.40; 
-	S_map.alpha = 0.00;
-	S_map.RlineMap = 1.8000;
-	S_map.NcDes = 1.0;
+	S_map.alphaMapDes = 0.00;
+	S_map.RlineMapDes = 1.8000;
+	S_map.NcMapDes = 1.0;
 	S_map.PRdes = 1.9103;
 	S_map.effDes = 0.875588;
 
@@ -180,15 +192,22 @@ Element Compressor LPC  {
 		#ifndef DF
 			ABTC.fracBldW = 0;
 		#else			
-			ABTC.fracBldW = ABTCschedule(Ambient.alt)*(Splitter.BPR + 1);   //ABTC flow is a function of fan flow
+			ABTC.fracBldW = ABTCschedule(Atmosphere.alt_in)*(Splitter.BPR + 1);   //ABTC flow is a function of fan flow
 		#endif
 	}
-   
+   void postexecute(){
+	   cerr << S_map.alphaMap << " " << S_map.NcMap<< " " << S_map.RlineMap << endl;
+           cerr << Nc << " " << S_map.s_NcDes << " " << S_map.NcMap << " " << S_map.NcMapDes << " " << NcDes << endl;
+	  
+	}
+	void preexecute(){
+	   cerr << S_map.NcMapDes << endl;
+	}
 }
 
 // Defining the duct element between LPC and HPC
 Element Duct Duct6  {
-   dPqPbase = 0.015;
+   dPqP_in = 0.015;
    Fl_O.MN = 0.45; 
 }
 
@@ -205,8 +224,8 @@ Element Compressor HPC  {
 	Fl_O.MN = 0.30; 
 	S_map.alpha = 0.00;
 	real BleedFlow = 3.930;            // Customer Bleed fixed mass flow
-	S_map.RlineMap = 2.000;
-	S_map.NcDes = 0.95;
+	S_map.RlineMapDes = 2.000;
+	S_map.NcMapDes = 0.95;
 	S_map.PRdes = 8.085;
 	S_map.effDes = 0.915061;
 
@@ -293,13 +312,13 @@ Element Compressor HPC  {
 
 	void preexecute() { 
 		/* CustBld.fracBldW = BleedFlow / Fl_I.W ;  // calc fracW to give fixed flow
-		a_CustBldMap = BleedAdder(Ambient.alt);
+		a_CustBldMap = BleedAdder(Atmosphere.alt_in);
 		CustBld.fracBldW += (a_CustBldMap); // adds more bleed flow if technology changes map
 		CustBld.fracBldW *= bleedInstall; */
 		FlowControl.fracBldWork = nStagesFlowControl/10;
 		FlowControl.fracBldP = 1.5335** nStagesFlowControl/20.033;
 		FlowControl.fracBldW = flowControlFlow*nStagesFlowControl;
-		CustBld.fracBldW = ( BleedFlow / Fl_I.W + BleedAdder(Ambient.alt) )* bleedInstall;
+		CustBld.fracBldW = ( BleedFlow / Fl_I.W + BleedAdder(Atmosphere.alt_in) )* bleedInstall;
 		
 		if(switchDes == DESIGN) {
 			S_map.effDes = effDesBase+d_eff_size; 
@@ -356,7 +375,7 @@ Element Burner Burner  {
    real meanRadius40 = 14;
    effBase = 0.999;
    switchHotLoss = "input";
-   dPqPBase = 0.045;
+   dPqP_dmd = 0.045;
    Fl_O.MN = 0.10;
 
    switchBurn = "FAR";
@@ -378,11 +397,9 @@ Element Turbine HPT  {
    FlowStation FS_41;
    Fl_O.MN = 0.30;
 
-   S_map.effDes = 0.9288;
-   S_map.parmMap = 3.290;
-   S_map.parmGeomDes  = 1.0;
-   S_map.parmMapDes = 6.000;
-   S_map.parmNcDes = 100.0;
+   effDes = 0.9288;
+   PRbase = 3.290;
+
 
    InterStageBleedInPort Non_ChargeableBld { 
          Pfract  = 1.0;
@@ -426,7 +443,7 @@ Element Bleed ATD_Bleed  {
 
 // Defining the duct element between HPT and LPT
 Element Duct Duct11  {
-   dPqPbase = 0.005;
+   dPqP_in = 0.005;
    Fl_O.MN = 0.30; 
 
 }
@@ -440,11 +457,11 @@ Element Turbine LPT  {
    FlowStation FS_49;
    Fl_O.MN = 0.35;
 
-   S_map.effDes = 0.9276;
-   S_map.parmMap = 4.890;
-   S_map.parmGeomDes  = 1.0;
-   S_map.parmMapDes = 6.3200;
-   S_map.parmNcDes = 100.0;
+   effDes = 0.9276;
+   PRbase = 4.890;
+
+   S_map.PRmapDes = 6.3200;
+   S_map.NpMapDes = 100.0;
 
    InterStageBleedInPort Non_ChargeableBld { 
          Pfract  = 1.0;
@@ -489,7 +506,7 @@ Element Turbine LPT  {
 
 // Defining the element between LPT and core nozzle
 Element Duct Duct13  {
-   dPqPbase = 0.010;
+   dPqP_in = 0.010;
    Fl_O.MN = 0.25; 
 
 }
@@ -540,18 +557,18 @@ Element Nozzle Core_Nozz  {
 	}
 	CvScalarHighAlt.s_rtn = 1;		
 
-	PsExhName = "Ambient.Ps"; 
+	PsExhName = "Ambient.Fl_O.Ps"; 
 
 	void preexecute() {
 		VelCoeff.s_rtn = 1;
-		if (Ambient.alt < 18000) {  
-		VelCoeff.s_rtn *= CvScalarLowAlt(Ambient.alt);
+		if (Atmosphere.alt_in < 18000) {  
+		VelCoeff.s_rtn *= CvScalarLowAlt(Atmosphere.alt_in);
 		}			
 		else {			
-		VelCoeff.s_rtn *= CvScalarHighAlt(Ambient.alt);
+		VelCoeff.s_rtn *= CvScalarHighAlt(Atmosphere.alt_in);
 		}	
-		Cang = 0.997*CangScalar(Ambient.alt);
-		//VelCoeff.s_rtn = CvScalarLowAlt(Ambient.alt)*CvScalarHighAlt(Ambient.alt);	 // scales Cv if technology changes map 
+		Cang = 0.997*CangScalar(Atmosphere.alt_in);
+		//VelCoeff.s_rtn = CvScalarLowAlt(Atmosphere.alt_in)*CvScalarHighAlt(Atmosphere.alt_in);	 // scales Cv if technology changes map 
 	}
 
 }
@@ -561,8 +578,8 @@ Element FlowEnd  Core_NozzEnd  {
 
 // Defining the duct element between the splitter and bypass nozzle    
 Element Duct Duct15  {
-	dPqPbase = 0.015;
-	switchAud = "AUDIT";
+	dPqP_in = 0.015;
+	//switchAud = "AUDIT";
    
 	void preexecute() {
 		if (Splitter.BPR < 18) {	   
@@ -594,7 +611,7 @@ Element Bleed Bld16  {
 
   void preexecute() { 
 	   inletRhoV = Inlet.Fl_I.rhos*max(200,Inlet.Fl_I.Vflow)/Fl_I.W;
-	   CircControl.fracW = CirculationControl(Ambient.MN)*inletRhoV;
+	   CircControl.fracW = CirculationControl(Atmosphere.MN_in)*inletRhoV;
    }     
 }
 
@@ -908,11 +925,11 @@ class transient_Nozzle extends Nozzle {
 	void calculate() {
 		
 		VelCoeff.s_rtn = 1;
-		if (Ambient.alt < 18000) {  
-			VelCoeff.s_rtn *= CvScalarLowAlt(Ambient.alt);
+		if (Atmosphere.alt_in < 18000) {  
+			VelCoeff.s_rtn *= CvScalarLowAlt(Atmosphere.alt_in);
 		}			
 		else {			
-			VelCoeff.s_rtn *= CvScalarHighAlt(Ambient.alt);
+			VelCoeff.s_rtn *= CvScalarHighAlt(Atmosphere.alt_in);
 		}	
 
 		if (solutionMode == STEADY_STATE) {
@@ -1081,7 +1098,7 @@ Element transient_Nozzle Byp_Nozz  {
 	}
 	CvScalarHighAlt.s_rtn = 1;	
 
-	PsExhName = "Ambient.Ps";
+	PsExhName = "Ambient.Fl_O.Ps";
    
 	FanNcPctName = "Fan.NcPct";
 
@@ -1143,16 +1160,16 @@ Element Nozzle  Byp_Nozz  {
 	}
 	CvScalarHighAlt.s_rtn = 1;	
 
-   PsExhName = "Ambient.Ps";
+   PsExhName = "Ambient.Fl_O.Ps";
    
    void preexecute() { 
    
 		VelCoeff.s_rtn = 1;
-		if (Ambient.alt < 18000) {  
-			VelCoeff.s_rtn *= CvScalarLowAlt(Ambient.alt);
+		if (Atmosphere.alt_in < 18000) {  
+			VelCoeff.s_rtn *= CvScalarLowAlt(Atmosphere.alt_in);
 		}			
 		else {			
-			VelCoeff.s_rtn *= CvScalarHighAlt(Ambient.alt);
+			VelCoeff.s_rtn *= CvScalarHighAlt(Atmosphere.alt_in);
 		}
 		
 		AthCold = ADP_Ath*s_Ath;
@@ -1191,7 +1208,7 @@ Element Shaft HP_Shaft  {
 	HPXHighAlt.s_rtn = 0;	
 
 	void preexecute() { 
-	 HPX = (HPXBase + HPXLowAlt(Ambient.alt) + HPXHighAlt(Ambient.alt))*HPInstall;
+	 HPX = (HPXBase + HPXLowAlt(Atmosphere.alt_in) + HPXHighAlt(Atmosphere.alt_in))*HPInstall;
 	}
 
 	 real dNcqdt;
@@ -1261,8 +1278,8 @@ Element EngPerf Perf  {
 		//
 		FS_A.copyFlow( "HPC.Fl_I" ); 
 		FS_B.copyFlow( "HPT.Fl_O" ); 
-		FS_A.setStaticPs(Ambient.Ps);  // expand to Pamb to get ideal velocity
-		FS_B.setStaticPs(Ambient.Ps);  // expand to Pamb to get ideal velocity
+		FS_A.setStaticPs(Ambient.Fl_O.Ps);  // expand to Pamb to get ideal velocity
+		FS_B.setStaticPs(Ambient.Fl_O.Ps);  // expand to Pamb to get ideal velocity
 		delta_KE = (0.5*FS_B.W/C_GRAVITY)*FS_B.V**2.0 - 
 				(0.5*FS_A.W/C_GRAVITY)*FS_A.V**2.0 ; 
 		Thrml_Eff = delta_KE / (Burner.Wfuel*FUEL36.LHV*C_BTUtoFT_LBF); 
@@ -1500,7 +1517,7 @@ linkPorts("Ambient.Fl_O", "Inlet.Fl_I", "FS_1");
 linkPorts("Inlet.Fl_O", "InletFlowControl.Fl_I", "FS_11");
 linkPorts("InletFlowControl.Fl_O", "Fan.Fl_I", "FS_2");
 linkPorts("Fan.Fl_O", "Splitter.Fl_I", "FS_21");
-linkPorts("Splitter.Fl_01", "Duct4.Fl_I", "FS_22");
+linkPorts("Splitter.Fl_O1", "Duct4.Fl_I", "FS_22");
 linkPorts("Duct4.Fl_O", "LPC.Fl_I", "FS_23");
 linkPorts("LPC.Fl_O", "Duct6.Fl_I", "FS_24");
 linkPorts("Duct6.Fl_O", "HPC.Fl_I", "FS_25");
@@ -1514,7 +1531,7 @@ linkPorts("Duct11.Fl_O", "LPT.Fl_I", "FS_48");
 linkPorts("LPT.Fl_O", "Duct13.Fl_I", "FS_5");
 linkPorts("Duct13.Fl_O", "Core_Nozz.Fl_I", "FS_7");
 linkPorts("Core_Nozz.Fl_O", "Core_NozzEnd.Fl_I", "FS_9");
-linkPorts("Splitter.Fl_02", "BypBld.Fl_I", "FS_13");
+linkPorts("Splitter.Fl_O2", "BypBld.Fl_I", "FS_13");
 linkPorts("BypBld.Fl_O", "Duct15.Fl_I", "FS_15");
 linkPorts("Duct15.Fl_O", "Bld16.Fl_I", "FS_16");
 linkPorts("Bld16.Fl_O", "Byp_Nozz.Fl_I", "FS_17");

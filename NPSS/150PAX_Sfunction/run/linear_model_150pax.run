@@ -79,7 +79,7 @@ SS_Setup();
 run();
 
 // Inputting the flight conditions
-Ambient.alt = 0.0;
+Atmosphere.alt_in = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 
@@ -213,7 +213,7 @@ for ( z=0; z < dTs.entries(); ++z ) { //loop through Fan_NcPct_targets
 //----------------------------------------------------------------------------------
 real alts[]={2500, 5000};
 for ( z=0; z < alts.entries(); ++z ) { //loop through Fan_NcPct_targets
-    Ambient.alt = alts[z];
+    Atmosphere.alt_in = alts[z];
     CASE++;
     run();
 }
@@ -237,7 +237,7 @@ run_linear();
 //----------------------------------------------------------------------------------
 alts={6000, 7000, 8000, 9000, 10000};
 for ( z=0; z < alts.entries(); ++z ) { //loop through Fan_NcPct_targets
-    Ambient.alt = alts[z];
+    Atmosphere.alt_in = alts[z];
     CASE++;
     run();
 }
@@ -261,7 +261,7 @@ run_linear();
 //----------------------------------------------------------------------------------
 alts={ 11000, 12000, 13000, 14000, 15000};
 for ( z=0; z < alts.entries(); ++z ) { //loop through Fan_NcPct_targets
-    Ambient.alt = alts[z];
+    Atmosphere.alt_in = alts[z];
     CASE++;
     run();
 }
@@ -285,7 +285,7 @@ run_linear();
 //----------------------------------------------------------------------------------
 alts={ 16000, 17000, 18000, 19000, 20000};
 for ( z=0; z < alts.entries(); ++z ) { //loop through Fan_NcPct_targets
-    Ambient.alt = alts[z];
+    Atmosphere.alt_in = alts[z];
     CASE++;
     run();
 }
@@ -299,7 +299,7 @@ run_linear();
 //----------------------------------------------------------------------------------
 alts={ 21000, 22000, 23000, 24000, 25000};
 for ( z=0; z < alts.entries(); ++z ) { //loop through Fan_NcPct_targets
-    Ambient.alt = alts[z];
+    Atmosphere.alt_in = alts[z];
     CASE++;
     run();
 }
@@ -313,7 +313,7 @@ run_linear();
 //----------------------------------------------------------------------------------
 alts={ 26000, 27000, 28000, 29000, 30000};
 for ( z=0; z < alts.entries(); ++z ) { //loop through Fan_NcPct_targets
-    Ambient.alt = alts[z];
+    Atmosphere.alt_in = alts[z];
     CASE++;
     run();
 }
@@ -337,7 +337,7 @@ run_linear();
 //----------------------------------------------------------------------------------
 alts={ 31000, 32000, 33000, 34000, 35000};
 for ( z=0; z < alts.entries(); ++z ) { //loop through Fan_NcPct_targets
-    Ambient.alt = alts[z];
+    Atmosphere.alt_in = alts[z];
     CASE++;
     run();
 }

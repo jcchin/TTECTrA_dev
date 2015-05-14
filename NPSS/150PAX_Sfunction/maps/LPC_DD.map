@@ -1,5 +1,5 @@
 //This map is generated using the CMPGEN program NPSSOUTPUT subroutine in the CMPGEN program
-Subelement CompressorMap_mod S_map {
+Subelement CompressorRlineMap S_map {
     alpha = 0.0; //unused variable geom dim
 
 // RlineMap and NcDes determine the map point to be used as the
@@ -22,7 +22,6 @@ Subelement CompressorMap_mod S_map {
     SMWmap   = 13.690;
     SMNmap   = 13.690;
     // Declare new subelement of CompressorEfficiencyMap
-Subelement CompressorEfficiencyMap S_eff {
 
 Table TB_Wc(real alphaMap, real NcorrMap, real RlineMap) {
   alphaMap=  0.000 {
@@ -473,5 +472,5 @@ Table TB_PR(real alphaMap, real NcorrMap, real RlineMap) {
   }
 }
 
+//Subelement CompressorReynoldsEffects_mod S_Re{} 
 }
-Subelement CompressorReynoldsEffects_mod S_Re{} }

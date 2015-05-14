@@ -20,7 +20,7 @@ cout << "PC \t P2 (psia) \t Fn (lbf) \t Wf (lbm/s) \t Nf (RPM) \t Nc (RPM) \t EP
 //----------------------------------------------------------------------------------
 // Maximum thrust at SLS
 //----------------------------------------------------------------------------------
-Ambient.alt = 0.0;
+Atmosphere.alt_in = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 
@@ -59,7 +59,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 //----------------------------------------------------------------------------------
 // Maximum power at 15,000 ft and Mach number 0.4
 //----------------------------------------------------------------------------------
-Ambient.alt = 15000;
+Atmosphere.alt_in = 15000;
 Ambient.MN = 0.40;
 Ambient.dTs = 0.0;
 
@@ -79,7 +79,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 //----------------------------------------------------------------------------------
 // Maximum power at 20,000 ft and Mach number 0.60
 //----------------------------------------------------------------------------------
-Ambient.alt = 20000;
+Atmosphere.alt_in = 20000;
 Ambient.MN = 0.6;
 
 PC = 50;
@@ -98,7 +98,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 //----------------------------------------------------------------------------------
 // Maximum power at 40,000 ft and Mach number 0.80
 //----------------------------------------------------------------------------------
-Ambient.alt = 40000;
+Atmosphere.alt_in = 40000;
 Ambient.MN = 0.8;
 
 PC = 50;
@@ -118,7 +118,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
 PC = 50;
-Ambient.alt = 0.0;
+Atmosphere.alt_in = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 RunMaxPower();

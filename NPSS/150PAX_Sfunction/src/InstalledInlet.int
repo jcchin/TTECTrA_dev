@@ -13,7 +13,7 @@ class InstalledInlet extends Element {
 	 value = 100.0 ;
 	 IOstatus = "input" ;
 	 description = "Airflow into the engine." ;
-	 units = "LBM/SEC" ; 
+	 units = "lbm/sec" ; 
   } 
   real eRam { 
 	 value = 1.0 ;
@@ -24,13 +24,13 @@ class InstalledInlet extends Element {
 	 value = 0.0;             // was 1.0 R. Denney 11-22-04
 	 IOstatus = "input" ;
 	 description = "Inlet stabilization airflow" ;
-	 units = "LBM/SEC" ; 
+	 units = "lbm/sec" ; 
   } 
   real Wbypass { 
 	 value = 0.0 ;           // was 1.0 R. Denney 11-22-04
 	 IOstatus = "input" ;
 	 description = "Inlet bypass airflow" ;
-	 units = "LBM/SEC" ; 
+	 units = "lbm/sec" ; 
   }   
 
   // O U T P U T   P A R A M E T E R S 
@@ -40,25 +40,25 @@ class InstalledInlet extends Element {
 	 value = 0.0 ;
 	 IOstatus = "output" ;
 	 description = "Freestream tube area of the air into the inlet." ;
-	 units = "IN2" ; 
+	 units = "in2" ; 
   }
   real Dinstall { 
 	 value = 0.0 ;
 	 IOstatus = "output" ;
 	 description = "Drag due to installation effects." ;
-	 units = "LBF" ; 
+	 units = "lbf" ; 
   } 
   real Fram { 
 	 value = 0.0 ;
 	 IOstatus = "output" ;
 	 description = "Freestream ram drag." ;
-	 units = "LBF" ; 
+	 units = "lbf" ; 
   } 
   real Fram_local { 
 	 value = 0.0 ;
 	 IOstatus = "output" ;
 	 description = "Ram drag based on localized conditions." ;
-	 units = "LBF" ; 
+	 units = "lbf";
   } 
   real MNlocal {
 	 value = 0.00 ;
@@ -69,7 +69,7 @@ class InstalledInlet extends Element {
 	 value = 0.00 ;
 	 IOstatus = "output" ;
 	 description = "Local Pt, may not equal ambient Pt due to airframe effects" ;
-	 units = "PSIA" ;
+	 units = "psia" ;
   }   
   real TtLocal {
 	 value = 0.00 ;
@@ -81,13 +81,13 @@ class InstalledInlet extends Element {
 	 value = 100.0 ;
 	 IOstatus = "output" ;
 	 description = "Total airflow into the inlet = engine + bleed + bypass" ;
-	 units = "LBM/SEC" ; 
+	 units = "lbm/sec" ; 
   }
   real W0 {
 	 value = 100.0 ;
 	 IOstatus = "output" ;
 	 description = "Airflow available to the engine = engine + bypass" ;
-	 units = "LBM/SEC" ; 
+	 units = "lbm/sec" ; 
   }
 
 

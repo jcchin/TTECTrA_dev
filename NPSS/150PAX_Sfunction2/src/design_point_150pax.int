@@ -39,8 +39,8 @@ Fan.S_map.PRdes           = 1.68511;
 Fan.S_map.effDes           = 0.894783;
 
 // Splitter design variable values
-Splitter.Fl_01.Aphy	 = 505.7138566;
-Splitter.Fl_02.Aphy	 = 1889.327162;
+Splitter.Fl_O1.Aphy	 = 505.7138566;
+Splitter.Fl_O2.Aphy	 = 1889.327162;
 Splitter.BPR           = 5.106632765;
 
 // Duct 4 (duct between the splitter and LPC) design variable values

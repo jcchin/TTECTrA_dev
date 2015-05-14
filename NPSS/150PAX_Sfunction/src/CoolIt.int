@@ -122,7 +122,6 @@ class CoolIt extends Subelement {
 	real rLeak {
 		value = (4. / 3.);
 		IOstatus = "input";
-		units = "NONE";
 		description = "correction factor for leakage"; 
 	}
 	

@@ -26,8 +26,8 @@ Fan.S_map.RlineMap           = 2.2;
 Fan.S_map.PRdes           = 1.708326358;
 Fan.S_map.effDes           = 0.900611574;
 
-// Splitter.Fl_01.Aphy	 = 505.7138566;
-// Splitter.Fl_02.Aphy	 = 1889.327162;
+// Splitter.Fl_O1.Aphy	 = 505.7138566;
+// Splitter.Fl_O2.Aphy	 = 1889.327162;
 Splitter.BPR           = 3.3;
 
 // Duct4.Fl_O.Aphy    	 = 505.7138566;

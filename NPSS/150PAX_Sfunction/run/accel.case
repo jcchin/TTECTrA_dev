@@ -14,7 +14,7 @@ real driver_min, driver_max;
 //  Running off-design for transient input limits
 //-------------------------------------------------------------------------------------------------
 // Inputting the flight conditions - SLS
-Ambient.alt = 0.0;
+Atmosphere.alt_in = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 
@@ -312,7 +312,7 @@ solver.postExecutionSequence = {};
 setOption( "switchGuessType", "PC" );
 
 // Inputting the flight condition
-Ambient.alt = 6000;
+Atmosphere.alt_in = 6000;
 
 // Running for maximum thrust
 PC = 50;
@@ -437,7 +437,7 @@ cout << "\n---------------------------------------------------------------------
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
 PC = 50;
-Ambient.alt = 0.0;
+Atmosphere.alt_in = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 RunMaxPower();

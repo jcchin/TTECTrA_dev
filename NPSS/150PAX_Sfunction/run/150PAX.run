@@ -15,6 +15,7 @@
 MODELNAME = "150 PAX High BPR SFTF Model"; 
 AUTHOR = "Metin F. Ozcan";
 
+
 // Defining the thermodynamics package
 setThermoPackage("GasTbl");
 
@@ -25,6 +26,8 @@ set_output(); // view/output_paths.fnc
 // Including the model and model design point
 #include <High_BPR_150pax.mdl>
 
+solver.debugLevel= "ITERATION_DETAILS";
+solver.diagnosticFile = "solver.bad";
 #ifdef GEAREDFAN
 	#include <design_point_150pax_GF.int>
 #else
@@ -55,9 +58,9 @@ solver.maxConvergeFailures = 250;
 //  RUN OFF-DESIGN POINT - SLS Max Thrust
 //-------------------------------------------------------------------------------------------------
 // Inputting the flight condition for SLS
-Ambient.alt = 0.0;
-Ambient.MN = 0.0;
-Ambient.dTs = 0.0;
+Atmosphere.alt_in = 0.0;
+Atmosphere.MN_in = 0.0;
+Atmosphere.dTs_in = 0.0;
 
 // Turning on the guess logic
 setOption( "switchGuess", "ON" );

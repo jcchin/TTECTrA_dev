@@ -1,0 +1,875 @@
+Running from NPSS
+Run on 05/14/15 at 14:12:13
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_DD.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_DD.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_DD.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_DD.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 107 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 108 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_DD.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_DD.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_DD.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_DD.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 173 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 174 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_DD.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_DD.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_DD.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_DD.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 225 - Unresolved variable 'S_map.alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 229 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 230 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 23 - Unresolved variable 'Fan.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 33 - Unresolved variable 'Fan.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 34 - Unresolved variable 'Fan.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 35 - Unresolved variable 'Fan.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 38 - Unresolved variable 'Fan.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 39 - Unresolved variable 'Fan.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 40 - Unresolved variable 'Fan.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 49 - Unresolved variable 'Duct4.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 52 - Unresolved variable 'LPC.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 58 - Unresolved variable 'LPC.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 59 - Unresolved variable 'LPC.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 60 - Unresolved variable 'LPC.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 62 - Unresolved variable 'LPC.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 63 - Unresolved variable 'LPC.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 64 - Unresolved variable 'LPC.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 69 - Unresolved variable 'Duct6.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 85 - Unresolved variable 'HPC.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 86 - Unresolved variable 'HPC.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 87 - Unresolved variable 'HPC.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 97 - Unresolved variable 'HPC.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 98 - Unresolved variable 'HPC.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 99 - Unresolved variable 'HPC.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 108 - Unresolved variable 'Burner.dPqPBase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 121 - Unresolved variable 'HPT.S_map.s_eff'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 122 - Unresolved variable 'HPT.S_map.s_Np'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 123 - Unresolved variable 'HPT.S_map.s_dPqP'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 124 - Unresolved variable 'HPT.S_map.s_Wp'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 127 - Unresolved variable 'HPT.S_map.PtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 131 - Unresolved variable 'HPT.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 132 - Unresolved variable 'HPT.S_map.parmMapDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 133 - Unresolved variable 'HPT.S_map.parmMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 141 - Unresolved variable 'Duct11.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 144 - Unresolved variable 'LPT.S_map.s_eff'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 145 - Unresolved variable 'LPT.S_map.s_Np'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 146 - Unresolved variable 'LPT.S_map.s_dPqP'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 147 - Unresolved variable 'LPT.S_map.s_Wp'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 150 - Unresolved variable 'LPT.S_map.PtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 154 - Unresolved variable 'LPT.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 155 - Unresolved variable 'LPT.S_map.parmMapDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 156 - Unresolved variable 'LPT.S_map.parmMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 164 - Unresolved variable 'Duct13.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_DD.int - line 176 - Unresolved variable 'Duct15.dPqPbase'
+ERROR in Perf: an Inlet component must be defined in the model 
+1
+0 0.99683 2.13069
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.99683 2.13069
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.99683 2.13069
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.99683 2.13069
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.996868 2.13069
+4789.29 4804.34 0.996868 1 4817.09
+1
+0 0.99683 2.13069
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.99683 2.13283
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.99683 2.13069
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.99683 2.13069
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.99683 2.13069
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.99683 2.13069
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.997675 2.13069
+4793.17 4804.34 0.997675 1 4817.09
+1
+0 0.99683 2.13069
+4789.11 4804.34 0.99683 1 4817.09
+1
+0 0.997061 1.91763
+4790.22 4804.34 0.997061 1 4817.09
+1
+0 0.997276 1.72586
+4791.25 4804.34 0.997276 1 4817.09
+1
+0 0.997486 1.55328
+4792.26 4804.34 0.997486 1 4817.09
+1
+0 0.997685 1.39795
+4793.22 4804.34 0.997685 1 4817.09
+1
+0 0.997875 1.25815
+4794.13 4804.34 0.997875 1 4817.09
+1
+0 0.998063 1.13234
+4795.03 4804.34 0.998063 1 4817.09
+1
+0 0.998221 1.0191
+4795.79 4804.34 0.998221 1 4817.09
+1
+0 0.998371 0.917194
+4796.51 4804.34 0.998371 1 4817.09
+1
+0 0.998494 0.825475
+4797.11 4804.34 0.998494 1 4817.09
+1
+0 0.99861 0.742927
+4797.66 4804.34 0.99861 1 4817.09
+1
+0 0.998712 0.668635
+4798.15 4804.34 0.998712 1 4817.09
+1
+0 0.998801 0.601771
+4798.58 4804.34 0.998801 1 4817.09
+1
+0 0.998878 0.541594
+4798.95 4804.34 0.998878 1 4817.09
+1
+0 0.998948 0.487435
+4799.28 4804.34 0.998948 1 4817.09
+1
+0 0.991693 0.438691
+4764.43 4804.34 0.991693 1 4817.09
+1
+0 0.990697 0.394822
+4759.64 4804.34 0.990697 1 4817.09
+1
+0 0.975392 0.35534
+4686.11 4804.34 0.975392 1 4817.09
+1
+0 0.966911 0.321919
+4645.37 4804.34 0.966911 1 4817.09
+1
+0 0.956346 0.354111
+4594.61 4804.34 0.956346 1 4817.09
+1
+0 0.928229 0.37581
+4459.53 4804.34 0.928229 1 4817.09
+1
+0 0.929175 0.338229
+4464.07 4804.34 0.929175 1 4817.09
+1
+0 0.934934 0.368715
+4491.74 4804.34 0.934934 1 4817.09
+1
+0 0.935289 0.331844
+4493.44 4804.34 0.935289 1 4817.09
+1
+0 0.940566 0.355665
+4518.8 4804.34 0.940566 1 4817.09
+1
+0 0.936768 0.320098
+4500.55 4804.34 0.936768 1 4817.09
+1
+0 0.9299 0.288088
+4467.56 4804.34 0.9299 1 4817.09
+1
+0 0.915596 0.292808
+4398.84 4804.34 0.915596 1 4817.09
+1
+0 0.90163 0.277338
+4331.74 4804.34 0.90163 1 4817.09
+1
+0 0.899653 0.249604
+4322.24 4804.34 0.899653 1 4817.09
+1
+0 0.894187 0.266563
+4295.98 4804.34 0.894187 1 4817.09
+1
+0 0.895079 0.239907
+4300.26 4804.34 0.895079 1 4817.09
+1
+0 0.895038 0.215916
+4300.07 4804.34 0.895038 1 4817.09
+1
+0 0.895836 0.237508
+4303.9 4804.34 0.895836 1 4817.09
+1
+0 0.895975 0.213757
+4304.57 4804.34 0.895975 1 4817.09
+1
+0 0.870712 0.226697
+4183.2 4804.34 0.870712 1 4817.09
+1
+0 0.872323 0.204027
+4190.94 4804.34 0.872323 1 4817.09
+1
+0 0.864718 0.20146
+4154.4 4804.34 0.864718 1 4817.09
+1
+0 0.836942 0.181314
+4020.96 4804.34 0.836942 1 4817.09
+1
+0 0.827999 0.199445
+3977.99 4804.34 0.827999 1 4817.09
+1
+0 0.823935 0.21939
+3958.46 4804.34 0.823935 1 4817.09
+1
+0 0.790061 0.222137
+3795.72 4804.34 0.790061 1 4817.09
+1
+0 0.783784 0.24435
+3765.57 4804.34 0.783784 1 4817.09
+1
+0 0.775775 0.219915
+3727.08 4804.34 0.775775 1 4817.09
+1
+0 0.778999 0.197924
+3742.57 4804.34 0.778999 1 4817.09
+1
+0 0.773041 0.178131
+3713.95 4804.34 0.773041 1 4817.09
+1
+0 0.771937 0.195945
+3708.64 4804.34 0.771937 1 4817.09
+1
+0 0.771265 0.17635
+3705.42 4804.34 0.771265 1 4817.09
+1
+0 0.771959 0.158715
+3708.75 4804.34 0.771959 1 4817.09
+1
+0 0.772459 0.174587
+3711.15 4804.34 0.772459 1 4817.09
+1
+0 0.772534 0.157128
+3711.52 4804.34 0.772534 1 4817.09
+1
+0 0.772103 0.141415
+3709.45 4804.34 0.772103 1 4817.09
+1
+0 0.772103 0.141415
+3709.45 4804.34 0.772103 1 4817.09
+1
+0 0.772103 0.141415
+3709.45 4804.34 0.772103 1 4817.09
+1
+0 0.77213 0.141415
+3709.57 4804.34 0.77213 1 4817.09
+1
+0 0.772103 0.141415
+3709.45 4804.34 0.772103 1 4817.09
+1
+0 0.772103 0.141557
+3709.45 4804.34 0.772103 1 4817.09
+1
+0 0.772103 0.141415
+3709.45 4804.34 0.772103 1 4817.09
+1
+0 0.772103 0.141415
+3709.45 4804.34 0.772103 1 4817.09
+1
+0 0.772103 0.141415
+3709.45 4804.34 0.772103 1 4817.09
+1
+0 0.772103 0.141415
+3709.45 4804.34 0.772103 1 4817.09
+1
+0 0.772793 0.141415
+3712.76 4804.34 0.772793 1 4817.09
+1
+0 0.772103 0.141415
+3709.45 4804.34 0.772103 1 4817.09
+1
+0 0.766202 0.155557
+3681.09 4804.34 0.766202 1 4817.09
+1
+0 0.769607 0.171112
+3697.45 4804.34 0.769607 1 4817.09
+1
+0 0.778528 0.154001
+3740.31 4804.34 0.778528 1 4817.09
+1
+0 0.77353 0.169401
+3716.3 4804.34 0.77353 1 4817.09
+1
+0 0.768359 0.186341
+3691.46 4804.34 0.768359 1 4817.09
+1
+0 0.762579 0.204975
+3663.69 4804.34 0.762579 1 4817.09
+1
+0 0.756084 0.225473
+3632.48 4804.34 0.756084 1 4817.09
+1
+0 0.748713 0.24802
+3597.07 4804.34 0.748713 1 4817.09
+1
+0 0.73979 0.272822
+3554.2 4804.34 0.73979 1 4817.09
+1
+0 0.728963 0.300105
+3502.19 4804.34 0.728963 1 4817.09
+1
+0 0.718967 0.330115
+3454.16 4804.34 0.718967 1 4817.09
+1
+0 0.707723 0.363127
+3400.14 4804.34 0.707723 1 4817.09
+1
+0 0.695163 0.399439
+3339.8 4804.34 0.695163 1 4817.09
+1
+0 0.679483 0.439383
+3264.46 4804.34 0.679483 1 4817.09
+1
+0 0.657739 0.483321
+3160 4804.34 0.657739 1 4817.09
+1
+0 0.631574 0.531654
+3034.3 4804.34 0.631574 1 4817.09
+1
+0 0.604617 0.584819
+2904.78 4804.34 0.604617 1 4817.09
+1
+0 0.582031 0.643301
+2796.28 4804.34 0.582031 1 4817.09
+1
+0 0.550943 0.707631
+2646.92 4804.34 0.550943 1 4817.09
+1
+0 0.517771 0.778394
+2487.55 4804.34 0.517771 1 4817.09
+1
+0 0.505543 0.809593
+2428.8 4804.34 0.505543 1 4817.09
+1
+0 0.505543 0.809593
+2428.8 4804.34 0.505543 1 4817.09
+1
+0 0.505543 0.809593
+2428.8 4804.34 0.505543 1 4817.09
+1
+0 0.50555 0.809593
+2428.83 4804.34 0.50555 1 4817.09
+1
+0 0.505543 0.809593
+2428.8 4804.34 0.505543 1 4817.09
+1
+0 0.505543 0.810403
+2428.8 4804.34 0.505543 1 4817.09
+1
+0 0.505543 0.809593
+2428.8 4804.34 0.505543 1 4817.09
+1
+0 0.505543 0.809593
+2428.8 4804.34 0.505543 1 4817.09
+1
+0 0.505543 0.809593
+2428.8 4804.34 0.505543 1 4817.09
+1
+0 0.505543 0.809593
+2428.8 4804.34 0.505543 1 4817.09
+1
+0 0.50603 0.809593
+2431.14 4804.34 0.50603 1 4817.09
+1
+0 0.505543 0.809593
+2428.8 4804.34 0.505543 1 4817.09
+1
+0 0.495353 0.846924
+2379.85 4804.34 0.495353 1 4817.09
+1
+0 0.493 0.862781
+2368.54 4804.34 0.493 1 4817.09
+1
+0 0.492243 0.867089
+2364.9 4804.34 0.492243 1 4817.09
+1
+0 0.492031 0.868336
+2363.88 4804.34 0.492031 1 4817.09
+1
+0 0.492061 0.868154
+2364.03 4804.34 0.492061 1 4817.09
+1
+0 0.492063 0.86814
+2364.04 4804.34 0.492063 1 4817.09
+Running from NPSS
+Run on 05/14/15 at 14:12:21
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 107 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 108 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 173 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 174 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 225 - Unresolved variable 'S_map.alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 229 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 230 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 32 - Unresolved variable 'Fan.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 33 - Unresolved variable 'Fan.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 34 - Unresolved variable 'Fan.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 37 - Unresolved variable 'Fan.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 38 - Unresolved variable 'Fan.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 39 - Unresolved variable 'Fan.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 48 - Unresolved variable 'Duct4.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 56 - Unresolved variable 'LPC.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 57 - Unresolved variable 'LPC.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 58 - Unresolved variable 'LPC.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 60 - Unresolved variable 'LPC.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 61 - Unresolved variable 'LPC.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 62 - Unresolved variable 'LPC.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 70 - Unresolved variable 'Duct6.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 86 - Unresolved variable 'HPC.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 87 - Unresolved variable 'HPC.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 88 - Unresolved variable 'HPC.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 98 - Unresolved variable 'HPC.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 99 - Unresolved variable 'HPC.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 100 - Unresolved variable 'HPC.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 109 - Unresolved variable 'Burner.dPqPBase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 122 - Unresolved variable 'HPT.S_map.s_eff'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 123 - Unresolved variable 'HPT.S_map.s_Np'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 124 - Unresolved variable 'HPT.S_map.s_dPqP'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 125 - Unresolved variable 'HPT.S_map.s_Wp'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 128 - Unresolved variable 'HPT.S_map.PtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 132 - Unresolved variable 'HPT.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 133 - Unresolved variable 'HPT.S_map.parmMapDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 134 - Unresolved variable 'HPT.S_map.parmMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 142 - Unresolved variable 'Duct11.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 145 - Unresolved variable 'LPT.S_map.s_eff'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 146 - Unresolved variable 'LPT.S_map.s_Np'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 147 - Unresolved variable 'LPT.S_map.s_dPqP'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 148 - Unresolved variable 'LPT.S_map.s_Wp'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 151 - Unresolved variable 'LPT.S_map.PtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 155 - Unresolved variable 'LPT.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 156 - Unresolved variable 'LPT.S_map.parmMapDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 157 - Unresolved variable 'LPT.S_map.parmMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 165 - Unresolved variable 'Duct13.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 177 - Unresolved variable 'Duct15.dPqPbase'
+ERROR in Perf: an Inlet component must be defined in the model 
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27693
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.62213e+007 2.27466
+5227.48 0.00019936 2.62213e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91030101) Jacobian::findSingularity caught NPSS exception: ERROR(91041001) : Singular Matrix - zero row: The error for Dependent, HPT.S_map.dep_errWp, is not affected by any of the independent perturbations
+
+Running from NPSS
+Run on 05/14/15 at 14:17:11
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 107 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 108 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 173 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 174 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 225 - Unresolved variable 'S_map.alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 229 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 230 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 32 - Unresolved variable 'Fan.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 33 - Unresolved variable 'Fan.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 34 - Unresolved variable 'Fan.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 37 - Unresolved variable 'Fan.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 38 - Unresolved variable 'Fan.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 39 - Unresolved variable 'Fan.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 48 - Unresolved variable 'Duct4.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 56 - Unresolved variable 'LPC.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 57 - Unresolved variable 'LPC.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 58 - Unresolved variable 'LPC.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 60 - Unresolved variable 'LPC.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 61 - Unresolved variable 'LPC.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 62 - Unresolved variable 'LPC.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 70 - Unresolved variable 'Duct6.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 86 - Unresolved variable 'HPC.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 87 - Unresolved variable 'HPC.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 88 - Unresolved variable 'HPC.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 98 - Unresolved variable 'HPC.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 99 - Unresolved variable 'HPC.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 100 - Unresolved variable 'HPC.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 109 - Unresolved variable 'Burner.dPqPBase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 122 - Unresolved variable 'HPT.S_map.s_eff'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 123 - Unresolved variable 'HPT.S_map.s_Np'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 124 - Unresolved variable 'HPT.S_map.s_dPqP'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 125 - Unresolved variable 'HPT.S_map.s_Wp'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 128 - Unresolved variable 'HPT.S_map.PtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 132 - Unresolved variable 'HPT.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 133 - Unresolved variable 'HPT.S_map.parmMapDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 134 - Unresolved variable 'HPT.S_map.parmMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 142 - Unresolved variable 'Duct11.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 145 - Unresolved variable 'LPT.S_map.s_eff'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 146 - Unresolved variable 'LPT.S_map.s_Np'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 147 - Unresolved variable 'LPT.S_map.s_dPqP'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 148 - Unresolved variable 'LPT.S_map.s_Wp'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 151 - Unresolved variable 'LPT.S_map.PtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 155 - Unresolved variable 'LPT.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 156 - Unresolved variable 'LPT.S_map.parmMapDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 157 - Unresolved variable 'LPT.S_map.parmMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 165 - Unresolved variable 'Duct13.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 177 - Unresolved variable 'Duct15.dPqPbase'
+ERROR in Perf: an Inlet component must be defined in the model 
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27693
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.62213e+007 2.27466
+5227.48 0.00019936 2.62213e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 928 - Unresolved variable 'Ambient.alt_in'
+ERROR(91030101) Jacobian::findSingularity caught NPSS exception: ERROR(91041001) : Singular Matrix - zero row: The error for Dependent, HPT.S_map.dep_errWp, is not affected by any of the independent perturbations
+
+Running from NPSS
+Run on 05/14/15 at 14:18:55
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\FAN_GF.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 107 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 108 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\LPC_GF.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 173 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 174 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 3 - Unresolved variable 'alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 19 - Unresolved variable 'ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 20 - Unresolved variable 'RtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\maps\HPC_GF.map - line 21 - Unresolved variable 'gamtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 225 - Unresolved variable 'S_map.alpha'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 229 - Unresolved variable 'S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\High_BPR_150pax.mdl - line 230 - Unresolved variable 'S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 32 - Unresolved variable 'Fan.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 33 - Unresolved variable 'Fan.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 34 - Unresolved variable 'Fan.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 37 - Unresolved variable 'Fan.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 38 - Unresolved variable 'Fan.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 39 - Unresolved variable 'Fan.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 48 - Unresolved variable 'Duct4.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 56 - Unresolved variable 'LPC.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 57 - Unresolved variable 'LPC.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 58 - Unresolved variable 'LPC.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 60 - Unresolved variable 'LPC.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 61 - Unresolved variable 'LPC.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 62 - Unresolved variable 'LPC.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 70 - Unresolved variable 'Duct6.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 86 - Unresolved variable 'HPC.S_map.WcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 87 - Unresolved variable 'HPC.S_map.ReDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 88 - Unresolved variable 'HPC.S_map.RNI_des'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 98 - Unresolved variable 'HPC.S_map.NcDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 99 - Unresolved variable 'HPC.S_map.PRdes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 100 - Unresolved variable 'HPC.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 109 - Unresolved variable 'Burner.dPqPBase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 122 - Unresolved variable 'HPT.S_map.s_eff'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 123 - Unresolved variable 'HPT.S_map.s_Np'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 124 - Unresolved variable 'HPT.S_map.s_dPqP'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 125 - Unresolved variable 'HPT.S_map.s_Wp'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 128 - Unresolved variable 'HPT.S_map.PtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 132 - Unresolved variable 'HPT.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 133 - Unresolved variable 'HPT.S_map.parmMapDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 134 - Unresolved variable 'HPT.S_map.parmMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 142 - Unresolved variable 'Duct11.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 145 - Unresolved variable 'LPT.S_map.s_eff'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 146 - Unresolved variable 'LPT.S_map.s_Np'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 147 - Unresolved variable 'LPT.S_map.s_dPqP'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 148 - Unresolved variable 'LPT.S_map.s_Wp'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 151 - Unresolved variable 'LPT.S_map.PtMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 155 - Unresolved variable 'LPT.S_map.effDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 156 - Unresolved variable 'LPT.S_map.parmMapDes'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 157 - Unresolved variable 'LPT.S_map.parmMap'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 165 - Unresolved variable 'Duct13.dPqPbase'
+ERROR(91036101) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\design_point_150pax_GF.int - line 177 - Unresolved variable 'Duct15.dPqPbase'
+ERROR in Perf: an Inlet component must be defined in the model 
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27693
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.62213e+007 2.27466
+5227.48 0.00019936 2.62213e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+1
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+0 2.61951e+007 2.27466
+5222.25 0.00019936 2.61951e+007 1 5016.06
+ERROR(91041001) in file Z:\Documents\2014\RHC\TTECTrA_dev\NPSS\150PAX_Sfunction\src\solver_setup.fnc - line 167 - The reported ESO 1073901 'Error occurred during iteration to determine stall margin at constant flow' is not in the ESORegistry.
+ERROR(91030101) Jacobian::findSingularity caught NPSS exception: ERROR(91041001) : Singular Matrix - zero row: The error for Dependent, HPT.S_map.dep_errWp, is not affected by any of the independent perturbations
+

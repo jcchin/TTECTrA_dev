@@ -1,0 +1,638 @@
+/******************************************************************************
+*   © Copyright 2003.  The U.S. Government, as Represented by the Administrator
+*     of the National Aeronautics and Space Administration (NASA).
+*   © Copyright 2008 - 2013.     The Ohio Aerospace Institute, on behalf of the NPSS(TM)
+*     Consortium.  All rights reserved.  Includes content licensed from the 
+*     U.S. Government, National Aeronautics and Space Administration under 
+*     United States Copyright Registration Numbers  V3503D364 and V3482D344.
+*******************************************************************************/
+
+/******************************************************************************
+*  NPSSTM software and related documentation is export controlled
+*  with an Export Control Classification Number(ECCN) of 9D991, controlled for
+*  Anti-Terrorism reasons, under U.S. Export Administration Regulations 15 CFR
+*  730-774. It may not be transferred to a country checked under anti-terrorism
+*  on the Commerce Country Chart structure or to foreign nationals of those
+*  countries in the U.S. or abroad without first obtaining a license from the
+*  Bureau of Industry and Security, United States Department of Commerce. 
+*  Violations are punishable by fine, imprisonment, or both.
+******************************************************************************/
+
+//
+// For further information contact support@wolverine-ventures.com
+//
+
+#ifndef __COMPRESSOR_RLINE_MAP__
+#define __COMPRESSOR_RLINE_MAP__
+
+#include <InterpIncludes.ncp>
+
+// Variables that exist in the parent Compressor element
+// and are used in this subelement.
+extern real Nc;
+extern real Wc;
+extern real WcCalc;
+extern real NcDes;
+extern real WcDes;
+extern real effDes;
+extern real PRdes;
+
+// Variables that exist in the parent Compressor element
+// and are set by this subelement.
+extern real SMW;
+extern real SMN;
+extern real WcBase;
+extern real effBase;
+extern real PRbase;
+
+class CompressorRlineMap extends Subelement {
+
+//------------------------------------------------------------
+//     ******* DOCUMENTATION *******
+//------------------------------------------------------------
+
+  title = "";
+
+  description = isA() + " manages the calculation of compressor performance for efficiency-based maps.  It performs calls to maps that return efficiency, pressure ratio, and corrected weight flow as a function of correct speed, Rline, and alpha (stator vane angle).";
+
+  usageNotes = isA() +
+" 
+
+- NOTE TO USERS: The compressor subelement architecture has changed as 
+of NPSS version 2.4.  What used to be the CompressorMap subelement is 
+now the CompressorRlineMap subelement, and what used to be the 
+CompressorEfficiencyMap subelement has been absorbed by the new 
+CompressorRlineMap subelement.  This single subelement was created to 
+simplify the operations performed in the parent compressor S_map socket.  
+Only a few attributes – such as S_hum socket, effDes and PRdes variables - 
+have been eliminated from the subelement in the process, and several variable 
+names have been changed. 
+
+- When used in conjunction with the standard NPSS Compressor element's S_map 
+socket, this subelement must ultimately set values for PRbase, effBase, and 
+WcBase, which are the allowedValues for the compressor S_map socket.  The 
+variables PRbase, effBase, and WcBase reside in the parent compressor element.
+
+- This subelement manages the compressor performance calculations for
+an efficiency-based map.  It is responsible for matching the unscaled
+map data based on design data supplied by the user.  During DESIGN, scalars 
+are calculated (s_effDes, s_PRdes, s_WcDes, s_NcDes) so that the unscaled map 
+design point matches the desired design point; the scalars s_effDes, s_PRdes, 
+s_WcDes, s_NcDes are held constant during off-design.  The scalars s_effRe and 
+s_WcRe account for Reynolds effects and are calculated by the S_Re socket if 
+it is filled.
+    
+     During Design:
+     s_NcDes = NcDes/NcMapDes;
+     s_effDes = effDes/(effMapDes * s_effRe);
+     s_PRdes = (PRdes – 1)/(PRmapDes – 1);
+     s_WcDes = WcDes/(WcMapDes * s_WcRe);
+
+- The desired design point is set by the user in the compressor parent element 
+using PRdes and effDes.  The unscaled map design point is specified by setting 
+RlineMapDes, NcMapDes, and alphaMapDes in this subelement; this is the point about 
+which the unscaled map is scaled.  RlineMapDes, NcMapDes, and alphaMapDes are 
+specific to the map that is being used and are often set in the map definition file.
+Therefore, these values should not be changed for a given map. The parameter 
+alphaMapDes need not be set if the map does not use alpha as an input.
+
+- This subelement is designed to read compressor performance maps.  Three tables 
+(or functions) are required: TB_eff for the efficiency map, TB_PR for the pressure 
+ratio map, and TB_Wc for the corrected flow map.  The maps return the unscaled values 
+for corrected flow, total-to-total pressure ratio, and efficiency, and set WcMap, 
+PRmap, effMap, respectively.  During DESIGN map scalars are calculated, and during 
+OFFDESIGN those scalars are applied to the map values to calculate WcBase, PRbase, 
+and effBase.  The scalars for Reynolds effects also appear in the effBase and WcBase 
+calculations.
+     
+     Note: RlineMap is determined by solver independent ind_RlineMap,
+	       and alphaMap is a user input.
+		   
+     NcMap = Nc / s_NcDes;
+          
+     WcMap = TB_Wc(alphaMap, NcMap, RlineMap);
+     effMap = TB_eff(alphaMap, NcMap, RlineMap);
+     PRmap = TB_PR(alphaMap, NcMap, RlineMap);
+
+     WcBase = s_WcDes * s_WcRe * WcMap;
+     effBase = s_effDes * s_effRe * effMap;
+     PRbase = 1.0 + s_PRdes * (PRmap – 1);
+
+- The S_Re socket is provided for a subelement to calculate Reynolds effects
+corrections for efficiency and corrected flow.  The S_Re socket is allowed to set
+s_effRe and s_WcRe, which are applied to effMap and WcMap (along with s_effDes and
+s_WcDes) to calculate effBase and WcBase, respectively.  (See the usage notes above). 
+The s_effRe and s_WcRe scalars are also taken into account when calculating the
+s_effDes and s_WcDes scalars during DESIGN.
+
+- If the S_Re socket is not filled, then the values for s_effRe and s_WcRe
+will both be automatically set back to 1.0.
+
+- In order to fill the TB_PR, TB_Wc and TB_eff sockets, the user must declare tables
+(or functions) in the format of TB_PR(real alpha, real Nc, real Rline), TB_Wc(real
+alpha, real Nc, real Rline) and TB_eff(real alpha, real Np, real Rline) at this
+subelement's scope.  The act of declaring these three tables automatically fills the 
+TB_PR, TB_Wc, and TB_eff sockets.  
+   
+- All three performance maps (TB_PR, TB_Wc, and TB_eff) are expressed as functions of 
+stator stator vane angle (alphaMap), corrected speed (NcMap), and Rline map parameter 
+(RlineMap). The value for alphaMap is set by the user.  NcMap equals NcMapDes during DESIGN.  
+During OFFDESIGN, Nc is converted to NcMap using s_NcDes.  RlineMap equals RlineMapDes 
+during DESIGN, and the solver independent ind_RlineMap determines RlineMap during OFFDESIGN.
+
+- This subelement is also responsible for performing the overall compressor mass
+flow balance.  The compressor default solver independent and dependent are located
+at this level.  During OFFDESIGN, the solver varies RlineMap (using ind_RlineMap)
+to drive Wc to equal WcCalc (using dep_errWc).  The variables Wc and WcCalc both
+reside in the parent compressor element.  Both solver variables are inactive
+during DESIGN.
+
+- It is assumed that one of the Rlines represents the stall line (RlineStall) which
+is a user input.  RlineStall is used to calculate stall margin at constant speed
+and constant flow, SMN and SMW, respectively.
+
+- If you have a map that is but not in the correct format (i.e. Wc, PR, and eff 
+are not functions of alpha, Nc, and Rline), then this subelement may not be 
+used in its current form.  You will have to write a new subelement that ultimately 
+calculates effBase, PRbase, and WcBase so that they can be passed to the parent
+Compressor element.
+
+- The map arguments are alpha (stator vane angle), speed, and Rline.  Even though the 
+TB_PR, TB_Wc, and TB_eff sockets indicate that the speed argument is corrected speed
+(Nc) the map can also be presented as a fraction of design corrected speed or some 
+other speed parameter.  If this is the case, then the user-specified value for NcMapDes 
+must also be in fraction of design speed.  Note that the subelement will always use NcMap 
+to perform the map lookup.  This scenario would mean NcMapDes and NcMap are in
+different units, but that is alright because the scalar s_NcDes will take care of
+the units disparity.  For example, if the map is presented as a fraction of design
+corrected speed instead of corrected speed, then NcMapDes will most likely be set
+to 1.0 (compressor map design point is at 100% of design speed).  If NcDes is 
+10000 rpm (calculated in the compressor parent element during design), then the 
+scalar that relates NcMap to NcDes will be: 
+s_NcDes = NcDes / NcMapDes = 10000 / 1.0 = 10000.
+";
+
+background = "";
+
+//------------------------------------------------------------
+//     ******* SETUP VARIABLES ********
+//------------------------------------------------------------
+
+  real alphaMap {
+    value = 0;  IOstatus = OUTPUT;  units = DEG;
+    description = "Map stator vane angle used to read unscaled maps.  Equals RlineMapDes during design.  User input during off-design.";
+  }
+  real alphaMapDes {
+    value = 0;  IOstatus = INPUT;  units = DEG;
+    description = "Map stator vane angle at unscaled map design point.  This is the vane angle about which the unscaled map is scaled.";
+  }
+  real effMap {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Adiabatic efficiency returned from unscaled map TB_eff.  Used to calculate and set effBase in the parent element.";
+  }
+  real effMapDes {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Adiabatic efficiency at unscaled map design point, which occurs at alphaMapDes, NcMapDes, and RlineMapDes";
+  }
+  real NcMap {
+    value = 0;  IOstatus = OUTPUT;  units = RPM;
+    description = "Corrected speed used to read unscaled maps.  Equals NcMapDes during design.  Calculated using Nc during off-design.";
+  }
+  real NcMapDes {
+    value = 0;  IOstatus = INPUT;  units = RPM;
+    description = "Corrected speed at unscaled map design point.  This is the speed about which the unscaled map is scaled.";
+  }
+  real PRmap {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Total-to-total pressure ratio returned from unscaled map TB_PR.  Used to calculate and set PRbase in the parent element.";
+  }
+  real PRmapDes {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Total-to-total pressure ratio at unscaled map design point, which occurs at alphaMapDes, NcMapDes, and RlineMapDes.";
+  }
+  real PRmapSMN {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Map stall margin pressure ratio at constant speed";
+  }
+  real PRmapSMW {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Map stall margin pressure ratio at constant flow";
+  }
+  real RlineMap {
+    value = 0;  IOstatus = OUTPUT;  units = NONE;
+    description = "Rline value used to read unscaled maps.  Equals RlineMapDes during design.  Set by the ind_RlineMap solver variable during off-design.";
+  }
+  real RlineMapDes {
+    value = 0;  IOstatus = INPUT;  units = NONE;
+    description = "Rline at unscaled map design point.  This is the Rline about which the unscaled map is scaled.";
+  }
+  real RlineStall {
+    value = 0;  IOstatus = INPUT;  units = NONE;
+    description = "Map stall line.  Used to determine map stall margin values SMNmap and SMWmap.";
+  }
+  real s_effDes {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Adiabatic efficiency map scalar.  Relates actual design efficiency to map design efficiency, effDes / effMapDes";
+  }
+  real s_effRe {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Scalar on adiabatic efficiency for Reynolds effects, calculated and set by S_Re socket.  Automatically set to 1.0 if S_Re socket is empty.";
+  }
+  real s_NcDes {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Corrected speed map scalar.  Relates actual design corrected speed to map design corrected speed, NcDes / NcMapDes";
+  }
+  real s_PRdes {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Pressure ratio map scalar.  Relates actual design pressure ratio to map design pressure ratio, (PRdes - 1)/(PRmapDes - 1)";
+  }
+  real s_WcDes {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Corrected flow map scalar.  Relates actual design corrected flow to map design corrected flow, WcDes / WcMapDes";
+  }
+  real s_WcRe {
+    value = 1;  IOstatus = OUTPUT;  units = NONE;
+    description = "Scalar for corrected mass flow for Reynolds Effect, calculated and set by S_Re socket.  Automatically set to 1.0 if S_Re socket is empty.";
+  }
+  real SMNmap {
+    value = 0;  IOstatus = OUTPUT;  units = NONE;
+    description = "Map stall margin at constant speed, sets SMN in parent element";
+  }
+  real SMWmap {
+    value = 0;  IOstatus = OUTPUT;  units = NONE;
+    description = "Map stall margin at constant flow, sets SMW in parent element";
+  }
+  real WcMap {
+    value = 0;  IOstatus = OUTPUT;  units = LBM_PER_SEC;
+    description = "Corrected flow returned from unscaled map TB_Wc.  Used to calculate and set WcBase in the parent element.";
+  }
+  real WcMapDes {
+    value = 0;  IOstatus = OUTPUT;  units = LBM_PER_SEC;
+    description = "Corrected weight flow at unscaled map design point, which occurs at alphaMapDes, NcMapDes, and RlineMapDes";
+  }
+  real WcMapSMN {
+    value = 0;  IOstatus = OUTPUT;  units = LBM_PER_SEC;
+    description = "Map stall corrected flow at constant speed";
+  }
+  real WcMapSMW {
+    value = 0;  IOstatus = OUTPUT;  units = LBM_PER_SEC;
+    description = "Map stall corrected flow at constant flow";
+  }
+
+//------------------------------------------------------------
+//   ******* OPTION VARIABLE SETUP *******
+//------------------------------------------------------------
+
+  Option switchDes {
+    allowedValues = { DESIGN, OFFDESIGN };
+    description = "Determines if the subelement is in design or off-design mode";
+    rewritableValues = FALSE;  // Enables converter optimization.
+  }
+  
+//------------------------------------------------------------
+// ****** SETUP PORTS, FLOW STATIONS, SOCKETS, TABLES ********
+//------------------------------------------------------------
+
+// FLUID PORTS
+
+// FUEL PORTS
+
+// BLEED PORTS
+
+// THERMAL PORTS
+
+// MECHANICAL PORTS
+
+// FLOW STATIONS
+
+// SOCKETS
+  addInterface( "COMPRESSOR_MAP" ); // compatible with the Compressor element's S_map socketType
+  
+  Socket TB_eff {  
+    description = "Efficiency versus alpha, speed and Rline.  A function or table with the name TB_eff must be declared at the subelement scope in order to fill this socket.  The format is TB_eff (real alpha, real Nc, real Rline).";
+    socketType = "Function";
+    required = TRUE;
+    argTypes = { "real", "real", "real" }
+    returnType = "real";
+  }
+
+  Socket TB_PR {  
+    description = "Total-to-total pressure ratio versus alpha, speed and Rline.  A function or table with the name TB_PR must be declared at the subelement scope in order to fill this socket.  The format is TB_PR (real alpha, real Nc, real Rline).";
+    socketType = "Function";
+    required = TRUE;
+    argTypes = { "real", "real", "real" }
+    returnType = "real";
+  }
+
+  Socket TB_Wc {  
+    description = "Corrected flow versus alpha, speed and Rline.  A function or table with the name TB_Wc must be declared at the subelement scope in order to fill this socket.  The format is TB_Wc (real alpha, real Nc, real Rline).";
+    socketType = "Function";
+    required = TRUE;
+    argTypes = { "real", "real", "real" }
+    returnType = "real";
+  }
+  
+  Socket S_Re {
+    allowedValues = { "s_WcRe", "s_effRe" };
+    description = "Compressor Reynolds effects socket";
+    socketType = COMPRESSOR_REYNOLDS_EFFECTS;
+  }
+
+// TABLES
+
+
+//------------------------------------------------------------
+// ******* INTERNAL SOLVER SETUP *******
+//------------------------------------------------------------
+
+  SecantSolver smSolver {
+    description = "Solve for stall speed, keeping flow constant";
+    maxDx = 0.5;
+    tolerance =0.001;
+    perturbSize = 0.1;
+    maxIters = 50;
+  };
+
+//------------------------------------------------------------
+//  ******  ADD SOLVER INDEPENDENTS & DEPENDENTS  ******
+//------------------------------------------------------------
+
+  Independent ind_RlineMap {
+    varName = "RlineMap";
+    description = "Compressor operating point Rline";
+  }
+  
+  Dependent dep_errWc {
+    eq_lhs = "Wc";
+    eq_rhs = "WcCalc";
+    description = "Corrected flow error dependent";
+  }
+  
+//------------------------------------------------------------
+// ******* VARIABLE CHANGED METHODOLOGY *******
+//------------------------------------------------------------
+  void variableChanged( string name, any oldVal ) {
+  
+	// if the value of switchDes changes...
+    if (name =="switchDes") {
+      // change variable IO status depending switchDes status
+      if (switchDes == DESIGN) {
+		
+		alphaMap.IOstatus = OUTPUT;
+		alphaMapDes.IOstatus = INPUT;
+		NcMapDes.IOstatus = INPUT;
+		RlineMap.IOstatus = OUTPUT;
+		RlineMapDes.IOstatus = INPUT;
+		
+		// map design point scalars
+		s_effDes.IOstatus = OUTPUT;
+		s_NcDes.IOstatus = OUTPUT;
+		s_PRdes.IOstatus = OUTPUT;
+		s_WcDes.IOstatus = OUTPUT;
+
+		// Set solver variables autoSetup to FALSE
+		ind_RlineMap.autoSetup = FALSE;
+		dep_errWc.autoSetup = FALSE;
+      } // end switchDes == DESIGN
+	  
+      else if (switchDes == OFFDESIGN) {
+
+		alphaMap.IOstatus = INPUT;
+		alphaMapDes.IOstatus = OUTPUT;
+		NcMapDes.IOstatus = OUTPUT;
+		RlineMap.IOstatus = INPUT;
+		RlineMapDes.IOstatus = OUTPUT;
+		
+		// map design point scalars
+		s_NcDes.IOstatus = INPUT;
+		s_PRdes.IOstatus = INPUT;
+		s_WcDes.IOstatus = INPUT;
+		s_effDes.IOstatus = INPUT;
+		 
+		// Set solver variables autoSetup to TRUE
+		ind_RlineMap.autoSetup = TRUE;
+		dep_errWc.autoSetup = TRUE;	  
+		
+      } // end switchDes == OFFDESIGN
+    } // end name =="switchDes"
+  } // end variableChanged() function
+
+//------------------------------------------------------------
+//   ******* PERFORM ENGINEERING CALCULATIONS *******
+//------------------------------------------------------------
+  
+  void calculate() {
+    
+    //----------------------------------------------------------------------
+    // Begin design calculations. 
+    // First set alpha, Nc, and Rline to the unscaled map design point
+	// (alphaMapDes, NcMapDes, RlineMapDes).
+	// Then lookup the unscaled map design eff, PR, and Wc (effMapdes, PRmapDes,
+	// WcMapDes).
+    // Then calculate scalars (s_NcDes, s_effDes, s_PRdes, s_WcDes) that relate 
+	// the map design point values of Nc, Wc, eff, and PR to the compressor 
+	// design point values (NcDes, effDes, PRdes, WcDes).
+    //----------------------------------------------------------------------
+    quit();
+    if ( switchDes == DESIGN ) {
+	
+		// Set the map alpha argument to the unscaled map design point.
+		// alphaMapDes is a user input, specific to the map that is being used.
+		alphaMap = alphaMapDes;
+		
+		// Set the map Nc argument to the unscaled map design point.
+		// NcMapDes is a user input, specific to the map that is being used.
+		NcMap = NcMapDes;
+		
+		// Set the map Rline argument to the unscaled map design point.
+		// RlineMapDes is a user input, specific to the map that is being used.
+		RlineMap = RlineMapDes;
+		
+		//-------------------------------------------------------------------
+		// execute the efficiency map (function socket)
+		//-------------------------------------------------------------------
+		effMap = TB_eff(alphaMap, NcMap, RlineMap);
+		
+		//-------------------------------------------------------------------
+		// execute the pressure ratio map (function socket)
+		//-------------------------------------------------------------------
+		PRmap = TB_PR(alphaMap, NcMap, RlineMap);
+		
+		//-------------------------------------------------------------------
+		// execute the corrected flow map (function socket)
+		//-------------------------------------------------------------------
+		WcMap = TB_Wc(alphaMap, NcMap, RlineMap);
+		
+		//-------------------------------------------------------------------
+		// Store the map returned values as map design point values
+		//-------------------------------------------------------------------
+		effMapDes = effMap;
+		PRmapDes = PRmap;
+		WcMapDes = WcMap;
+
+		//-------------------------------------------------------------------
+		// execute Reynolds effects socket if not empty 
+		//-------------------------------------------------------------------
+		if (!S_Re.isEmpty()) {
+			// This socket should set s_WcRe and s_effRe
+			S_Re.execute();
+		}
+		else{
+			s_effRe = 1.0;
+			s_WcRe = 1.0;
+		}
+			
+		//-------------------------------------------------------------------
+		// calculate the design scalars
+		//-------------------------------------------------------------------
+		
+		// Corrected speed scalar.  
+		// Note that NcDes is obtained from the parent Compressor element.
+		// NcMapDes is a user input in this subelement, specific to
+		// the map that is being used.
+		s_NcDes = NcDes/NcMapDes;
+		cerr << s_NcDes << endl;quit();
+		// Adiabatic efficiency scalar.  
+		// Note that effDes is a user input in the parent Compressor element,
+		// effMapDes came from the TB_eff map lookup, and s_effRe came from the
+		// S_Re socket (if it is being used)
+		s_effDes = effDes/(effMapDes * s_effRe);
+		
+		// Pressure ratio scalar.  
+		// Note that PRdes is a user input in the parent Compressor element,
+		// and PRmapDes came from the TB_PR map lookup.
+		s_PRdes = (PRdes - 1)/(PRmapDes - 1);
+		
+		// Corrected flow scalar.  
+		// Note that WcDes is obtained from the parent Compressor element,
+		// WcMapDes came from the TB_Wc map lookup, and s_WcRe came from the
+		// S_Re socket (if it is being used)
+		s_WcDes = WcDes/(WcMapDes * s_WcRe);
+      
+    } // end (switchDes == DESIGN)
+	 
+    //----------------------------------------------------------------------
+    // Continue with off-design calculations.
+	// Note:
+	// alphaMap is a user input.
+	// RlineMap is fixed during design (equals user input value for RlineMapDes), 
+	// and RlineMap is automatically varied by the solver during off-design.
+	// NcMap is corrected using the design point scalar before reading the maps.
+    //----------------------------------------------------------------------
+    
+    //----------------------------------------------------------------------
+    // correct the map speed using the design point scalar
+    //----------------------------------------------------------------------
+	NcMap = Nc / s_NcDes;
+    
+    //-------------------------------------------------------------------
+	// execute the efficiency map (function socket)
+	//-------------------------------------------------------------------
+	effMap = TB_eff(alphaMap, NcMap, RlineMap);
+		
+	//-------------------------------------------------------------------
+	// execute the pressure map (function socket)
+	//-------------------------------------------------------------------
+	PRmap = TB_PR(alphaMap, NcMap, RlineMap);
+		
+	//-------------------------------------------------------------------
+	// execute the corrected flow map (function socket)
+	//-------------------------------------------------------------------
+	WcMap = TB_Wc(alphaMap, NcMap, RlineMap);
+	 
+    //----------------------------------------------------------------------
+    // execute Reynolds effects socket if not empty
+    //----------------------------------------------------------------------
+    if (!S_Re.isEmpty()) {
+		S_Re.execute();
+    }
+	else{
+		s_effRe = 1.0;
+		s_WcRe = 1.0;
+    }
+	
+	//------------------------------------------------------------------
+    // Calculate stall margin at constant speed by using the RlineStall to
+    // determine the pressure ratio and weight flow at stall.
+    //------------------------------------------------------------------
+	
+	// Wc at the stall line and current Nc and alpha
+    WcMapSMN = TB_Wc(alphaMap, NcMap, RlineStall);  
+
+	// PR at the stall line and current Nc and alpha
+    PRmapSMN = TB_PR(alphaMap, NcMap, RlineStall);    
+	
+	// Stall margin at constant speed
+    SMNmap = ((WcMap / WcMapSMN) / (PRmap/PRmapSMN) - 1.0) * 100.;
+
+    //------------------------------------------------------------------
+    // Calculate stall margin at constant flow.
+    // To do this we need to iterate to determine at what speed stall 
+    // occurs at this weight flow.
+    //------------------------------------------------------------------
+    
+	// Create variable for secant solver to iterate on
+    real NcMap_Guess = NcMap;
+	
+	// Initialize the secant solver
+    smSolver.initialize(NcMap_Guess);
+	
+	// Create error term for secant solver use
+    real ErrWcMapSMW;
+    
+    //------------------------------------------------------------------
+    // iterate on NcMap_Guess until the error is within tolerance or
+	// an error is found
+    //------------------------------------------------------------------
+    	 
+    do {
+	
+		//-----------------------------------------------------------------
+		// read Wc map at the guessed value of NcMap (NcMap_Guess), 
+		// current value of alpha, and RlineStall
+		//-----------------------------------------------------------------
+		WcMapSMW = TB_Wc(alphaMap, NcMap_Guess, RlineStall);
+		  
+		//-----------------------------------------------------------------
+		// calculate the error term and iterate the guess
+		//-----------------------------------------------------------------
+		ErrWcMapSMW = ( WcMapSMW - WcMap )/ WcMap;
+		NcMap_Guess = smSolver.iterate( ErrWcMapSMW );
+		
+    } while ( ! ( smSolver.isConverged() || smSolver.errorFound() ) );
+    
+    //------------------------------------------------------------
+    // if an error is found, print a messag.
+    //------------------------------------------------------------
+    if ( smSolver.errorFound() ) {
+		ESOreport( 1073901,"Error occurred during iteration to determine stall margin at constant flow" );
+    }
+    
+    //------------------------------------------------------------
+    // read pressure ratio map to get PRmapSMW
+    //------------------------------------------------------------
+    PRmapSMW = TB_PR(alphaMap, NcMap_Guess, RlineStall);
+    
+    //------------------------------------------------------------
+    // calculate the stall margin at constant flow
+    //------------------------------------------------------------
+    SMWmap = 100. * (PRmapSMW - PRmap) / PRmap;
+  
+    //----------------------------------------------------------------------
+	// set values in parent Compressor element
+    //----------------------------------------------------------------------
+	effBase = s_effDes * s_effRe * effMap; // adiabatic efficiency base value
+	PRbase =  1.0 + s_PRdes * ( PRmap - 1.0 ); // pressure ratio base value
+	WcBase =  s_WcDes * s_WcRe * WcMap; // corrected flow base value
+	
+	SMN = SMNmap; // stall margin at constant speed
+	SMW = SMWmap; // stall margin at constant flow
+	 	
+  } // end calculate() function
+  
+} // end CompressorRlineMap subelement class
+ 
+#endif
+
+
+

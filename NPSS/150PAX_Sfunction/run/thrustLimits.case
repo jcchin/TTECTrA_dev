@@ -11,13 +11,13 @@ real Thrust_Low, Thrust_High;
 
 // Inputting the flight condition - Added here for running a case other than SLS
 // because the main run file executes the maximum power at SLS
-Ambient.alt = 0.0;
+Atmosphere.alt_in = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 
 // Reading the low and high total mass flow rate values from the guess tables
-Ambient_W_Low = TB_Ambient_PC(Ambient.alt, Ambient.MN, Ambient.dTs, 21);
-Ambient_W_High = TB_Ambient_PC(Ambient.alt, Ambient.MN, Ambient.dTs, 50);
+Ambient_W_Low = TB_Ambient_PC(Atmosphere.alt_in, Ambient.MN, Ambient.dTs, 21);
+Ambient_W_High = TB_Ambient_PC(Atmosphere.alt_in, Ambient.MN, Ambient.dTs, 50);
 
 // Printing the low and high total mass flow rate values to the screen for debugging
 // cout << Ambient_W_Low << endl;
@@ -25,7 +25,7 @@ Ambient_W_High = TB_Ambient_PC(Ambient.alt, Ambient.MN, Ambient.dTs, 50);
 
 // Inverse reading the low and high thrust values from the guess tables for the low and high
 // total mass flow rate values 
-Thrust_Low = TB_Ambient_Fnet.evalYX(Ambient.alt, Ambient.MN, Ambient.dTs, Ambient_W_Low);
-Thrust_High = TB_Ambient_Fnet.evalYX(Ambient.alt, Ambient.MN, Ambient.dTs, Ambient_W_High);
+Thrust_Low = TB_Ambient_Fnet.evalYX(Atmosphere.alt_in, Ambient.MN, Ambient.dTs, Ambient_W_Low);
+Thrust_High = TB_Ambient_Fnet.evalYX(Atmosphere.alt_in, Ambient.MN, Ambient.dTs, Ambient_W_High);
 
 mat_opData.display();

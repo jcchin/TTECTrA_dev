@@ -75,8 +75,8 @@ Element Compressor Fan  {
 // Defining the splitter element
 Element Splitter Splitter  {
    BPR = 5.2;
-   Fl_01.MN = 0.45; 
-   Fl_02.MN = 0.45; 
+   Fl_O1.MN = 0.45; 
+   Fl_O2.MN = 0.45; 
 }
 
 // Defining the element for the duct between the splitter and LPC
@@ -616,7 +616,7 @@ Element EngPerf Perf  {
 linkPorts( "Ambient.Fl_O"    , "Inlet.Fl_I"       , "FS_1"  ) ;
 linkPorts( "Inlet.Fl_O"      , "Fan.Fl_I"         , "FS_2"  ) ;
 linkPorts( "Fan.Fl_O"        , "Splitter.Fl_I"    , "FS_21" ) ;
-linkPorts( "Splitter.Fl_01"  , "Duct4.Fl_I"       , "FS_22" ) ;
+linkPorts( "Splitter.Fl_O1"  , "Duct4.Fl_I"       , "FS_22" ) ;
 linkPorts( "Duct4.Fl_O"      , "LPC.Fl_I"         , "FS_23" ) ;
 linkPorts( "LPC.Fl_O"        , "LPC_Bleed.Fl_I"    , "FS_235");
 linkPorts( "LPC_Bleed.Fl_O"   , "Duct6.Fl_I"       , "FS_24" ) ; 
@@ -638,7 +638,7 @@ linkPorts( "LPT.Fl_O"        , "Duct13.Fl_I"      , "FS_5"  ) ;
 linkPorts( "Duct13.Fl_O"     , "Core_Nozz.Fl_I"   , "FS_7"  ) ;
 linkPorts( "Core_Nozz.Fl_O"  , "Core_NozzEnd.Fl_I", "FS_9"  ) ;
 
-linkPorts( "Splitter.Fl_02"  , "BypBld.Fl_I"      , "FS_13" ) ;
+linkPorts( "Splitter.Fl_O2"  , "BypBld.Fl_I"      , "FS_13" ) ;
 linkPorts( "BypBld.Fl_O"     , "Duct15.Fl_I"      , "FS_15" ) ;
 linkPorts( "Duct15.Fl_O"     , "Sta_Bleed.Fl_I"   , "FS_17SB" ) ;
 linkPorts( "Sta_Bleed.Fl_O"  , "Byp_Nozz.Fl_I"   , "FS_17" ) ;

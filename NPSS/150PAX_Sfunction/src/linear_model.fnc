@@ -24,7 +24,7 @@ void run_linear(){
 // This function outputs the generated linear models in NPSS format
 void linear_model_output(){
 
-	LMGreport << "Linear Model at " << Ambient.alt << " ft, " << "M = " << Ambient.MN << ", dTs = " << Ambient.dTs << " F, " << "Fan Percent Corrected Speed = " << Fan.NcPct << " , EPR = " << Perf.myEPR << ", and Net Thrust = " << Perf.myFn << "\n" << endl;
+	LMGreport << "Linear Model at " << Atmosphere.alt_in << " ft, " << "M = " << Ambient.MN << ", dTs = " << Ambient.dTs << " F, " << "Fan Percent Corrected Speed = " << Fan.NcPct << " , EPR = " << Perf.myEPR << ", and Net Thrust = " << Perf.myFn << "\n" << endl;
 	LMGreport << "A matrix \n " << lin_mod.A << endl;
 	LMGreport << "B matrix \n " << lin_mod.B << endl;
 	LMGreport << "C matrix \n " << lin_mod.C << endl;
@@ -95,7 +95,7 @@ void linear_model_matlab_output(){
 	MatlabLinearReport << "% Altitude" << endl;
 	MatlabLinearReport << "% PC" << PC << endl;
 	MatlabLinearReport << "% TT" << TargetThrust << endl;
-	MatlabLinearReport << "alt = " << Ambient.alt << ";" << endl;
+	MatlabLinearReport << "alt = " << Atmosphere.alt_in << ";" << endl;
 	MatlabLinearReport << "% Mach" << endl;
 	MatlabLinearReport << "MN = " << Ambient.MN << ";" << endl;
 	MatlabLinearReport << "% dTs" << endl;

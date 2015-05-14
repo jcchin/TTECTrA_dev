@@ -42,7 +42,7 @@
 #ifndef TTECTrA  //GT's method
 	// Input the flight condition where you want to create the Matlab
 	// formatted setpoint output
-	Ambient.alt = 0.00;
+	Atmosphere.alt_in = 0.00;
 	Ambient.MN = 0.00;
 	Ambient.dTs = 0.00;
 
@@ -64,7 +64,7 @@
 
 	if(solver.converged == 1 && errHandler.numErrors == 0) {
 
-		cout << "\nSet point generation at altitude" << Ambient.alt << " ft, " << "MN = " << Ambient.MN << ", and dTs = " << Ambient.dTs << " degF is successful!" << endl;
+		cout << "\nSet point generation at altitude" << Atmosphere.alt_in << " ft, " << "MN = " << Ambient.MN << ", and dTs = " << Ambient.dTs << " degF is successful!" << endl;
 
 	}
 
@@ -72,7 +72,7 @@
 	setOption( "switchGuess", "ON" );
 	setOption( "switchGuessType", "PC" );
 	PC = 50;
-	Ambient.alt = 0.0;
+	Atmosphere.alt_in = 0.0;
 	Ambient.MN = 0.0;
 	Ambient.dTs = 0.0;
 	RunMaxPower();

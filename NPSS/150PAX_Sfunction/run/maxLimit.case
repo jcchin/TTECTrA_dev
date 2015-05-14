@@ -19,7 +19,7 @@ setOption( "switchVAFNSchedule", "ON" );
 
 PC = 50;
 
-Ambient.alt = -2000;
+Atmosphere.alt_in = -2000;
 Ambient.MN = 0.50;
 Ambient.dTs = -30;
 RunMaxPower();
@@ -32,7 +32,7 @@ max_Ps3_limit = FS_3.Ps;
 // Maximum Nf and Nc limit case
 //-------------------------------------------------------------------------------------------------
 // Running the max Nc case at 2,000 ft, MN = 0.65, and dTs = 0
-Ambient.alt = 2000;
+Atmosphere.alt_in = 2000;
 Ambient.MN = 0.65;
 Ambient.dTs = 0.0;
 RunMaxPower();
@@ -43,7 +43,7 @@ cout << "Maximum Nc limit: " << HP_Shaft.Nmech * 110 / 100 << " RPM" << endl;
 max_Nc_limit = HP_Shaft.Nmech * 110 / 100;
 
 // Running the first max Nf case at 8,000 ft, Mach number 0.75, and dTs=0
-Ambient.alt = 8000;
+Atmosphere.alt_in = 8000;
 Ambient.MN = 0.75;
 RunMaxPower();
 
@@ -51,7 +51,7 @@ RunMaxPower();
 real Nf_1 = LP_Shaft.Nmech;
 
 // Running the second max Nf case at 8,000 ft, Mach number 0.75, and dTs=0
-Ambient.alt = 16000;
+Atmosphere.alt_in = 16000;
 Ambient.MN = 0.80;
 RunMaxPower();
 
@@ -76,7 +76,7 @@ if(Nf_1 > Nf_2){
 setOption( "switchGuess", "ON" );
 setOption( "switchGuessType", "PC" );
 PC = 50;
-Ambient.alt = 0.0;
+Atmosphere.alt_in = 0.0;
 Ambient.MN = 0.0;
 Ambient.dTs = 0.0;
 RunMaxPower();
