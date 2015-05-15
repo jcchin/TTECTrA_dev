@@ -552,7 +552,7 @@ Dependent LP_Shaft_High_Limit {
 Dependent HP_Shaft_Acceleration_Limit {
 
 	eq_lhs = "HP_Shaft.dNqdt";
-	eq_rhs = "2000.0";
+	eq_rhs = "1000.0";
 
 }
 
@@ -560,7 +560,7 @@ Dependent HP_Shaft_Acceleration_Limit {
 Dependent HP_Shaft_Deceleration_Limit {
 
 	eq_lhs = "HP_Shaft.dNqdt";
-	eq_rhs = "-2000.0";
+	eq_rhs = "-1000.0";
 
 }
 
@@ -568,7 +568,7 @@ Dependent HP_Shaft_Deceleration_Limit {
 Dependent LP_Shaft_Acceleration_Limit {
 
 	eq_lhs = "LP_Shaft.dNqdt";
-	eq_rhs = "2000.0";
+	eq_rhs = "1000.0";
 
 }
 

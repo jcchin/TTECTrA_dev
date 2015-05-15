@@ -44,7 +44,7 @@ fprintf(fileID,'copy "%s\\TTECTrA_SP.input" "%s\\run\\TTECTrA_SP.input" /Y\n', c
 fprintf(fileID,'CD \\\n'); %switch to top drive
 fprintf(fileID, 'cd %s\n', path2model); %move to model directory
 fprintf(fileID,'@echo off\n'); %silence npss output
-fprintf(fileID,'call run_npss.bat run\\150PAX.run %s\n',ss_flags); %run npss
+fprintf(fileID,'call run_npss.bat run\\150PAX.run %s 2>&1 | wtee -a output\\info\\log_ss.m\n',ss_flags); %run npss
 %copy npss output back to matlab
 fprintf(fileID,'xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' ttectra_engine_name '\info']); %*.m pattern matches and copies all files
 

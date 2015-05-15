@@ -35,7 +35,7 @@ if ~(exist(['NPSSdata/' ttectra_engine_name '/info/setpoints.m']) == 2)
     fprintf(fileID,'CD \\\n'); %switch to top drive
     fprintf(fileID, 'cd %s\n', path2model); %move to model directory
     fprintf(fileID,'@echo off\n'); %silence npss output
-    fprintf(fileID,'call run_npss.bat run\\150PAX.run %s\n',model_flags); %run npss
+    fprintf(fileID,'call run_npss.bat run\\150PAX.run %s 2>&1 | wtee -a output\\info\\log_model.m\n',model_flags); %run npss
     %copy npss output back to matlab
     %fprintf('xcopy %s\\Output\\*.m %s\\NPSSdata /s /i /Y\n', path2model,current_folder) %*.m pattern matches and copies all files
     fprintf(fileID,'xcopy %s\\output\\info\\*.m %s /s /i /Y\n', path2model, [current_folder '\NPSSdata\' ttectra_engine_name '\info']); %*.m pattern matches and copies all files
