@@ -121,34 +121,43 @@ catch
     end
 end
 
+%non-standard parameters:
+
+
+
 if ~exist('outputs')
     try
         outputs.t       = y.get('Time');
-        outputs.P2      = y.get('P2');
+        
+        %thrust/fuel flow outputs
+        outputs.FT_dmd  = y.get('out_Fnet_dmd');
         outputs.Fnet    = y.get('myFnR');
-        outputs.Wf = y.get('Wfuel');
-        outputs.T25     = y.get('T25');
+        outputs.Wf_dmd  = y.get('out_Wf_dmd');
+        outputs.Wf      = y.get('Wfuel');
+        outputs.FAR     = y.get('FAR');
+        
+        %control variable demand/feedback
+        outputs.CV_fdbk = y.get('out_Fdbk');
+        outputs.CV_dmd  = y.get('out_dmd');
+        
+        %rotor speed outputs
         outputs.Nc      = y.get('N2');
         outputs.Nf      = y.get('N1');
         outputs.NcR25   = y.get('N2R25');
         outputs.Nc_dot  = y.get('N2dot');
-        outputs.HPC_SM  = y.get('HPC_SMN');
-        outputs.LPC_SM  = y.get('LPC_SMN');
-        outputs.FAR  = y.get('FAR');
-        outputs.T40 = y.get('T4');
-        outputs.Ps3     = y.get('Ps3');
         outputs.NcR25_dot = y.get('N2dot')./sqrt(y.get('T25'));
         
-        % from controller block
-        %  > Control variable feedback
-        %  > Demand signals for control variables
-        outputs.CV_fdbk = y.get('out_Fdbk');
-        outputs.CV_dmd  = y.get('out_dmd');
-        outputs.FT_dmd  = y.get('out_Fnet_dmd');
-        outputs.Wf_dmd  = y.get('out_Wf_dmd');
-        % ----
-        % ADDITIONAL (OPTIONAL) OUTPUT VARIABLES
-        % ----
+        %pressure/temp outputs
+        outputs.P2      = y.get('P2');
+        outputs.Ps3     = y.get('Ps3');
+        outputs.T25     = y.get('T25');
+        outputs.T40 = y.get('T4');
+        
+        %surge margin outputs
+        outputs.HPC_SM  = y.get('HPC_SMN');
+        outputs.LPC_SM  = y.get('LPC_SMN');
+        
+        %map outputs
         outputs.Fan_Wc  = y.get('Fan_Wc');
         outputs.Fan_pr  = y.get('Fan_pr');
         outputs.LPC_Wc  = y.get('LPC_Wc');
@@ -159,27 +168,44 @@ if ~exist('outputs')
         outputs.HPT_pr  = y.get('HPT_pr');
         outputs.LPT_Wc  = y.get('LPT_Wc');
         outputs.LPT_pr  = y.get('LPT_pr');
+        
+        %extra outputs
+        outputs.Abypass = y.get('Abypass');
+        outputs.dAbypass = y.get('dAbypass');
+        
     catch
         try
             outputs.t       = y.find('Time');
-            outputs.P2      = y.find('P2');
+            
+            %thrust/fuel flow outputs
+            outputs.FT_dmd  = y.find('out_Fnet_dmd');
             outputs.Fnet    = y.find('myFnR');
-            outputs.Wf = y.find('Wfuel');
-            outputs.T25     = y.find('T25');
+            outputs.Wf_dmd  = y.find('out_Wf_dmd');
+            outputs.Wf      = y.find('Wfuel');
+            outputs.FAR  = y.find('FAR');
+            
+            %control variable demand/feedback
+            outputs.CV_fdbk = y.find('out_Fdbk');
+            outputs.CV_dmd  = y.find('out_dmd');
+            
+            %rotor speed outputs
             outputs.Nc      = y.find('N2');
             outputs.Nf      = y.find('N1');
             outputs.NcR25   = y.find('N2R25');
             outputs.Nc_dot  = y.find('N2dot');
+            outputs.NcR25_dot = y.find('N2dot')./sqrt(y.find('T25'));
+            
+            %pressure/temp outputs
+            outputs.P2      = y.find('P2');
+            outputs.Ps3     = y.find('Ps3');
+            outputs.T25     = y.find('T25');
+            outputs.T40     = y.find('T4');
+            
+            %surge margin outputs
             outputs.HPC_SM  = y.find('HPC_SMN');
             outputs.LPC_SM  = y.find('LPC_SMN');
-            outputs.FAR  = y.find('FAR');
-            outputs.CV_fdbk = y.find('out_Fdbk');
-            outputs.CV_dmd  = y.find('out_dmd');
-            outputs.FT_dmd  = y.find('out_Fnet_dmd');
-            outputs.Wf_dmd  = y.find('out_Wf_dmd');
-            outputs.Ps3     = y.find('Ps3');
-            outputs.T40     = y.find('T4');
-            outputs.NcR25_dot = y.find('N2dot')./sqrt(y.find('T25'));
+            
+            %map outputs
             outputs.Fan_Wc  = y.find('Fan_Wc');
             outputs.Fan_pr  = y.find('Fan_pr');
             outputs.LPC_Wc  = y.find('LPC_Wc');
@@ -194,24 +220,36 @@ if ~exist('outputs')
         catch
             try
                 outputs.t       = Time;
-                outputs.P2      = P2;
+                
+                %thrust/fuel flow outputs
+                outputs.FT_dmd  = out_Fnet_dmd;
                 outputs.Fnet    = myFnR;
-                outputs.Wf = Wfuel;
-                outputs.T25     = T25;
+                outputs.Wf_dmd  = out_Wf_dmd;
+                outputs.Wf      = Wfuel;
+                outputs.FAR  = FAR;
+                
+                %control variable demand/feedback
+                outputs.CV_fdbk = out_Fdbk;
+                outputs.CV_dmd  = out_dmd;
+                
+                %rotor speed outputs
                 outputs.Nc      = N2;
                 outputs.Nf      = N1;
                 outputs.NcR25   = N2R25;
                 outputs.Nc_dot  = N2dot;
+                outputs.NcR25_dot = N2dot./sqrt(T25);
+                
+                %pressure/temp outputs
+                outputs.P2      = P2;
+                outputs.Ps3     = Ps3;
+                outputs.T25     = T25;
+                outputs.T40     = T4;
+                
+                %surge margin outputs
                 outputs.HPC_SM  = HPC_SMN;
                 outputs.LPC_SM  = LPC_SMN;
-                outputs.FAR  = FAR;
-                outputs.CV_fdbk = out_Fdbk;
-                outputs.CV_dmd  = out_dmd;
-                outputs.FT_dmd  = out_Fnet_dmd;
-                outputs.Wf_dmd  = out_Wf_dmd;
-                outputs.Ps3     = Ps3;
-                outputs.T40     = T4;
-                outputs.NcR25_dot = N2dot./sqrt(T25);
+                
+                %map outputs
                 outputs.Fan_Wc  = Fan_Wc;
                 outputs.Fan_pr  = Fan_pr;
                 outputs.LPC_Wc  = LPC_Wc;

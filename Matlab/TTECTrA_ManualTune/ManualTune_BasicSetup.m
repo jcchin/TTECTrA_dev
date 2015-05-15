@@ -4,11 +4,14 @@
 % not been previously loaded to the workspace
 %**************************************************************************
 
-% Basic Setup
+% Load input parameters and setup workspace
+GetNPSS_Model          % retrieve performance maps, min/max thrust setpoints
+
 ttectra_in=TTECTrA_NPSS_Inputs;      % load input data
+addpath(['NPSSdata\' ttectra_in.in.ttectra_engine_name '\info'],['NPSSdata\' ttectra_in.in.ttectra_engine_name '\maps'])
 
 % Run NPSS to get linear model and steady-state data
-if ispc
+if ispc %don't even attempt on mac
     fprintf('Generating NPSS Data');
     GetNPSS_PWLM(ttectra_in);
 end

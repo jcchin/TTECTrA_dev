@@ -204,7 +204,8 @@ DWS.TTECTrA_limiter.accel_den = [1 -exp(-1.5*DWS.in.Ts_cont)];
 %---------------------------------------
 load_system(inputs.in.simFileName);
 
-temp_path='NPSS_TTECTrA/';
+temp_pathbase=[inputs.in.simFileName(1:find(inputs.in.simFileName=='.')-1) '/'];
+temp_path=temp_pathbase;
 
 if strcmpi(inputs.controller.CVoutput(1:2),'Nf')
     set_param([temp_path 'ICFdbk'],'Value',num2str(DWS.in.Nf_zro));
@@ -220,7 +221,7 @@ set_param([temp_path 'ICPs3'],'Value',num2str(DWS.in.Ps3_zro));  %Ps3 Initial Co
 %---------------------------------------
 % TTECTrA Simulink Block
 %---------------------------------------
-temp_path='NPSS_TTECTrA/TTECTrA Simulink Block/';
+temp_path=[temp_pathbase 'TTECTrA Simulink Block/'];
 
 %-------- Fnet_dmd_profile --------
 set_param([temp_path 'Fnet_dmd_profile'],'Table',['[' num2str(DWS.in.FT_dmd) ']'],'InputValues',['[' num2str(DWS.in.t_vec) ']']);
@@ -250,7 +251,7 @@ set_param([temp_path 'Multiport Switch1'],'SampleTime',num2str(DWS.in.Ts_cont));
 %---------------------------------------
 % TTECTrA Simulink Block/Setpoint Controller
 %---------------------------------------
-temp_path='NPSS_TTECTrA/TTECTrA Simulink Block/Setpoint Controller/';
+temp_path=[temp_pathbase 'TTECTrA Simulink Block/Setpoint Controller/'];
 
 set_param([temp_path 'Filter1'],'Numerator',['[' num2str(1-exp(-0.1*DWS.in.Ts_cont)) ']']);
 set_param([temp_path 'Filter1'],'Denominator',['[' num2str([1 -exp(-0.1*DWS.in.Ts_cont)]) ']']);
@@ -294,7 +295,7 @@ set_param([temp_path 'Sum9'],'SampleTime',num2str(DWS.in.Ts_cont));
 %---------------------------------------
 % TTECTrA Simulink Block/Transient Limiter Logic
 %---------------------------------------
-temp_path='NPSS_TTECTrA/TTECTrA Simulink Block/Tranisent Limiter Logic/';
+temp_path=[temp_pathbase 'TTECTrA Simulink Block/Tranisent Limiter Logic/'];
 
 set_param([temp_path 'MinMax1'],'SampleTime',num2str(DWS.in.Ts_cont));
 set_param([temp_path 'MinMax'],'SampleTime',num2str(DWS.in.Ts_cont));
@@ -302,7 +303,7 @@ set_param([temp_path 'MinMax'],'SampleTime',num2str(DWS.in.Ts_cont));
 %---------------------------------------
 % TTECTrA Simulink Block/Transient Limiter Logic/Decel
 %---------------------------------------
-temp_path='NPSS_TTECTrA/TTECTrA Simulink Block/Tranisent Limiter Logic/Decel/';
+temp_path=[temp_pathbase 'TTECTrA Simulink Block/Tranisent Limiter Logic/Decel/'];
 
 %-------- Wf/Ps3 --------
 set_param([temp_path 'WfPs3 Limit'],'Value',num2str(DWS.TTECTrA_limiter.WfPs3lim));
@@ -311,7 +312,7 @@ set_param([temp_path 'Unit Delay'],'X0',num2str(DWS.in.Wf_zro));
 %---------------------------------------
 % TTECTrA Simulink Block/Transient Limiter Logic/Accel Sched
 %---------------------------------------
-temp_path='NPSS_TTECTrA/TTECTrA Simulink Block/Tranisent Limiter Logic/Accel Sched/';
+temp_path=[temp_pathbase 'TTECTrA Simulink Block/Tranisent Limiter Logic/Accel Sched/'];
 
 %-------- Accel Schedule --------
 set_param([temp_path 'Acceleration Schedule'],'InputValues',['[' num2str(DWS.TTECTrA_limiter.Nc_sched) ']'],'Table',['[' num2str(DWS.TTECTrA_limiter.Ncdot_sched) ']']);
