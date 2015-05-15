@@ -14,7 +14,7 @@ Independent FVAN {
 Dependent Fan_Rline_FVAN {
 
     eq_lhs = "Fan.S_map.RlineMap";
-	eq_rhs = "2.2";
+	eq_rhs = "1.8";
 
 }
 
@@ -22,7 +22,7 @@ Dependent Fan_Rline_FVAN {
 Dependent Fan_SMN_FVAN {
 
 	eq_lhs = "Fan.SMN";
-	eq_rhs = "10.0";
+	eq_rhs = "5.0";
 
 }
 
@@ -30,7 +30,7 @@ Dependent Fan_SMN_FVAN {
 Dependent Fan_SMW_FVAN {
 
 	eq_lhs = "Fan.SMW";
-	eq_rhs = "10.0";
+	eq_rhs = "5.0";
 
 }
 

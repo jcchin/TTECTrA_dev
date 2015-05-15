@@ -408,7 +408,9 @@ if(Fan.S_Qhx.isEmpty() && LPC.S_Qhx.isEmpty() && HPC.S_Qhx.isEmpty() && Burner.S
 	"Perf.myOPR:??????????.??????????",
 	"Perf.Thrml_Eff:??????????.??????????",
 	"Perf.Prop_Eff:??????????.??????????",
-	"Burner.FAR:??????????.??????????"
+	"Burner.FAR:??????????.??????????",
+	"Byp_Nozz.s_Ath:??????????.??????????",
+	"Byp_Nozz.s_AthDmd:??????????.??????????"
 	}
 
 	// Creating the output stream variable titles for the transient case without heat soak effects 
@@ -420,7 +422,7 @@ if(Fan.S_Qhx.isEmpty() && LPC.S_Qhx.isEmpty() && HPC.S_Qhx.isEmpty() && Burner.S
 	caseRow << "MN48 " << "\t" << "P48 " << "\t" << "T48 " << "\t" << "Ps48 " << "\t" << "Ts48 " << "\t" << "W48 " << "\t" << "LPT_parmMap " << "\t" << "LPT_Nc " << "\t" << "LPT_PR " << "\t" << "LPT_eff " << "\t" << "LPT_effPoly " << "\t" << "LPT_WpIn " << "\t" << "LPT_pwr " << "\t" << "LPT_parmGeomMap " << "\t" << "LPT_NpMap " << "\t" << "LPT_PRmap " << "\t" << "LPT_effMap " << "\t" << "LPT_WpMap " << "\t";
 	caseRow << "MN5 " << "\t" << "P5 " << "\t" << "T5 " << "\t" << "Ps5 " << "\t" << "Ts5 " << "\t" << "W5 " << "\t" << "MN7 " << "\t" << "P7 " << "\t" << "T7 " << "\t" << "Ps7 " << "\t" << "Ts7 " << "\t" << "W7 " << "\t" << "MN9 " << "\t" << "P9 " << "\t" << "T9 " << "\t" << "Ps9 " << "\t" << "Ts9 " << "\t" << "W9 " << "\t" << "Core_Nozz_PR " << "\t" << "MN13 " << "\t" << "P13 " << "\t" << "T13 " << "\t" << "Ps13 " << "\t" << "Ts13 " << "\t" << "W13 " << "\t";
 	caseRow << "MN17 " << "\t" << "P17 " << "\t" << "T17 " << "\t" << "Ps17 " << "\t" << "Ts17 " << "\t" << "W17 " << "\t" << "MN19 " << "\t" << "P19 " << "\t" << "T19 " << "\t" << "Ps19 " << "\t" << "Ts19 " << "\t" << "W19 " << "\t" << "Bypass_Nozz_PR " << "\t";
-	caseRow << "Fnet " << "\t" << "Fg " << "\t" << "TSFC " << "\t" << "OPR " << "\t" << "Thermal_Eff " << "\t" << "Propulsive_Eff " << "\t"  << "FAR" << endl;
+	caseRow << "Fnet " << "\t" << "Fg " << "\t" << "TSFC " << "\t" << "OPR " << "\t" << "Thermal_Eff " << "\t" << "Propulsive_Eff " << "\t"  << "FAR " << "\t"  << "Byp_Nozz_s_Ath" << "\t"  << "Byp_Nozz_s_Ath_Dmd " << endl;
 	
 }
 

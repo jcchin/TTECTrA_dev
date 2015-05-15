@@ -4,7 +4,7 @@
 % *************************************************************************
 dtemp_in=ttectra_in;
 
-dtemp_DEBUG=1;
+dtemp_DEBUG=0;
 
 dtemp_watchdog_limit=30;  %define watchdog limit
 dtemp_trimi=round(8/dtemp_in.in.Ts); %determine trim time
