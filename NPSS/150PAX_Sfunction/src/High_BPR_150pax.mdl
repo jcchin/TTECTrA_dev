@@ -50,10 +50,17 @@ Element InletStart Ambient{
     // eRamBase = 1.0; 
 // }
 
-Element InstalledInlet Inlet{
+//Element InstalledInlet Inlet{
+Element Inlet Inlet{
    Afs = 3500.0;
    Fl_O.MN = 0.63; 
-   real WC_Schedule, WC_DESIGN; 
+   real WC_Schedule, WC_DESIGN;
+   real Dinstall = 0;
+
+
+   FluidOutputPort BypassOut ;
+   FluidOutputPort BleedOut ;
+
    Table TB_wcfactor(real Mach) { 
      Mach =     {   0.00,   0.60,   0.80,   1.00 } 
      wcfactor = { 1.0000, 1.0000, 1.0000, 1.0000 } 
@@ -64,6 +71,7 @@ Element InstalledInlet Inlet{
      MNlocal = { 0.00, 0.10, 0.20, 0.32, 0.45, 0.60, 0.80, 1.00 } 
    } 
 
+   /*
    Subelement PipsiInletSub S_install { 
      Acapture = 10000.0; 
      #include <inlet_m9sub.maps>;
@@ -72,7 +80,7 @@ Element InstalledInlet Inlet{
        Acapture = 144.0*Ambient.W/Inlet.Fl_I.rhos/Inlet.Fl_I.Vflow/0.77;
        }
      }
-   } 
+   } */
 }
 
 Element Bleed InletFlowControl  {
