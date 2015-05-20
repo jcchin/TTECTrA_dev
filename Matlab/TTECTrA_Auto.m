@@ -97,18 +97,13 @@ TTECTrA_IWP_s
 % Test Controller Design
 %------------------------------
 close(h); h=waitbar(1.0,sprintf('Design Complete, Testing Closed-Loop Controller'));
-minFn=max( min(ttectra_in.SP.FT_SP),0.15*max(ttectra_in.SP.FT_SP)); %Determine min/idle thrust
+minFn=max( min(ttectra_in.SP.FT_SP),0.14*max(ttectra_in.SP.FT_SP)); %Determine min/idle thrust
 dFn=(max(ttectra_in.SP.FT_SP)-minFn); %Determine delta between max and min
 
 %Build thrust profile and set TTECTrA for closed loop
-%ttectra_in.in.t_vec  = [0, 10, 10.5, 20, 20.5, 30, 31, 35, 36, 40, 41, 45, 46, 50, 51, 55,56,60,62,64,70];
-%ttectra_in.in.t_vec  = [0, 10, 10.5, 20, 20.5, 30, 31, 35, 36, 40, 41, 45, 46, 50, 51, 55,56,60,62,64,70]+20;
-%ttectra_in.in.t_vec(1)=0;
-%ttectra_in.in.FT_dmd = [0, 0,  1   ,  1,    0,  0, .5, .5,.75,.75, 1,  1, .67,.67,.33,.33,0,0,.85,0,0]*dFn + minFn;
-
-ttectra_in.in.t_vec  = [0 10 12 24 25 30 30.5 40 40.5 50 85 90]+10;
+ttectra_in.in.t_vec  = [0 10 10.5 20 20.5 30 50 55];
 ttectra_in.in.t_vec(1)=0;
-ttectra_in.in.FT_dmd = [0 0 .5 .5  0  0   1   1   0   0 1  1]*dFn + minFn;
+ttectra_in.in.FT_dmd = [0 0 1   1   0   0 1  1]*dFn + minFn;
 ttectra_in.in.loop = 1;
 
 %Simulate
@@ -117,8 +112,9 @@ out=simFromTTECTrA(ttectra_in);
 %Plot the results
 if ~isempty(out)
     
-    ttrim=35;
+    ttrim=0;
     i_ttrim=min(find(out.t>=ttrim));
+    
     
     % Plot Thrust and Control Variable
     %----------------------------------------
@@ -202,19 +198,31 @@ if ~isempty(out)
     fan_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.ttectra_engine_name],114);
     figure(114);
     plot(out.Fan_Wc(i_ttrim:end),out.Fan_pr(i_ttrim:end),'kx')
+    title('Fan Map');
     
     lpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.ttectra_engine_name],115);
     figure(115);
     plot(out.LPC_Wc(i_ttrim:end),out.LPC_pr(i_ttrim:end),'kx');
+    title('LPC Map');
     
     hpc_plot([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.ttectra_engine_name],116);
     figure(116);
     plot(out.HPC_Wc(i_ttrim:end),out.HPC_pr(i_ttrim:end),'kx');
+    title('HPC Map');
+    
+    figure(117);
+    plot(out.t,out.cntrl,'b-','Linewidth',2);
+    ylim([0 4]);
+    grid on;
+    ylabel('Active Controller');
+    xlabel('Time, s');
+    set(gca,'YTick',[1 2 3],'YTicklabel',{'Set Point','Accel','Decel'});
+    
     
     % Plot Bypass Area
     %----------------------------------------
     if isfield(out,'Abypass')
-        figure(117);
+        figure(118);
         subplot(311);
         set(gca,'FontSize',12);
         plot(out.t(i_ttrim:end),out.Fnet(i_ttrim:end),'-',...
@@ -238,7 +246,7 @@ if ~isempty(out)
         ylabel('delta Bypass Area','FontSize',12);
         grid on;
 
-        figure(118);
+        figure(119);
         subplot(211);
         set(gca,'FontSize',12);
         plot(out.Nf(i_ttrim:end),out.Abypass(i_ttrim:end),'.','LineWidth',2);
@@ -254,7 +262,7 @@ if ~isempty(out)
         grid on;
         
         
-        figure(119);
+        figure(120);
         subplot(211);
         set(gca,'FontSize',12);
         plot(out.Fnet(i_ttrim:end),out.Abypass(i_ttrim:end),'.','LineWidth',2);

@@ -169,6 +169,8 @@ if ~exist('outputs')
         outputs.LPT_Wc  = y.get('LPT_Wc');
         outputs.LPT_pr  = y.get('LPT_pr');
         
+        outputs.cntrl=y.get('out_ctrl');
+                
         %extra outputs
         if exist('Abypass')
             outputs.Abypass = y.get('Abypass');
@@ -219,6 +221,8 @@ if ~exist('outputs')
             outputs.LPT_Wc  = y.find('LPT_Wc');
             outputs.LPT_pr  = y.find('LPT_pr');
             
+            outputs.cntrl=y.find('out_ctrl');
+            
         catch
             try
                 outputs.t       = Time;
@@ -263,6 +267,7 @@ if ~exist('outputs')
                 outputs.LPT_Wc  = LPT_Wc;
                 outputs.LPT_pr  = LPT_pr;
                 
+                outputs.cntrl = out_ctrl;
             catch
                 
                 errordlg({'Error running simulation:',ME.message})

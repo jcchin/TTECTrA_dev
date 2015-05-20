@@ -66590,3 +66590,4165 @@ FAILED REPEATABILITY TEST with value +6.5921e-003 (tol = +1.0000e-003). Max vari
 
 
 
+Running from NPSS
+Run on 05/20/15 at 13:24:48
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +3.6867e+003
+      HP_Shaft.Nmech   +1.3013e+004
+
+Inputs
+        Burner.Wfuel   +1.1917e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -3.7839e-003
+      HP_Shaft.dNqdt   -1.0594e-002
+
+Outputs
+      LP_Shaft.Nmech   +3.6867e+003
+      HP_Shaft.Nmech   +1.3013e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +2.7275e+001
+            FS_25.Tt   +6.3262e+002
+             FS_3.Ps   +2.0727e+002
+             FS_3.Tt   +1.1959e+003
+             FS_5.Pt   +1.8048e+001
+             FS_5.Tt   +1.3469e+003
+             FS_4.Tt   +2.4863e+003
+          Perf.myEPR   +1.2374e+000
+           Perf.myFn   +1.2000e+004
+          Perf.Wfuel   +1.1917e+000
+             HPC.SMN   +4.4422e+001
+             HPC.SMW   +4.6312e+001
+             LPC.SMN   +5.1293e+001
+             LPC.SMW   +4.3920e+001
+          Burner.FAR   +2.1021e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -5.6210e+000   +2.9843e+000   
+      HP_Shaft.dNqdt   +2.6450e+000   -1.1903e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.6483e+003   
+      HP_Shaft.dNqdt   +1.1855e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +1.6906e-002   -7.8517e-003   
+            FS_25.Tt   +1.2130e-001   -5.7233e-002   
+             FS_3.Ps   +1.9739e-002   +4.6146e-002   
+             FS_3.Tt   +5.0571e-002   +7.3301e-002   
+             FS_5.Pt   +5.4558e-004   +1.2894e-003   
+             FS_5.Tt   -7.7220e-002   -1.9695e-001   
+             FS_4.Tt   -9.7842e-002   -2.7638e-001   
+          Perf.myEPR   +3.7406e-005   +8.8400e-005   
+           Perf.myFn   +6.0581e+000   +7.2795e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +6.7030e-003   +1.3141e-002   
+             HPC.SMW   +9.9950e-003   +9.3311e-003   
+             LPC.SMN   -9.0224e-002   +8.6467e-002   
+             LPC.SMW   -6.8845e-002   +8.0236e-002   
+          Burner.FAR   -2.5546e-006   -6.1594e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.3065e-001   
+            FS_25.Tt   +1.6813e+000   
+             FS_3.Ps   +4.8373e+001   
+             FS_3.Tt   +5.4666e+001   
+             FS_5.Pt   +1.3466e+000   
+             FS_5.Tt   +5.3724e+002   
+             FS_4.Tt   +1.0217e+003   
+          Perf.myEPR   +9.2325e-002   
+           Perf.myFn   +8.3278e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -3.2096e+001   
+             HPC.SMW   -3.2619e+001   
+             LPC.SMN   -2.5401e+000   
+             LPC.SMW   -2.3571e+000   
+          Burner.FAR   +1.7822e-002   
+
+PASSED LINEARITY TEST with value +2.0802e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.4191e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +3.7847e+003
+      HP_Shaft.Nmech   +1.3119e+004
+
+Inputs
+        Burner.Wfuel   +1.2810e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +6.3774e-004
+      HP_Shaft.dNqdt   -1.9328e-003
+
+Outputs
+      LP_Shaft.Nmech   +3.7847e+003
+      HP_Shaft.Nmech   +1.3119e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +2.8239e+001
+            FS_25.Tt   +6.3916e+002
+             FS_3.Ps   +2.1880e+002
+             FS_3.Tt   +1.2140e+003
+             FS_5.Pt   +1.8376e+001
+             FS_5.Tt   +1.3643e+003
+             FS_4.Tt   +2.5347e+003
+          Perf.myEPR   +1.2599e+000
+           Perf.myFn   +1.2900e+004
+          Perf.Wfuel   +1.2810e+000
+             HPC.SMN   +4.3746e+001
+             HPC.SMW   +4.5538e+001
+             LPC.SMN   +5.1170e+001
+             LPC.SMW   +4.5204e+001
+          Burner.FAR   +2.1632e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -6.7926e+000   +3.1626e+000   
+      HP_Shaft.dNqdt   +4.6555e+000   -1.4280e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.5689e+003   
+      HP_Shaft.dNqdt   +1.1643e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +1.5019e-014   +0.0000e+000   
+            FS_25.Pt   +1.9334e-002   -8.4581e-003   
+            FS_25.Tt   +1.3347e-001   -6.0424e-002   
+             FS_3.Ps   +2.4586e-002   +4.7357e-002   
+             FS_3.Tt   +2.0286e-002   +1.0679e-001   
+             FS_5.Pt   +6.8812e-004   +1.4006e-003   
+             FS_5.Tt   -1.2074e-001   -1.7048e-001   
+             FS_4.Tt   -1.6124e-001   -2.3893e-001   
+          Perf.myEPR   +4.7178e-005   +9.6029e-005   
+           Perf.myFn   +7.7251e+000   +8.0233e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.0046e-002   +1.0482e-002   
+             HPC.SMW   +1.2576e-002   +7.0416e-003   
+             LPC.SMN   -8.9982e-002   +8.6122e-002   
+             LPC.SMW   -7.4022e-002   +8.0797e-002   
+          Burner.FAR   -3.2767e-006   -6.0269e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.3570e-001   
+            FS_25.Tt   +1.6838e+000   
+             FS_3.Ps   +4.7662e+001   
+             FS_3.Tt   +5.1379e+001   
+             FS_5.Pt   +1.3816e+000   
+             FS_5.Tt   +5.1266e+002   
+             FS_4.Tt   +9.6950e+002   
+          Perf.myEPR   +9.4724e-002   
+           Perf.myFn   +8.5387e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.9783e+001   
+             HPC.SMW   -3.0258e+001   
+             LPC.SMN   -2.4000e+000   
+             LPC.SMW   -2.2516e+000   
+          Burner.FAR   +1.7056e-002   
+
+PASSED LINEARITY TEST with value +1.4203e-001 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.9870e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +3.8793e+003
+      HP_Shaft.Nmech   +1.3221e+004
+
+Inputs
+        Burner.Wfuel   +1.3724e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +3.0274e-004
+      HP_Shaft.dNqdt   +5.8519e-004
+
+Outputs
+      LP_Shaft.Nmech   +3.8793e+003
+      HP_Shaft.Nmech   +1.3221e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +2.9274e+001
+            FS_25.Tt   +6.4601e+002
+             FS_3.Ps   +2.3043e+002
+             FS_3.Tt   +1.2319e+003
+             FS_5.Pt   +1.8724e+001
+             FS_5.Tt   +1.3817e+003
+             FS_4.Tt   +2.5819e+003
+          Perf.myEPR   +1.2837e+000
+           Perf.myFn   +1.3800e+004
+          Perf.Wfuel   +1.3724e+000
+             HPC.SMN   +4.3100e+001
+             HPC.SMW   +4.4782e+001
+             LPC.SMN   +5.1378e+001
+             LPC.SMW   +4.6062e+001
+          Burner.FAR   +2.2228e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -6.9094e+000   +3.2490e+000   
+      HP_Shaft.dNqdt   +4.8976e+000   -1.5340e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.5195e+003   
+      HP_Shaft.dNqdt   +1.1572e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +2.0707e-002   -9.3331e-003   
+            FS_25.Tt   +1.3965e-001   -6.5254e-002   
+             FS_3.Ps   +2.7127e-002   +4.8116e-002   
+             FS_3.Tt   +2.2273e-002   +1.1151e-001   
+             FS_5.Pt   +8.4424e-004   +1.5579e-003   
+             FS_5.Tt   -1.2673e-001   -1.6018e-001   
+             FS_4.Tt   -1.7190e-001   -2.2897e-001   
+          Perf.myEPR   +5.7882e-005   +1.0681e-004   
+           Perf.myFn   +7.8275e+000   +8.6744e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.0656e-002   +9.4830e-003   
+             HPC.SMW   +1.7849e-002   +2.3938e-003   
+             LPC.SMN   -8.8559e-002   +8.7616e-002   
+             LPC.SMW   -7.6789e-002   +8.2727e-002   
+          Burner.FAR   -3.5290e-006   -5.9558e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.4626e-001   
+            FS_25.Tt   +1.7218e+000   
+             FS_3.Ps   +4.6982e+001   
+             FS_3.Tt   +4.8749e+001   
+             FS_5.Pt   +1.3201e+000   
+             FS_5.Tt   +4.8731e+002   
+             FS_4.Tt   +9.2223e+002   
+          Perf.myEPR   +9.0508e-002   
+           Perf.myFn   +8.8618e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.7736e+001   
+             HPC.SMW   -2.8009e+001   
+             LPC.SMN   -2.3119e+000   
+             LPC.SMW   -2.1829e+000   
+          Burner.FAR   +1.6353e-002   
+
+PASSED LINEARITY TEST with value +1.6219e-001 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +5.1343e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +3.9710e+003
+      HP_Shaft.Nmech   +1.3317e+004
+
+Inputs
+        Burner.Wfuel   +1.4647e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +1.8812e-003
+      HP_Shaft.dNqdt   -2.2925e-003
+
+Outputs
+      LP_Shaft.Nmech   +3.9710e+003
+      HP_Shaft.Nmech   +1.3317e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.0302e+001
+            FS_25.Tt   +6.5260e+002
+             FS_3.Ps   +2.4202e+002
+             FS_3.Tt   +1.2491e+003
+             FS_5.Pt   +1.9085e+001
+             FS_5.Tt   +1.3984e+003
+             FS_4.Tt   +2.6267e+003
+          Perf.myEPR   +1.3085e+000
+           Perf.myFn   +1.4700e+004
+          Perf.Wfuel   +1.4647e+000
+             HPC.SMN   +4.2510e+001
+             HPC.SMW   +4.4043e+001
+             LPC.SMN   +5.1569e+001
+             LPC.SMW   +4.6849e+001
+          Burner.FAR   +2.2799e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -7.1806e+000   +3.3124e+000   
+      HP_Shaft.dNqdt   +4.9059e+000   -1.6029e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.4842e+003   
+      HP_Shaft.dNqdt   +1.1375e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   -4.2684e-015   
+            FS_25.Pt   +2.2129e-002   -1.0246e-002   
+            FS_25.Tt   +1.4362e-001   -7.0179e-002   
+             FS_3.Ps   +3.1389e-002   +4.8737e-002   
+             FS_3.Tt   +2.3084e-002   +1.0993e-001   
+             FS_5.Pt   +1.0679e-003   +1.6635e-003   
+             FS_5.Tt   -1.3966e-001   -1.5428e-001   
+             FS_4.Tt   -1.9509e-001   -2.2505e-001   
+          Perf.myEPR   +7.3213e-005   +1.1405e-004   
+           Perf.myFn   +8.5411e+000   +9.2155e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.1476e-002   +8.8548e-003   
+             HPC.SMW   +1.8601e-002   +7.7725e-004   
+             LPC.SMN   -8.9157e-002   +8.9297e-002   
+             LPC.SMW   -7.8170e-002   +8.4631e-002   
+          Burner.FAR   -3.9998e-006   -5.8968e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.5610e-001   
+            FS_25.Tt   +1.7541e+000   
+             FS_3.Ps   +4.6380e+001   
+             FS_3.Tt   +4.6438e+001   
+             FS_5.Pt   +1.2465e+000   
+             FS_5.Tt   +4.6354e+002   
+             FS_4.Tt   +8.7948e+002   
+          Perf.myEPR   +8.5460e-002   
+           Perf.myFn   +9.1038e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.5945e+001   
+             HPC.SMW   -2.6171e+001   
+             LPC.SMN   -2.2320e+000   
+             LPC.SMW   -2.1173e+000   
+          Burner.FAR   +1.5713e-002   
+
+FAILED LINEARITY TEST with value +4.0707e-001 (tol = +2.0000e-001). Max variance at D(9,1)
+
+PASSED REPEATABILITY TEST with value +2.4367e-004 (tol = +1.0000e-003)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.0561e+003
+      HP_Shaft.Nmech   +1.3406e+004
+
+Inputs
+        Burner.Wfuel   +1.5565e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +1.1472e-004
+      HP_Shaft.dNqdt   -1.0025e-004
+
+Outputs
+      LP_Shaft.Nmech   +4.0561e+003
+      HP_Shaft.Nmech   +1.3406e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.1295e+001
+            FS_25.Tt   +6.5864e+002
+             FS_3.Ps   +2.5339e+002
+             FS_3.Tt   +1.2651e+003
+             FS_5.Pt   +1.9459e+001
+             FS_5.Tt   +1.4147e+003
+             FS_4.Tt   +2.6689e+003
+          Perf.myEPR   +1.3341e+000
+           Perf.myFn   +1.5600e+004
+          Perf.Wfuel   +1.5565e+000
+             HPC.SMN   +4.1957e+001
+             HPC.SMW   +4.3354e+001
+             LPC.SMN   +5.1807e+001
+             LPC.SMW   +4.7610e+001
+          Burner.FAR   +2.3343e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -7.2044e+000   +3.4104e+000   
+      HP_Shaft.dNqdt   +5.0425e+000   -1.6725e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.3592e+003   
+      HP_Shaft.dNqdt   +1.1242e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +2.3059e-002   -1.1134e-002   
+            FS_25.Tt   +1.4648e-001   -7.4768e-002   
+             FS_3.Ps   +3.3509e-002   +4.9301e-002   
+             FS_3.Tt   +2.4265e-002   +1.0879e-001   
+             FS_5.Pt   +1.0977e-003   +1.7063e-003   
+             FS_5.Tt   -1.4613e-001   -1.5046e-001   
+             FS_4.Tt   -2.0221e-001   -2.2084e-001   
+          Perf.myEPR   +7.5260e-005   +1.1699e-004   
+           Perf.myFn   +8.6324e+000   +9.7156e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.1818e-002   +8.2611e-003   
+             HPC.SMW   +1.8832e-002   +2.2086e-004   
+             LPC.SMN   -8.9365e-002   +9.0853e-002   
+             LPC.SMW   -7.9061e-002   +8.6626e-002   
+          Burner.FAR   -4.1785e-006   -5.8359e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.6554e-001   
+            FS_25.Tt   +1.7832e+000   
+             FS_3.Ps   +4.5812e+001   
+             FS_3.Tt   +4.4300e+001   
+             FS_5.Pt   +1.5086e+000   
+             FS_5.Tt   +4.4971e+002   
+             FS_4.Tt   +8.4119e+002   
+          Perf.myEPR   +1.0343e-001   
+           Perf.myFn   +9.3433e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.4367e+001   
+             HPC.SMW   -2.4553e+001   
+             LPC.SMN   -2.1670e+000   
+             LPC.SMW   -2.0661e+000   
+          Burner.FAR   +1.5136e-002   
+
+PASSED LINEARITY TEST with value +3.5487e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.5226e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.1395e+003
+      HP_Shaft.Nmech   +1.3493e+004
+
+Inputs
+        Burner.Wfuel   +1.6489e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +1.4001e-005
+      HP_Shaft.dNqdt   +8.3693e-005
+
+Outputs
+      LP_Shaft.Nmech   +4.1395e+003
+      HP_Shaft.Nmech   +1.3493e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.2356e+001
+            FS_25.Tt   +6.6494e+002
+             FS_3.Ps   +2.6491e+002
+             FS_3.Tt   +1.2805e+003
+             FS_5.Pt   +1.9853e+001
+             FS_5.Tt   +1.4297e+003
+             FS_4.Tt   +2.7080e+003
+          Perf.myEPR   +1.3611e+000
+           Perf.myFn   +1.6500e+004
+          Perf.Wfuel   +1.6489e+000
+             HPC.SMN   +4.1507e+001
+             HPC.SMW   +4.2795e+001
+             LPC.SMN   +5.1767e+001
+             LPC.SMW   +4.8120e+001
+          Burner.FAR   +2.3841e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -7.2958e+000   +3.4822e+000   
+      HP_Shaft.dNqdt   +5.3949e+000   -1.7300e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.2900e+003   
+      HP_Shaft.dNqdt   +1.1179e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +1.3732e-014   +0.0000e+000   
+            FS_25.Pt   +2.4948e-002   -1.1874e-002   
+            FS_25.Tt   +1.5469e-001   -7.8027e-002   
+             FS_3.Ps   +3.7143e-002   +5.0035e-002   
+             FS_3.Tt   +2.5592e-002   +1.0701e-001   
+             FS_5.Pt   +1.2615e-003   +1.7963e-003   
+             FS_5.Tt   -1.5649e-001   -1.4770e-001   
+             FS_4.Tt   -2.1833e-001   -2.1917e-001   
+          Perf.myEPR   +8.6490e-005   +1.2315e-004   
+           Perf.myFn   +8.7503e+000   +1.0247e+000   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.2606e-002   +7.8428e-003   
+             HPC.SMW   +1.9787e-002   -1.2738e-004   
+             LPC.SMN   -9.3306e-002   +9.1517e-002   
+             LPC.SMW   -8.2901e-002   +8.7691e-002   
+          Burner.FAR   -4.5302e-006   -5.7964e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +3.4473e-011   
+            FS_25.Pt   +2.7498e-001   
+            FS_25.Tt   +1.8070e+000   
+             FS_3.Ps   +4.5296e+001   
+             FS_3.Tt   +4.2048e+001   
+             FS_5.Pt   +1.5571e+000   
+             FS_5.Tt   +4.3197e+002   
+             FS_4.Tt   +8.0547e+002   
+          Perf.myEPR   +1.0676e-001   
+           Perf.myFn   +9.5495e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.2951e+001   
+             HPC.SMW   -2.3106e+001   
+             LPC.SMN   -2.1195e+000   
+             LPC.SMW   -2.0309e+000   
+          Burner.FAR   +1.4594e-002   
+
+PASSED LINEARITY TEST with value +1.6426e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.1807e-003 (tol = +1.0000e-003). Max variance at D(18,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.2214e+003
+      HP_Shaft.Nmech   +1.3577e+004
+
+Inputs
+        Burner.Wfuel   +1.7421e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +3.5109e-003
+      HP_Shaft.dNqdt   -2.3247e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.2214e+003
+      HP_Shaft.Nmech   +1.3577e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.3431e+001
+            FS_25.Tt   +6.7115e+002
+             FS_3.Ps   +2.7647e+002
+             FS_3.Tt   +1.2954e+003
+             FS_5.Pt   +2.0262e+001
+             FS_5.Tt   +1.4440e+003
+             FS_4.Tt   +2.7451e+003
+          Perf.myEPR   +1.3892e+000
+           Perf.myFn   +1.7400e+004
+          Perf.Wfuel   +1.7421e+000
+             HPC.SMN   +4.1108e+001
+             HPC.SMW   +4.2298e+001
+             LPC.SMN   +5.1675e+001
+             LPC.SMW   +4.8552e+001
+          Burner.FAR   +2.4315e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -7.6349e+000   +3.5569e+000   
+      HP_Shaft.dNqdt   +5.3519e+000   -1.7982e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.2296e+003   
+      HP_Shaft.dNqdt   +1.1063e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +1.3466e-014   +0.0000e+000   
+            FS_25.Pt   +2.6407e-002   -1.2610e-002   
+            FS_25.Tt   +1.5764e-001   -8.1112e-002   
+             FS_3.Ps   +4.1898e-002   +5.0867e-002   
+             FS_3.Tt   +2.5507e-002   +1.0615e-001   
+             FS_5.Pt   +1.4736e-003   +1.8918e-003   
+             FS_5.Tt   -1.7187e-001   -1.4402e-001   
+             FS_4.Tt   -2.4209e-001   -2.1543e-001   
+          Perf.myEPR   +1.0103e-004   +1.2971e-004   
+           Perf.myFn   +9.6768e+000   +1.0793e+000   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.3327e-002   +7.4080e-003   
+             HPC.SMW   +2.0444e-002   -4.9915e-004   
+             LPC.SMN   -9.3177e-002   +9.2082e-002   
+             LPC.SMW   -8.3515e-002   +8.8634e-002   
+          Burner.FAR   -5.0078e-006   -5.7566e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.7933e-001   
+            FS_25.Tt   +1.7967e+000   
+             FS_3.Ps   +4.4827e+001   
+             FS_3.Tt   +4.0280e+001   
+             FS_5.Pt   +1.6019e+000   
+             FS_5.Tt   +4.1583e+002   
+             FS_4.Tt   +7.7263e+002   
+          Perf.myEPR   +1.0983e-001   
+           Perf.myFn   +9.7534e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.1692e+001   
+             HPC.SMW   -2.1822e+001   
+             LPC.SMN   -2.0398e+000   
+             LPC.SMW   -1.9634e+000   
+          Burner.FAR   +1.4086e-002   
+
+PASSED LINEARITY TEST with value +8.7496e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.6482e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.2933e+003
+      HP_Shaft.Nmech   +1.3653e+004
+
+Inputs
+        Burner.Wfuel   +1.8330e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +2.2651e-003
+      HP_Shaft.dNqdt   -2.6403e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.2933e+003
+      HP_Shaft.Nmech   +1.3653e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.4426e+001
+            FS_25.Tt   +6.7651e+002
+             FS_3.Ps   +2.8757e+002
+             FS_3.Tt   +1.3088e+003
+             FS_5.Pt   +2.0670e+001
+             FS_5.Tt   +1.4576e+003
+             FS_4.Tt   +2.7796e+003
+          Perf.myEPR   +1.4172e+000
+           Perf.myFn   +1.8300e+004
+          Perf.Wfuel   +1.8330e+000
+             HPC.SMN   +4.0713e+001
+             HPC.SMW   +4.1808e+001
+             LPC.SMN   +5.1771e+001
+             LPC.SMW   +4.9071e+001
+          Burner.FAR   +2.4765e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.0273e+000   +3.5890e+000   
+      HP_Shaft.dNqdt   +5.0498e+000   -1.8612e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.2937e+003   
+      HP_Shaft.dNqdt   +1.1114e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +2.7402e-002   -1.3281e-002   
+            FS_25.Tt   +1.5924e-001   -8.3667e-002   
+             FS_3.Ps   +4.5053e-002   +5.1488e-002   
+             FS_3.Tt   +2.5697e-002   +1.0529e-001   
+             FS_5.Pt   +1.6909e-003   +1.9869e-003   
+             FS_5.Tt   -1.6596e-001   -1.3858e-001   
+             FS_4.Tt   -2.5477e-001   -2.1207e-001   
+          Perf.myEPR   +1.1593e-004   +1.3623e-004   
+           Perf.myFn   +1.0156e+001   +1.1204e+000   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.3713e-002   +7.0200e-003   
+             HPC.SMW   +2.0708e-002   -8.0550e-004   
+             LPC.SMN   -9.2690e-002   +9.2527e-002   
+             LPC.SMW   -8.3700e-002   +8.9532e-002   
+          Burner.FAR   -5.2809e-006   -5.7075e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   -3.1011e-011   
+            FS_25.Pt   +2.7773e-001   
+            FS_25.Tt   +1.7497e+000   
+             FS_3.Ps   +4.4384e+001   
+             FS_3.Tt   +3.8694e+001   
+             FS_5.Pt   +1.6129e+000   
+             FS_5.Tt   +3.9445e+002   
+             FS_4.Tt   +7.4330e+002   
+          Perf.myEPR   +1.1058e-001   
+           Perf.myFn   +9.7759e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.0588e+001   
+             HPC.SMW   -2.0697e+001   
+             LPC.SMN   -1.9351e+000   
+             LPC.SMW   -1.8638e+000   
+          Burner.FAR   +1.3630e-002   
+
+PASSED LINEARITY TEST with value +2.9855e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.3735e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.3644e+003
+      HP_Shaft.Nmech   +1.3727e+004
+
+Inputs
+        Burner.Wfuel   +1.9266e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -8.6419e-004
+      HP_Shaft.dNqdt   -1.5974e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.3644e+003
+      HP_Shaft.Nmech   +1.3727e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.5425e+001
+            FS_25.Tt   +6.8180e+002
+             FS_3.Ps   +2.9881e+002
+             FS_3.Tt   +1.3219e+003
+             FS_5.Pt   +2.1098e+001
+             FS_5.Tt   +1.4719e+003
+             FS_4.Tt   +2.8140e+003
+          Perf.myEPR   +1.4465e+000
+           Perf.myFn   +1.9200e+004
+          Perf.Wfuel   +1.9266e+000
+             HPC.SMN   +4.0325e+001
+             HPC.SMW   +4.1328e+001
+             LPC.SMN   +5.1907e+001
+             LPC.SMW   +4.9565e+001
+          Burner.FAR   +2.5219e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.1118e+000   +3.6468e+000   
+      HP_Shaft.dNqdt   +5.4119e+000   -1.9153e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.2156e+003   
+      HP_Shaft.dNqdt   +1.0948e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +4.1411e-015   
+            FS_25.Pt   +2.9226e-002   -1.3960e-002   
+            FS_25.Tt   +1.6680e-001   -8.6194e-002   
+             FS_3.Ps   +4.8587e-002   +5.2089e-002   
+             FS_3.Tt   +2.7187e-002   +1.0449e-001   
+             FS_5.Pt   +1.8822e-003   +2.0861e-003   
+             FS_5.Tt   -1.7403e-001   -1.3568e-001   
+             FS_4.Tt   -2.6780e-001   -2.0888e-001   
+          Perf.myEPR   +1.2905e-004   +1.4302e-004   
+           Perf.myFn   +1.0223e+001   +1.1589e+000   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.4375e-002   +6.6401e-003   
+             HPC.SMW   +2.1509e-002   -1.1078e-003   
+             LPC.SMN   -9.0944e-002   +9.3050e-002   
+             LPC.SMW   -8.7322e-002   +8.9060e-002   
+          Burner.FAR   -5.5844e-006   -5.6621e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.7423e-001   
+            FS_25.Tt   +1.6932e+000   
+             FS_3.Ps   +4.3949e+001   
+             FS_3.Tt   +3.7193e+001   
+             FS_5.Pt   +1.6550e+000   
+             FS_5.Tt   +3.8287e+002   
+             FS_4.Tt   +7.1570e+002   
+          Perf.myEPR   +1.1347e-001   
+           Perf.myFn   +9.9978e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.9565e+001   
+             HPC.SMW   -1.9657e+001   
+             LPC.SMN   -1.8280e+000   
+             LPC.SMW   -1.7489e+000   
+          Burner.FAR   +1.3201e-002   
+
+PASSED LINEARITY TEST with value +2.3640e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +9.7639e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.4346e+003
+      HP_Shaft.Nmech   +1.3800e+004
+
+Inputs
+        Burner.Wfuel   +2.0214e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -3.8716e-004
+      HP_Shaft.dNqdt   -1.4451e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.4346e+003
+      HP_Shaft.Nmech   +1.3800e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.6484e+001
+            FS_25.Tt   +6.8732e+002
+             FS_3.Ps   +3.1025e+002
+             FS_3.Tt   +1.3349e+003
+             FS_5.Pt   +2.1548e+001
+             FS_5.Tt   +1.4856e+003
+             FS_4.Tt   +2.8467e+003
+          Perf.myEPR   +1.4773e+000
+           Perf.myFn   +2.0100e+004
+          Perf.Wfuel   +2.0214e+000
+             HPC.SMN   +3.9996e+001
+             HPC.SMW   +4.0925e+001
+             LPC.SMN   +5.2173e+001
+             LPC.SMW   +4.9798e+001
+          Burner.FAR   +2.5646e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.1442e+000   +3.7215e+000   
+      HP_Shaft.dNqdt   +5.5241e+000   -1.9865e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.1546e+003   
+      HP_Shaft.dNqdt   +1.0915e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +2.9963e-002   -1.4762e-002   
+            FS_25.Tt   +1.6783e-001   -8.9274e-002   
+             FS_3.Ps   +5.0223e-002   +5.2649e-002   
+             FS_3.Tt   +2.7407e-002   +1.0384e-001   
+             FS_5.Pt   +2.0110e-003   +2.1708e-003   
+             FS_5.Tt   -1.7434e-001   -1.3156e-001   
+             FS_4.Tt   -2.6987e-001   -2.0507e-001   
+          Perf.myEPR   +1.3788e-004   +1.4883e-004   
+           Perf.myFn   +1.0254e+001   +1.1936e+000   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.4443e-002   +6.2553e-003   
+             HPC.SMW   +2.1452e-002   -1.4588e-003   
+             LPC.SMN   -9.0555e-002   +9.3942e-002   
+             LPC.SMW   -8.7053e-002   +8.9991e-002   
+          Burner.FAR   -5.6569e-006   -5.6049e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   -2.8121e-011   
+            FS_25.Pt   +2.7771e-001   
+            FS_25.Tt   +1.6795e+000   
+             FS_3.Ps   +4.3558e+001   
+             FS_3.Tt   +3.5828e+001   
+             FS_5.Pt   +1.6866e+000   
+             FS_5.Tt   +3.6995e+002   
+             FS_4.Tt   +6.8979e+002   
+          Perf.myEPR   +1.1564e-001   
+           Perf.myFn   +1.0163e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.8624e+001   
+             HPC.SMW   -1.8700e+001   
+             LPC.SMN   -1.7673e+000   
+             LPC.SMW   -1.6930e+000   
+          Burner.FAR   +1.2792e-002   
+
+PASSED LINEARITY TEST with value +2.2273e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +7.1689e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.5042e+003
+      HP_Shaft.Nmech   +1.3872e+004
+
+Inputs
+        Burner.Wfuel   +2.1194e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +3.1917e-006
+      HP_Shaft.dNqdt   -9.2053e-004
+
+Outputs
+      LP_Shaft.Nmech   +4.5042e+003
+      HP_Shaft.Nmech   +1.3872e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.7523e+001
+            FS_25.Tt   +6.9271e+002
+             FS_3.Ps   +3.2183e+002
+             FS_3.Tt   +1.3479e+003
+             FS_5.Pt   +2.2018e+001
+             FS_5.Tt   +1.5000e+003
+             FS_4.Tt   +2.8799e+003
+          Perf.myEPR   +1.5096e+000
+           Perf.myFn   +2.1000e+004
+          Perf.Wfuel   +2.1194e+000
+             HPC.SMN   +3.9658e+001
+             HPC.SMW   +4.0509e+001
+             LPC.SMN   +5.2523e+001
+             LPC.SMW   +5.0112e+001
+          Burner.FAR   +2.6088e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.9099e+000   +3.8745e+000   
+      HP_Shaft.dNqdt   +6.0488e+000   -2.0308e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.0845e+003   
+      HP_Shaft.dNqdt   +1.0818e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.1594e-002   -1.5901e-002   
+            FS_25.Tt   +1.7532e-001   -9.2316e-002   
+             FS_3.Ps   +5.2229e-002   +5.0998e-002   
+             FS_3.Tt   +2.9192e-002   +1.0378e-001   
+             FS_5.Pt   +2.1407e-003   +2.1601e-003   
+             FS_5.Tt   -1.7530e-001   -1.1997e-001   
+             FS_4.Tt   -2.7251e-001   -1.8824e-001   
+          Perf.myEPR   +1.4677e-004   +1.4810e-004   
+           Perf.myFn   +1.0978e+001   +7.7820e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.4834e-002   +5.5524e-003   
+             HPC.SMW   +2.1977e-002   -2.1203e-003   
+             LPC.SMN   -9.3255e-002   +9.4817e-002   
+             LPC.SMW   -8.9730e-002   +9.0935e-002   
+          Burner.FAR   -5.7662e-006   -5.3032e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.8568e-001   
+            FS_25.Tt   +1.6587e+000   
+             FS_3.Ps   +4.3200e+001   
+             FS_3.Tt   +3.4534e+001   
+             FS_5.Pt   +1.7649e+000   
+             FS_5.Tt   +3.5862e+002   
+             FS_4.Tt   +6.6514e+002   
+          Perf.myEPR   +1.2100e-001   
+           Perf.myFn   +1.0434e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.7735e+001   
+             HPC.SMW   -1.7797e+001   
+             LPC.SMN   -1.7036e+000   
+             LPC.SMW   -1.6339e+000   
+          Burner.FAR   +1.2403e-002   
+
+PASSED LINEARITY TEST with value +9.4149e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +1.7174e-002 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.5711e+003
+      HP_Shaft.Nmech   +1.3946e+004
+
+Inputs
+        Burner.Wfuel   +2.2215e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -4.9200e-004
+      HP_Shaft.dNqdt   -7.9537e-005
+
+Outputs
+      LP_Shaft.Nmech   +4.5711e+003
+      HP_Shaft.Nmech   +1.3946e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.8497e+001
+            FS_25.Tt   +6.9779e+002
+             FS_3.Ps   +3.3351e+002
+             FS_3.Tt   +1.3609e+003
+             FS_5.Pt   +2.2510e+001
+             FS_5.Tt   +1.5157e+003
+             FS_4.Tt   +2.9147e+003
+          Perf.myEPR   +1.5433e+000
+           Perf.myFn   +2.1900e+004
+          Perf.Wfuel   +2.2215e+000
+             HPC.SMN   +3.9278e+001
+             HPC.SMW   +4.0038e+001
+             LPC.SMN   +5.3086e+001
+             LPC.SMW   +5.0633e+001
+          Burner.FAR   +2.6562e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.9014e+000   +3.9549e+000   
+      HP_Shaft.dNqdt   +6.2010e+000   -2.0901e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.9643e+003   
+      HP_Shaft.dNqdt   +1.0654e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.2280e-002   -1.6695e-002   
+            FS_25.Tt   +1.7666e-001   -9.5398e-002   
+             FS_3.Ps   +5.3755e-002   +5.1301e-002   
+             FS_3.Tt   +2.9806e-002   +1.0287e-001   
+             FS_5.Pt   +2.2339e-003   +2.2195e-003   
+             FS_5.Tt   -1.7720e-001   -1.1716e-001   
+             FS_4.Tt   -2.7376e-001   -1.8449e-001   
+          Perf.myEPR   +1.5316e-004   +1.5217e-004   
+           Perf.myFn   +1.0982e+001   +7.9288e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.4916e-002   +5.1398e-003   
+             HPC.SMW   +2.1921e-002   -2.4698e-003   
+             LPC.SMN   -9.3205e-002   +9.5803e-002   
+             LPC.SMW   -8.9766e-002   +9.1976e-002   
+          Burner.FAR   -5.8328e-006   -5.2421e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.8763e-001   
+            FS_25.Tt   +1.6436e+000   
+             FS_3.Ps   +4.2790e+001   
+             FS_3.Tt   +3.3331e+001   
+             FS_5.Pt   +1.8667e+000   
+             FS_5.Tt   +3.5123e+002   
+             FS_4.Tt   +6.4217e+002   
+          Perf.myEPR   +1.2798e-001   
+           Perf.myFn   +1.0667e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.6899e+001   
+             HPC.SMW   -1.6946e+001   
+             LPC.SMN   -1.6506e+000   
+             LPC.SMW   -1.5847e+000   
+          Burner.FAR   +1.2046e-002   
+
+PASSED LINEARITY TEST with value +8.7322e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +1.4983e-002 (tol = +1.0000e-003). Max variance at D(18,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.6377e+003
+      HP_Shaft.Nmech   +1.4017e+004
+
+Inputs
+        Burner.Wfuel   +2.3255e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -3.7003e-004
+      HP_Shaft.dNqdt   +5.0995e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.6377e+003
+      HP_Shaft.Nmech   +1.4017e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.9481e+001
+            FS_25.Tt   +7.0284e+002
+             FS_3.Ps   +3.4525e+002
+             FS_3.Tt   +1.3737e+003
+             FS_5.Pt   +2.3021e+001
+             FS_5.Tt   +1.5316e+003
+             FS_4.Tt   +2.9492e+003
+          Perf.myEPR   +1.5783e+000
+           Perf.myFn   +2.2800e+004
+          Perf.Wfuel   +2.3255e+000
+             HPC.SMN   +3.8905e+001
+             HPC.SMW   +3.9583e+001
+             LPC.SMN   +5.3574e+001
+             LPC.SMW   +5.1083e+001
+          Burner.FAR   +2.7035e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.9001e+000   +3.9773e+000   
+      HP_Shaft.dNqdt   +5.4847e+000   -2.1064e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.9579e+003   
+      HP_Shaft.dNqdt   +1.0635e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.2923e-002   -1.7446e-002   
+            FS_25.Tt   +1.7749e-001   -9.7844e-002   
+             FS_3.Ps   +5.5766e-002   +5.1200e-002   
+             FS_3.Tt   +4.0341e-002   +9.6606e-002   
+             FS_5.Pt   +2.3988e-003   +2.2747e-003   
+             FS_5.Tt   -1.7072e-001   -1.1566e-001   
+             FS_4.Tt   -2.6752e-001   -1.8428e-001   
+          Perf.myEPR   +1.6447e-004   +1.5595e-004   
+           Perf.myFn   +1.1009e+001   +7.9795e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.4785e-002   +4.8590e-003   
+             HPC.SMW   +2.1645e-002   -2.6718e-003   
+             LPC.SMN   -9.2886e-002   +9.6428e-002   
+             LPC.SMW   -8.9595e-002   +9.2665e-002   
+          Burner.FAR   -5.9094e-006   -5.1642e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +2.4444e-011   
+            FS_25.Pt   +2.9868e-001   
+            FS_25.Tt   +1.6711e+000   
+             FS_3.Ps   +4.2416e+001   
+             FS_3.Tt   +3.2256e+001   
+             FS_5.Pt   +1.9021e+000   
+             FS_5.Tt   +3.3842e+002   
+             FS_4.Tt   +6.2090e+002   
+          Perf.myEPR   +1.3041e-001   
+           Perf.myFn   +1.0740e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.6117e+001   
+             HPC.SMW   -1.6109e+001   
+             LPC.SMN   -1.6509e+000   
+             LPC.SMW   -1.5865e+000   
+          Burner.FAR   +1.1714e-002   
+
+PASSED LINEARITY TEST with value +9.6915e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +1.1560e-003 (tol = +1.0000e-003). Max variance at D(6,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.7040e+003
+      HP_Shaft.Nmech   +1.4089e+004
+
+Inputs
+        Burner.Wfuel   +2.4326e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -4.3050e-004
+      HP_Shaft.dNqdt   -1.8980e-004
+
+Outputs
+      LP_Shaft.Nmech   +4.7040e+003
+      HP_Shaft.Nmech   +1.4089e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.0569e+001
+            FS_25.Tt   +7.0841e+002
+             FS_3.Ps   +3.5741e+002
+             FS_3.Tt   +1.3869e+003
+             FS_5.Pt   +2.3566e+001
+             FS_5.Tt   +1.5473e+003
+             FS_4.Tt   +2.9828e+003
+          Perf.myEPR   +1.6157e+000
+           Perf.myFn   +2.3700e+004
+          Perf.Wfuel   +2.4326e+000
+             HPC.SMN   +3.8593e+001
+             HPC.SMW   +3.9206e+001
+             LPC.SMN   +5.3785e+001
+             LPC.SMW   +5.1288e+001
+          Burner.FAR   +2.7488e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.9736e+000   +3.8925e+000   
+      HP_Shaft.dNqdt   +5.6155e+000   -2.1147e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.9042e+003   
+      HP_Shaft.dNqdt   +1.0546e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   -1.2084e-014   +4.0347e-015   
+            FS_25.Pt   +3.5500e-002   -1.7784e-002   
+            FS_25.Tt   +1.8576e-001   -9.5254e-002   
+             FS_3.Ps   +6.2764e-002   +4.9858e-002   
+             FS_3.Tt   +4.1783e-002   +9.7451e-002   
+             FS_5.Pt   +2.7749e-003   +2.2834e-003   
+             FS_5.Tt   -1.8790e-001   -1.0564e-001   
+             FS_4.Tt   -2.9700e-001   -1.6995e-001   
+          Perf.myEPR   +1.9025e-004   +1.5655e-004   
+           Perf.myFn   +1.0924e+001   +8.0338e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.5821e-002   +4.5254e-003   
+             HPC.SMW   +2.2845e-002   -2.7621e-003   
+             LPC.SMN   -9.6909e-002   +9.4198e-002   
+             LPC.SMW   -9.3158e-002   +9.0639e-002   
+          Burner.FAR   -6.5472e-006   -4.9189e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.8115e-001   
+            FS_25.Tt   +1.5059e+000   
+             FS_3.Ps   +4.2036e+001   
+             FS_3.Tt   +3.0923e+001   
+             FS_5.Pt   +1.9479e+000   
+             FS_5.Tt   +3.2824e+002   
+             FS_4.Tt   +5.9946e+002   
+          Perf.myEPR   +1.3355e-001   
+           Perf.myFn   +1.0890e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.5393e+001   
+             HPC.SMW   -1.5422e+001   
+             LPC.SMN   -1.4893e+000   
+             LPC.SMW   -1.4330e+000   
+          Burner.FAR   +1.1376e-002   
+
+PASSED LINEARITY TEST with value +3.3535e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +1.5609e-002 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.7690e+003
+      HP_Shaft.Nmech   +1.4161e+004
+
+Inputs
+        Burner.Wfuel   +2.5440e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +6.5330e-005
+      HP_Shaft.dNqdt   -1.7961e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.7690e+003
+      HP_Shaft.Nmech   +1.4161e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.1637e+001
+            FS_25.Tt   +7.1385e+002
+             FS_3.Ps   +3.6981e+002
+             FS_3.Tt   +1.4000e+003
+             FS_5.Pt   +2.4159e+001
+             FS_5.Tt   +1.5639e+003
+             FS_4.Tt   +3.0171e+003
+          Perf.myEPR   +1.6563e+000
+           Perf.myFn   +2.4600e+004
+          Perf.Wfuel   +2.5440e+000
+             HPC.SMN   +3.8265e+001
+             HPC.SMW   +3.8809e+001
+             LPC.SMN   +5.4094e+001
+             LPC.SMW   +5.1602e+001
+          Burner.FAR   +2.7959e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -9.5804e+000   +3.8969e+000   
+      HP_Shaft.dNqdt   +6.0236e+000   -2.1646e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.8128e+003   
+      HP_Shaft.dNqdt   +1.0418e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.7075e-002   -1.8643e-002   
+            FS_25.Tt   +1.9230e-001   -9.7765e-002   
+             FS_3.Ps   +6.4904e-002   +4.9578e-002   
+             FS_3.Tt   +4.4608e-002   +9.6442e-002   
+             FS_5.Pt   +3.1222e-003   +2.4698e-003   
+             FS_5.Tt   -1.8527e-001   -9.9249e-002   
+             FS_4.Tt   -2.9798e-001   -1.6377e-001   
+          Perf.myEPR   +2.1406e-004   +1.6933e-004   
+           Perf.myFn   +1.1225e+001   +8.4699e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.6111e-002   +4.1337e-003   
+             HPC.SMW   +2.3213e-002   -2.8860e-003   
+             LPC.SMN   -9.8901e-002   +9.4752e-002   
+             LPC.SMW   -9.5165e-002   +9.1431e-002   
+          Burner.FAR   -6.6489e-006   -4.8046e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.8630e-001   
+            FS_25.Tt   +1.5015e+000   
+             FS_3.Ps   +4.1665e+001   
+             FS_3.Tt   +2.9811e+001   
+             FS_5.Pt   +2.1064e+000   
+             FS_5.Tt   +3.2068e+002   
+             FS_4.Tt   +5.7952e+002   
+          Perf.myEPR   +1.4442e-001   
+           Perf.myFn   +1.1334e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.4697e+001   
+             HPC.SMW   -1.4717e+001   
+             LPC.SMN   -1.4553e+000   
+             LPC.SMW   -1.4042e+000   
+          Burner.FAR   +1.1063e-002   
+
+PASSED LINEARITY TEST with value +3.2729e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +1.3914e-002 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.8320e+003
+      HP_Shaft.Nmech   +1.4233e+004
+
+Inputs
+        Burner.Wfuel   +2.6596e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +8.6118e-005
+      HP_Shaft.dNqdt   -1.0026e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.8320e+003
+      HP_Shaft.Nmech   +1.4233e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.2646e+001
+            FS_25.Tt   +7.1902e+002
+             FS_3.Ps   +3.8229e+002
+             FS_3.Tt   +1.4132e+003
+             FS_5.Pt   +2.4788e+001
+             FS_5.Tt   +1.5820e+003
+             FS_4.Tt   +3.0527e+003
+          Perf.myEPR   +1.6995e+000
+           Perf.myFn   +2.5500e+004
+          Perf.Wfuel   +2.6596e+000
+             HPC.SMN   +3.7902e+001
+             HPC.SMW   +3.8367e+001
+             LPC.SMN   +5.4575e+001
+             LPC.SMW   +5.2085e+001
+          Burner.FAR   +2.8460e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.4767e+000   +3.1361e+000   
+      HP_Shaft.dNqdt   +2.8027e+000   -1.9460e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.7601e+003   
+      HP_Shaft.dNqdt   +1.0262e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.7311e-002   -1.9374e-002   
+            FS_25.Tt   +1.7100e-001   -8.3037e-002   
+             FS_3.Ps   +8.4651e-002   +3.3681e-002   
+             FS_3.Tt   +3.3950e-002   +1.0506e-001   
+             FS_5.Pt   +4.1834e-003   +1.7846e-003   
+             FS_5.Tt   -2.4998e-001   -3.9197e-002   
+             FS_4.Tt   -4.0448e-001   -6.7598e-002   
+          Perf.myEPR   +2.8682e-004   +1.2236e-004   
+           Perf.myFn   +1.1444e+001   +6.3112e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.7492e-002   +2.4995e-003   
+             HPC.SMW   +2.3665e-002   -4.0553e-003   
+             LPC.SMN   -8.6968e-002   +8.6221e-002   
+             LPC.SMW   -8.4226e-002   +8.3732e-002   
+          Burner.FAR   -8.6489e-006   -3.0410e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.9702e-001   
+            FS_25.Tt   +1.0715e+000   
+             FS_3.Ps   +4.1727e+001   
+             FS_3.Tt   +2.8624e+001   
+             FS_5.Pt   +2.1862e+000   
+             FS_5.Tt   +3.1116e+002   
+             FS_4.Tt   +5.5843e+002   
+          Perf.myEPR   +1.4989e-001   
+           Perf.myFn   +1.1578e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.4000e+001   
+             HPC.SMW   -1.4025e+001   
+             LPC.SMN   -1.2187e+000   
+             LPC.SMW   -1.1893e+000   
+          Burner.FAR   +1.0728e-002   
+
+FAILED LINEARITY TEST with value +9.8909e+000 (tol = +2.0000e-001). Max variance at C(11,2)
+
+FAILED REPEATABILITY TEST with value +3.1481e-002 (tol = +1.0000e-003). Max variance at D(6,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.8951e+003
+      HP_Shaft.Nmech   +1.4309e+004
+
+Inputs
+        Burner.Wfuel   +2.7786e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -5.5732e-005
+      HP_Shaft.dNqdt   -5.6063e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.8951e+003
+      HP_Shaft.Nmech   +1.4309e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.3563e+001
+            FS_25.Tt   +7.2417e+002
+             FS_3.Ps   +3.9462e+002
+             FS_3.Tt   +1.4270e+003
+             FS_5.Pt   +2.5432e+001
+             FS_5.Tt   +1.6019e+003
+             FS_4.Tt   +3.0908e+003
+          Perf.myEPR   +1.7436e+000
+           Perf.myFn   +2.6400e+004
+          Perf.Wfuel   +2.7786e+000
+             HPC.SMN   +3.7508e+001
+             HPC.SMW   +3.7884e+001
+             LPC.SMN   +5.5191e+001
+             LPC.SMW   +5.2713e+001
+          Burner.FAR   +2.9003e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.1856e+000   +2.6049e+000   
+      HP_Shaft.dNqdt   +1.5103e+000   -1.8195e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.6471e+003   
+      HP_Shaft.dNqdt   +1.0238e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.7755e-002   -2.0209e-002   
+            FS_25.Tt   +1.6507e-001   -7.3024e-002   
+             FS_3.Ps   +9.2585e-002   +2.1264e-002   
+             FS_3.Tt   +3.1123e-002   +1.1508e-001   
+             FS_5.Pt   +4.6785e-003   +1.2263e-003   
+             FS_5.Tt   -2.6899e-001   +8.4624e-003   
+             FS_4.Tt   -4.3593e-001   +8.9691e-003   
+          Perf.myEPR   +3.2076e-004   +8.4080e-005   
+           Perf.myFn   +1.1515e+001   +4.6265e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.8088e-002   -7.1439e-004   
+             HPC.SMW   +2.3653e-002   -4.9319e-003   
+             LPC.SMN   -8.3168e-002   +8.0698e-002   
+             LPC.SMW   -8.0818e-002   +7.8816e-002   
+          Burner.FAR   -9.3461e-006   -1.6729e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.9788e-001   
+            FS_25.Tt   +1.0763e+000   
+             FS_3.Ps   +4.1311e+001   
+             FS_3.Tt   +2.7716e+001   
+             FS_5.Pt   +2.3675e+000   
+             FS_5.Tt   +3.0590e+002   
+             FS_4.Tt   +5.4110e+002   
+          Perf.myEPR   +1.6232e-001   
+           Perf.myFn   +1.1790e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.3384e+001   
+             HPC.SMW   -1.3398e+001   
+             LPC.SMN   -1.1894e+000   
+             LPC.SMW   -1.1616e+000   
+          Burner.FAR   +1.0463e-002   
+
+FAILED LINEARITY TEST with value +3.3991e-001 (tol = +2.0000e-001). Max variance at C(11,2)
+
+PASSED REPEATABILITY TEST with value +4.4091e-004 (tol = +1.0000e-003)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.9579e+003
+      HP_Shaft.Nmech   +1.4383e+004
+
+Inputs
+        Burner.Wfuel   +2.9006e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +2.2246e-005
+      HP_Shaft.dNqdt   -8.3358e-004
+
+Outputs
+      LP_Shaft.Nmech   +4.9579e+003
+      HP_Shaft.Nmech   +1.4383e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.4469e+001
+            FS_25.Tt   +7.2925e+002
+             FS_3.Ps   +4.0704e+002
+             FS_3.Tt   +1.4406e+003
+             FS_5.Pt   +2.6105e+001
+             FS_5.Tt   +1.6222e+003
+             FS_4.Tt   +3.1289e+003
+          Perf.myEPR   +1.7898e+000
+           Perf.myFn   +2.7300e+004
+          Perf.Wfuel   +2.9006e+000
+             HPC.SMN   +3.7061e+001
+             HPC.SMW   +3.7403e+001
+             LPC.SMN   +5.5809e+001
+             LPC.SMW   +5.3346e+001
+          Burner.FAR   +2.9554e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.5737e+000   +2.7035e+000   
+      HP_Shaft.dNqdt   +3.4181e+000   -1.9193e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.6510e+003   
+      HP_Shaft.dNqdt   +1.0131e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +4.0312e-002   -2.1228e-002   
+            FS_25.Tt   +1.7774e-001   -7.6850e-002   
+             FS_3.Ps   +9.4349e-002   +2.1004e-002   
+             FS_3.Tt   +2.4743e-002   +1.1911e-001   
+             FS_5.Pt   +4.9998e-003   +1.2692e-003   
+             FS_5.Tt   -2.7194e-001   +1.3509e-002   
+             FS_4.Tt   -4.4666e-001   +1.5962e-002   
+          Perf.myEPR   +3.4279e-004   +8.7015e-005   
+           Perf.myFn   +1.1483e+001   +4.7374e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +2.3771e-002   -3.6643e-003   
+             HPC.SMW   +2.4685e-002   -5.3519e-003   
+             LPC.SMN   -9.0534e-002   +8.2580e-002   
+             LPC.SMW   -8.7565e-002   +8.0723e-002   
+          Burner.FAR   -9.4655e-006   -1.6017e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +3.0127e-001   
+            FS_25.Tt   +1.0906e+000   
+             FS_3.Ps   +4.0852e+001   
+             FS_3.Tt   +2.6751e+001   
+             FS_5.Pt   +2.2799e+000   
+             FS_5.Tt   +2.9518e+002   
+             FS_4.Tt   +5.2452e+002   
+          Perf.myEPR   +1.5631e-001   
+           Perf.myFn   +1.1836e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.2755e+001   
+             HPC.SMW   -1.2796e+001   
+             LPC.SMN   -1.1719e+000   
+             LPC.SMW   -1.1456e+000   
+          Burner.FAR   +1.0212e-002   
+
+PASSED LINEARITY TEST with value +1.2769e-001 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +8.8962e-003 (tol = +1.0000e-003). Max variance at D(6,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +5.0242e+003
+      HP_Shaft.Nmech   +1.4459e+004
+
+Inputs
+        Burner.Wfuel   +3.0265e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +3.0791e-004
+      HP_Shaft.dNqdt   -3.7460e-004
+
+Outputs
+      LP_Shaft.Nmech   +5.0242e+003
+      HP_Shaft.Nmech   +1.4459e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.5475e+001
+            FS_25.Tt   +7.3495e+002
+             FS_3.Ps   +4.1986e+002
+             FS_3.Tt   +1.4548e+003
+             FS_5.Pt   +2.6823e+001
+             FS_5.Tt   +1.6427e+003
+             FS_4.Tt   +3.1668e+003
+          Perf.myEPR   +1.8390e+000
+           Perf.myFn   +2.8200e+004
+          Perf.Wfuel   +3.0265e+000
+             HPC.SMN   +3.6661e+001
+             HPC.SMW   +3.6991e+001
+             LPC.SMN   +5.6140e+001
+             LPC.SMW   +5.3729e+001
+          Burner.FAR   +3.0095e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -6.2481e+000   +2.7796e+000   
+      HP_Shaft.dNqdt   +3.4434e+000   -1.9876e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.5911e+003   
+      HP_Shaft.dNqdt   +1.0044e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   -1.1314e-014   +0.0000e+000   
+            FS_25.Pt   +3.5967e-002   -2.2211e-002   
+            FS_25.Tt   +1.6020e-001   -8.0386e-002   
+             FS_3.Ps   +8.1480e-002   +2.0425e-002   
+             FS_3.Tt   +2.4551e-002   +1.1971e-001   
+             FS_5.Pt   +4.4514e-003   +1.2820e-003   
+             FS_5.Tt   -2.2861e-001   +1.6962e-002   
+             FS_4.Tt   -3.7504e-001   +2.0999e-002   
+          Perf.myEPR   +3.0519e-004   +8.7892e-005   
+           Perf.myFn   +7.8537e+000   +4.7411e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +2.0609e-002   -4.8598e-003   
+             HPC.SMW   +2.1405e-002   -5.8767e-003   
+             LPC.SMN   -8.2068e-002   +8.3879e-002   
+             LPC.SMW   -7.9384e-002   +8.2077e-002   
+          Burner.FAR   -8.0591e-006   -1.5134e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +3.0605e-001   
+            FS_25.Tt   +1.1077e+000   
+             FS_3.Ps   +4.0489e+001   
+             FS_3.Tt   +2.5953e+001   
+             FS_5.Pt   +2.3382e+000   
+             FS_5.Tt   +2.8790e+002   
+             FS_4.Tt   +5.0855e+002   
+          Perf.myEPR   +1.6031e-001   
+           Perf.myFn   +1.1972e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.2211e+001   
+             HPC.SMW   -1.2249e+001   
+             LPC.SMN   -1.1558e+000   
+             LPC.SMW   -1.1310e+000   
+          Burner.FAR   +9.9649e-003   
+
+PASSED LINEARITY TEST with value +2.9280e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +2.4652e-002 (tol = +1.0000e-003). Max variance at D(17,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +5.1146e+003
+      HP_Shaft.Nmech   +1.4540e+004
+
+Inputs
+        Burner.Wfuel   +3.1583e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +5.3431e-005
+      HP_Shaft.dNqdt   -6.5578e-004
+
+Outputs
+      LP_Shaft.Nmech   +5.1146e+003
+      HP_Shaft.Nmech   +1.4540e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.6938e+001
+            FS_25.Tt   +7.4289e+002
+             FS_3.Ps   +4.3419e+002
+             FS_3.Tt   +1.4701e+003
+             FS_5.Pt   +2.7650e+001
+             FS_5.Tt   +1.6613e+003
+             FS_4.Tt   +3.2011e+003
+          Perf.myEPR   +1.8957e+000
+           Perf.myFn   +2.9100e+004
+          Perf.Wfuel   +3.1583e+000
+             HPC.SMN   +3.6524e+001
+             HPC.SMW   +3.6852e+001
+             LPC.SMN   +5.5473e+001
+             LPC.SMW   +5.3139e+001
+          Burner.FAR   +3.0549e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -6.2017e+000   +2.8676e+000   
+      HP_Shaft.dNqdt   +3.5750e+000   -2.0612e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.4955e+003   
+      HP_Shaft.dNqdt   +1.0092e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.6568e-002   -2.3693e-002   
+            FS_25.Tt   +1.6043e-001   -8.5251e-002   
+             FS_3.Ps   +8.2110e-002   +1.9388e-002   
+             FS_3.Tt   +2.4771e-002   +1.1923e-001   
+             FS_5.Pt   +4.6179e-003   +1.2648e-003   
+             FS_5.Tt   -2.2326e-001   +2.1162e-002   
+             FS_4.Tt   -3.6708e-001   +2.7418e-002   
+          Perf.myEPR   +3.1661e-004   +8.6718e-005   
+           Perf.myFn   +7.6916e+000   +4.6455e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +2.0264e-002   -5.3028e-003   
+             HPC.SMW   +2.1048e-002   -6.1551e-003   
+             LPC.SMN   -8.0810e-002   +8.5267e-002   
+             LPC.SMW   -7.8589e-002   +8.3467e-002   
+          Burner.FAR   -7.9631e-006   -1.3759e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +3.1388e-001   
+            FS_25.Tt   +1.1294e+000   
+             FS_3.Ps   +4.0025e+001   
+             FS_3.Tt   +2.5036e+001   
+             FS_5.Pt   +2.3891e+000   
+             FS_5.Tt   +2.7981e+002   
+             FS_4.Tt   +4.9021e+002   
+          Perf.myEPR   +1.6380e-001   
+           Perf.myFn   +1.2145e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.1650e+001   
+             HPC.SMW   -1.1686e+001   
+             LPC.SMN   -1.1296e+000   
+             LPC.SMW   -1.1057e+000   
+          Burner.FAR   +9.6911e-003   
+
+PASSED LINEARITY TEST with value +5.0042e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +5.3470e-002 (tol = +1.0000e-003). Max variance at D(17,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +5.2159e+003
+      HP_Shaft.Nmech   +1.4629e+004
+
+Inputs
+        Burner.Wfuel   +3.3036e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +1.2623e-003
+      HP_Shaft.dNqdt   -2.2216e-002
+
+Outputs
+      LP_Shaft.Nmech   +5.2159e+003
+      HP_Shaft.Nmech   +1.4629e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.8462e+001
+            FS_25.Tt   +7.5147e+002
+             FS_3.Ps   +4.4950e+002
+             FS_3.Tt   +1.4869e+003
+             FS_5.Pt   +2.8549e+001
+             FS_5.Tt   +1.6830e+003
+             FS_4.Tt   +3.2396e+003
+          Perf.myEPR   +1.9573e+000
+           Perf.myFn   +3.0000e+004
+          Perf.Wfuel   +3.3036e+000
+             HPC.SMN   +3.6351e+001
+             HPC.SMW   +3.6677e+001
+             LPC.SMN   +5.4848e+001
+             LPC.SMW   +5.2576e+001
+          Burner.FAR   +3.1069e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -6.0919e+000   +3.0362e+000   
+      HP_Shaft.dNqdt   +4.6756e+000   -2.1438e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.5803e+003   
+      HP_Shaft.dNqdt   +9.6971e+003   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +3.8857e-015   
+            FS_25.Pt   +3.5562e-002   -2.5584e-002   
+            FS_25.Tt   +1.6007e-001   -9.1629e-002   
+             FS_3.Ps   +7.2507e-002   +1.7390e-002   
+             FS_3.Tt   +2.7678e-002   +1.1881e-001   
+             FS_5.Pt   +4.1708e-003   +1.1422e-003   
+             FS_5.Tt   -1.7662e-001   +2.6845e-002   
+             FS_4.Tt   -3.1113e-001   +3.8383e-002   
+          Perf.myEPR   +2.8595e-004   +7.8310e-005   
+           Perf.myFn   +5.7799e+000   +3.1930e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.8798e-002   -5.9465e-003   
+             HPC.SMW   +1.9563e-002   -6.8161e-003   
+             LPC.SMN   -7.9286e-002   +8.7284e-002   
+             LPC.SMW   -7.7270e-002   +8.5558e-002   
+          Burner.FAR   -6.8865e-006   -1.1487e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +3.2772e-001   
+            FS_25.Tt   +1.1737e+000   
+             FS_3.Ps   +3.9819e+001   
+             FS_3.Tt   +2.6558e+001   
+             FS_5.Pt   +2.3280e+000   
+             FS_5.Tt   +2.6836e+002   
+             FS_4.Tt   +4.7660e+002   
+          Perf.myEPR   +1.5961e-001   
+           Perf.myFn   +1.1961e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.1174e+001   
+             HPC.SMW   -1.1208e+001   
+             LPC.SMN   -1.1180e+000   
+             LPC.SMW   -1.0959e+000   
+          Burner.FAR   +9.4195e-003   
+
+PASSED LINEARITY TEST with value +1.7539e-001 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +6.5921e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+Running from NPSS
+Run on 05/20/15 at 13:34:48
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +3.6867e+003
+      HP_Shaft.Nmech   +1.3013e+004
+
+Inputs
+        Burner.Wfuel   +1.1917e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -3.7839e-003
+      HP_Shaft.dNqdt   -1.0594e-002
+
+Outputs
+      LP_Shaft.Nmech   +3.6867e+003
+      HP_Shaft.Nmech   +1.3013e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +2.7275e+001
+            FS_25.Tt   +6.3262e+002
+             FS_3.Ps   +2.0727e+002
+             FS_3.Tt   +1.1959e+003
+             FS_5.Pt   +1.8048e+001
+             FS_5.Tt   +1.3469e+003
+             FS_4.Tt   +2.4863e+003
+          Perf.myEPR   +1.2374e+000
+           Perf.myFn   +1.2000e+004
+          Perf.Wfuel   +1.1917e+000
+             HPC.SMN   +4.4422e+001
+             HPC.SMW   +4.6312e+001
+             LPC.SMN   +5.1293e+001
+             LPC.SMW   +4.3920e+001
+          Burner.FAR   +2.1021e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -5.6210e+000   +2.9843e+000   
+      HP_Shaft.dNqdt   +2.6450e+000   -1.1903e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.6483e+003   
+      HP_Shaft.dNqdt   +1.1855e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +1.6906e-002   -7.8517e-003   
+            FS_25.Tt   +1.2130e-001   -5.7233e-002   
+             FS_3.Ps   +1.9739e-002   +4.6146e-002   
+             FS_3.Tt   +5.0571e-002   +7.3301e-002   
+             FS_5.Pt   +5.4558e-004   +1.2894e-003   
+             FS_5.Tt   -7.7220e-002   -1.9695e-001   
+             FS_4.Tt   -9.7842e-002   -2.7638e-001   
+          Perf.myEPR   +3.7406e-005   +8.8400e-005   
+           Perf.myFn   +6.0581e+000   +7.2795e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +6.7030e-003   +1.3141e-002   
+             HPC.SMW   +9.9950e-003   +9.3311e-003   
+             LPC.SMN   -9.0224e-002   +8.6467e-002   
+             LPC.SMW   -6.8845e-002   +8.0236e-002   
+          Burner.FAR   -2.5546e-006   -6.1594e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.3065e-001   
+            FS_25.Tt   +1.6813e+000   
+             FS_3.Ps   +4.8373e+001   
+             FS_3.Tt   +5.4666e+001   
+             FS_5.Pt   +1.3466e+000   
+             FS_5.Tt   +5.3724e+002   
+             FS_4.Tt   +1.0217e+003   
+          Perf.myEPR   +9.2325e-002   
+           Perf.myFn   +8.3278e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -3.2096e+001   
+             HPC.SMW   -3.2619e+001   
+             LPC.SMN   -2.5401e+000   
+             LPC.SMW   -2.3571e+000   
+          Burner.FAR   +1.7822e-002   
+
+PASSED LINEARITY TEST with value +2.0802e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.4191e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +3.7847e+003
+      HP_Shaft.Nmech   +1.3119e+004
+
+Inputs
+        Burner.Wfuel   +1.2810e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +6.3774e-004
+      HP_Shaft.dNqdt   -1.9328e-003
+
+Outputs
+      LP_Shaft.Nmech   +3.7847e+003
+      HP_Shaft.Nmech   +1.3119e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +2.8239e+001
+            FS_25.Tt   +6.3916e+002
+             FS_3.Ps   +2.1880e+002
+             FS_3.Tt   +1.2140e+003
+             FS_5.Pt   +1.8376e+001
+             FS_5.Tt   +1.3643e+003
+             FS_4.Tt   +2.5347e+003
+          Perf.myEPR   +1.2599e+000
+           Perf.myFn   +1.2900e+004
+          Perf.Wfuel   +1.2810e+000
+             HPC.SMN   +4.3746e+001
+             HPC.SMW   +4.5538e+001
+             LPC.SMN   +5.1170e+001
+             LPC.SMW   +4.5204e+001
+          Burner.FAR   +2.1632e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -6.7926e+000   +3.1626e+000   
+      HP_Shaft.dNqdt   +4.6555e+000   -1.4280e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.5689e+003   
+      HP_Shaft.dNqdt   +1.1643e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +1.5019e-014   +0.0000e+000   
+            FS_25.Pt   +1.9334e-002   -8.4581e-003   
+            FS_25.Tt   +1.3347e-001   -6.0424e-002   
+             FS_3.Ps   +2.4586e-002   +4.7357e-002   
+             FS_3.Tt   +2.0286e-002   +1.0679e-001   
+             FS_5.Pt   +6.8812e-004   +1.4006e-003   
+             FS_5.Tt   -1.2074e-001   -1.7048e-001   
+             FS_4.Tt   -1.6124e-001   -2.3893e-001   
+          Perf.myEPR   +4.7178e-005   +9.6029e-005   
+           Perf.myFn   +7.7251e+000   +8.0233e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.0046e-002   +1.0482e-002   
+             HPC.SMW   +1.2576e-002   +7.0416e-003   
+             LPC.SMN   -8.9982e-002   +8.6122e-002   
+             LPC.SMW   -7.4022e-002   +8.0797e-002   
+          Burner.FAR   -3.2767e-006   -6.0269e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.3570e-001   
+            FS_25.Tt   +1.6838e+000   
+             FS_3.Ps   +4.7662e+001   
+             FS_3.Tt   +5.1379e+001   
+             FS_5.Pt   +1.3816e+000   
+             FS_5.Tt   +5.1266e+002   
+             FS_4.Tt   +9.6950e+002   
+          Perf.myEPR   +9.4724e-002   
+           Perf.myFn   +8.5387e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.9783e+001   
+             HPC.SMW   -3.0258e+001   
+             LPC.SMN   -2.4000e+000   
+             LPC.SMW   -2.2516e+000   
+          Burner.FAR   +1.7056e-002   
+
+PASSED LINEARITY TEST with value +1.4203e-001 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.9870e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +3.8793e+003
+      HP_Shaft.Nmech   +1.3221e+004
+
+Inputs
+        Burner.Wfuel   +1.3724e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +3.0274e-004
+      HP_Shaft.dNqdt   +5.8519e-004
+
+Outputs
+      LP_Shaft.Nmech   +3.8793e+003
+      HP_Shaft.Nmech   +1.3221e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +2.9274e+001
+            FS_25.Tt   +6.4601e+002
+             FS_3.Ps   +2.3043e+002
+             FS_3.Tt   +1.2319e+003
+             FS_5.Pt   +1.8724e+001
+             FS_5.Tt   +1.3817e+003
+             FS_4.Tt   +2.5819e+003
+          Perf.myEPR   +1.2837e+000
+           Perf.myFn   +1.3800e+004
+          Perf.Wfuel   +1.3724e+000
+             HPC.SMN   +4.3100e+001
+             HPC.SMW   +4.4782e+001
+             LPC.SMN   +5.1378e+001
+             LPC.SMW   +4.6062e+001
+          Burner.FAR   +2.2228e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -6.9094e+000   +3.2490e+000   
+      HP_Shaft.dNqdt   +4.8976e+000   -1.5340e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.5195e+003   
+      HP_Shaft.dNqdt   +1.1572e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +2.0707e-002   -9.3331e-003   
+            FS_25.Tt   +1.3965e-001   -6.5254e-002   
+             FS_3.Ps   +2.7127e-002   +4.8116e-002   
+             FS_3.Tt   +2.2273e-002   +1.1151e-001   
+             FS_5.Pt   +8.4424e-004   +1.5579e-003   
+             FS_5.Tt   -1.2673e-001   -1.6018e-001   
+             FS_4.Tt   -1.7190e-001   -2.2897e-001   
+          Perf.myEPR   +5.7882e-005   +1.0681e-004   
+           Perf.myFn   +7.8275e+000   +8.6744e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.0656e-002   +9.4830e-003   
+             HPC.SMW   +1.7849e-002   +2.3938e-003   
+             LPC.SMN   -8.8559e-002   +8.7616e-002   
+             LPC.SMW   -7.6789e-002   +8.2727e-002   
+          Burner.FAR   -3.5290e-006   -5.9558e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.4626e-001   
+            FS_25.Tt   +1.7218e+000   
+             FS_3.Ps   +4.6982e+001   
+             FS_3.Tt   +4.8749e+001   
+             FS_5.Pt   +1.3201e+000   
+             FS_5.Tt   +4.8731e+002   
+             FS_4.Tt   +9.2223e+002   
+          Perf.myEPR   +9.0508e-002   
+           Perf.myFn   +8.8618e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.7736e+001   
+             HPC.SMW   -2.8009e+001   
+             LPC.SMN   -2.3119e+000   
+             LPC.SMW   -2.1829e+000   
+          Burner.FAR   +1.6353e-002   
+
+PASSED LINEARITY TEST with value +1.6219e-001 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +5.1343e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +3.9710e+003
+      HP_Shaft.Nmech   +1.3317e+004
+
+Inputs
+        Burner.Wfuel   +1.4647e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +1.8812e-003
+      HP_Shaft.dNqdt   -2.2925e-003
+
+Outputs
+      LP_Shaft.Nmech   +3.9710e+003
+      HP_Shaft.Nmech   +1.3317e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.0302e+001
+            FS_25.Tt   +6.5260e+002
+             FS_3.Ps   +2.4202e+002
+             FS_3.Tt   +1.2491e+003
+             FS_5.Pt   +1.9085e+001
+             FS_5.Tt   +1.3984e+003
+             FS_4.Tt   +2.6267e+003
+          Perf.myEPR   +1.3085e+000
+           Perf.myFn   +1.4700e+004
+          Perf.Wfuel   +1.4647e+000
+             HPC.SMN   +4.2510e+001
+             HPC.SMW   +4.4043e+001
+             LPC.SMN   +5.1569e+001
+             LPC.SMW   +4.6849e+001
+          Burner.FAR   +2.2799e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -7.1806e+000   +3.3124e+000   
+      HP_Shaft.dNqdt   +4.9059e+000   -1.6029e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.4842e+003   
+      HP_Shaft.dNqdt   +1.1375e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   -4.2684e-015   
+            FS_25.Pt   +2.2129e-002   -1.0246e-002   
+            FS_25.Tt   +1.4362e-001   -7.0179e-002   
+             FS_3.Ps   +3.1389e-002   +4.8737e-002   
+             FS_3.Tt   +2.3084e-002   +1.0993e-001   
+             FS_5.Pt   +1.0679e-003   +1.6635e-003   
+             FS_5.Tt   -1.3966e-001   -1.5428e-001   
+             FS_4.Tt   -1.9509e-001   -2.2505e-001   
+          Perf.myEPR   +7.3213e-005   +1.1405e-004   
+           Perf.myFn   +8.5411e+000   +9.2155e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.1476e-002   +8.8548e-003   
+             HPC.SMW   +1.8601e-002   +7.7725e-004   
+             LPC.SMN   -8.9157e-002   +8.9297e-002   
+             LPC.SMW   -7.8170e-002   +8.4631e-002   
+          Burner.FAR   -3.9998e-006   -5.8968e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.5610e-001   
+            FS_25.Tt   +1.7541e+000   
+             FS_3.Ps   +4.6380e+001   
+             FS_3.Tt   +4.6438e+001   
+             FS_5.Pt   +1.2465e+000   
+             FS_5.Tt   +4.6354e+002   
+             FS_4.Tt   +8.7948e+002   
+          Perf.myEPR   +8.5460e-002   
+           Perf.myFn   +9.1038e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.5945e+001   
+             HPC.SMW   -2.6171e+001   
+             LPC.SMN   -2.2320e+000   
+             LPC.SMW   -2.1173e+000   
+          Burner.FAR   +1.5713e-002   
+
+FAILED LINEARITY TEST with value +4.0707e-001 (tol = +2.0000e-001). Max variance at D(9,1)
+
+PASSED REPEATABILITY TEST with value +2.4367e-004 (tol = +1.0000e-003)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.0561e+003
+      HP_Shaft.Nmech   +1.3406e+004
+
+Inputs
+        Burner.Wfuel   +1.5565e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +1.1472e-004
+      HP_Shaft.dNqdt   -1.0025e-004
+
+Outputs
+      LP_Shaft.Nmech   +4.0561e+003
+      HP_Shaft.Nmech   +1.3406e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.1295e+001
+            FS_25.Tt   +6.5864e+002
+             FS_3.Ps   +2.5339e+002
+             FS_3.Tt   +1.2651e+003
+             FS_5.Pt   +1.9459e+001
+             FS_5.Tt   +1.4147e+003
+             FS_4.Tt   +2.6689e+003
+          Perf.myEPR   +1.3341e+000
+           Perf.myFn   +1.5600e+004
+          Perf.Wfuel   +1.5565e+000
+             HPC.SMN   +4.1957e+001
+             HPC.SMW   +4.3354e+001
+             LPC.SMN   +5.1807e+001
+             LPC.SMW   +4.7610e+001
+          Burner.FAR   +2.3343e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -7.2044e+000   +3.4104e+000   
+      HP_Shaft.dNqdt   +5.0425e+000   -1.6725e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.3592e+003   
+      HP_Shaft.dNqdt   +1.1242e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +2.3059e-002   -1.1134e-002   
+            FS_25.Tt   +1.4648e-001   -7.4768e-002   
+             FS_3.Ps   +3.3509e-002   +4.9301e-002   
+             FS_3.Tt   +2.4265e-002   +1.0879e-001   
+             FS_5.Pt   +1.0977e-003   +1.7063e-003   
+             FS_5.Tt   -1.4613e-001   -1.5046e-001   
+             FS_4.Tt   -2.0221e-001   -2.2084e-001   
+          Perf.myEPR   +7.5260e-005   +1.1699e-004   
+           Perf.myFn   +8.6324e+000   +9.7156e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.1818e-002   +8.2611e-003   
+             HPC.SMW   +1.8832e-002   +2.2086e-004   
+             LPC.SMN   -8.9365e-002   +9.0853e-002   
+             LPC.SMW   -7.9061e-002   +8.6626e-002   
+          Burner.FAR   -4.1785e-006   -5.8359e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.6554e-001   
+            FS_25.Tt   +1.7832e+000   
+             FS_3.Ps   +4.5812e+001   
+             FS_3.Tt   +4.4300e+001   
+             FS_5.Pt   +1.5086e+000   
+             FS_5.Tt   +4.4971e+002   
+             FS_4.Tt   +8.4119e+002   
+          Perf.myEPR   +1.0343e-001   
+           Perf.myFn   +9.3433e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.4367e+001   
+             HPC.SMW   -2.4553e+001   
+             LPC.SMN   -2.1670e+000   
+             LPC.SMW   -2.0661e+000   
+          Burner.FAR   +1.5136e-002   
+
+PASSED LINEARITY TEST with value +3.5487e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.5226e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.1395e+003
+      HP_Shaft.Nmech   +1.3493e+004
+
+Inputs
+        Burner.Wfuel   +1.6489e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +1.4001e-005
+      HP_Shaft.dNqdt   +8.3693e-005
+
+Outputs
+      LP_Shaft.Nmech   +4.1395e+003
+      HP_Shaft.Nmech   +1.3493e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.2356e+001
+            FS_25.Tt   +6.6494e+002
+             FS_3.Ps   +2.6491e+002
+             FS_3.Tt   +1.2805e+003
+             FS_5.Pt   +1.9853e+001
+             FS_5.Tt   +1.4297e+003
+             FS_4.Tt   +2.7080e+003
+          Perf.myEPR   +1.3611e+000
+           Perf.myFn   +1.6500e+004
+          Perf.Wfuel   +1.6489e+000
+             HPC.SMN   +4.1507e+001
+             HPC.SMW   +4.2795e+001
+             LPC.SMN   +5.1767e+001
+             LPC.SMW   +4.8120e+001
+          Burner.FAR   +2.3841e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -7.2958e+000   +3.4822e+000   
+      HP_Shaft.dNqdt   +5.3949e+000   -1.7300e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.2900e+003   
+      HP_Shaft.dNqdt   +1.1179e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +1.3732e-014   +0.0000e+000   
+            FS_25.Pt   +2.4948e-002   -1.1874e-002   
+            FS_25.Tt   +1.5469e-001   -7.8027e-002   
+             FS_3.Ps   +3.7143e-002   +5.0035e-002   
+             FS_3.Tt   +2.5592e-002   +1.0701e-001   
+             FS_5.Pt   +1.2615e-003   +1.7963e-003   
+             FS_5.Tt   -1.5649e-001   -1.4770e-001   
+             FS_4.Tt   -2.1833e-001   -2.1917e-001   
+          Perf.myEPR   +8.6490e-005   +1.2315e-004   
+           Perf.myFn   +8.7503e+000   +1.0247e+000   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.2606e-002   +7.8428e-003   
+             HPC.SMW   +1.9787e-002   -1.2738e-004   
+             LPC.SMN   -9.3306e-002   +9.1517e-002   
+             LPC.SMW   -8.2901e-002   +8.7691e-002   
+          Burner.FAR   -4.5302e-006   -5.7964e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +3.4473e-011   
+            FS_25.Pt   +2.7498e-001   
+            FS_25.Tt   +1.8070e+000   
+             FS_3.Ps   +4.5296e+001   
+             FS_3.Tt   +4.2048e+001   
+             FS_5.Pt   +1.5571e+000   
+             FS_5.Tt   +4.3197e+002   
+             FS_4.Tt   +8.0547e+002   
+          Perf.myEPR   +1.0676e-001   
+           Perf.myFn   +9.5495e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.2951e+001   
+             HPC.SMW   -2.3106e+001   
+             LPC.SMN   -2.1195e+000   
+             LPC.SMW   -2.0309e+000   
+          Burner.FAR   +1.4594e-002   
+
+PASSED LINEARITY TEST with value +1.6426e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.1807e-003 (tol = +1.0000e-003). Max variance at D(18,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.2214e+003
+      HP_Shaft.Nmech   +1.3577e+004
+
+Inputs
+        Burner.Wfuel   +1.7421e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +3.5109e-003
+      HP_Shaft.dNqdt   -2.3247e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.2214e+003
+      HP_Shaft.Nmech   +1.3577e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.3431e+001
+            FS_25.Tt   +6.7115e+002
+             FS_3.Ps   +2.7647e+002
+             FS_3.Tt   +1.2954e+003
+             FS_5.Pt   +2.0262e+001
+             FS_5.Tt   +1.4440e+003
+             FS_4.Tt   +2.7451e+003
+          Perf.myEPR   +1.3892e+000
+           Perf.myFn   +1.7400e+004
+          Perf.Wfuel   +1.7421e+000
+             HPC.SMN   +4.1108e+001
+             HPC.SMW   +4.2298e+001
+             LPC.SMN   +5.1675e+001
+             LPC.SMW   +4.8552e+001
+          Burner.FAR   +2.4315e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -7.6349e+000   +3.5569e+000   
+      HP_Shaft.dNqdt   +5.3519e+000   -1.7982e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.2296e+003   
+      HP_Shaft.dNqdt   +1.1063e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +1.3466e-014   +0.0000e+000   
+            FS_25.Pt   +2.6407e-002   -1.2610e-002   
+            FS_25.Tt   +1.5764e-001   -8.1112e-002   
+             FS_3.Ps   +4.1898e-002   +5.0867e-002   
+             FS_3.Tt   +2.5507e-002   +1.0615e-001   
+             FS_5.Pt   +1.4736e-003   +1.8918e-003   
+             FS_5.Tt   -1.7187e-001   -1.4402e-001   
+             FS_4.Tt   -2.4209e-001   -2.1543e-001   
+          Perf.myEPR   +1.0103e-004   +1.2971e-004   
+           Perf.myFn   +9.6768e+000   +1.0793e+000   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.3327e-002   +7.4080e-003   
+             HPC.SMW   +2.0444e-002   -4.9915e-004   
+             LPC.SMN   -9.3177e-002   +9.2082e-002   
+             LPC.SMW   -8.3515e-002   +8.8634e-002   
+          Burner.FAR   -5.0078e-006   -5.7566e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.7933e-001   
+            FS_25.Tt   +1.7967e+000   
+             FS_3.Ps   +4.4827e+001   
+             FS_3.Tt   +4.0280e+001   
+             FS_5.Pt   +1.6019e+000   
+             FS_5.Tt   +4.1583e+002   
+             FS_4.Tt   +7.7263e+002   
+          Perf.myEPR   +1.0983e-001   
+           Perf.myFn   +9.7534e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.1692e+001   
+             HPC.SMW   -2.1822e+001   
+             LPC.SMN   -2.0398e+000   
+             LPC.SMW   -1.9634e+000   
+          Burner.FAR   +1.4086e-002   
+
+PASSED LINEARITY TEST with value +8.7496e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.6482e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.2933e+003
+      HP_Shaft.Nmech   +1.3653e+004
+
+Inputs
+        Burner.Wfuel   +1.8330e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +2.2651e-003
+      HP_Shaft.dNqdt   -2.6403e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.2933e+003
+      HP_Shaft.Nmech   +1.3653e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.4426e+001
+            FS_25.Tt   +6.7651e+002
+             FS_3.Ps   +2.8757e+002
+             FS_3.Tt   +1.3088e+003
+             FS_5.Pt   +2.0670e+001
+             FS_5.Tt   +1.4576e+003
+             FS_4.Tt   +2.7796e+003
+          Perf.myEPR   +1.4172e+000
+           Perf.myFn   +1.8300e+004
+          Perf.Wfuel   +1.8330e+000
+             HPC.SMN   +4.0713e+001
+             HPC.SMW   +4.1808e+001
+             LPC.SMN   +5.1771e+001
+             LPC.SMW   +4.9071e+001
+          Burner.FAR   +2.4765e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.0273e+000   +3.5890e+000   
+      HP_Shaft.dNqdt   +5.0498e+000   -1.8612e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.2937e+003   
+      HP_Shaft.dNqdt   +1.1114e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +2.7402e-002   -1.3281e-002   
+            FS_25.Tt   +1.5924e-001   -8.3667e-002   
+             FS_3.Ps   +4.5053e-002   +5.1488e-002   
+             FS_3.Tt   +2.5697e-002   +1.0529e-001   
+             FS_5.Pt   +1.6909e-003   +1.9869e-003   
+             FS_5.Tt   -1.6596e-001   -1.3858e-001   
+             FS_4.Tt   -2.5477e-001   -2.1207e-001   
+          Perf.myEPR   +1.1593e-004   +1.3623e-004   
+           Perf.myFn   +1.0156e+001   +1.1204e+000   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.3713e-002   +7.0200e-003   
+             HPC.SMW   +2.0708e-002   -8.0550e-004   
+             LPC.SMN   -9.2690e-002   +9.2527e-002   
+             LPC.SMW   -8.3700e-002   +8.9532e-002   
+          Burner.FAR   -5.2809e-006   -5.7075e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   -3.1011e-011   
+            FS_25.Pt   +2.7773e-001   
+            FS_25.Tt   +1.7497e+000   
+             FS_3.Ps   +4.4384e+001   
+             FS_3.Tt   +3.8694e+001   
+             FS_5.Pt   +1.6129e+000   
+             FS_5.Tt   +3.9445e+002   
+             FS_4.Tt   +7.4330e+002   
+          Perf.myEPR   +1.1058e-001   
+           Perf.myFn   +9.7759e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -2.0588e+001   
+             HPC.SMW   -2.0697e+001   
+             LPC.SMN   -1.9351e+000   
+             LPC.SMW   -1.8638e+000   
+          Burner.FAR   +1.3630e-002   
+
+PASSED LINEARITY TEST with value +2.9855e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +4.3735e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.3644e+003
+      HP_Shaft.Nmech   +1.3727e+004
+
+Inputs
+        Burner.Wfuel   +1.9266e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -8.6419e-004
+      HP_Shaft.dNqdt   -1.5974e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.3644e+003
+      HP_Shaft.Nmech   +1.3727e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.5425e+001
+            FS_25.Tt   +6.8180e+002
+             FS_3.Ps   +2.9881e+002
+             FS_3.Tt   +1.3219e+003
+             FS_5.Pt   +2.1098e+001
+             FS_5.Tt   +1.4719e+003
+             FS_4.Tt   +2.8140e+003
+          Perf.myEPR   +1.4465e+000
+           Perf.myFn   +1.9200e+004
+          Perf.Wfuel   +1.9266e+000
+             HPC.SMN   +4.0325e+001
+             HPC.SMW   +4.1328e+001
+             LPC.SMN   +5.1907e+001
+             LPC.SMW   +4.9565e+001
+          Burner.FAR   +2.5219e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.1118e+000   +3.6468e+000   
+      HP_Shaft.dNqdt   +5.4119e+000   -1.9153e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.2156e+003   
+      HP_Shaft.dNqdt   +1.0948e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +4.1411e-015   
+            FS_25.Pt   +2.9226e-002   -1.3960e-002   
+            FS_25.Tt   +1.6680e-001   -8.6194e-002   
+             FS_3.Ps   +4.8587e-002   +5.2089e-002   
+             FS_3.Tt   +2.7187e-002   +1.0449e-001   
+             FS_5.Pt   +1.8822e-003   +2.0861e-003   
+             FS_5.Tt   -1.7403e-001   -1.3568e-001   
+             FS_4.Tt   -2.6780e-001   -2.0888e-001   
+          Perf.myEPR   +1.2905e-004   +1.4302e-004   
+           Perf.myFn   +1.0223e+001   +1.1589e+000   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.4375e-002   +6.6401e-003   
+             HPC.SMW   +2.1509e-002   -1.1078e-003   
+             LPC.SMN   -9.0944e-002   +9.3050e-002   
+             LPC.SMW   -8.7322e-002   +8.9060e-002   
+          Burner.FAR   -5.5844e-006   -5.6621e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.7423e-001   
+            FS_25.Tt   +1.6932e+000   
+             FS_3.Ps   +4.3949e+001   
+             FS_3.Tt   +3.7193e+001   
+             FS_5.Pt   +1.6550e+000   
+             FS_5.Tt   +3.8287e+002   
+             FS_4.Tt   +7.1570e+002   
+          Perf.myEPR   +1.1347e-001   
+           Perf.myFn   +9.9978e+002   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.9565e+001   
+             HPC.SMW   -1.9657e+001   
+             LPC.SMN   -1.8280e+000   
+             LPC.SMW   -1.7489e+000   
+          Burner.FAR   +1.3201e-002   
+
+PASSED LINEARITY TEST with value +2.3640e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +9.7639e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.4346e+003
+      HP_Shaft.Nmech   +1.3800e+004
+
+Inputs
+        Burner.Wfuel   +2.0214e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -3.8716e-004
+      HP_Shaft.dNqdt   -1.4451e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.4346e+003
+      HP_Shaft.Nmech   +1.3800e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.6484e+001
+            FS_25.Tt   +6.8732e+002
+             FS_3.Ps   +3.1025e+002
+             FS_3.Tt   +1.3349e+003
+             FS_5.Pt   +2.1548e+001
+             FS_5.Tt   +1.4856e+003
+             FS_4.Tt   +2.8467e+003
+          Perf.myEPR   +1.4773e+000
+           Perf.myFn   +2.0100e+004
+          Perf.Wfuel   +2.0214e+000
+             HPC.SMN   +3.9996e+001
+             HPC.SMW   +4.0925e+001
+             LPC.SMN   +5.2173e+001
+             LPC.SMW   +4.9798e+001
+          Burner.FAR   +2.5646e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.1442e+000   +3.7215e+000   
+      HP_Shaft.dNqdt   +5.5241e+000   -1.9865e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.1546e+003   
+      HP_Shaft.dNqdt   +1.0915e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +2.9963e-002   -1.4762e-002   
+            FS_25.Tt   +1.6783e-001   -8.9274e-002   
+             FS_3.Ps   +5.0223e-002   +5.2649e-002   
+             FS_3.Tt   +2.7407e-002   +1.0384e-001   
+             FS_5.Pt   +2.0110e-003   +2.1708e-003   
+             FS_5.Tt   -1.7434e-001   -1.3156e-001   
+             FS_4.Tt   -2.6987e-001   -2.0507e-001   
+          Perf.myEPR   +1.3788e-004   +1.4883e-004   
+           Perf.myFn   +1.0254e+001   +1.1936e+000   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.4443e-002   +6.2553e-003   
+             HPC.SMW   +2.1452e-002   -1.4588e-003   
+             LPC.SMN   -9.0555e-002   +9.3942e-002   
+             LPC.SMW   -8.7053e-002   +8.9991e-002   
+          Burner.FAR   -5.6569e-006   -5.6049e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   -2.8121e-011   
+            FS_25.Pt   +2.7771e-001   
+            FS_25.Tt   +1.6795e+000   
+             FS_3.Ps   +4.3558e+001   
+             FS_3.Tt   +3.5828e+001   
+             FS_5.Pt   +1.6866e+000   
+             FS_5.Tt   +3.6995e+002   
+             FS_4.Tt   +6.8979e+002   
+          Perf.myEPR   +1.1564e-001   
+           Perf.myFn   +1.0163e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.8624e+001   
+             HPC.SMW   -1.8700e+001   
+             LPC.SMN   -1.7673e+000   
+             LPC.SMW   -1.6930e+000   
+          Burner.FAR   +1.2792e-002   
+
+PASSED LINEARITY TEST with value +2.2273e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +7.1689e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.5042e+003
+      HP_Shaft.Nmech   +1.3872e+004
+
+Inputs
+        Burner.Wfuel   +2.1194e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +3.1917e-006
+      HP_Shaft.dNqdt   -9.2053e-004
+
+Outputs
+      LP_Shaft.Nmech   +4.5042e+003
+      HP_Shaft.Nmech   +1.3872e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.7523e+001
+            FS_25.Tt   +6.9271e+002
+             FS_3.Ps   +3.2183e+002
+             FS_3.Tt   +1.3479e+003
+             FS_5.Pt   +2.2018e+001
+             FS_5.Tt   +1.5000e+003
+             FS_4.Tt   +2.8799e+003
+          Perf.myEPR   +1.5096e+000
+           Perf.myFn   +2.1000e+004
+          Perf.Wfuel   +2.1194e+000
+             HPC.SMN   +3.9658e+001
+             HPC.SMW   +4.0509e+001
+             LPC.SMN   +5.2523e+001
+             LPC.SMW   +5.0112e+001
+          Burner.FAR   +2.6088e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.9099e+000   +3.8745e+000   
+      HP_Shaft.dNqdt   +6.0488e+000   -2.0308e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +3.0845e+003   
+      HP_Shaft.dNqdt   +1.0818e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.1594e-002   -1.5901e-002   
+            FS_25.Tt   +1.7532e-001   -9.2316e-002   
+             FS_3.Ps   +5.2229e-002   +5.0998e-002   
+             FS_3.Tt   +2.9192e-002   +1.0378e-001   
+             FS_5.Pt   +2.1407e-003   +2.1601e-003   
+             FS_5.Tt   -1.7530e-001   -1.1997e-001   
+             FS_4.Tt   -2.7251e-001   -1.8824e-001   
+          Perf.myEPR   +1.4677e-004   +1.4810e-004   
+           Perf.myFn   +1.0978e+001   +7.7820e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.4834e-002   +5.5524e-003   
+             HPC.SMW   +2.1977e-002   -2.1203e-003   
+             LPC.SMN   -9.3255e-002   +9.4817e-002   
+             LPC.SMW   -8.9730e-002   +9.0935e-002   
+          Burner.FAR   -5.7662e-006   -5.3032e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.8568e-001   
+            FS_25.Tt   +1.6587e+000   
+             FS_3.Ps   +4.3200e+001   
+             FS_3.Tt   +3.4534e+001   
+             FS_5.Pt   +1.7649e+000   
+             FS_5.Tt   +3.5862e+002   
+             FS_4.Tt   +6.6514e+002   
+          Perf.myEPR   +1.2100e-001   
+           Perf.myFn   +1.0434e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.7735e+001   
+             HPC.SMW   -1.7797e+001   
+             LPC.SMN   -1.7036e+000   
+             LPC.SMW   -1.6339e+000   
+          Burner.FAR   +1.2403e-002   
+
+PASSED LINEARITY TEST with value +9.4149e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +1.7174e-002 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.5711e+003
+      HP_Shaft.Nmech   +1.3946e+004
+
+Inputs
+        Burner.Wfuel   +2.2215e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -4.9200e-004
+      HP_Shaft.dNqdt   -7.9537e-005
+
+Outputs
+      LP_Shaft.Nmech   +4.5711e+003
+      HP_Shaft.Nmech   +1.3946e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.8497e+001
+            FS_25.Tt   +6.9779e+002
+             FS_3.Ps   +3.3351e+002
+             FS_3.Tt   +1.3609e+003
+             FS_5.Pt   +2.2510e+001
+             FS_5.Tt   +1.5157e+003
+             FS_4.Tt   +2.9147e+003
+          Perf.myEPR   +1.5433e+000
+           Perf.myFn   +2.1900e+004
+          Perf.Wfuel   +2.2215e+000
+             HPC.SMN   +3.9278e+001
+             HPC.SMW   +4.0038e+001
+             LPC.SMN   +5.3086e+001
+             LPC.SMW   +5.0633e+001
+          Burner.FAR   +2.6562e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.9014e+000   +3.9549e+000   
+      HP_Shaft.dNqdt   +6.2010e+000   -2.0901e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.9643e+003   
+      HP_Shaft.dNqdt   +1.0654e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.2280e-002   -1.6695e-002   
+            FS_25.Tt   +1.7666e-001   -9.5398e-002   
+             FS_3.Ps   +5.3755e-002   +5.1301e-002   
+             FS_3.Tt   +2.9806e-002   +1.0287e-001   
+             FS_5.Pt   +2.2339e-003   +2.2195e-003   
+             FS_5.Tt   -1.7720e-001   -1.1716e-001   
+             FS_4.Tt   -2.7376e-001   -1.8449e-001   
+          Perf.myEPR   +1.5316e-004   +1.5217e-004   
+           Perf.myFn   +1.0982e+001   +7.9288e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.4916e-002   +5.1398e-003   
+             HPC.SMW   +2.1921e-002   -2.4698e-003   
+             LPC.SMN   -9.3205e-002   +9.5803e-002   
+             LPC.SMW   -8.9766e-002   +9.1976e-002   
+          Burner.FAR   -5.8328e-006   -5.2421e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.8763e-001   
+            FS_25.Tt   +1.6436e+000   
+             FS_3.Ps   +4.2790e+001   
+             FS_3.Tt   +3.3331e+001   
+             FS_5.Pt   +1.8667e+000   
+             FS_5.Tt   +3.5123e+002   
+             FS_4.Tt   +6.4217e+002   
+          Perf.myEPR   +1.2798e-001   
+           Perf.myFn   +1.0667e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.6899e+001   
+             HPC.SMW   -1.6946e+001   
+             LPC.SMN   -1.6506e+000   
+             LPC.SMW   -1.5847e+000   
+          Burner.FAR   +1.2046e-002   
+
+PASSED LINEARITY TEST with value +8.7322e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +1.4983e-002 (tol = +1.0000e-003). Max variance at D(18,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.6377e+003
+      HP_Shaft.Nmech   +1.4017e+004
+
+Inputs
+        Burner.Wfuel   +2.3255e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -3.7003e-004
+      HP_Shaft.dNqdt   +5.0995e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.6377e+003
+      HP_Shaft.Nmech   +1.4017e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +3.9481e+001
+            FS_25.Tt   +7.0284e+002
+             FS_3.Ps   +3.4525e+002
+             FS_3.Tt   +1.3737e+003
+             FS_5.Pt   +2.3021e+001
+             FS_5.Tt   +1.5316e+003
+             FS_4.Tt   +2.9492e+003
+          Perf.myEPR   +1.5783e+000
+           Perf.myFn   +2.2800e+004
+          Perf.Wfuel   +2.3255e+000
+             HPC.SMN   +3.8905e+001
+             HPC.SMW   +3.9583e+001
+             LPC.SMN   +5.3574e+001
+             LPC.SMW   +5.1083e+001
+          Burner.FAR   +2.7035e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.9001e+000   +3.9773e+000   
+      HP_Shaft.dNqdt   +5.4847e+000   -2.1064e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.9579e+003   
+      HP_Shaft.dNqdt   +1.0635e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.2923e-002   -1.7446e-002   
+            FS_25.Tt   +1.7749e-001   -9.7844e-002   
+             FS_3.Ps   +5.5766e-002   +5.1200e-002   
+             FS_3.Tt   +4.0341e-002   +9.6606e-002   
+             FS_5.Pt   +2.3988e-003   +2.2747e-003   
+             FS_5.Tt   -1.7072e-001   -1.1566e-001   
+             FS_4.Tt   -2.6752e-001   -1.8428e-001   
+          Perf.myEPR   +1.6447e-004   +1.5595e-004   
+           Perf.myFn   +1.1009e+001   +7.9795e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.4785e-002   +4.8590e-003   
+             HPC.SMW   +2.1645e-002   -2.6718e-003   
+             LPC.SMN   -9.2886e-002   +9.6428e-002   
+             LPC.SMW   -8.9595e-002   +9.2665e-002   
+          Burner.FAR   -5.9094e-006   -5.1642e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +2.4444e-011   
+            FS_25.Pt   +2.9868e-001   
+            FS_25.Tt   +1.6711e+000   
+             FS_3.Ps   +4.2416e+001   
+             FS_3.Tt   +3.2256e+001   
+             FS_5.Pt   +1.9021e+000   
+             FS_5.Tt   +3.3842e+002   
+             FS_4.Tt   +6.2090e+002   
+          Perf.myEPR   +1.3041e-001   
+           Perf.myFn   +1.0740e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.6117e+001   
+             HPC.SMW   -1.6109e+001   
+             LPC.SMN   -1.6509e+000   
+             LPC.SMW   -1.5865e+000   
+          Burner.FAR   +1.1714e-002   
+
+PASSED LINEARITY TEST with value +9.6915e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +1.1560e-003 (tol = +1.0000e-003). Max variance at D(6,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.7040e+003
+      HP_Shaft.Nmech   +1.4089e+004
+
+Inputs
+        Burner.Wfuel   +2.4326e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -4.3050e-004
+      HP_Shaft.dNqdt   -1.8980e-004
+
+Outputs
+      LP_Shaft.Nmech   +4.7040e+003
+      HP_Shaft.Nmech   +1.4089e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.0569e+001
+            FS_25.Tt   +7.0841e+002
+             FS_3.Ps   +3.5741e+002
+             FS_3.Tt   +1.3869e+003
+             FS_5.Pt   +2.3566e+001
+             FS_5.Tt   +1.5473e+003
+             FS_4.Tt   +2.9828e+003
+          Perf.myEPR   +1.6157e+000
+           Perf.myFn   +2.3700e+004
+          Perf.Wfuel   +2.4326e+000
+             HPC.SMN   +3.8593e+001
+             HPC.SMW   +3.9206e+001
+             LPC.SMN   +5.3785e+001
+             LPC.SMW   +5.1288e+001
+          Burner.FAR   +2.7488e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.9736e+000   +3.8925e+000   
+      HP_Shaft.dNqdt   +5.6155e+000   -2.1147e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.9042e+003   
+      HP_Shaft.dNqdt   +1.0546e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   -1.2084e-014   +4.0347e-015   
+            FS_25.Pt   +3.5500e-002   -1.7784e-002   
+            FS_25.Tt   +1.8576e-001   -9.5254e-002   
+             FS_3.Ps   +6.2764e-002   +4.9858e-002   
+             FS_3.Tt   +4.1783e-002   +9.7451e-002   
+             FS_5.Pt   +2.7749e-003   +2.2834e-003   
+             FS_5.Tt   -1.8790e-001   -1.0564e-001   
+             FS_4.Tt   -2.9700e-001   -1.6995e-001   
+          Perf.myEPR   +1.9025e-004   +1.5655e-004   
+           Perf.myFn   +1.0924e+001   +8.0338e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.5821e-002   +4.5254e-003   
+             HPC.SMW   +2.2845e-002   -2.7621e-003   
+             LPC.SMN   -9.6909e-002   +9.4198e-002   
+             LPC.SMW   -9.3158e-002   +9.0639e-002   
+          Burner.FAR   -6.5472e-006   -4.9189e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.8115e-001   
+            FS_25.Tt   +1.5059e+000   
+             FS_3.Ps   +4.2036e+001   
+             FS_3.Tt   +3.0923e+001   
+             FS_5.Pt   +1.9479e+000   
+             FS_5.Tt   +3.2824e+002   
+             FS_4.Tt   +5.9946e+002   
+          Perf.myEPR   +1.3355e-001   
+           Perf.myFn   +1.0890e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.5393e+001   
+             HPC.SMW   -1.5422e+001   
+             LPC.SMN   -1.4893e+000   
+             LPC.SMW   -1.4330e+000   
+          Burner.FAR   +1.1376e-002   
+
+PASSED LINEARITY TEST with value +3.3535e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +1.5609e-002 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.7690e+003
+      HP_Shaft.Nmech   +1.4161e+004
+
+Inputs
+        Burner.Wfuel   +2.5440e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +6.5330e-005
+      HP_Shaft.dNqdt   -1.7961e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.7690e+003
+      HP_Shaft.Nmech   +1.4161e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.1637e+001
+            FS_25.Tt   +7.1385e+002
+             FS_3.Ps   +3.6981e+002
+             FS_3.Tt   +1.4000e+003
+             FS_5.Pt   +2.4159e+001
+             FS_5.Tt   +1.5639e+003
+             FS_4.Tt   +3.0171e+003
+          Perf.myEPR   +1.6563e+000
+           Perf.myFn   +2.4600e+004
+          Perf.Wfuel   +2.5440e+000
+             HPC.SMN   +3.8265e+001
+             HPC.SMW   +3.8809e+001
+             LPC.SMN   +5.4094e+001
+             LPC.SMW   +5.1602e+001
+          Burner.FAR   +2.7959e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -9.5804e+000   +3.8969e+000   
+      HP_Shaft.dNqdt   +6.0236e+000   -2.1646e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.8128e+003   
+      HP_Shaft.dNqdt   +1.0418e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.7075e-002   -1.8643e-002   
+            FS_25.Tt   +1.9230e-001   -9.7765e-002   
+             FS_3.Ps   +6.4904e-002   +4.9578e-002   
+             FS_3.Tt   +4.4608e-002   +9.6442e-002   
+             FS_5.Pt   +3.1222e-003   +2.4698e-003   
+             FS_5.Tt   -1.8527e-001   -9.9249e-002   
+             FS_4.Tt   -2.9798e-001   -1.6377e-001   
+          Perf.myEPR   +2.1406e-004   +1.6933e-004   
+           Perf.myFn   +1.1225e+001   +8.4699e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.6111e-002   +4.1337e-003   
+             HPC.SMW   +2.3213e-002   -2.8860e-003   
+             LPC.SMN   -9.8901e-002   +9.4752e-002   
+             LPC.SMW   -9.5165e-002   +9.1431e-002   
+          Burner.FAR   -6.6489e-006   -4.8046e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.8630e-001   
+            FS_25.Tt   +1.5015e+000   
+             FS_3.Ps   +4.1665e+001   
+             FS_3.Tt   +2.9811e+001   
+             FS_5.Pt   +2.1064e+000   
+             FS_5.Tt   +3.2068e+002   
+             FS_4.Tt   +5.7952e+002   
+          Perf.myEPR   +1.4442e-001   
+           Perf.myFn   +1.1334e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.4697e+001   
+             HPC.SMW   -1.4717e+001   
+             LPC.SMN   -1.4553e+000   
+             LPC.SMW   -1.4042e+000   
+          Burner.FAR   +1.1063e-002   
+
+PASSED LINEARITY TEST with value +3.2729e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +1.3914e-002 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.8320e+003
+      HP_Shaft.Nmech   +1.4233e+004
+
+Inputs
+        Burner.Wfuel   +2.6596e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +8.6118e-005
+      HP_Shaft.dNqdt   -1.0026e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.8320e+003
+      HP_Shaft.Nmech   +1.4233e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.2646e+001
+            FS_25.Tt   +7.1902e+002
+             FS_3.Ps   +3.8229e+002
+             FS_3.Tt   +1.4132e+003
+             FS_5.Pt   +2.4788e+001
+             FS_5.Tt   +1.5820e+003
+             FS_4.Tt   +3.0527e+003
+          Perf.myEPR   +1.6995e+000
+           Perf.myFn   +2.5500e+004
+          Perf.Wfuel   +2.6596e+000
+             HPC.SMN   +3.7902e+001
+             HPC.SMW   +3.8367e+001
+             LPC.SMN   +5.4575e+001
+             LPC.SMW   +5.2085e+001
+          Burner.FAR   +2.8460e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.4767e+000   +3.1361e+000   
+      HP_Shaft.dNqdt   +2.8027e+000   -1.9460e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.7601e+003   
+      HP_Shaft.dNqdt   +1.0262e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.7311e-002   -1.9374e-002   
+            FS_25.Tt   +1.7100e-001   -8.3037e-002   
+             FS_3.Ps   +8.4651e-002   +3.3681e-002   
+             FS_3.Tt   +3.3950e-002   +1.0506e-001   
+             FS_5.Pt   +4.1834e-003   +1.7846e-003   
+             FS_5.Tt   -2.4998e-001   -3.9197e-002   
+             FS_4.Tt   -4.0448e-001   -6.7598e-002   
+          Perf.myEPR   +2.8682e-004   +1.2236e-004   
+           Perf.myFn   +1.1444e+001   +6.3112e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.7492e-002   +2.4995e-003   
+             HPC.SMW   +2.3665e-002   -4.0553e-003   
+             LPC.SMN   -8.6968e-002   +8.6221e-002   
+             LPC.SMW   -8.4226e-002   +8.3732e-002   
+          Burner.FAR   -8.6489e-006   -3.0410e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.9702e-001   
+            FS_25.Tt   +1.0715e+000   
+             FS_3.Ps   +4.1727e+001   
+             FS_3.Tt   +2.8624e+001   
+             FS_5.Pt   +2.1862e+000   
+             FS_5.Tt   +3.1116e+002   
+             FS_4.Tt   +5.5843e+002   
+          Perf.myEPR   +1.4989e-001   
+           Perf.myFn   +1.1578e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.4000e+001   
+             HPC.SMW   -1.4025e+001   
+             LPC.SMN   -1.2187e+000   
+             LPC.SMW   -1.1893e+000   
+          Burner.FAR   +1.0728e-002   
+
+FAILED LINEARITY TEST with value +9.8909e+000 (tol = +2.0000e-001). Max variance at C(11,2)
+
+FAILED REPEATABILITY TEST with value +3.1481e-002 (tol = +1.0000e-003). Max variance at D(6,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.8951e+003
+      HP_Shaft.Nmech   +1.4309e+004
+
+Inputs
+        Burner.Wfuel   +2.7786e+000
+
+Derivatives
+      LP_Shaft.dNqdt   -5.5732e-005
+      HP_Shaft.dNqdt   -5.6063e-003
+
+Outputs
+      LP_Shaft.Nmech   +4.8951e+003
+      HP_Shaft.Nmech   +1.4309e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.3563e+001
+            FS_25.Tt   +7.2417e+002
+             FS_3.Ps   +3.9462e+002
+             FS_3.Tt   +1.4270e+003
+             FS_5.Pt   +2.5432e+001
+             FS_5.Tt   +1.6019e+003
+             FS_4.Tt   +3.0908e+003
+          Perf.myEPR   +1.7436e+000
+           Perf.myFn   +2.6400e+004
+          Perf.Wfuel   +2.7786e+000
+             HPC.SMN   +3.7508e+001
+             HPC.SMW   +3.7884e+001
+             LPC.SMN   +5.5191e+001
+             LPC.SMW   +5.2713e+001
+          Burner.FAR   +2.9003e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.1856e+000   +2.6049e+000   
+      HP_Shaft.dNqdt   +1.5103e+000   -1.8195e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.6471e+003   
+      HP_Shaft.dNqdt   +1.0238e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.7755e-002   -2.0209e-002   
+            FS_25.Tt   +1.6507e-001   -7.3024e-002   
+             FS_3.Ps   +9.2585e-002   +2.1264e-002   
+             FS_3.Tt   +3.1123e-002   +1.1508e-001   
+             FS_5.Pt   +4.6785e-003   +1.2263e-003   
+             FS_5.Tt   -2.6899e-001   +8.4624e-003   
+             FS_4.Tt   -4.3593e-001   +8.9691e-003   
+          Perf.myEPR   +3.2076e-004   +8.4080e-005   
+           Perf.myFn   +1.1515e+001   +4.6265e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.8088e-002   -7.1439e-004   
+             HPC.SMW   +2.3653e-002   -4.9319e-003   
+             LPC.SMN   -8.3168e-002   +8.0698e-002   
+             LPC.SMW   -8.0818e-002   +7.8816e-002   
+          Burner.FAR   -9.3461e-006   -1.6729e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +2.9788e-001   
+            FS_25.Tt   +1.0763e+000   
+             FS_3.Ps   +4.1311e+001   
+             FS_3.Tt   +2.7716e+001   
+             FS_5.Pt   +2.3675e+000   
+             FS_5.Tt   +3.0590e+002   
+             FS_4.Tt   +5.4110e+002   
+          Perf.myEPR   +1.6232e-001   
+           Perf.myFn   +1.1790e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.3384e+001   
+             HPC.SMW   -1.3398e+001   
+             LPC.SMN   -1.1894e+000   
+             LPC.SMW   -1.1616e+000   
+          Burner.FAR   +1.0463e-002   
+
+FAILED LINEARITY TEST with value +3.3991e-001 (tol = +2.0000e-001). Max variance at C(11,2)
+
+PASSED REPEATABILITY TEST with value +4.4091e-004 (tol = +1.0000e-003)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +4.9579e+003
+      HP_Shaft.Nmech   +1.4383e+004
+
+Inputs
+        Burner.Wfuel   +2.9006e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +2.2246e-005
+      HP_Shaft.dNqdt   -8.3358e-004
+
+Outputs
+      LP_Shaft.Nmech   +4.9579e+003
+      HP_Shaft.Nmech   +1.4383e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.4469e+001
+            FS_25.Tt   +7.2925e+002
+             FS_3.Ps   +4.0704e+002
+             FS_3.Tt   +1.4406e+003
+             FS_5.Pt   +2.6105e+001
+             FS_5.Tt   +1.6222e+003
+             FS_4.Tt   +3.1289e+003
+          Perf.myEPR   +1.7898e+000
+           Perf.myFn   +2.7300e+004
+          Perf.Wfuel   +2.9006e+000
+             HPC.SMN   +3.7061e+001
+             HPC.SMW   +3.7403e+001
+             LPC.SMN   +5.5809e+001
+             LPC.SMW   +5.3346e+001
+          Burner.FAR   +2.9554e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -8.5737e+000   +2.7035e+000   
+      HP_Shaft.dNqdt   +3.4181e+000   -1.9193e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.6510e+003   
+      HP_Shaft.dNqdt   +1.0131e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +4.0312e-002   -2.1228e-002   
+            FS_25.Tt   +1.7774e-001   -7.6850e-002   
+             FS_3.Ps   +9.4349e-002   +2.1004e-002   
+             FS_3.Tt   +2.4743e-002   +1.1911e-001   
+             FS_5.Pt   +4.9998e-003   +1.2692e-003   
+             FS_5.Tt   -2.7194e-001   +1.3509e-002   
+             FS_4.Tt   -4.4666e-001   +1.5962e-002   
+          Perf.myEPR   +3.4279e-004   +8.7015e-005   
+           Perf.myFn   +1.1483e+001   +4.7374e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +2.3771e-002   -3.6643e-003   
+             HPC.SMW   +2.4685e-002   -5.3519e-003   
+             LPC.SMN   -9.0534e-002   +8.2580e-002   
+             LPC.SMW   -8.7565e-002   +8.0723e-002   
+          Burner.FAR   -9.4655e-006   -1.6017e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +3.0127e-001   
+            FS_25.Tt   +1.0906e+000   
+             FS_3.Ps   +4.0852e+001   
+             FS_3.Tt   +2.6751e+001   
+             FS_5.Pt   +2.2799e+000   
+             FS_5.Tt   +2.9518e+002   
+             FS_4.Tt   +5.2452e+002   
+          Perf.myEPR   +1.5631e-001   
+           Perf.myFn   +1.1836e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.2755e+001   
+             HPC.SMW   -1.2796e+001   
+             LPC.SMN   -1.1719e+000   
+             LPC.SMW   -1.1456e+000   
+          Burner.FAR   +1.0212e-002   
+
+PASSED LINEARITY TEST with value +1.2769e-001 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +8.8962e-003 (tol = +1.0000e-003). Max variance at D(6,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +5.0242e+003
+      HP_Shaft.Nmech   +1.4459e+004
+
+Inputs
+        Burner.Wfuel   +3.0265e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +3.0791e-004
+      HP_Shaft.dNqdt   -3.7460e-004
+
+Outputs
+      LP_Shaft.Nmech   +5.0242e+003
+      HP_Shaft.Nmech   +1.4459e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.5475e+001
+            FS_25.Tt   +7.3495e+002
+             FS_3.Ps   +4.1986e+002
+             FS_3.Tt   +1.4548e+003
+             FS_5.Pt   +2.6823e+001
+             FS_5.Tt   +1.6427e+003
+             FS_4.Tt   +3.1668e+003
+          Perf.myEPR   +1.8390e+000
+           Perf.myFn   +2.8200e+004
+          Perf.Wfuel   +3.0265e+000
+             HPC.SMN   +3.6661e+001
+             HPC.SMW   +3.6991e+001
+             LPC.SMN   +5.6140e+001
+             LPC.SMW   +5.3729e+001
+          Burner.FAR   +3.0095e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -6.2481e+000   +2.7796e+000   
+      HP_Shaft.dNqdt   +3.4434e+000   -1.9876e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.5911e+003   
+      HP_Shaft.dNqdt   +1.0044e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   -1.1314e-014   +0.0000e+000   
+            FS_25.Pt   +3.5967e-002   -2.2211e-002   
+            FS_25.Tt   +1.6020e-001   -8.0386e-002   
+             FS_3.Ps   +8.1480e-002   +2.0425e-002   
+             FS_3.Tt   +2.4551e-002   +1.1971e-001   
+             FS_5.Pt   +4.4514e-003   +1.2820e-003   
+             FS_5.Tt   -2.2861e-001   +1.6962e-002   
+             FS_4.Tt   -3.7504e-001   +2.0999e-002   
+          Perf.myEPR   +3.0519e-004   +8.7892e-005   
+           Perf.myFn   +7.8537e+000   +4.7411e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +2.0609e-002   -4.8598e-003   
+             HPC.SMW   +2.1405e-002   -5.8767e-003   
+             LPC.SMN   -8.2068e-002   +8.3879e-002   
+             LPC.SMW   -7.9384e-002   +8.2077e-002   
+          Burner.FAR   -8.0591e-006   -1.5134e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +3.0605e-001   
+            FS_25.Tt   +1.1077e+000   
+             FS_3.Ps   +4.0489e+001   
+             FS_3.Tt   +2.5953e+001   
+             FS_5.Pt   +2.3382e+000   
+             FS_5.Tt   +2.8790e+002   
+             FS_4.Tt   +5.0855e+002   
+          Perf.myEPR   +1.6031e-001   
+           Perf.myFn   +1.1972e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.2211e+001   
+             HPC.SMW   -1.2249e+001   
+             LPC.SMN   -1.1558e+000   
+             LPC.SMW   -1.1310e+000   
+          Burner.FAR   +9.9649e-003   
+
+PASSED LINEARITY TEST with value +2.9280e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +2.4652e-002 (tol = +1.0000e-003). Max variance at D(17,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +5.1146e+003
+      HP_Shaft.Nmech   +1.4540e+004
+
+Inputs
+        Burner.Wfuel   +3.1583e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +5.3431e-005
+      HP_Shaft.dNqdt   -6.5578e-004
+
+Outputs
+      LP_Shaft.Nmech   +5.1146e+003
+      HP_Shaft.Nmech   +1.4540e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.6938e+001
+            FS_25.Tt   +7.4289e+002
+             FS_3.Ps   +4.3419e+002
+             FS_3.Tt   +1.4701e+003
+             FS_5.Pt   +2.7650e+001
+             FS_5.Tt   +1.6613e+003
+             FS_4.Tt   +3.2011e+003
+          Perf.myEPR   +1.8957e+000
+           Perf.myFn   +2.9100e+004
+          Perf.Wfuel   +3.1583e+000
+             HPC.SMN   +3.6524e+001
+             HPC.SMW   +3.6852e+001
+             LPC.SMN   +5.5473e+001
+             LPC.SMW   +5.3139e+001
+          Burner.FAR   +3.0549e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -6.2017e+000   +2.8676e+000   
+      HP_Shaft.dNqdt   +3.5750e+000   -2.0612e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.4955e+003   
+      HP_Shaft.dNqdt   +1.0092e+004   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +0.0000e+000   
+            FS_25.Pt   +3.6568e-002   -2.3693e-002   
+            FS_25.Tt   +1.6043e-001   -8.5251e-002   
+             FS_3.Ps   +8.2110e-002   +1.9388e-002   
+             FS_3.Tt   +2.4771e-002   +1.1923e-001   
+             FS_5.Pt   +4.6179e-003   +1.2648e-003   
+             FS_5.Tt   -2.2326e-001   +2.1162e-002   
+             FS_4.Tt   -3.6708e-001   +2.7418e-002   
+          Perf.myEPR   +3.1661e-004   +8.6718e-005   
+           Perf.myFn   +7.6916e+000   +4.6455e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +2.0264e-002   -5.3028e-003   
+             HPC.SMW   +2.1048e-002   -6.1551e-003   
+             LPC.SMN   -8.0810e-002   +8.5267e-002   
+             LPC.SMW   -7.8589e-002   +8.3467e-002   
+          Burner.FAR   -7.9631e-006   -1.3759e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +3.1388e-001   
+            FS_25.Tt   +1.1294e+000   
+             FS_3.Ps   +4.0025e+001   
+             FS_3.Tt   +2.5036e+001   
+             FS_5.Pt   +2.3891e+000   
+             FS_5.Tt   +2.7981e+002   
+             FS_4.Tt   +4.9021e+002   
+          Perf.myEPR   +1.6380e-001   
+           Perf.myFn   +1.2145e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.1650e+001   
+             HPC.SMW   -1.1686e+001   
+             LPC.SMN   -1.1296e+000   
+             LPC.SMW   -1.1057e+000   
+          Burner.FAR   +9.6911e-003   
+
+PASSED LINEARITY TEST with value +5.0042e-002 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +5.3470e-002 (tol = +1.0000e-003). Max variance at D(17,1)
+
+
+
+
+==============================================================
+  LINEAR MODEL OUTPUT FOR:  lin_mod
+==============================================================
+--------------------------------------------------------------
+
+Baseline State, Input and Output Variable Values:
+States
+      LP_Shaft.Nmech   +5.2159e+003
+      HP_Shaft.Nmech   +1.4629e+004
+
+Inputs
+        Burner.Wfuel   +3.3036e+000
+
+Derivatives
+      LP_Shaft.dNqdt   +1.2623e-003
+      HP_Shaft.dNqdt   -2.2216e-002
+
+Outputs
+      LP_Shaft.Nmech   +5.2159e+003
+      HP_Shaft.Nmech   +1.4629e+004
+             FS_2.Pt   +1.4586e+001
+             FS_2.Tt   +5.1866e+002
+            FS_25.Pt   +4.8462e+001
+            FS_25.Tt   +7.5147e+002
+             FS_3.Ps   +4.4950e+002
+             FS_3.Tt   +1.4869e+003
+             FS_5.Pt   +2.8549e+001
+             FS_5.Tt   +1.6830e+003
+             FS_4.Tt   +3.2396e+003
+          Perf.myEPR   +1.9573e+000
+           Perf.myFn   +3.0000e+004
+          Perf.Wfuel   +3.3036e+000
+             HPC.SMN   +3.6351e+001
+             HPC.SMW   +3.6677e+001
+             LPC.SMN   +5.4848e+001
+             LPC.SMW   +5.2576e+001
+          Burner.FAR   +3.1069e-002
+
+A_MATRIX:
+derivs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.dNqdt   -6.0919e+000   +3.0362e+000   
+      HP_Shaft.dNqdt   +4.6756e+000   -2.1438e+001   
+
+B_MATRIX:
+derivs/inputs     Burner.Wfuel 
+      LP_Shaft.dNqdt   +2.5803e+003   
+      HP_Shaft.dNqdt   +9.6971e+003   
+
+C_MATRIX:
+ outputs/states     LP_Shaft.Nmech HP_Shaft.Nmech 
+      LP_Shaft.Nmech   +1.0000e+000   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   +1.0000e+000   
+             FS_2.Pt   +0.0000e+000   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   +3.8857e-015   
+            FS_25.Pt   +3.5562e-002   -2.5584e-002   
+            FS_25.Tt   +1.6007e-001   -9.1629e-002   
+             FS_3.Ps   +7.2507e-002   +1.7390e-002   
+             FS_3.Tt   +2.7678e-002   +1.1881e-001   
+             FS_5.Pt   +4.1708e-003   +1.1422e-003   
+             FS_5.Tt   -1.7662e-001   +2.6845e-002   
+             FS_4.Tt   -3.1113e-001   +3.8383e-002   
+          Perf.myEPR   +2.8595e-004   +7.8310e-005   
+           Perf.myFn   +5.7799e+000   +3.1930e-001   
+          Perf.Wfuel   +0.0000e+000   +0.0000e+000   
+             HPC.SMN   +1.8798e-002   -5.9465e-003   
+             HPC.SMW   +1.9563e-002   -6.8161e-003   
+             LPC.SMN   -7.9286e-002   +8.7284e-002   
+             LPC.SMW   -7.7270e-002   +8.5558e-002   
+          Burner.FAR   -6.8865e-006   -1.1487e-006   
+
+D_MATRIX:
+outputs/inputs     Burner.Wfuel 
+      LP_Shaft.Nmech   +0.0000e+000   
+      HP_Shaft.Nmech   +0.0000e+000   
+             FS_2.Pt   +0.0000e+000   
+             FS_2.Tt   +0.0000e+000   
+            FS_25.Pt   +3.2772e-001   
+            FS_25.Tt   +1.1737e+000   
+             FS_3.Ps   +3.9819e+001   
+             FS_3.Tt   +2.6558e+001   
+             FS_5.Pt   +2.3280e+000   
+             FS_5.Tt   +2.6836e+002   
+             FS_4.Tt   +4.7660e+002   
+          Perf.myEPR   +1.5961e-001   
+           Perf.myFn   +1.1961e+003   
+          Perf.Wfuel   +1.0000e+000   
+             HPC.SMN   -1.1174e+001   
+             HPC.SMW   -1.1208e+001   
+             LPC.SMN   -1.1180e+000   
+             LPC.SMW   -1.0959e+000   
+          Burner.FAR   +9.4195e-003   
+
+PASSED LINEARITY TEST with value +1.7539e-001 (tol = +2.0000e-001) 
+
+FAILED REPEATABILITY TEST with value +6.5921e-003 (tol = +1.0000e-003). Max variance at D(5,1)
+
+
+
