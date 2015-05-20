@@ -3,6 +3,8 @@
 % written by Jeffrey Csank (RHC)
 % NASA Glenn Research Center, Cleveland, OH
 % *************************************************************************
+DEBUG_Accel=0;
+
 atemp_in=ttectra_in;
 
 atemp_minSM_des=atemp_in.SMLimit.Accel;
@@ -107,6 +109,20 @@ for ctr=1:1:length(atemp_Wf_vec)
                 atemp_minSM_chg = abs(atemp_minSM_out(ctr)-min(temp_out.HPC_SM));
                 atemp_minSM_out(ctr) = min(temp_out.HPC_SM);
                 atemp_fault_flag=0;
+                
+                if DEBUG_Accel==1
+                    figure(513);
+                    subplot(411);
+                    plot(temp_out.t,temp_out.Wf,'b-',temp_out.t,temp_out.Wf_dmd,'r--','LineWidth',2); hold on;
+                    subplot(412); 
+                    plot(temp_out.t,temp_out.HPC_SM,'b-',temp_out.t([1 end]),atemp_in.SMLimit.Accel([1 1]),'r--','LineWidth',2); hold on;
+                    subplot(413); 
+                    plot(temp_out.t,temp_out.T40,'b-',temp_out.t([1 end]),atemp_in.SMLimit.T40*([1 1]),'r--','LineWidth',2); hold on;
+                    subplot(414);
+                    plot(ctr,atemp_minSM_out(ctr),'bx'); hold on;
+                    
+                end
+                
             else
                 %increment fault counter   
                 % may acutally be able to remove this in  the future.

@@ -90,7 +90,7 @@ TTECTrA_NPSS_DecelLimiter_s
 % Integrate Limiters and Setpoint Controller
 %---------------------------------------
 close(h); h=waitbar(0.8,sprintf('Tuning Integral Windup Protection ...'));
-
+ 
 TTECTrA_IWP_s
 
 %------------------------------
@@ -100,7 +100,7 @@ close(h); h=waitbar(1.0,sprintf('Design Complete, Testing Closed-Loop Controller
 minFn=max( min(ttectra_in.SP.FT_SP),0.15*max(ttectra_in.SP.FT_SP)); %Determine min/idle thrust
 dFn=(max(ttectra_in.SP.FT_SP)-minFn); %Determine delta between max and min
 
-%Build thrust profile and set TTECTrA for closed loop 
+%Build thrust profile and set TTECTrA for closed loop
 %ttectra_in.in.t_vec  = [0, 10, 10.5, 20, 20.5, 30, 31, 35, 36, 40, 41, 45, 46, 50, 51, 55,56,60,62,64,70];
 %ttectra_in.in.t_vec  = [0, 10, 10.5, 20, 20.5, 30, 31, 35, 36, 40, 41, 45, 46, 50, 51, 55,56,60,62,64,70]+20;
 %ttectra_in.in.t_vec(1)=0;
@@ -123,72 +123,72 @@ if ~isempty(out)
     % Plot Thrust and Control Variable
     %----------------------------------------
     figure(111);
-    subplot(211); 
+    subplot(211);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.Fnet(i_ttrim:end),'-',...
         out.t(i_ttrim:end),out.FT_dmd(i_ttrim:end),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
-    ylabel('F_{net}R, lbf','FontSize',12); 
+    ylabel('F_{net}R, lbf','FontSize',12);
     grid on;
-    legend('feedback','command','Location','NorthEast');  
+    legend('feedback','command','Location','NorthEast');
     
-    subplot(212); 
-    set(gca,'FontSize',12); 
+    subplot(212);
+    set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.CV_fdbk(i_ttrim:end),'-',...
         out.t(i_ttrim:end),out.CV_dmd(i_ttrim:end),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
-    ylabel('Control variable','FontSize',12); 
-    grid on; 
-
+    ylabel('Control variable','FontSize',12);
+    grid on;
+    
     % Plot Acceleration Information
     %----------------------------------------
     figure(112);
-    subplot(311); 
+    subplot(311);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.HPC_SM(i_ttrim:end),'b-',...
         out.t([1 end]),ttectra_in.SMLimit.Accel([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
-    ylabel('HPC SM, %','FontSize',12); 
+    ylabel('HPC SM, %','FontSize',12);
     grid on;
     legend('feedback','limit','Location','NorthEast');
     
-    subplot(312); 
+    subplot(312);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.T40(i_ttrim:end),'b-',...
         out.t([1 end]),ttectra_in.SMLimit.T40*([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
-    ylabel('T40, \circR','FontSize',12); 
+    ylabel('T40, \circR','FontSize',12);
     grid on;
     
-    subplot(313); 
+    subplot(313);
     set(gca,'FontSize',12);
     plot(out.NcR25(i_ttrim:end),out.Nc_dot(i_ttrim:end),'b.', ...
         ttectra_in.Limiter.NcR25_sched,ttectra_in.Limiter.Ncdot_sched,'r--','LineWidth',2);
     xlim([min(ttectra_in.Limiter.NcR25_sched) max(ttectra_in.Limiter.NcR25_sched)]);
     ylim([min(ttectra_in.Limiter.Ncdot_sched)*.8 max(ttectra_in.Limiter.Ncdot_sched)*1.2]);
-    xlabel('NcR, rpm','FontSize',12); 
+    xlabel('NcR, rpm','FontSize',12);
     ylabel('Nc_{dot}, rpm/s','FontSize',12); grid on;
     
     % Plot Deceleration Information
     %----------------------------------------
     figure(113);
-    subplot(311); 
+    subplot(311);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.LPC_SM(i_ttrim:end),'b-',...
         out.t([1 end]),ttectra_in.SMLimit.Decel([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
-    ylabel('LPC SM, %','FontSize',12); 
+    ylabel('LPC SM, %','FontSize',12);
     grid on;
     legend('feedback','limit','Location','NorthEast');
     
-    subplot(312); 
+    subplot(312);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.FAR(i_ttrim:end),'b-',...
         out.t([1 end]),ttectra_in.SMLimit.FARmin([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('FAR','FontSize',12); grid on;
     
-    subplot(313); 
+    subplot(313);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.Wf(i_ttrim:end)./out.Ps3(i_ttrim:end),'b-',...
         out.t([1 end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
@@ -213,63 +213,63 @@ if ~isempty(out)
     
     % Plot Bypass Area
     %----------------------------------------
-    figure(117);
-    subplot(311); 
-    set(gca,'FontSize',12);
-    plot(out.t(i_ttrim:end),out.Fnet(i_ttrim:end),'-',...
-        out.t(i_ttrim:end),out.FT_dmd(i_ttrim:end),'r--','LineWidth',2);
-    xlabel('Time, s','FontSize',12);
-    ylabel('F_{net}R, lbf','FontSize',12); 
-    grid on;
-    legend('feedback','command','Location','NorthEast');  
-    
-    subplot(312); 
-    set(gca,'FontSize',12); 
-    plot(out.t(i_ttrim:end),out.Abypass(i_ttrim:end),'-','LineWidth',2);
-    xlabel('Time, s','FontSize',12);
-    ylabel('Bypass Area','FontSize',12); 
-    grid on; 
-    
-    subplot(313); 
-    set(gca,'FontSize',12); 
-    plot(out.t(i_ttrim:end),out.dAbypass(i_ttrim:end),'-','LineWidth',2);
-    xlabel('Time, s','FontSize',12);
-    ylabel('delta Bypass Area','FontSize',12); 
-    grid on; 
-    
-    
-    figure(118);
-    subplot(211);
-    set(gca,'FontSize',12); 
-    plot(out.Nf(i_ttrim:end),out.Abypass(i_ttrim:end),'.','LineWidth',2);
-    xlabel('Fan Speed','FontSize',12);
-    ylabel('Bypass Area','FontSize',12); 
-    grid on; 
-    
-    subplot(212);
-    set(gca,'FontSize',12); 
-    plot(out.Nf(i_ttrim:end),out.dAbypass(i_ttrim:end),'.','LineWidth',2);
-    xlabel('Fan Speed','FontSize',12);
-    ylabel('delta Bypass Area','FontSize',12); 
-    grid on; 
-    
-    
-    figure(119);
-    subplot(211);
-    set(gca,'FontSize',12); 
-    plot(out.Fnet(i_ttrim:end),out.Abypass(i_ttrim:end),'.','LineWidth',2);
-    xlabel('Thrust','FontSize',12);
-    ylabel('Bypass Area','FontSize',12); 
-    grid on; 
-    
-    subplot(212);
-    set(gca,'FontSize',12); 
-    plot(out.Fnet(i_ttrim:end),out.dAbypass(i_ttrim:end),'.','LineWidth',2);
-    xlabel('Thrust','FontSize',12);
-    ylabel('delta Bypass Area','FontSize',12); 
-    grid on; 
-    
-    
+    if isfield(out,'Abypass')
+        figure(117);
+        subplot(311);
+        set(gca,'FontSize',12);
+        plot(out.t(i_ttrim:end),out.Fnet(i_ttrim:end),'-',...
+            out.t(i_ttrim:end),out.FT_dmd(i_ttrim:end),'r--','LineWidth',2);
+        xlabel('Time, s','FontSize',12);
+        ylabel('F_{net}R, lbf','FontSize',12);
+        grid on;
+        legend('feedback','command','Location','NorthEast');
+        
+        subplot(312);
+        set(gca,'FontSize',12);
+        plot(out.t(i_ttrim:end),out.Abypass(i_ttrim:end),'-','LineWidth',2);
+        xlabel('Time, s','FontSize',12);
+        ylabel('Bypass Area','FontSize',12);
+        grid on;
+        
+        subplot(313);
+        set(gca,'FontSize',12);
+        plot(out.t(i_ttrim:end),out.dAbypass(i_ttrim:end),'-','LineWidth',2);
+        xlabel('Time, s','FontSize',12);
+        ylabel('delta Bypass Area','FontSize',12);
+        grid on;
+
+        figure(118);
+        subplot(211);
+        set(gca,'FontSize',12);
+        plot(out.Nf(i_ttrim:end),out.Abypass(i_ttrim:end),'.','LineWidth',2);
+        xlabel('Fan Speed','FontSize',12);
+        ylabel('Bypass Area','FontSize',12);
+        grid on;
+        
+        subplot(212);
+        set(gca,'FontSize',12);
+        plot(out.Nf(i_ttrim:end),out.dAbypass(i_ttrim:end),'.','LineWidth',2);
+        xlabel('Fan Speed','FontSize',12);
+        ylabel('delta Bypass Area','FontSize',12);
+        grid on;
+        
+        
+        figure(119);
+        subplot(211);
+        set(gca,'FontSize',12);
+        plot(out.Fnet(i_ttrim:end),out.Abypass(i_ttrim:end),'.','LineWidth',2);
+        xlabel('Thrust','FontSize',12);
+        ylabel('Bypass Area','FontSize',12);
+        grid on;
+        
+        subplot(212);
+        set(gca,'FontSize',12);
+        plot(out.Fnet(i_ttrim:end),out.dAbypass(i_ttrim:end),'.','LineWidth',2);
+        xlabel('Thrust','FontSize',12);
+        ylabel('delta Bypass Area','FontSize',12);
+        grid on;
+        
+    end
     
 else
     disp('WARNING -- Simulation failed, no output generated')

@@ -54,7 +54,7 @@ end
 dtemp_watchdog=1;
 dtemp_WfPs3lim=dtemp_in.Limiter.WfPs3lim;
 dtemp_error=(dtemp_in.SMLimit.FARmin-min(dtemp_out.FAR(dtemp_trimi:end)))/dtemp_in.SMLimit.FARmin;
-while abs(dtemp_error)>0.10 && dtemp_watchdog<dtemp_watchdog_limit   
+while abs(dtemp_error)>0.050 && dtemp_watchdog<dtemp_watchdog_limit   
     WfPs3lim_prev=dtemp_WfPs3lim;
     
     %Update limiter based on error
@@ -81,10 +81,11 @@ while abs(dtemp_error)>0.10 && dtemp_watchdog<dtemp_watchdog_limit
         dtemp_watchdog=dtemp_watchdog+1;    
         
         if dtemp_DEBUG==1
-            figure(511);
-            plot(dtemp_out.t,dtemp_out.FAR,'b-','Linewidth',1.5); hold on;
-            plot(dtemp_out.t([1 end]),dtemp_in.SMLimit.FARmin*[1 1],'r--');
-            hold on;
+            figure(514);
+            subplot(211); 
+            plot(dtemp_out.t,dtemp_out.FAR,'b-',dtemp_out.t([1 end]),dtemp_in.SMLimit.FARmin*[1 1],'r--','Linewidth',2); hold on;
+            subplot(212);
+            plot(dtemp_out.t,dtemp_out.LPC_SM,'b-',dtemp_out.t([1 end]),dtemp_in.SMLimit.Decel*[1 1],'r--','Linewidth',2); hold on;
         end
             
     catch
@@ -130,9 +131,12 @@ if dtemp_error<0 || min(dtemp_out.LPC_SM(dtemp_trimi:end))<0
             dtemp_watchdog=dtemp_watchdog+1;
             
             if dtemp_DEBUG==1
-                figure(512); 
-                plot(dtemp_out.t,dtemp_out.LPC_SM,'b-','Linewidth',1.5); hold on;
-                plot(dtemp_out.t([1 end]),dtemp_in.SMLimit.Decel*[1 1],'r--');
+                figure(514);
+                
+                subplot(211);
+                plot(dtemp_out.t,dtemp_out.FAR,'b-',dtemp_out.t([1 end]),dtemp_in.SMLimit.FARmin*[1 1],'r--','Linewidth',2);
+                subplot(212);
+                plot(dtemp_out.t,dtemp_out.LPC_SM,'b-',dtemp_out.t([1 end]),dtemp_in.SMLimit.Decel*[1 1],'r--','Linewidth',2);
             end
             
         catch
