@@ -9,7 +9,7 @@
 %*************************************************************************
 itemp_in=ttectra_in;
 
-itemp_DEBUG=0;
+itemp_DEBUG=1;
 
 %-------------------------------------------------------------------------
 %
@@ -56,10 +56,12 @@ end
 
 if itemp_DEBUG==1
     figure(515);
-    subplot(211);
+    subplot(311);
     plot(temp_out.t,temp_out.Fnet,'b-',temp_out.t,temp_out.FT_dmd,'r--','Linewidth',2); hold on; ylabel('Fnet');
-    subplot(212);
+    subplot(312);
     plot(temp_out.t,temp_out.CV_fdbk,'b-',temp_out.t,temp_out.CV_dmd,'r--','Linewidth',2); hold on; ylabel('CV');
+    subplot(313);
+    plot(temp_out.t,temp_out.Wf,'b-',temp_out.t,temp_out.Wf_dmd,'r--','Linewidth',2); hold on; ylabel('Wf');    
 end
 
 
@@ -175,10 +177,12 @@ while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp
         
         if itemp_DEBUG==1
             figure(515);
-            subplot(211);
+            subplot(311);
             plot(temp_out.t,temp_out.Fnet,'b-',temp_out.t,temp_out.FT_dmd,'r--','Linewidth',2); hold on; ylabel('Fnet');
-            subplot(212);
+            subplot(312);
             plot(temp_out.t,temp_out.CV_fdbk,'b-',temp_out.t,temp_out.CV_dmd,'r--','Linewidth',2); hold on; ylabel('CV');
+            subplot(313);
+            plot(temp_out.t,temp_out.Wf,'b-',temp_out.t,temp_out.Wf_dmd,'r--','Linewidth',2); hold on; ylabel('Wf');
             
             itemp_fdata
         end
