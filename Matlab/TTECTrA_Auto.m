@@ -101,10 +101,15 @@ minFn=max( min(ttectra_in.SP.FT_SP),0.14*max(ttectra_in.SP.FT_SP)); %Determine m
 dFn=(max(ttectra_in.SP.FT_SP)-minFn); %Determine delta between max and min
 
 %Build thrust profile and set TTECTrA for closed loop
-ttectra_in.in.t_vec  = [0 10 10.5 20 20.5 30 50 55];
+ttectra_in.in.t_vec  = [0 10 12 14 16 25 25.5 35 35.5 45 65 70];
 ttectra_in.in.t_vec(1)=0;
-ttectra_in.in.FT_dmd = [0 0 1   1   0   0 1  1]*dFn + minFn;
+ttectra_in.in.FT_dmd = [0 0 .4 .4 0 0 1   1   0   0 1  1]*dFn + minFn;
 ttectra_in.in.loop = 1;
+
+%ttectra_in.in.t_vec  = [0 10 10.5 20 20.5 30 50 55];
+%ttectra_in.in.t_vec(1)=0;
+%ttectra_in.in.FT_dmd = [0 0 1   1   0   0 1  1]*dFn + minFn;
+%ttectra_in.in.loop = 1;
 
 %Simulate
 out=simFromTTECTrA(ttectra_in);
@@ -112,10 +117,9 @@ out=simFromTTECTrA(ttectra_in);
 %Plot the results
 if ~isempty(out)
     
-    ttrim=0;
+    ttrim=20;
     i_ttrim=min(find(out.t>=ttrim));
-    
-    
+       
     % Plot Thrust and Control Variable
     %----------------------------------------
     figure(111);
@@ -211,7 +215,7 @@ if ~isempty(out)
     title('HPC Map');
     
     figure(117);
-    plot(out.t,out.cntrl,'b-','Linewidth',2);
+    plot(out.t(i_ttrim:end),out.cntrl(i_ttrim:end),'b-','Linewidth',2);
     ylim([0 4]);
     grid on;
     ylabel('Active Controller');
