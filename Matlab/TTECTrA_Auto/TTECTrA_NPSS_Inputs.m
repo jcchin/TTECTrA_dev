@@ -28,6 +28,7 @@ ttectra_in.in.npss_engine_name = npss_engine_name;
 ttectra_in.in.ttectra_engine_name = ttectra_engine_name;
 ttectra_in.in.npss_location = npss_location;
 ttectra_in.in.ss_flags = ss_flags;
+ttectra_in.in.simFileName=ttectra_model_name;
 
 %---------------------------------------------------------
 % Define environmental variables
@@ -41,7 +42,7 @@ ttectra_in.in.dTamb=0;                            % deviation from STD temp
 %---------------------------------------------------------
 ttectra_in.in.Ts=0.015;
 ttectra_in.in.simTime=20.0;                         % simulation time
-ttectra_in.in.simFileName='NPSS_TTECTrA.mdl';  % simulation file name 
+%ttectra_in.in.simFileName='NPSS_TTECTrA.mdl';  % simulation file name 
 
 %---------------------------------------------------------
 % Setpoint function setup
@@ -81,8 +82,8 @@ ttectra_in.controller.Accel_IWP=5000;
 % Transient Limiter setup
 %---------------------------------------------------------
 % Parameters for accleration schedule
-ttectra_in.SMLimit.T40=3500;  
-ttectra_in.SMLimit.Accel=12;
+%ttectra_in.SMLimit.T40=3500;  
+%ttectra_in.SMLimit.Accel=12;
 
 % Parameters for decel limit
 ttectra_in.SMLimit.FARmin=0.015;
@@ -92,7 +93,10 @@ ttectra_in.SMLimit.Decel=8;
 ttectra_in.actuator.wf_bw=20;
 
 %Geared fan modifications
-%ttectra_in.controller.bandwidth=2*2;  %geared fan
-%ttectra_in.SMLimit.T40=3800;  %geared fan
-%ttectra_in.SMLimit.Accel=10;
-%ttectra_in.SMLimit.FARmin=0.020; %geared fan
+ttectra_in.controller.bandwidth=2*2;  %geared fan
+ttectra_in.SMLimit.T40=3800;  %geared fan
+ttectra_in.SMLimit.Accel=10;
+ttectra_in.SMLimit.FARmin=0.020; %geared fan
+ttectra_in.controller.accel_k=2.9061e-004*.7;
+ttectra_in.controller.accel_bw=0.1250*8;
+ttectra_in.controller.Accel_IWP=5000;

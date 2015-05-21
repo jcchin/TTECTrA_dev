@@ -63,3 +63,8 @@ end
 disp(['     Controller Gains Kp = k, Ki = k*tc']);
 disp(['     Current Accel Gain (k): ' num2str(ttectra_in.controller.accel_k)]);
 disp(['     Current Accel Bandwidth (tc): ' num2str(ttectra_in.controller.accel_bw)]);
+disp(['     Surge Margin Limit: ' num2str(ttectra_in.SMLimit.Accel)]);
+disp(['     Min Surge Margin: ' num2str(min(out.HPC_SM))]);
+disp(['     Surge Margin Limit: ' num2str(ttectra_in.SMLimit.T40)]);
+disp(['     Min Surge Margin: ' num2str(max(out.T40))]);
+

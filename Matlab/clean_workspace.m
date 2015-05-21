@@ -1,3 +1,4 @@
+clc;
 
 set_paths
 
@@ -38,5 +39,6 @@ end
 
 cd('Matlab');
 
-disp(['Cleared ' ttectra_engine_name ' NPSS and TTECTrA Matlab Directories'])
-clear all;
+disp(['Cleared NPSS ' npss_engine_name ' Directories']);
+disp(['Cleared TTECTrA Matlab ' ttectra_engine_name ' Directories']);
+

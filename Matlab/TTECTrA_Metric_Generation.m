@@ -10,7 +10,7 @@
 close all; clear; clc;
 
 %desired HPC surge margins to try other than baseline:
-HPC_SM_vec=[18 14 12 10 8 6 3];
+HPC_SM_vec=[6 4 2 1];
 
 % add paths for support and gui functions
 addpath('TTECTrA_Auto')
@@ -75,8 +75,8 @@ if ~isempty(out)
     data(1,1)=min(out.HPC_SM(itrim:end));
     
     try
-    data(1,2)=out.t(min(find(out.Fnet>=(0.95*dFn+minFn))))-ttectra_in.in.t_vec(7);
-    data(1,3)=out.t(min(find(out.Fnet>=(0.98*dFn+minFn))))-ttectra_in.in.t_vec(7);
+        data(1,2)=out.t(min(find(out.Fnet>=(0.95*dFn+minFn))))-ttectra_in.in.t_vec(7);
+        data(1,3)=out.t(min(find(out.Fnet>=(0.98*dFn+minFn))))-ttectra_in.in.t_vec(7);
     catch
         data(1,2)=out.t(min(find(out.Fnet>=(0.95*(max(out.Fnet))))))-ttectra_in.in.t_vec(7);
         data(1,3)=out.t(min(find(out.Fnet>=(0.98*(max(out.Fnet))))))-ttectra_in.in.t_vec(7);
@@ -97,7 +97,7 @@ for iaccel=1:length(HPC_SM_vec)
     kdata(iaccel).NcR25_sched=ttectra_in.Limiter.NcR25_sched;
     kdata(iaccel).Ncdot_sched=ttectra_in.Limiter.Ncdot_sched;
     
-    TTECTrA_IWP_s
+    %TTECTrA_IWP_s
     
     % Test Controller Design
     out=simFromTTECTrA(ttectra_in);
