@@ -26,7 +26,7 @@ Ambient.dTs = 0.0;
 
 PC = 50;
 RunMaxPower();
-
+page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
 //----------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 //----------------------------------------------------------------------------------
 PC = 21;
 run_current_point();
-
+page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
 //----------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ Ambient.dTs = 50.0;
 
 PC = 50;
 RunMaxPower();
-
+page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
 //----------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 //----------------------------------------------------------------------------------
 PC = 21;
 run_current_point();
-
+page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
 //----------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ Ambient.dTs = 0.0;
 
 PC = 50;
 RunMaxPower();
-
+page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
 //----------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 //----------------------------------------------------------------------------------
 PC = 21;
 run_current_point();
-
+page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
 //----------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ Ambient.MN = 0.6;
 
 PC = 50;
 RunMaxPower();
-
+page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
 //----------------------------------------------------------------------------------
@@ -92,7 +92,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 //----------------------------------------------------------------------------------
 PC = 21;
 run_current_point();
-
+page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
 //----------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ Ambient.MN = 0.8;
 
 PC = 50;
 RunMaxPower();
-
+page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
 //----------------------------------------------------------------------------------
@@ -111,7 +111,7 @@ cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel <<
 //----------------------------------------------------------------------------------
 PC = 21;
 run_current_point();
-
+page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
 // Returning back to SLS maximum thrust condition
