@@ -53,7 +53,7 @@ ttectra_in.in.simTime=20.0;                         % simulation time
 %              19523.8095, 20476.1905, 21428.5714, 22380.9524, 23333.3333,...
 %              24285.7143, 25238.0952, 26190.4762, 26500.0000];
 %fnt_range=[10000 30000];
-fnt_min=15000;  %if no min, enter 0
+fnt_min=12000;  %if no min, enter 0
 run([ttectra_in.in.HomeDirectory '/Matlab/NPSSdata/' ttectra_in.in.ttectra_engine_name '/info/model.m'])
 fnt_range(1) = MinThrust - mod(MinThrust,100) + 100; %round down to nearest 100 then increase by 100
 fnt_range(1) = max(fnt_min, fnt_range(1)); %ensure the min is met
@@ -82,21 +82,21 @@ ttectra_in.controller.Accel_IWP=5000;
 % Transient Limiter setup
 %---------------------------------------------------------
 % Parameters for accleration schedule
-%ttectra_in.SMLimit.T40=3500;  
-%ttectra_in.SMLimit.Accel=12;
+ttectra_in.SMLimit.T40=4000;  
+ttectra_in.SMLimit.Accel=18;
 
 % Parameters for decel limit
-ttectra_in.SMLimit.FARmin=0.015;
+ttectra_in.SMLimit.FARmin=0.02;
 ttectra_in.SMLimit.Decel=8;
 
 % Fuel actuator bandwidth
 ttectra_in.actuator.wf_bw=20;
 
 %Geared fan modifications
-ttectra_in.controller.bandwidth=2*2;  %geared fan
-ttectra_in.SMLimit.T40=3800;  %geared fan
-ttectra_in.SMLimit.Accel=10;
-ttectra_in.SMLimit.FARmin=0.020; %geared fan
-ttectra_in.controller.accel_k=2.9061e-004*.7;
-ttectra_in.controller.accel_bw=0.1250*8;
-ttectra_in.controller.Accel_IWP=5000;
+%ttectra_in.controller.bandwidth=2*2;  %geared fan
+%ttectra_in.SMLimit.T40=3800;  %geared fan
+%ttectra_in.SMLimit.Accel=10;
+%ttectra_in.SMLimit.FARmin=0.020; %geared fan
+%ttectra_in.controller.accel_k=2.9061e-004*.7;
+%ttectra_in.controller.accel_bw=0.1250*8;
+%ttectra_in.controller.Accel_IWP=5000;

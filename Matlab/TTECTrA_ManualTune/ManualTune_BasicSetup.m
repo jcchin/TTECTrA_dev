@@ -5,6 +5,7 @@
 %**************************************************************************
 
 % Load input parameters and setup workspace
+addpath('TTECTrA_Auto')
 GetNPSS_Model          % retrieve performance maps, min/max thrust setpoints
 
 ttectra_in=TTECTrA_NPSS_Inputs;      % load input data
@@ -17,6 +18,7 @@ if ispc %don't even attempt on mac
 end
 
 % Design Power Management Function
+addpath('TTECTrA_Auto')
 [SP]=TTECTrA_NPSS_SPcalc(ttectra_in);
 ttectra_in.SP=SP;
 clear SP

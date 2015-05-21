@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.275"
+    ComputedModelVersion    "1.277"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jcsank"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue May 05 14:46:18 2015"
-  RTWModifiedTimeStamp	  352734996
-  ModelVersionFormat	  "1.%<AutoIncrement:275>"
+  LastModifiedDate	  "Wed May 20 13:15:27 2015"
+  RTWModifiedTimeStamp	  354028525
+  ModelVersionFormat	  "1.%<AutoIncrement:277>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1017,6 +1017,16 @@ Model {
       SampleTime	      "-1"
     }
     Block {
+      BlockType		      RelationalOperator
+      Operator		      ">="
+      InputSameDT	      on
+      LogicOutDataTypeMode    "Logical (see Configuration Parameters: Optimization)"
+      LogicDataType	      "uint(8)"
+      OutDataTypeStr	      "Inherit: Logical (see Configuration Parameters: Optimization)"
+      ZeroCross		      on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      "S-Function"
       FunctionName	      "system"
       SFunctionModules	      "''"
@@ -1038,23 +1048,6 @@ Model {
       OutDataTypeStr	      "Inherit: Same as input"
       LockScale		      off
       RndMeth		      "Floor"
-    }
-    Block {
-      BlockType		      Scope
-      ModelBased	      off
-      TickLabels	      "OneTimeTick"
-      ZoomMode		      "on"
-      Grid		      "on"
-      TimeRange		      "auto"
-      YMin		      "-5"
-      YMax		      "5"
-      SaveToWorkspace	      off
-      SaveName		      "ScopeData"
-      LimitDataPoints	      on
-      MaxDataPoints	      "5000"
-      Decimation	      "1"
-      SampleInput	      off
-      SampleTime	      "-1"
     }
     Block {
       BlockType		      SubSystem
@@ -1133,7 +1126,7 @@ Model {
   }
   System {
     Name		    "NPSS_TTECTrA_sched"
-    Location		    [479, 307, 1693, 1078]
+    Location		    [406, 223, 1880, 1109]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1147,7 +1140,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    198
+    SIDHighWatermark	    207
     Block {
       BlockType		      Clock
       Name		      "Clock"
@@ -1397,7 +1390,7 @@ Model {
       System {
 	Name			"TTECTrA Simulink Block"
 	Location		[324, 102, 1548, 895]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1646,7 +1639,7 @@ Model {
 	      Name		      "Filter1"
 	      SID		      52
 	      Ports		      [1, 1]
-	      Position		      [205, 311, 295, 349]
+	      Position		      [190, 401, 280, 439]
 	      ForegroundColor	      "red"
 	      Numerator		      "[0.001998]"
 	      Denominator	      "[1      -0.998]"
@@ -1960,6 +1953,14 @@ Model {
 	      SampleTime	      "-1"
 	    }
 	    Block {
+	      BlockType		      UnitDelay
+	      Name		      "Unit Delay3"
+	      SID		      207
+	      Position		      [205, 313, 240, 347]
+	      ForegroundColor	      "red"
+	      SampleTime	      "-1"
+	    }
+	    Block {
 	      BlockType		      Outport
 	      Name		      "Wf cmd"
 	      SID		      78
@@ -2107,13 +2108,14 @@ Model {
 	    Line {
 	      SrcBlock		      "Fdbck"
 	      SrcPort		      1
-	      Points		      [85, 0]
+	      Points		      [85, 0; 0, -5]
 	      Branch {
 		DstBlock		"Sum9"
 		DstPort			2
 	      }
 	      Branch {
-		DstBlock		"Filter1"
+		Points			[50, 0]
+		DstBlock		"Unit Delay3"
 		DstPort			1
 	      }
 	    }
@@ -2151,22 +2153,6 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "Ki2"
-	      Labels		      [0, 0]
-	      SrcBlock		      "Filter1"
-	      SrcPort		      1
-	      Points		      [20, 0]
-	      Branch {
-		Points			[0, 90]
-		DstBlock		"Ki Lookup Table"
-		DstPort			1
-	      }
-	      Branch {
-		DstBlock		"Kp Lookup Table"
-		DstPort			1
-	      }
-	    }
-	    Line {
 	      SrcBlock		      "Initial Condition2"
 	      SrcPort		      1
 	      DstBlock		      "Switch"
@@ -2198,6 +2184,21 @@ Model {
 	      Branch {
 		Points			[0, -85]
 		DstBlock		"Feedback Filter"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Unit Delay3"
+	      SrcPort		      1
+	      Points		      [50, 0; 0, -5]
+	      Branch {
+		Points			[0, 5]
+		DstBlock		"Kp Lookup Table"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 95]
+		DstBlock		"Ki Lookup Table"
 		DstPort			1
 	      }
 	    }
@@ -2261,7 +2262,7 @@ Model {
 	  System {
 	    Name		    "Tranisent Limiter Logic"
 	    Location		    [480, 135, 1704, 928]
-	    Open		    off
+	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2284,7 +2285,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "Wf in"
 	      SID		      86
-	      Position		      [265, 218, 295, 232]
+	      Position		      [175, 218, 205, 232]
 	      ForegroundColor	      "cyan"
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -2401,7 +2402,7 @@ Model {
 		  SourceType		  "Discrete Derivative"
 		  ShowPortLabels	  "FromPortIcon"
 		  SystemSampleTime	  "-1"
-		  FunctionWithSeparateData off
+		  FunctionWithSeparateData "off"
 		  RTWMemSecFuncInitTerm	  "Inherit from model"
 		  RTWMemSecFuncExecute	  "Inherit from model"
 		  RTWMemSecDataConstants  "Inherit from model"
@@ -2415,9 +2416,9 @@ Model {
 		  OutputDataTypeScalingMode "Inherit via internal rule"
 		  OutDataType		  "fixdt(1, 16)"
 		  OutScaling		  "2^-10"
-		  LockScale		  off
+		  LockScale		  "off"
 		  RndMeth		  "Floor"
-		  DoSatur		  off
+		  DoSatur		  "off"
 		}
 		Block {
 		  BlockType		  DiscreteTransferFcn
@@ -2920,21 +2921,59 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Display
-	      Name		      "Display2"
-	      SID		      167
-	      Ports		      [1]
-	      Position		      [1060, 520, 1145, 550]
-	      Decimation	      "1"
-	      Lockdown		      off
-	    }
-	    Block {
-	      BlockType		      Display
 	      Name		      "Display3"
 	      SID		      169
 	      Ports		      [1]
 	      Position		      [820, 375, 905, 405]
 	      Decimation	      "1"
 	      Lockdown		      off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain"
+	      SID		      199
+	      Position		      [1020, 635, 1050, 665]
+	      ParameterDataTypeMode   "Inherit via internal rule"
+	      ParameterDataType	      "fixdt(1, 16)"
+	      ParameterScaling	      "2^0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain1"
+	      SID		      200
+	      Position		      [1020, 565, 1050, 595]
+	      Gain		      "2"
+	      ParameterDataTypeMode   "Inherit via internal rule"
+	      ParameterDataType	      "fixdt(1, 16)"
+	      ParameterScaling	      "2^0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain2"
+	      SID		      201
+	      Position		      [1020, 495, 1050, 525]
+	      Gain		      "3"
+	      ParameterDataTypeMode   "Inherit via internal rule"
+	      ParameterDataType	      "fixdt(1, 16)"
+	      ParameterScaling	      "2^0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
 	      BlockType		      MinMax
@@ -2989,39 +3028,68 @@ Model {
 	      SampleTime	      "0.02"
 	    }
 	    Block {
-	      BlockType		      Scope
-	      Name		      "Scope"
-	      SID		      179
-	      Ports		      [1]
-	      Position		      [825, 559, 855, 591]
-	      Floating		      off
-	      Location		      [1547, 74, 1871, 313]
-	      Open		      off
-	      NumInputPorts	      "1"
-	      List {
-		ListType		AxesTitles
-		axes1			"%<SignalLabel>"
-	      }
-	      DataFormat	      "StructureWithTime"
-	      SampleTime	      "0"
+	      BlockType		      RelationalOperator
+	      Name		      "Relational\nOperator"
+	      SID		      202
+	      Ports		      [2, 1]
+	      Position		      [945, 560, 985, 600]
+	      Operator		      "=="
+	      InputSameDT	      off
+	      LogicOutDataTypeMode    "boolean"
+	      LogicDataType	      "fixdt(0, 8)"
+	      OutDataTypeStr	      "boolean"
 	    }
 	    Block {
-	      BlockType		      Scope
-	      Name		      "Scope1"
-	      SID		      180
+	      BlockType		      RelationalOperator
+	      Name		      "Relational\nOperator1"
+	      SID		      203
+	      Ports		      [2, 1]
+	      Position		      [945, 630, 985, 670]
+	      Operator		      "=="
+	      InputSameDT	      off
+	      LogicOutDataTypeMode    "boolean"
+	      LogicDataType	      "fixdt(0, 8)"
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Block {
+	      BlockType		      RelationalOperator
+	      Name		      "Relational\nOperator2"
+	      SID		      204
+	      Ports		      [2, 1]
+	      Position		      [945, 490, 985, 530]
+	      Operator		      "=="
+	      InputSameDT	      off
+	      LogicOutDataTypeMode    "boolean"
+	      LogicDataType	      "fixdt(0, 8)"
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum"
+	      SID		      205
+	      Ports		      [3, 1]
+	      Position		      [1075, 570, 1095, 590]
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "+++"
+	      InputSameDT	      off
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      ToWorkspace
+	      Name		      "To Workspace2"
+	      SID		      206
 	      Ports		      [1]
-	      Position		      [845, 489, 875, 521]
-	      Floating		      off
-	      Location		      [1544, 396, 1868, 635]
-	      Open		      off
-	      NumInputPorts	      "1"
-	      List {
-		ListType		AxesTitles
-		axes1			"%<SignalLabel>"
-	      }
-	      SaveName		      "ScopeData1"
-	      DataFormat	      "StructureWithTime"
-	      SampleTime	      "0"
+	      Position		      [1135, 566, 1215, 594]
+	      ShowName		      off
+	      VariableName	      "out_ctrl"
+	      MaxDataPoints	      "inf"
+	      SampleTime	      "-1"
+	      SaveFormat	      "Array"
 	    }
 	    Block {
 	      BlockType		      UnitDelay
@@ -3070,60 +3138,89 @@ Model {
 	    Line {
 	      SrcBlock		      "Accel Sched"
 	      SrcPort		      1
-	      DstBlock		      "MinMax1"
-	      DstPort		      1
+	      Points		      [25, 0]
+	      Branch {
+		DstBlock		"MinMax1"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 435]
+		DstBlock		"Relational\nOperator"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Wf in"
 	      SrcPort		      1
-	      Points		      [15, 0]
+	      Points		      [40, 0]
 	      Branch {
-		Points			[150, 0]
+		Points			[65, 0]
 		Branch {
-		  DstBlock		  "Multiport Switch"
-		  DstPort		  3
+		  Points		  [150, 0]
+		  Branch {
+		    DstBlock		    "Multiport Switch"
+		    DstPort		    3
+		  }
+		  Branch {
+		    DstBlock		    "Multiport Switch"
+		    DstPort		    6
+		  }
+		  Branch {
+		    DstBlock		    "Multiport Switch"
+		    DstPort		    4
+		  }
 		}
 		Branch {
-		  DstBlock		  "Multiport Switch"
-		  DstPort		  6
-		}
-		Branch {
-		  DstBlock		  "Multiport Switch"
-		  DstPort		  4
+		  Points		  [0, -55]
+		  DstBlock		  "MinMax1"
+		  DstPort		  2
 		}
 	      }
 	      Branch {
-		Points			[0, -55]
-		DstBlock		"MinMax1"
-		DstPort			2
+		Points			[0, 415]
+		DstBlock		"Relational\nOperator1"
+		DstPort			1
 	      }
 	    }
 	    Line {
 	      SrcBlock		      "Ps3"
 	      SrcPort		      1
-	      Points		      [45, 0]
-	      Branch {
-		DstBlock		"Decel"
-		DstPort			1
-	      }
-	      Branch {
-		Points			[0, 280]
-		DstBlock		"Scope"
-		DstPort			1
-	      }
+	      DstBlock		      "Decel"
+	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "Multiport Switch1"
 	      SrcPort		      1
 	      Points		      [85, 0]
 	      Branch {
-		Points			[0, 185]
-		DstBlock		"Unit Delay"
+		DstBlock		"Wf cmd"
 		DstPort			1
 	      }
 	      Branch {
-		DstBlock		"Wf cmd"
-		DstPort			1
+		Points			[0, 185; -260, 0]
+		Branch {
+		  DstBlock		  "Unit Delay"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, 90]
+		  Branch {
+		    DstBlock		    "Relational\nOperator2"
+		    DstPort		    2
+		  }
+		  Branch {
+		    Points		    [0, 70]
+		    Branch {
+		    Points		    [0, 70]
+		    DstBlock		    "Relational\nOperator1"
+		    DstPort		    2
+		    }
+		    Branch {
+		    DstBlock		    "Relational\nOperator"
+		    DstPort		    2
+		    }
+		  }
+		}
 	      }
 	    }
 	    Line {
@@ -3143,8 +3240,8 @@ Model {
 		}
 	      }
 	      Branch {
-		Points			[0, 255]
-		DstBlock		"Display2"
+		Points			[0, 220]
+		DstBlock		"Relational\nOperator2"
 		DstPort			1
 	      }
 	    }
@@ -3196,15 +3293,8 @@ Model {
 	      }
 	      Branch {
 		Points			[0, 95]
-		Branch {
-		  DstBlock		  "Display3"
-		  DstPort		  1
-		}
-		Branch {
-		  Points		  [0, 115]
-		  DstBlock		  "Scope1"
-		  DstPort		  1
-		}
+		DstBlock		"Display3"
+		DstPort			1
 	      }
 	    }
 	    Line {
@@ -3220,6 +3310,50 @@ Model {
 		DstBlock		"Multiport Switch"
 		DstPort			5
 	      }
+	    }
+	    Line {
+	      SrcBlock		      "Relational\nOperator2"
+	      SrcPort		      1
+	      DstBlock		      "Gain2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Relational\nOperator"
+	      SrcPort		      1
+	      DstBlock		      "Gain1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Relational\nOperator1"
+	      SrcPort		      1
+	      DstBlock		      "Gain"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gain2"
+	      SrcPort		      1
+	      Points		      [30, 0]
+	      DstBlock		      "Sum"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gain1"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Gain"
+	      SrcPort		      1
+	      Points		      [30, 0]
+	      DstBlock		      "Sum"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      DstBlock		      "To Workspace2"
+	      DstPort		      1
 	    }
 	  }
 	}

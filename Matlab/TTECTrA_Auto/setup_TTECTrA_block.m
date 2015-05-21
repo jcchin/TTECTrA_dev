@@ -255,6 +255,17 @@ temp_path=[temp_pathbase 'TTECTrA Simulink Block/Setpoint Controller/'];
 
 set_param([temp_path 'Filter1'],'Numerator',['[' num2str(1-exp(-0.1*DWS.in.Ts_cont)) ']']);
 set_param([temp_path 'Filter1'],'Denominator',['[' num2str([1 -exp(-0.1*DWS.in.Ts_cont)]) ']']);
+set_param([temp_path 'Filter1'],'SampleTime',num2str(DWS.in.Ts_cont));
+
+if strcmpi(inputs.controller.CVoutput(1:2),'Nf')
+    set_param([temp_path 'Filter1'],'InitialStates',['[' num2str(DWS.in.Nf_zro) ']']);
+elseif strcmpi(inputs.controller.CVoutput(1:2),'Nc')
+    set_param([temp_path 'Filter1'],'InitialStates',['[' num2str(DWS.in.Nc_zro) ']']);
+elseif strcmpi(inputs.controller.CVoutput(1:3),'EPR')
+    set_param([temp_path 'Filter1'],'InitialStates',['[' num2str(DWS.in.EPR_zro) ']']);
+end
+
+
 
 %-------- Thrust to control variable lookup table --------
 set_param([temp_path 'CV_profile'],'InputValues',['[' num2str(DWS.TTECTrA_setpoints.FT_bkpt) ']'], ...

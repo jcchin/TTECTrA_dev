@@ -14,12 +14,26 @@ itemp_DEBUG=1;
 %-------------------------------------------------------------------------
 %
 %-------------------------------------------------------------------------
-itemp_tstart_chop=30.0;
-itemp_tstart_burst=10.0;
+itemp_tstart_trim1=7;
+itemp_tstart_trim2=15;
+itemp_tstart_burst=20.0;
+itemp_tstart_chop=40.0;
+
+%itemp_tstart_trim1=50;
+%itemp_tstart_trim2=70;
+%itemp_tstart_burst=80.0;
+%itemp_tstart_chop=100.0;
 
 %Setup burt and chop test profile
-itemp_in.in.t_vec=[0 itemp_tstart_burst itemp_tstart_burst+1 itemp_tstart_chop itemp_tstart_chop+2  itemp_tstart_chop*2];
-itemp_profile=[0.14 0.14 0.98 .98 0.14 0.14]*max(itemp_in.SP.FT_SP);
+itemp_t_trim=[itemp_tstart_trim1:  (itemp_tstart_trim2-itemp_tstart_trim1)/3: itemp_tstart_trim2];  %short trimming function
+
+itemp_in.in.t_vec=[0 itemp_t_trim itemp_tstart_burst ...  % small transient to start NPSS model
+    itemp_tstart_burst+.05  itemp_tstart_chop  ...  %time at full power
+    itemp_tstart_chop+1  (itemp_tstart_chop+(itemp_tstart_chop-itemp_tstart_burst))]; % time at idle
+
+itemp_profile=[0.14 0.14 0.55 0.55 0.14 0.14 ...  % small power transient
+    0.98 .98   ...  %full power
+    0.14 0.14]*max(itemp_in.SP.FT_SP); % idle
 itemp_in.in.FT_dmd=max(min(itemp_in.SP.FT_SP),itemp_profile); %ensure that min thrust is not too low
 itemp_in.in.loop=1;
 
@@ -39,6 +53,17 @@ if isfield(itemp_in.in,'PWLM_Flag') && itemp_in.in.PWLM_Flag==1
 else
     [temp_out]=simFromTTECTrA(itemp_in);   % run initial simulation
 end
+
+if itemp_DEBUG==1
+    figure(515);
+    subplot(311);
+    plot(temp_out.t,temp_out.Fnet,'b-',temp_out.t,temp_out.FT_dmd,'r--','Linewidth',2); hold on; ylabel('Fnet');
+    subplot(312);
+    plot(temp_out.t,temp_out.CV_fdbk,'b-',temp_out.t,temp_out.CV_dmd,'r--','Linewidth',2); hold on; ylabel('CV');
+    subplot(313);
+    plot(temp_out.t,temp_out.Wf,'b-',temp_out.t,temp_out.Wf_dmd,'r--','Linewidth',2); hold on; ylabel('Wf');    
+end
+
 
 % itemp_fdata gathered:
 %   (1) IWP Gain, (2) % Overshoot (burst), (3) Rise time (burst), 
@@ -116,8 +141,10 @@ itemp_icount=1; itemp_icount2=1;
 itemp_max_count=30;
 itemp_ifail=0;
 itemp_max_fail=20;  %Maximum continous fails
-itemp_IPW_0=itemp_in.controller.IWP_gain*60;
+itemp_IPW_0=itemp_in.controller.IWP_gain;
 itemp_in.controller.IWP_gain=1.01*itemp_in.controller.IWP_gain;
+
+
 while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp_max_count && itemp_ifail<itemp_max_fail;
     try
         if isfield(itemp_in.in,'PWLM_Flag') && itemp_in.in.PWLM_Flag==1
@@ -134,12 +161,33 @@ while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp
         itemp_fdata(itemp_icount,2)=temp_out.t(itemp_ktemp+min(find(temp_out.Fnet(itemp_ktemp:end)>=0.95*max(temp_out.Fnet(itemp_ktemp:end)))))-itemp_in.in.t_vec(2);
         itemp_fdata(itemp_icount,3)= itemp_in.controller.IWP_gain;
         itemp_fdata(itemp_icount,4)=(temp_out.CV_fdbk(end)-temp_out.CV_dmd(end))/temp_out.CV_dmd(end);
+       
+        %update IWP gain and ensure that the value is positive
+        itemp_IWP_last=itemp_in.controller.IWP_gain;
         itemp_in.controller.IWP_gain = itemp_in.controller.IWP_gain + itemp_fdata(itemp_icount,1)*itemp_IPW_0;
+        if itemp_in.controller.IWP_gain<0
+            itemp_in.controller.IWP_gain = itemp_IWP_last + abs(itemp_fdata(itemp_icount,1))*itemp_IPW_0*0.5;
+        end
+        
         itemp_error1=itemp_fdata(itemp_icount,1);
         itemp_error2=itemp_fdata(itemp_icount,4);        
         
         itemp_icount=itemp_icount+1;
         itemp_ifail = 0;
+        
+        if itemp_DEBUG==1
+            figure(515);
+            subplot(311);
+            plot(temp_out.t,temp_out.Fnet,'b-',temp_out.t,temp_out.FT_dmd,'r--','Linewidth',2); hold on; ylabel('Fnet');
+            subplot(312);
+            plot(temp_out.t,temp_out.CV_fdbk,'b-',temp_out.t,temp_out.CV_dmd,'r--','Linewidth',2); hold on; ylabel('CV');
+            subplot(313);
+            plot(temp_out.t,temp_out.Wf,'b-',temp_out.t,temp_out.Wf_dmd,'r--','Linewidth',2); hold on; ylabel('Wf');
+            
+            itemp_fdata
+        end
+        
+
     catch
         disp('Simulation Failed')
         
@@ -169,6 +217,8 @@ while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp
 
 end
 
+
+
 %If our counter maxes out, do not set IWUP
 if itemp_icount<itemp_max_count && itemp_ifail<itemp_max_fail
     ttectra_in.controller.IWP_gain=itemp_in.controller.IWP_gain;
@@ -188,5 +238,6 @@ else
         end
     end
 end
+
 
 clear itemp_* itemp_in temp_out

@@ -19,12 +19,15 @@ addpath('TTECTrA_ManualTune');
 ManualTune_BasicSetup
 
 %---- Set Point Controller ----
+addpath('TTECTrA_ManualTune');
 gui_spc
 
 %---- Acceleration Schedule ----
+
 gui_accel
 
 %---- Deceleration Limiter ----
+
 gui_decel
 
 %---- Integral Windup Protection ----
