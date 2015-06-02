@@ -20,21 +20,24 @@ ManualTune_BasicSetup
 
 %---- Set Point Controller ----
 addpath('TTECTrA_ManualTune');
-gui_spc
+ManualTune_spc
+%gui_spc
 
 %---- Acceleration Schedule ----
-
-gui_accel
+ManualTune_accelschedule
+%gui_accel
 
 %---- Deceleration Limiter ----
-
-gui_decel
+ManualTune_decellimit
+%gui_decel
 
 %---- Integral Windup Protection ----
-TTECTrA_IWP_s
-gui_iwp
+%TTECTrA_IWP_s
+%gui_iwp
+ttectra_in.controller.IWP_gain=1500;
+ManualTune_iwp
 
 %---- Test Final Design ----
-ManualTune_testfinaldesign
+%ManualTune_testfinaldesign
 
-TTECTrA_Save
+%TTECTrA_Save

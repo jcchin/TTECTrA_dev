@@ -1,4 +1,4 @@
-%       TTECTrA_Auto.m
+= %       TTECTrA_Auto.m
 %********************************************************************
 % Tool for Turbine Engine Closed-loop Transient Analysis (TTECTrA)
 %--------------------------------------------------------------------
@@ -146,7 +146,7 @@ if ~isempty(out)
     subplot(311);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.HPC_SM(i_ttrim:end),'b-',...
-        out.t([1 end]),ttectra_in.SMLimit.Accel([1 1]),'r--','LineWidth',2);
+        out.t([i_ttrim end]),ttectra_in.SMLimit.Accel([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('HPC SM, %','FontSize',12);
     grid on;
@@ -155,7 +155,7 @@ if ~isempty(out)
     subplot(312);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.T40(i_ttrim:end),'b-',...
-        out.t([1 end]),ttectra_in.SMLimit.T40*([1 1]),'r--','LineWidth',2);
+        out.t([i_ttrim end]),ttectra_in.SMLimit.T40*([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('T40, \circR','FontSize',12);
     grid on;
@@ -175,7 +175,7 @@ if ~isempty(out)
     subplot(311);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.LPC_SM(i_ttrim:end),'b-',...
-        out.t([1 end]),ttectra_in.SMLimit.Decel([1 1]),'r--','LineWidth',2);
+        out.t([i_ttrim end]),ttectra_in.SMLimit.Decel([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('LPC SM, %','FontSize',12);
     grid on;
@@ -184,14 +184,14 @@ if ~isempty(out)
     subplot(312);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.FAR(i_ttrim:end),'b-',...
-        out.t([1 end]),ttectra_in.SMLimit.FARmin([1 1]),'r--','LineWidth',2);
+        out.t([i_ttrim end]),ttectra_in.SMLimit.FARmin([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('FAR','FontSize',12); grid on;
     
     subplot(313);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.Wf(i_ttrim:end)./out.Ps3(i_ttrim:end),'b-',...
-        out.t([1 end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
+        out.t([i_ttrim end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('W_f/P_{s3}, lb/(psi*s)','FontSize',12); grid on;
     

@@ -21,8 +21,8 @@ minWf=min(ttectra_in.SP.Wf_SP);
 dWf=max(ttectra_in.SP.Wf_SP)-minWf;
 %ttectra_in.in.t_vec  = [0, 10, 10.5, 20];
 %ttectra_in.in.wf_vec = [0.1, 0.1,.95,.95]*dWf + minWf;
-ttectra_in.in.t_vec  = [0,  10, 12,  24, 26,30,30.5, 40];
-ttectra_in.in.wf_vec = [0.1,0.1,0.4,0.4,0.0,0.0,.95,.95]*dWf + minWf;
+ttectra_in.in.t_vec  = [0,  10,  12, 16, 18, 25 26, 40];
+ttectra_in.in.wf_vec = [0.0,0.0,0.4,0.4,0.0,0.0,.95,.95]*dWf + minWf;
 ttectra_in.in.loop = 4;
 
 %--------------------------------
@@ -33,11 +33,16 @@ out=simFromTTECTrA(ttectra_in);  %simulate
 %figure out how long the simulation results should be
 try
     tend=min(out.t(min(find(out.Fnet>=out.Fnet(end)*0.98))+round(4.0/ttectra_in.in.Ts)),max(ttectra_in.in.t_vec));
-    t1=28;
+    t1=20;
 catch
     tend=max(ttectra_in.in.t_vec);
-    t1=28;
+    t1=20;
 end
+
+if isempty(tend)
+    tend=max(ttectra_in.in.t_vec);
+end
+
 
 %plot the results
 if ~isempty(out)
@@ -65,6 +70,6 @@ disp(['     Current Accel Gain (k): ' num2str(ttectra_in.controller.accel_k)]);
 disp(['     Current Accel Bandwidth (tc): ' num2str(ttectra_in.controller.accel_bw)]);
 disp(['     Surge Margin Limit: ' num2str(ttectra_in.SMLimit.Accel)]);
 disp(['     Min Surge Margin: ' num2str(min(out.HPC_SM))]);
-disp(['     Surge Margin Limit: ' num2str(ttectra_in.SMLimit.T40)]);
-disp(['     Min Surge Margin: ' num2str(max(out.T40))]);
+disp(['     T40 Limit: ' num2str(ttectra_in.SMLimit.T40)]);
+disp(['     Max T40: ' num2str(max(out.T40))]);
 

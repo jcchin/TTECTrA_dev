@@ -3,7 +3,7 @@
 % written by Jeffrey Csank (RHC)
 % NASA Glenn Research Center, Cleveland, OH
 % *************************************************************************
-DEBUG_Accel=0;
+DEBUG_Accel=1;
 
 atemp_in=ttectra_in;
 

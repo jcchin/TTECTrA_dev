@@ -248,6 +248,21 @@ set_param([temp_path 'Actuator'],'InitialStates',['[' num2str(DWS.in.Wf_zro) ']'
 set_param([temp_path 'Multiport Switch'],'SampleTime',num2str(DWS.in.Ts_cont));
 set_param([temp_path 'Multiport Switch1'],'SampleTime',num2str(DWS.in.Ts_cont));
 
+% if exist PreFilterVAFN
+blk=find_system('Type', 'block');
+if max(strcmpi(blk,[temp_path 'PreFilterVAFN'])) == 1
+    %set_param([temp_path 'PreFilterVAFN'],'Numerator',['[' num2str(1-exp(-DWS.TTECTrA_controller.PreFilterBW*2*pi*DWS.in.Ts_cont)) ']']);
+    %set_param([temp_path 'PreFilterVAFN'],'Denominator',['[' num2str([1 -exp(-DWS.TTECTrA_controller.PreFilterBW*2*pi*DWS.in.Ts_cont)]) ']']);
+    set_param([temp_path 'PreFilterVAFN'],'InitialStates',['[' num2str(DWS.in.Nf_zro) ']']);
+end
+
+if max(strcmpi(blk,[temp_path 'zVAFN'])) == 1
+    set_param([temp_path 'zVAFN'],'X0',['[' num2str(DWS.in.Nf_zro) ']']);
+end
+
+
+
+
 %---------------------------------------
 % TTECTrA Simulink Block/Setpoint Controller
 %---------------------------------------
