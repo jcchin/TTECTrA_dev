@@ -46,7 +46,7 @@ set_output(); // view/output_paths.fnc
 #include <linear_model.fnc>
 
 // Determining the solver preferences
-solver.defaultTolerance = 0.000001;
+solver.defaultTolerance = 0.00001;
 solver.maxIterations = 500;
 solver.maxJacobians = 250;
 solver.maxConvergeFailures = 250;
@@ -78,6 +78,23 @@ setOption( "switchGuessType", "FanNcPct" );
 // Running the maximum thrust case
 FanNcPct = 100;
 RunMaxPower();
+
+cout << "\nMaximum thrust at SLS: " << Perf.myFn << endl;
+cout << "Fan SM: " << Fan.SMW << endl;
+cout << "LPC SM: " << LPC.SMW << endl;
+cout << "HPC SM: " << HPC.SMW << endl;
+cout << "Fuel flow rate: " << Burner.Wfuel << endl;
+
+setOption( "switchGuessType", "PC" );
+
+PC = 21;
+run_current_point();
+
+cout << "\nIdle at SLS: " << Perf.myFn << endl;
+cout << "Fan SM: " << Fan.SMW << endl;
+cout << "LPC SM: " << LPC.SMW << endl;
+cout << "HPC SM: " << HPC.SMW << endl;
+cout << "Fuel flow rate: " << Burner.Wfuel << endl;
 
 // The case file for cycle maximum limits
 #ifdef MAXLIMITSCHEDULE

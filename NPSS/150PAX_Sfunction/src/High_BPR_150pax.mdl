@@ -304,6 +304,7 @@ Element Compressor HPC  {
 			//cout << "S_map.effDes = " << S_map.effDes << endl;
 			//cout << "d_eff_size = " << d_eff_size << endl;
 		}
+		
 	}
 
 	void postexecute() {
@@ -1089,8 +1090,8 @@ Element transient_Nozzle Byp_Nozz  {
 	
 	// Schedule for the Fan R-line target = 1.8 case
 	Table TB_s_Ath_Schedule(real Fan_NcPct) {
-		Fan_NcPct = {46.0671, 63.0211, 74.0523, 81.4725, 81.8542, 87.1216, 87.4131, 91.6784, 91.9176, 95.6326, 95.8449}
-		delta_s_Ath = {0.5, 0.494778, 0.410003, 0.3639, 0.362342, 0.344095, 0.342791, 0.325262, 0.323854, 0.304633, 0.303749}
+		Fan_NcPct = {46.1697, 63.1325, 74.2113, 81.6412, 82.0121, 87.2319, 87.5196, 91.7729, 92.0066, 95.6513, 95.8655}
+		delta_s_Ath = {0.5, 0.5, 0.435854, 0.385042, 0.382457, 0.352516, 0.350891, 0.328441, 0.326908, 0.30591, 0.304905}
 	}
 	
 }
@@ -1270,6 +1271,7 @@ Element EngPerf Perf  {
 Element FlowEnd  OBsink3  {
 }
 
+#ifdef SETPNT
 
 // The element for checking if the major cycle limits were violated or not
 Element Cycle_Limit_Check { 
@@ -1437,6 +1439,8 @@ Element Cycle_Limit_Check {
 	void calculate() {}
 
 }
+
+#endif
 
 // Linear model generator
 LinearModelGenerator lin_mod {
