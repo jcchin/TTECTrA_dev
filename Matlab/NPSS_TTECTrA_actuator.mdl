@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.399"
+    ComputedModelVersion    "1.406"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jcsank"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jun 02 13:07:26 2015"
-  RTWModifiedTimeStamp	  355144001
-  ModelVersionFormat	  "1.%<AutoIncrement:399>"
+  LastModifiedDate	  "Thu Jun 04 16:28:50 2015"
+  RTWModifiedTimeStamp	  355330908
+  ModelVersionFormat	  "1.%<AutoIncrement:406>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1151,7 +1151,7 @@ Model {
   }
   System {
     Name		    "NPSS_TTECTrA_actuator"
-    Location		    [570, 383, 1977, 1211]
+    Location		    [721, 466, 1860, 1100]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1165,7 +1165,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    269
+    SIDHighWatermark	    270
     Block {
       BlockType		      Clock
       Name		      "Clock"
@@ -1402,21 +1402,21 @@ Model {
       Name		      "ICFdbk"
       SID		      176
       Position		      [130, 394, 155, 426]
-      Value		      "2784.05"
+      Value		      "3530.848"
     }
     Block {
       BlockType		      InitialCondition
       Name		      "ICFnR"
       SID		      178
       Position		      [205, 449, 230, 481]
-      Value		      "9550"
+      Value		      "17207.9454"
     }
     Block {
       BlockType		      InitialCondition
       Name		      "ICPs3"
       SID		      177
       Position		      [225, 608, 265, 652]
-      Value		      "214.745"
+      Value		      "319.7814"
     }
     Block {
       BlockType		      Mux
@@ -1500,11 +1500,34 @@ Model {
       SampleTime	      "0"
     }
     Block {
+      BlockType		      Scope
+      Name		      "Scope1"
+      SID		      270
+      Ports		      [3]
+      Position		      [575, 653, 605, 687]
+      Floating		      off
+      Location		      [1323, 227, 1896, 885]
+      Open		      on
+      NumInputPorts	      "3"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+	axes2			"%<SignalLabel>"
+	axes3			"%<SignalLabel>"
+      }
+      TimeRange		      "20"
+      YMin		      "0.75~0.3~-5"
+      YMax		      "2.5~0.5~40"
+      SaveName		      "ScopeData2"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
+    }
+    Block {
       BlockType		      SubSystem
       Name		      "TTECTrA Simulink Block"
       SID		      26
       Ports		      [7, 2]
-      Position		      [305, 378, 410, 772]
+      Position		      [285, 378, 390, 772]
       BackgroundColor	      "[0.901961, 0.000000, 0.000000]"
       DropShadow	      on
       MinAlgLoopOccurrences   off
@@ -1516,7 +1539,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"TTECTrA Simulink Block"
-	Location		[429, 325, 1857, 1174]
+	Location		[697, 413, 1857, 1047]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1784,8 +1807,8 @@ Model {
 	      Name		      "dAth1"
 	      SID		      238
 	      Position		      [235, 164, 275, 196]
-	      InputValues	      "[0 2200 3290 4255 4939 6000]"
-	      Table		      "[0.5012 0.5012 0.4948 0.3639 0.3101 0.3101]+1"
+	      InputValues	      "[0 3250 5000 10000]"
+	      Table		      "[6710 6710 5850 5850]"
 	      SaturateOnIntegerOverflow	off
 	      SampleTime	      "0.02"
 	    }
@@ -1937,7 +1960,7 @@ Model {
 	  ForegroundColor	  "red"
 	  Numerator		  "[0.32968]"
 	  Denominator		  "[1    -0.67032]"
-	  InitialStates		  "[0.625]"
+	  InitialStates		  "[0.91565]"
 	  SampleTime		  "-1"
 	}
 	Block {
@@ -1954,9 +1977,8 @@ Model {
 	  Name			  "Fnet_dmd_profile"
 	  SID			  33
 	  Position		  [430, 48, 465, 82]
-	  InputValues		  "[0           10           12           14           16           25         25.5           35      "
-	  "   35.5           45           65           70]"
-	  Table			  "[9550   9550  18700  18700   6500   6500  37000  37000   6500   6500  37000  37000]"
+	  InputValues		  "[0  10  12  16  18  25  26  40]"
+	  Table			  "[30000  30000  30000  30000  30000  30000  30000  30000]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
@@ -2022,7 +2044,7 @@ Model {
 	  Position		  [520, 47, 580, 83]
 	  Numerator		  "[0.46651]"
 	  Denominator		  "[1    -0.53349]"
-	  InitialStates		  "[9550]"
+	  InitialStates		  "[30000]"
 	  SampleTime		  "-1"
 	}
 	Block {
@@ -2033,7 +2055,7 @@ Model {
 	  Position		  [410, 487, 470, 523]
 	  Numerator		  "[0.46651]"
 	  Denominator		  "[1    -0.53349]"
-	  InitialStates		  "[2784.05]"
+	  InitialStates		  "[3530.848]"
 	  SampleTime		  "-1"
 	}
 	Block {
@@ -2097,11 +2119,13 @@ Model {
 	      SID		      49
 	      Position		      [435, 33, 470, 67]
 	      ForegroundColor	      "red"
-	      InputValues	      "[6500   8025   9550  11075  12600  14125  15650  17175  18700  20225  21750  23275  24800  2"
-	      "6325  27850  29375  30900  32425  33950  35475  37000]"
-	      Table		      "[2418.28        2616.72        2784.05        2945.39         3104.4        3246.62        3394.3"
-	      "5        3542.57        3688.02        3815.88        3941.65        4063.19        4182.92        4293.45     "
-	      "   4398.96        4501.93        4599.11        4695.19        4790.38        4884.91        4978.61]"
+	      InputValues	      "[7459.62            8120            9640           11160           12680           14200    "
+	      "       15720           17240           18760           20280           21800           23320           24840   "
+	      "        26360           27880           29400           30920           32440           33960           35480  "
+	      "         37000]"
+	      Table		      "[2551.7922      2624.5005        2787.12        2950.51        3111.61        3255.54        3390"
+	      ".57        3533.87        3677.36        3804.08        3927.53        4047.81        4166.29        4279.66   "
+	      "     4388.58        4495.28        4594.06        4691.85      4763.4527      4846.3938      4924.5704]"
 	      LookUpMeth	      "Interpolation-Use End Values"
 	      SaturateOnIntegerOverflow	off
 	      SampleTime	      "0.02"
@@ -2141,7 +2165,7 @@ Model {
 	      ForegroundColor	      "red"
 	      Numerator		      "[0.001998]"
 	      Denominator	      "[1      -0.998]"
-	      InitialStates	      "[2784.05]"
+	      InitialStates	      "[3530.848]"
 	      SampleTime	      "0.02"
 	      Port {
 		PortNumber		1
@@ -2193,7 +2217,7 @@ Model {
 	      Position		      [345, 515, 380, 555]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Gain		      "700"
+	      Gain		      "15"
 	      ParameterDataTypeMode   "Inherit via internal rule"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeMode	      "Inherit via internal rule"
@@ -2217,7 +2241,7 @@ Model {
 	      Position		      [655, 171, 755, 199]
 	      ForegroundColor	      "red"
 	      ShowName		      off
-	      Value		      "0.625"
+	      Value		      "0.91565"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -2236,14 +2260,14 @@ Model {
 	      Position		      [360, 398, 410, 442]
 	      ForegroundColor	      "red"
 	      NumberOfTableDimensions "1"
-	      BreakpointsForDimension1 "[2418.28        2616.72        2784.05        2945.39         3104.4        3246.62  "
-	      "      3394.35        3542.57        3688.02        3815.88        3941.65        4063.19        4182.92        "
-	      "4293.46        4398.96        4501.93        4599.11        4695.19        4790.38        4884.91        4978.6"
-	      "1]"
+	      BreakpointsForDimension1 "[2362.01         2618.4        2786.04        2950.51        3111.61        3255.55  "
+	      "      3390.57        3533.87        3677.36        3804.08        3927.53        4047.81        4166.29        "
+	      "4279.66        4388.58        4495.28        4594.06        4691.85        4788.29        4883.42        4977.7"
+	      "5]"
 	      IndexSearchMethod	      "Binary search"
-	      Table		      "[0.0033296   0.0032614   0.0039841   0.0041612   0.0044829   0.0052175   0.0052349   0.0053425   "
-	      "0.0058401   0.0065618   0.0068362   0.0070625   0.0072291   0.0075531   0.0078233   0.0084405   0.0085791   0.0"
-	      "088778   0.0094426   0.0097833     0.01008]"
+	      Table		      "[0.0032322     0.00327   0.0040524   0.0040927   0.0044975   0.0051736   0.0052128    0.005332   "
+	      " 0.005807   0.0064747   0.0067259   0.0068827   0.0071068   0.0075043   0.0077211   0.0083185   0.0084333   0.0"
+	      "088047   0.0091648    0.009603   0.0099212]"
 	      SampleTime	      "0.02"
 	      RndMeth		      "Simplest"
 	      Port {
@@ -2261,14 +2285,14 @@ Model {
 	      Position		      [360, 308, 410, 352]
 	      ForegroundColor	      "red"
 	      NumberOfTableDimensions "1"
-	      BreakpointsForDimension1 "[2418.28        2616.72        2784.05        2945.39         3104.4        3246.62  "
-	      "      3394.35        3542.57        3688.02        3815.88        3941.65        4063.19        4182.92        "
-	      "4293.46        4398.96        4501.93        4599.11        4695.19        4790.38        4884.91        4978.6"
-	      "1]"
+	      BreakpointsForDimension1 "[2362.01         2618.4        2786.04        2950.51        3111.61        3255.55  "
+	      "      3390.57        3533.87        3677.36        3804.08        3927.53        4047.81        4166.29        "
+	      "4279.66        4388.58        4495.28        4594.06        4691.85        4788.29        4883.42        4977.7"
+	      "5]"
 	      IndexSearchMethod	      "Binary search"
-	      Table		      "[0.00071606  0.00076743  0.00069472  0.00069726  0.00065054  0.00058499  0.00058373  0.00060933  "
-	      "0.00055394  0.00046279  0.00047151   0.0004693  0.00047417  0.00045071  0.00042557  0.00038408   0.0003877  0.0"
-	      "0039486  0.00039095  0.00040441  0.00040517]"
+	      Table		      "[0.00071881  0.00077299  0.00071584  0.00069736  0.00067209  0.00059629  0.00059224  0.00062739  "
+	      "0.00056642  0.00049125  0.00049795  0.00047919  0.00048472  0.00045994  0.00042631  0.00038636  0.00039207  0.0"
+	      "0039906  0.00038029  0.00038968  0.00040746]"
 	      SampleTime	      "0.02"
 	      RndMeth		      "Simplest"
 	    }
@@ -2899,16 +2923,16 @@ Model {
 		  SID			  92
 		  Position		  [250, 165, 295, 205]
 		  ForegroundColor	  "red"
-		  InputValues		  "[10910  10962  11014  11066  11118  11170  11222  11274  11326  11378  11430  11482  11534  11586 "
-		  " 11638  11690  11742  11794  11846  11898  11950  12002  12054  12106  12158  12210  12262  12314  12366  12418  1"
-		  "2470  12522  12574  12626  12678  12730  12782  12834  12886  12938  12990]"
-		  Table			  "[488.8220032      488.8220032      488.8220032      488.8220032      488.8220032      488.8220032      "
-		  "488.8220032      488.8220032      488.8220032      488.8220032      488.8220032      488.8220032       3592.14064 "
-		  "     5128.098117      6185.077897      6993.334155       7605.92465      8080.069308      700386.6754      354695."
-		  "1724      181929.8439      95563.66379       9197.48366      9112.692653      8986.161754       8838.15055      86"
-		  "82.968411      8492.329699      8238.563961      7936.170349      7562.756205      7054.722215      6350.972744   "
-		  "   488.8220032      488.8220032      488.8220032      488.8220032      488.8220032      488.8220032      488.82200"
-		  "32      488.8220032]"
+		  InputValues		  "[10820  10874  10928  10982  11036  11090  11144  11198  11252  11306  11360  11414  11468  11522 "
+		  " 11576  11630  11684  11738  11792  11846  11900  11954  12008  12062  12116  12170  12224  12278  12332  12386  1"
+		  "2440  12494  12548  12602  12656  12710  12764  12818  12872  12926  12980]"
+		  Table			  "[690.1632444       690.1632444       690.1632444       690.1632444       690.1632444       690.1632444 "
+		  "      690.1632444       690.1632444       690.1632444       690.1632444       690.1632444       690.1632444       "
+		  "690.1632444       690.1632444      1046.5923792      2495.8332831      3136.8597191      3483.1957618       3694.5"
+		  "64122      383435.95451      1550299.4535      3866.6584587      3806.5443007       690.1632444       690.1632444 "
+		  "      690.1632444       690.1632444       690.1632444       690.1632444       690.1632444       690.1632444       "
+		  "690.1632444       690.1632444       690.1632444       690.1632444       690.1632444       690.1632444       690.16"
+		  "32444       690.1632444       690.1632444       690.1632444]"
 		  SaturateOnIntegerOverflow off
 		  SampleTime		  "0.02"
 		}
@@ -3380,7 +3404,7 @@ Model {
 		  SID			  112
 		  Position		  [510, 78, 545, 112]
 		  ForegroundColor	  "red"
-		  X0			  "0.625"
+		  X0			  "0.91565"
 		  SampleTime		  "-1"
 		}
 		Block {
@@ -3389,7 +3413,7 @@ Model {
 		  SID			  113
 		  Position		  [145, 35, 305, 65]
 		  ForegroundColor	  "red"
-		  Value			  "0.0013718"
+		  Value			  "0.0005"
 		}
 		Block {
 		  BlockType		  Outport
@@ -3904,10 +3928,8 @@ Model {
 	  SID			  123
 	  Position		  [425, 278, 460, 312]
 	  ForegroundColor	  "cyan"
-	  InputValues		  "[0           10           12           14           16           25         25.5           35      "
-	  "   35.5           45           65           70]"
-	  Table			  "[0.5         0.5         0.5         0.5         0.5         0.5         0.5         0.5         0.5    "
-	  "     0.5         0.5         0.5]"
+	  InputValues		  "[0  10  12  16  18  25  26  40]"
+	  Table			  "[0.46052     0.46052      1.2033      1.2033     0.46052     0.46052      2.2246      2.2246]"
 	  SaturateOnIntegerOverflow off
 	  SampleTime		  "0.02"
 	}
@@ -3938,6 +3960,7 @@ Model {
 	  SID			  125
 	  Position		  [385, 180, 460, 200]
 	  ForegroundColor	  "gray"
+	  Value			  "4"
 	}
 	Block {
 	  BlockType		  Constant
@@ -3946,13 +3969,14 @@ Model {
 	  Position		  [900, 305, 975, 325]
 	  ForegroundColor	  "gray"
 	  ShowName		  off
+	  Value			  "4"
 	}
 	Block {
 	  BlockType		  UnitDelay
 	  Name			  "zVAFN"
 	  SID			  215
 	  Position		  [605, 438, 640, 472]
-	  X0			  "[2784.05]"
+	  X0			  "[3530.848]"
 	  SampleTime		  "-1"
 	}
 	Block {
@@ -4199,8 +4223,16 @@ Model {
 	Line {
 	  SrcBlock		  "N1"
 	  SrcPort		  1
-	  DstBlock		  "Terminator1"
-	  DstPort		  1
+	  Points		  [55, 0]
+	  Branch {
+	    DstBlock		    "Terminator1"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 30]
+	    DstBlock		    "zVAFN"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Abyp"
@@ -4227,13 +4259,6 @@ Model {
 	    DstBlock		    "Ath"
 	    DstPort		    1
 	  }
-	}
-	Line {
-	  SrcBlock		  "PreFilterVAFN"
-	  SrcPort		  1
-	  Points		  [55, 0; 0, -50]
-	  DstBlock		  "zVAFN"
-	  DstPort		  1
 	}
 	Annotation {
 	  Name			  "Dynamic Systems Analysis Controller\n"
@@ -4929,8 +4954,16 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      15
-      DstBlock		      "To Workspace15"
-      DstPort		      1
+      Points		      [10, 0]
+      Branch {
+	DstBlock		"To Workspace15"
+	DstPort			1
+      }
+      Branch {
+	Points			[-350, 0]
+	DstBlock		"Scope1"
+	DstPort			3
+      }
     }
     Line {
       SrcBlock		      "Demux1"
@@ -4994,7 +5027,6 @@ Model {
       SrcPort		      1
       Points		      [10, 0]
       Branch {
-	Points			[-10, 0]
 	DstBlock		"TTECTrA Simulink Block"
 	DstPort			2
       }
@@ -5143,7 +5175,7 @@ Model {
     Line {
       SrcBlock		      "TTECTrA Simulink Block"
       SrcPort		      2
-      Points		      [5, 0]
+      Points		      [25, 0]
       Branch {
 	Points			[15, 0; 0, -5]
 	Branch {
@@ -5158,15 +5190,23 @@ Model {
 	}
       }
       Branch {
-	Points			[0, 255]
-	DstBlock		"Mux4"
-	DstPort			3
+	Points			[0, 10]
+	Branch {
+	  Points		  [0, 245]
+	  DstBlock		  "Mux4"
+	  DstPort		  3
+	}
+	Branch {
+	  Points		  [0, -15]
+	  DstBlock		  "Scope1"
+	  DstPort		  2
+	}
       }
     }
     Line {
       SrcBlock		      "TTECTrA Simulink Block"
       SrcPort		      1
-      Points		      [0, 35; 15, 0]
+      Points		      [0, 35; 35, 0]
       Branch {
 	Points			[20, 0]
 	Branch {
@@ -5174,9 +5214,17 @@ Model {
 	  DstPort		  1
 	}
 	Branch {
-	  Points		  [0, 195]
-	  DstBlock		  "Mux2"
-	  DstPort		  1
+	  Points		  [0, 140]
+	  Branch {
+	    Points		    [0, 55]
+	    DstBlock		    "Mux2"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 5]
+	    DstBlock		    "Scope1"
+	    DstPort		    1
+	  }
 	}
       }
       Branch {
@@ -5218,6 +5266,12 @@ Model {
       Points		      [5, 0; 0, -5]
       DstBlock		      "Mux4"
       DstPort		      1
+    }
+    Annotation {
+      Position		      [334, 415]
+    }
+    Annotation {
+      Position		      [338, 421]
     }
   }
 }

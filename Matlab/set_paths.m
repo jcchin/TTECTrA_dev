@@ -29,40 +29,40 @@ run_file = '150PAX.run'; %NPSS run script
 %----------------------------------------------------------------------
 % Variable Area Fan Nozzle (off-schedule)
 %----------------------------------------------------------------------
-ttectra_engine_name= '150PAX_VAFN_actuator';
-model_flags = '-DTTECTrA -DMODEL -DPLOT -DGEAREDFAN'; %flags for the very first NPSS trip (if files don't exist)
-ss_flags = '-DTTECTrA -DSETPNT -DLINEARMODEL -DGEAREDFAN'; %flags for the NPSS steady-state runs 
-transient_flags = ' -DTRANSIENT -DGEAREDFAN'; %flags for the S-function transient runs
-ttectra_model_name='NPSS_TTECTrA_actuator.mdl';
-
-% Inputs - Add NPSS variables to be promoted as inputs to the s-function
-input = {'Burner.Wfuel','Byp_Nozz.delta_s_Ath'};
-
-% Outputs - Add NPSS variables to be promoted as outputs to the s-function
-output = {'LP_Shaft.Nmech','HP_Shaft.Nmech','FS_2.Pt','FS_2.Tt','FS_25.Pt',...
-    'FS_25.Tt','FS_3.Ps','FS_3.Tt','FS_5.Pt', 'FS_5.Tt','FS_4.Tt','Perf.myEPR',...
-    'Perf.myFn','Perf.Wfuel','HPC.SMN','HPC.SMW','LPC.SMN','LPC.SMW','Burner.FAR',...
-    'Fan.Wc','Fan.PR','LPC.Wc','LPC.PR','HPC.Wc','HPC.PR','HPT.WpIn','HPT.PR','LPT.WpIn','LPT.PR',...
-    'Byp_Nozz.s_Ath','Byp_Nozz.delta_s_Ath'};
-
-%----------------------------------------------------------------------
-% Variable Area Fan Nozzle (on-schedule)
-%----------------------------------------------------------------------
-% ttectra_engine_name= '150PAX_VAFN';
-% model_flags = '-DTTECTrA -DMODEL -DPLOT -DGEAREDFAN -DSCHEDULE'; %flags for the very first NPSS trip (if files don't exist)
-% ss_flags = '-DTTECTrA -DSETPNT -DLINEARMODEL -DGEAREDFAN -DSCHEDULE'; %flags for the NPSS steady-state runs 
-% transient_flags = ' -DTRANSIENT -DGEAREDFAN -DSCHEDULE'; %flags for the S-function transient runs
-% ttectra_model_name='NPSS_TTECTrA_sched.mdl';
+% ttectra_engine_name= '150PAX_VAFN_actuator';
+% model_flags = '-DTTECTrA -DMODEL -DPLOT -DGEAREDFAN'; %flags for the very first NPSS trip (if files don't exist)
+% ss_flags = '-DTTECTrA -DSETPNT -DLINEARMODEL -DGEAREDFAN'; %flags for the NPSS steady-state runs 
+% transient_flags = ' -DTRANSIENT -DGEAREDFAN'; %flags for the S-function transient runs
+% ttectra_model_name='NPSS_TTECTrA_actuator.mdl';
 % 
 % % Inputs - Add NPSS variables to be promoted as inputs to the s-function
-% input = {'Burner.Wfuel'}; 
+% input = {'Burner.Wfuel','Byp_Nozz.delta_s_Ath'};
 % 
 % % Outputs - Add NPSS variables to be promoted as outputs to the s-function
 % output = {'LP_Shaft.Nmech','HP_Shaft.Nmech','FS_2.Pt','FS_2.Tt','FS_25.Pt',...
 %     'FS_25.Tt','FS_3.Ps','FS_3.Tt','FS_5.Pt', 'FS_5.Tt','FS_4.Tt','Perf.myEPR',...
 %     'Perf.myFn','Perf.Wfuel','HPC.SMN','HPC.SMW','LPC.SMN','LPC.SMW','Burner.FAR',...
 %     'Fan.Wc','Fan.PR','LPC.Wc','LPC.PR','HPC.Wc','HPC.PR','HPT.WpIn','HPT.PR','LPT.WpIn','LPT.PR',...
-%     'Byp_Nozz.s_Ath','Byp_Nozz.delta_s_Ath'};
+%     'Byp_Nozz.AthCold','Byp_Nozz.delta_s_Ath'};
+
+%----------------------------------------------------------------------
+% Variable Area Fan Nozzle (on-schedule)
+%----------------------------------------------------------------------
+ttectra_engine_name= '150PAX_VAFN';
+model_flags = '-DTTECTrA -DMODEL -DPLOT -DGEAREDFAN -DSCHEDULE'; %flags for the very first NPSS trip (if files don't exist)
+ss_flags = '-DTTECTrA -DSETPNT -DLINEARMODEL -DGEAREDFAN -DSCHEDULE'; %flags for the NPSS steady-state runs 
+transient_flags = ' -DTRANSIENT -DGEAREDFAN -DSCHEDULE'; %flags for the S-function transient runs
+ttectra_model_name='NPSS_TTECTrA_sched.mdl';
+
+% Inputs - Add NPSS variables to be promoted as inputs to the s-function
+input = {'Burner.Wfuel'}; 
+
+% Outputs - Add NPSS variables to be promoted as outputs to the s-function
+output = {'LP_Shaft.Nmech','HP_Shaft.Nmech','FS_2.Pt','FS_2.Tt','FS_25.Pt',...
+    'FS_25.Tt','FS_3.Ps','FS_3.Tt','FS_5.Pt', 'FS_5.Tt','FS_4.Tt','Perf.myEPR',...
+    'Perf.myFn','Perf.Wfuel','HPC.SMN','HPC.SMW','LPC.SMN','LPC.SMW','Burner.FAR',...
+    'Fan.Wc','Fan.PR','LPC.Wc','LPC.PR','HPC.Wc','HPC.PR','HPT.WpIn','HPT.PR','LPT.WpIn','LPT.PR',...
+    'Byp_Nozz.AthCold','Byp_Nozz.delta_s_Ath'};
 
 %----------------------------------------------------------------------
 % Direct Drive
@@ -81,8 +81,6 @@ output = {'LP_Shaft.Nmech','HP_Shaft.Nmech','FS_2.Pt','FS_2.Tt','FS_25.Pt',...
 %     'FS_25.Tt','FS_3.Ps','FS_3.Tt','FS_5.Pt', 'FS_5.Tt','FS_4.Tt','Perf.myEPR',...
 %     'Perf.myFn','Perf.Wfuel','HPC.SMN','HPC.SMW','LPC.SMN','LPC.SMW','Burner.FAR',...
 %     'Fan.Wc','Fan.PR','LPC.Wc','LPC.PR','HPC.Wc','HPC.PR','HPT.WpIn','HPT.PR','LPT.WpIn','LPT.PR'};
-
-
 
 % OPTIONAL
 %can be left blank if using default TTECTrA folder structure

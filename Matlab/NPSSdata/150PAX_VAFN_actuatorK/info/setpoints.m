@@ -1,43 +1,43 @@
 output = [];
-a.('Fn')=6500;a.('Wf')=0.416668;a.('Nf')=2418.28;a.('Nc')=11922.1;a.('EPR')=1.0472;a.('NCR25')=11491.9;a.('Ps30')=174.442;a.('FAR')=0.0191221;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 6500
-a.('Fn')=8025;a.('Wf')=0.481013;a.('Nf')=2616.72;a.('Nc')=12097.4;a.('EPR')=1.05348;a.('NCR25')=11587.1;a.('Ps30')=194.675;a.('FAR')=0.0201665;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 8025
-a.('Fn')=9550;a.('Wf')=0.546447;a.('Nf')=2784.05;a.('Nc')=12260.6;a.('EPR')=1.06007;a.('NCR25')=11675.4;a.('Ps30')=214.745;a.('FAR')=0.0211221;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 9550
-a.('Fn')=11075;a.('Wf')=0.613685;a.('Nf')=2945.39;a.('Nc')=12409.6;a.('EPR')=1.06703;a.('NCR25')=11752.1;a.('Ps30')=234.591;a.('FAR')=0.0220585;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 11075
-a.('Fn')=12600;a.('Wf')=0.68435;a.('Nf')=3104.4;a.('Nc')=12555.9;a.('EPR')=1.07472;a.('NCR25')=11819.9;a.('Ps30')=255.096;a.('FAR')=0.0229531;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 12600
-a.('Fn')=14125;a.('Wf')=0.756743;a.('Nf')=3246.62;a.('Nc')=12696.4;a.('EPR')=1.08293;a.('NCR25')=11879.8;a.('Ps30')=275.832;a.('FAR')=0.0237842;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 14125
-a.('Fn')=15650;a.('Wf')=0.83837;a.('Nf')=3394.35;a.('Nc')=12845.1;a.('EPR')=1.09256;a.('NCR25')=11944.9;a.('Ps30')=298.737;a.('FAR')=0.0246555;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 15650
-a.('Fn')=17175;a.('Wf')=0.922572;a.('Nf')=3542.57;a.('Nc')=12987.2;a.('EPR')=1.10313;a.('NCR25')=12005.1;a.('Ps30')=322.003;a.('FAR')=0.0254854;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 17175
-a.('Fn')=18700;a.('Wf')=1.01119;a.('Nf')=3688.02;a.('Nc')=13120.9;a.('EPR')=1.11498;a.('NCR25')=12043.8;a.('Ps30')=345.931;a.('FAR')=0.0263213;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 18700
-a.('Fn')=20225;a.('Wf')=1.10511;a.('Nf')=3815.88;a.('Nc')=13248.1;a.('EPR')=1.12769;a.('NCR25')=12088.2;a.('Ps30')=370.261;a.('FAR')=0.0272065;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 20225
-a.('Fn')=21750;a.('Wf')=1.2008;a.('Nf')=3941.65;a.('Nc')=13371.6;a.('EPR')=1.14126;a.('NCR25')=12123.4;a.('Ps30')=395.043;a.('FAR')=0.0280147;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 21750
-a.('Fn')=23275;a.('Wf')=1.29884;a.('Nf')=4063.19;a.('Nc')=13489.7;a.('EPR')=1.15553;a.('NCR25')=12158.1;a.('Ps30')=419.788;a.('FAR')=0.0288185;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 23275
-a.('Fn')=24800;a.('Wf')=1.39833;a.('Nf')=4182.92;a.('Nc')=13603.4;a.('EPR')=1.17065;a.('NCR25')=12185.6;a.('Ps30')=444.83;a.('FAR')=0.029563;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 24800
-a.('Fn')=26325;a.('Wf')=1.49524;a.('Nf')=4293.45;a.('Nc')=13707.3;a.('EPR')=1.18595;a.('NCR25')=12209.4;a.('Ps30')=469.016;a.('FAR')=0.0302404;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 26325
-a.('Fn')=27850;a.('Wf')=1.59306;a.('Nf')=4398.96;a.('Nc')=13805.1;a.('EPR')=1.20194;a.('NCR25')=12232.3;a.('Ps30')=492.955;a.('FAR')=0.0309056;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 27850
-a.('Fn')=29375;a.('Wf')=1.69312;a.('Nf')=4501.93;a.('Nc')=13901.7;a.('EPR')=1.21904;a.('NCR25')=12249.8;a.('Ps30')=517.492;a.('FAR')=0.0315285;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 29375
-a.('Fn')=30900;a.('Wf')=1.7967;a.('Nf')=4599.11;a.('Nc')=13994.8;a.('EPR')=1.23688;a.('NCR25')=12272.1;a.('Ps30')=542.031;a.('FAR')=0.0321907;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 30900
-a.('Fn')=32425;a.('Wf')=1.90189;a.('Nf')=4695.19;a.('Nc')=14086;a.('EPR')=1.25557;a.('NCR25')=12291.8;a.('Ps30')=566.782;a.('FAR')=0.0328272;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 32425
-a.('Fn')=33950;a.('Wf')=2.01161;a.('Nf')=4790.38;a.('Nc')=14178.4;a.('EPR')=1.27561;a.('NCR25')=12310.5;a.('Ps30')=592.287;a.('FAR')=0.0334679;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 33950
-a.('Fn')=35475;a.('Wf')=2.12836;a.('Nf')=4884.91;a.('Nc')=14275.7;a.('EPR')=1.29666;a.('NCR25')=12339.4;a.('Ps30')=617.65;a.('FAR')=0.0342386;a.('converged')=1;
-output = [output a]; clear a; %thrust target: 35475
-a.('Fn')=37000;a.('Wf')=2.24716;a.('Nf')=4978.61;a.('Nc')=14371.8;a.('EPR')=1.3186;a.('NCR25')=12367.4;a.('Ps30')=643.087;a.('FAR')=0.0349986;a.('converged')=1;
+a.('Fn')=7459.62;a.('Wf')=1.23151;a.('Nf')=5145.77;a.('Nc')=14298.4;a.('EPR')=0.835549;a.('NCR25')=11398.2;a.('Ps30')=448.351;a.('FAR')=0.0259047;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 6600
+a.('Fn')=8120;a.('Wf')=0.470705;a.('Nf')=2569.48;a.('Nc')=12062.2;a.('EPR')=1.0524;a.('NCR25')=11583.9;a.('Ps30')=191.211;a.('FAR')=0.020032;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 8120
+a.('Fn')=9640;a.('Wf')=0.55018;a.('Nf')=2787.12;a.('Nc')=12268.5;a.('EPR')=1.06044;a.('NCR25')=11684.1;a.('Ps30')=215.789;a.('FAR')=0.0211797;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 9640
+a.('Fn')=11160;a.('Wf')=0.617962;a.('Nf')=2950.51;a.('Nc')=12418.1;a.('EPR')=1.06745;a.('NCR25')=11760.5;a.('Ps30')=235.717;a.('FAR')=0.0221258;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 11160
+a.('Fn')=12680;a.('Wf')=0.689193;a.('Nf')=3111.61;a.('Nc')=12566;a.('EPR')=1.07518;a.('NCR25')=11828.1;a.('Ps30')=256.354;a.('FAR')=0.0230232;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 12680
+a.('Fn')=14200;a.('Wf')=0.762347;a.('Nf')=3255.54;a.('Nc')=12708;a.('EPR')=1.08351;a.('NCR25')=11888.9;a.('Ps30')=277.223;a.('FAR')=0.0238646;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 14200
+a.('Fn')=15720;a.('Wf')=0.83638;a.('Nf')=3390.57;a.('Nc')=12841.8;a.('EPR')=1.09219;a.('NCR25')=11948.8;a.('Ps30')=297.938;a.('FAR')=0.0246573;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 15720
+a.('Fn')=17240;a.('Wf')=0.917358;a.('Nf')=3533.87;a.('Nc')=12979.4;a.('EPR')=1.10233;a.('NCR25')=12007.3;a.('Ps30')=320.252;a.('FAR')=0.0254655;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 17240
+a.('Fn')=18760;a.('Wf')=1.00371;a.('Nf')=3677.36;a.('Nc')=13110.6;a.('EPR')=1.11379;a.('NCR25')=12046.3;a.('Ps30')=343.524;a.('FAR')=0.0262903;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 18760
+a.('Fn')=20280;a.('Wf')=1.09491;a.('Nf')=3804.08;a.('Nc')=13235.8;a.('EPR')=1.12605;a.('NCR25')=12089.9;a.('Ps30')=367.154;a.('FAR')=0.0271579;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 20280
+a.('Fn')=21800;a.('Wf')=1.18788;a.('Nf')=3927.53;a.('Nc')=13356.8;a.('EPR')=1.13908;a.('NCR25')=12125.8;a.('Ps30')=391.104;a.('FAR')=0.0279645;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 21800
+a.('Fn')=23320;a.('Wf')=1.28359;a.('Nf')=4047.81;a.('Nc')=13473.3;a.('EPR')=1.15295;a.('NCR25')=12158.5;a.('Ps30')=415.358;a.('FAR')=0.02875;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 23320
+a.('Fn')=24840;a.('Wf')=1.38079;a.('Nf')=4166.29;a.('Nc')=13585.1;a.('EPR')=1.16764;a.('NCR25')=12185.3;a.('Ps30')=439.905;a.('FAR')=0.02948;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 24840
+a.('Fn')=26360;a.('Wf')=1.47905;a.('Nf')=4279.66;a.('Nc')=13691.6;a.('EPR')=1.18312;a.('NCR25')=12208.2;a.('Ps30')=464.548;a.('FAR')=0.0301658;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 26360
+a.('Fn')=27880;a.('Wf')=1.57985;a.('Nf')=4388.58;a.('Nc')=13793.2;a.('EPR')=1.19949;a.('NCR25')=12231.7;a.('Ps30')=489.257;a.('FAR')=0.0308558;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 27880
+a.('Fn')=29400;a.('Wf')=1.68307;a.('Nf')=4495.28;a.('Nc')=13893.4;a.('EPR')=1.21714;a.('NCR25')=12248.2;a.('Ps30')=514.732;a.('FAR')=0.0314896;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 29400
+a.('Fn')=30920;a.('Wf')=1.78887;a.('Nf')=4594.06;a.('Nc')=13989.2;a.('EPR')=1.23526;a.('NCR25')=12271.8;a.('Ps30')=539.744;a.('FAR')=0.0321744;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 30920
+a.('Fn')=32440;a.('Wf')=1.8967;a.('Nf')=4691.85;a.('Nc')=14083.8;a.('EPR')=1.25423;a.('NCR25')=12294;a.('Ps30')=564.896;a.('FAR')=0.0328474;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 32440
+a.('Fn')=33960;a.('Wf')=2.00869;a.('Nf')=4788.29;a.('Nc')=14179.4;a.('EPR')=1.27447;a.('NCR25')=12314.5;a.('Ps30')=590.725;a.('FAR')=0.0335185;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 33960
+a.('Fn')=35480;a.('Wf')=2.12553;a.('Nf')=4883.42;a.('Nc')=14273.8;a.('EPR')=1.29614;a.('NCR25')=12337.8;a.('Ps30')=616.959;a.('FAR')=0.0342212;a.('converged')=0;
+output = [output a]; clear a; %thrust target: 35480
+a.('Fn')=37000;a.('Wf')=2.24553;a.('Nf')=4977.75;a.('Nc')=14370.1;a.('EPR')=1.31853;a.('NCR25')=12364.1;a.('Ps30')=642.945;a.('FAR')=0.0349672;a.('converged')=0;
 output = [output a]; clear a; %thrust target: 37000

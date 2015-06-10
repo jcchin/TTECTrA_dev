@@ -26,7 +26,7 @@ dFn=(max(ttectra_in.SP.FT_SP)-minFn);
 %ttectra_in.in.t_vec  = [0, 10, 10.5, 20, 20.5, 30, 31, 35, 36, 40, 41, 45, 46, 50, 51, 55,56,60,62,64,70];
 %ttectra_in.in.FT_dmd = [0, 0,  1   ,  1,    0,  0, .5, .5,.75,.75, 1,  1, .67,.67,.33,.33,0,0,.85,0,0]*dFn + minFn;
 ttectra_in.in.t_vec  = [0 10 12 14 16 25 25.5 35 35.5 45 65 70];
-ttectra_in.in.FT_dmd = [0.1 0.1 .4 .4 0 0 1   1   0   0 1  1]*dFn + minFn;
+ttectra_in.in.FT_dmd = [0.1 0.1 .5 .5 0 0 1   1   0   0 1  1]*dFn + minFn;
 ttectra_in.in.loop = 1;
 
 %Simulate

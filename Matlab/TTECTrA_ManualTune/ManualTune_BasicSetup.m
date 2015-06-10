@@ -19,6 +19,14 @@ end
 
 % Design Power Management Function
 addpath('TTECTrA_Auto')
-[SP]=TTECTrA_NPSS_SPcalc(ttectra_in);
+[SP1]=TTECTrA_NPSS_SPcalc(ttectra_in);
+[SP]=check_setpoint(SP1);
 ttectra_in.SP=SP;
+
+figure(100);
+subplot(221); plot(SP.EPR_SP,SP.FT_SP,'bx-','Linewidth',2); grid on; xlabel('EPR'); ylabel('Thrust');
+subplot(222); plot(SP.Nf_SP,SP.FT_SP,'bx-','Linewidth',2); grid on; xlabel('Nf'); ylabel('Thrust');
+subplot(223); plot(SP.Nc_SP,SP.FT_SP,'bx-','Linewidth',2); grid on; xlabel('Nc'); ylabel('Thrust');
+subplot(224); plot(SP.Wf_SP,SP.FT_SP,'bx-','Linewidth',2); grid on; xlabel('Wf'); ylabel('Thrust');
+
 clear SP

@@ -19,7 +19,7 @@ dFn=(max(ttectra_in.SP.FT_SP)-minFn);
 
 ttectra_in.in.t_vec  = [0.0, 7.0, 10.0,12.0,16.0,...   ,20.0];
                         20.0, 20.5, 30.0, 30.5, 40];
-ttectra_in.in.FT_dmd = [0.1,0.1,0.40,0.40,0.0,...
+ttectra_in.in.FT_dmd = [0.1,0.1,0.50,0.50,0.0,...
                         0.0, 1.0, 1.0, 0.0, 0.0]*dFn+minFn;
 ttectra_in.in.simTime=40;
 ttectra_in.in.loop = 1;  %closed loop controller connected to engine bypassing limit logic

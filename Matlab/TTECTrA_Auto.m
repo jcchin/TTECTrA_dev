@@ -1,4 +1,4 @@
-= %       TTECTrA_Auto.m
+%       TTECTrA_Auto.m
 %********************************************************************
 % Tool for Turbine Engine Closed-loop Transient Analysis (TTECTrA)
 %--------------------------------------------------------------------
@@ -103,7 +103,7 @@ dFn=(max(ttectra_in.SP.FT_SP)-minFn); %Determine delta between max and min
 %Build thrust profile and set TTECTrA for closed loop
 ttectra_in.in.t_vec  = [0 10 12 14 16 25 25.5 35 35.5 45 65 70];
 ttectra_in.in.t_vec(1)=0;
-ttectra_in.in.FT_dmd = [0 0 .4 .4 0 0 1   1   0   0 1  1]*dFn + minFn;
+ttectra_in.in.FT_dmd = [0 0 .5 .5 0 0 1   1   0   0 1  1]*dFn + minFn;
 ttectra_in.in.loop = 1;
 
 %ttectra_in.in.t_vec  = [0 10 10.5 20 20.5 30 50 55];
