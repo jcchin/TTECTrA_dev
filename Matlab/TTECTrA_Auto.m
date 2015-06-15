@@ -103,7 +103,7 @@ dFn=(max(ttectra_in.SP.FT_SP)-minFn); %Determine delta between max and min
 %Build thrust profile and set TTECTrA for closed loop
 ttectra_in.in.t_vec  = [0 10 12 14 16 25 25.5 35 35.5 45 65 70];
 ttectra_in.in.t_vec(1)=0;
-ttectra_in.in.FT_dmd = [0 0 .4 .4 0 0 1   1   0   0 1  1]*dFn + minFn;
+ttectra_in.in.FT_dmd = [0 0 .5 .5 0 0 1   1   0   0 1  1]*dFn + minFn;
 ttectra_in.in.loop = 1;
 
 %ttectra_in.in.t_vec  = [0 10 10.5 20 20.5 30 50 55];
@@ -146,7 +146,7 @@ if ~isempty(out)
     subplot(311);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.HPC_SM(i_ttrim:end),'b-',...
-        out.t([1 end]),ttectra_in.SMLimit.Accel([1 1]),'r--','LineWidth',2);
+        out.t([i_ttrim end]),ttectra_in.SMLimit.Accel([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('HPC SM, %','FontSize',12);
     grid on;
@@ -155,7 +155,7 @@ if ~isempty(out)
     subplot(312);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.T40(i_ttrim:end),'b-',...
-        out.t([1 end]),ttectra_in.SMLimit.T40*([1 1]),'r--','LineWidth',2);
+        out.t([i_ttrim end]),ttectra_in.SMLimit.T40*([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('T40, \circR','FontSize',12);
     grid on;
@@ -175,7 +175,7 @@ if ~isempty(out)
     subplot(311);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.LPC_SM(i_ttrim:end),'b-',...
-        out.t([1 end]),ttectra_in.SMLimit.Decel([1 1]),'r--','LineWidth',2);
+        out.t([i_ttrim end]),ttectra_in.SMLimit.Decel([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('LPC SM, %','FontSize',12);
     grid on;
@@ -184,14 +184,14 @@ if ~isempty(out)
     subplot(312);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.FAR(i_ttrim:end),'b-',...
-        out.t([1 end]),ttectra_in.SMLimit.FARmin([1 1]),'r--','LineWidth',2);
+        out.t([i_ttrim end]),ttectra_in.SMLimit.FARmin([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('FAR','FontSize',12); grid on;
     
     subplot(313);
     set(gca,'FontSize',12);
     plot(out.t(i_ttrim:end),out.Wf(i_ttrim:end)./out.Ps3(i_ttrim:end),'b-',...
-        out.t([1 end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
+        out.t([i_ttrim end]),ttectra_in.Limiter.WfPs3lim([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);
     ylabel('W_f/P_{s3}, lb/(psi*s)','FontSize',12); grid on;
     

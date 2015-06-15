@@ -15,7 +15,7 @@ end
 minWf=min(ttectra_in.SP.Wf_SP);
 dWf=max(ttectra_in.SP.Wf_SP)-minWf;
 ttectra_in.in.t_vec  = [0,10,10.5,20];
-ttectra_in.in.wf_vec = [0.95,0.95,0.05,0.05]*dWf + minWf;
+ttectra_in.in.wf_vec = [0.95,0.95,0.01,0.01]*dWf + minWf;
 ttectra_in.in.loop = 3;
 
 TTECTrA_NPSS_DecelLimiter_s
@@ -25,7 +25,7 @@ out=simFromTTECTrA(ttectra_in);
 
 if ~isempty(out)
     figure(104);
-    subplot(221); set(gca,'FontSize',12); plot(out.t,out.Wf_vec,'-',out.t,out.Wf_dmd,'r--','LineWidth',2);
+    subplot(221); set(gca,'FontSize',12); plot(out.t,out.Wf,'-',out.t,out.Wf_dmd,'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);ylabel('Wf, lbf','FontSize',12); grid on;
     subplot(222); set(gca,'FontSize',12); plot(out.t,out.FAR,'-',out.t([1 end]),ttectra_in.SMLimit.FARmin([1 1]),'r--','LineWidth',2);
     xlabel('Time, s','FontSize',12);ylabel('Fuel to Air Ratio','FontSize',12); grid on;
@@ -40,3 +40,4 @@ end
 
 disp(['     Current LPC Surge Margin: ' num2str(ttectra_in.SMLimit.Decel)]);
 disp(['     Current min Fuel to Air Ratio: ' num2str(ttectra_in.SMLimit.FARmin)]);
+disp(['     Current Wf/Ps3 Limit: ' num2str(ttectra_in.Limiter.WfPs3lim)]);

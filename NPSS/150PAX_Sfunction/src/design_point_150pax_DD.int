@@ -8,83 +8,83 @@
 //-------------------------------------------------------------------------------------------------
 
 // Design mass flow rate
-Ambient.W = 320.8250619;
+Ambient.W = 321.9538517;
 
 // Inlet design variable values
 Inlet.S_install.s_eRam = 1;
-Inlet.Wengine = 320.8250619;
+Inlet.Wengine = 321.9538517;
 Inlet.eRam = 0.9990200007;
 // Inlet.eRamBase = 0.9990200007;
-Inlet.Fl_O.Aphy = 2718.749917;
-InletFlowControl.Fl_O.Aphy = 2718.749917;
-Inlet.S_install.Acapture = 3252.794675;
+Inlet.Fl_O.Aphy = 2728.315557;
+InletFlowControl.Fl_O.Aphy = 2728.315557;
+Inlet.S_install.Acapture = 3264.239297;
 
 // Fan design variable values
 Fan.S_map.NcDes = 0.99;
-Fan.S_map.s_effDes = 1.00038348;
+Fan.S_map.s_effDes = 1.000159841;
 Fan.S_map.s_NcDes = 0.0001876765646;
-Fan.S_map.s_PRdes = 1.001854448;
-Fan.S_map.s_WcDes = 1.031367445;
-Fan.Fl_O.Aphy = 2388.82312;
+Fan.S_map.s_PRdes = 1.000160584;
+Fan.S_map.s_WcDes = 1.035060089;
+Fan.Fl_O.Aphy = 2394.196472;
 Fan.NcDes = 5222.282291;
-// real Fan_NcDes2 = 1.05873256;
-// real Fan_NcDes3 = 0.95594456;
-// real Fan_NcDes4 = 0.94975966;
-Fan.S_map.WcDes = 828.8411206;
+// real Fan_NcDes2 = 1.05852873;
+// real Fan_NcDes3 = 0.95972492;
+// real Fan_NcDes4 = 0.95308588;
+Fan.S_map.WcDes = 831.7573123;
 Fan.S_map.ReDes = 399125;
 Fan.S_map.RNI_des = 0.4376700857;
 Fan.S_map.RlineMap = 2.2;
 // real FanRlineMapTarget = 2.2;
 Fan.S_map.NcDes = 0.99;
-Fan.S_map.PRdes = 1.68611;
+Fan.S_map.PRdes = 1.68511;
 Fan.S_map.effDes = 0.894783;
 
 // Splitter design variable values
-Splitter.Fl_01.Aphy = 500.9826307;
-Splitter.Fl_02.Aphy = 1887.840489;
-Splitter.BPR = 5.136536759;
+Splitter.Fl_01.Aphy = 505.1756821;
+Splitter.Fl_02.Aphy = 1889.02079;
+Splitter.BPR = 5.11007585;
 
 // Duct 4 (duct between the splitter and LPC) design variable values
-Duct4.Fl_O.Aphy = 500.9826307;
+Duct4.Fl_O.Aphy = 505.1756821;
 Duct4.dPqPbase = 0.004825;
 
 // LPC design variable values
 LPC.S_map.NcDes = 1;
-LPC.S_map.s_effDes = 1.000697196;
-LPC.S_map.s_NcDes = 0.0002081643316;
-LPC.S_map.s_PRdes = 1.000668896;
-LPC.S_map.s_WcDes = 0.9963197217;
-LPC.Fl_O.Aphy = 291.9726772;
-LPC.S_map.WcDes = 87.50427035;
+LPC.S_map.s_effDes = 1.00015581;
+LPC.S_map.s_NcDes = 0.0002081451801;
+LPC.S_map.s_PRdes = 1.000160454;
+LPC.S_map.s_WcDes = 1.005818108;
+LPC.Fl_O.Aphy = 294.4163875;
+LPC.S_map.WcDes = 88.23665084;
 LPC.S_map.ReDes = 399125;
-LPC.S_map.RNI_des = 0.5918963972;
+LPC.S_map.RNI_des = 0.5916841137;
 LPC.S_map.RlineMap = 2.15;
 LPC.S_map.NcDes = 1;
 LPC.S_map.PRdes = 1.935;
 LPC.S_map.effDes = 0.924344;
-LPC.NcDes = 4803.896962;
+LPC.NcDes = 4804.338968;
 
 // Duct 6 (duct between LPC and HPC) design variable values
-Duct6.Fl_O.Aphy = 258.2705944;
+Duct6.Fl_O.Aphy = 260.4321888;
 Duct6.dPqPbase = 0.010125;
 
 // HPC design variable values
-HPC.S_map.s_effDes = 1.000105573;
-HPC.S_map.s_NcDes = 7.853704337e-005;
-HPC.S_map.s_PRdes = 1.000017091;
-HPC.S_map.s_WcDes = 1.022286718;
-HPC.Fl_O.Aphy = 48.77181905;
-HPC.Cool1.fracBldW = 0.05181025096;
-HPC.Cool2.fracBldW = 0.02069952787;
+HPC.S_map.s_effDes = 0.9998953316;
+HPC.S_map.s_NcDes = 7.852980541e-005;
+HPC.S_map.s_PRdes = 1.000070508;
+HPC.S_map.s_WcDes = 1.03099381;
+HPC.Fl_O.Aphy = 49.18001453;
+HPC.Cool1.fracBldW = 0.05083305212;
+HPC.Cool2.fracBldW = 0.02033196561;
 HPC.FlowControl.fracBldW = 0;
 HPC.ATD.fracBldW = 0;
 HPC.flowControlFlow = 0;
 HPC.nStagesFlowControl = 0;
 HPC.turbineFlowControlFlow = 0;
 HPC.nStagesTurbineFlowControl = 0;
-HPC.S_map.WcDes = 50.55144693;
+HPC.S_map.WcDes = 50.97453699;
 HPC.S_map.ReDes = 507300;
-HPC.S_map.RNI_des = 0.8793234513;
+HPC.S_map.RNI_des = 0.8790022075;
 HPC.Cool1.fracBldWork = 0.5;
 HPC.Cool2.fracBldWork = 0.5;
 HPC.CustBld.fracBldWork = 0.5;
@@ -96,75 +96,75 @@ HPC.BleedFlow = 2.35;
 HPC.S_map.RlineMap = 2.05;
 HPC.S_map.NcDes = 0.97591;
 HPC.S_map.PRdes = 9.36895;
-HPC.S_map.effDes = 0.8705421757;
+HPC.S_map.effDes = 0.8706150345;
 HPC.NcDes = 12127.9;
 
 // Bleed from the HPC design variable values
-Bld3.Cool1.fracW = 0.1673207527;
-Bld3.Fl_O.Aphy = 40.61128158;
+Bld3.Cool1.fracW = 0.1679504218;
+Bld3.Fl_O.Aphy = 40.92021034;
 
 // Burner design variable values
-Burner.Fl_O.Aphy = 157.5819959;
+Burner.Fl_O.Aphy = 158.607813;
 Burner.dPqPBase = 0.05402;
 Burner.effBase = 0.982745;
 // Burner.Emissions.PCT_NOx = 0;
-// Burner.Emissions.PNT5_Tt4 = 3034.54215;
-// Burner.Emissions.PNT5_Pt3 = 420.2527513;
-// Burner.Emissions.PNT5_Tt3 = 1434.292391;
-// Burner.Emissions.PNT5_W3 = 99.82437674;
-// Burner.Emissions.PNT5_Wfuel = 2.770870505;
-Burner.FAR = 0.02689249908;
-Burner.meanRadius31 = 9.185;
-Burner.meanRadius40 = 12.81;
+// Burner.Emissions.PNT5_Tt4 = 3036.592758;
+// Burner.Emissions.PNT5_Pt3 = 420.4623534;
+// Burner.Emissions.PNT5_Tt3 = 1437.521047;
+// Burner.Emissions.PNT5_W3 = 100.6431986;
+// Burner.Emissions.PNT5_Wfuel = 2.792491751;
+Burner.FAR = 0.02673889831;
+Burner.meanRadius31 = 9.22;
+Burner.meanRadius40 = 12.865;
 
 // HPT design variable values
 HPT.S_map.s_eff = 0.9877972883;
-HPT.S_map.s_Np = 0.01741114471;
-HPT.S_map.s_dPqP = 1.920422214;
-HPT.S_map.s_Wp = 0.8959037683;
-HPT.Fl_O.Aphy = 171.2104666;
-// HPT.S_map.TtMap = 2865.585138;
-HPT.S_map.PtMap = 149.9583685;
-// HPT.S_map.RNImap = 1.556749037;
+HPT.S_map.s_Np = 0.01738648265;
+HPT.S_map.s_dPqP = 1.911456389;
+HPT.S_map.s_Wp = 0.9031201665;
+HPT.Fl_O.Aphy = 173.205493;
+// HPT.S_map.TtMap = 2857.472958;
+HPT.S_map.PtMap = 149.869431;
+// HPT.S_map.RNImap = 1.560685024;
 HPT.Cool.xFactor = 3.01588;
 HPT.Cool.xFactor1 = 0.695323;
 HPT.S_map.effDes = 0.88882;
 HPT.S_map.parmMapDes = 6;
-HPT.S_map.parmMap = 3.603594128;
+HPT.S_map.parmMap = 3.615806476;
 HPT.Cool.nStages = 1;
 
 // Bleed from HPC design variable values
-ATD_Bleed.Fl_O.Aphy = 171.2104666;
+ATD_Bleed.Fl_O.Aphy = 173.205493;
 
 // Duct 11 (duct between HPT and LPT) design variable values
-Duct11.Fl_O.Aphy = 205.6513022;
+Duct11.Fl_O.Aphy = 208.3646458;
 Duct11.dPqPbase = 0.005055;
 
 // LPT design variable values
-LPT.S_map.s_eff = 0.9744334922;
-LPT.S_map.s_Np = 0.04126113077;
-LPT.S_map.s_dPqP = 1.555212947;
-LPT.S_map.s_Wp = 0.9459640099;
-LPT.Fl_O.Aphy = 615.6365499;
-// LPT.S_map.TtMap = 2062.561803;
-LPT.S_map.PtMap = 41.40320014;
-// LPT.S_map.RNImap = 0.6171188168;
+LPT.S_map.s_eff = 0.9744064125;
+LPT.S_map.s_Np = 0.04118364992;
+LPT.S_map.s_dPqP = 1.562030965;
+LPT.S_map.s_Wp = 0.9571046262;
+LPT.Fl_O.Aphy = 620.1799523;
+// LPT.S_map.TtMap = 2054.822849;
+LPT.S_map.PtMap = 41.23888875;
+// LPT.S_map.RNImap = 0.6172167106;
 LPT.Cool.xFactor = 0.786985;
 LPT.Cool.xFactor1 = 1.85763;
-LPT.S_map.effDes = 0.899597;
+LPT.S_map.effDes = 0.899572;
 LPT.S_map.parmMapDes = 6.32;
-LPT.S_map.parmMap = 4.420753416;
+LPT.S_map.parmMap = 4.405822368;
 
 // Bypass after splitter design variable values
-BypBld.Fl_O.Aphy = 1887.840489;
+BypBld.Fl_O.Aphy = 1889.02079;
 BypBld.HXBleedOn = 0;
 
 // Duct 13 (duct between LPT and core nozzle) design variable values
-Duct13.Fl_O.Aphy = 584.8547224;
+Duct13.Fl_O.Aphy = 589.1709546;
 Duct13.dPqPbase = 0.010685;
 
 // Core nozzle design variable values
-Core_Nozz.AthCold = 412.9269735;
+Core_Nozz.AthCold = 415.9850549;
 Core_Nozz.CangScalar.s_rtn = 1;
 Core_Nozz.CvScalarLowAlt.s_rtn = 1;
 Core_Nozz.CvScalarHighAlt.s_rtn = 1;
@@ -172,17 +172,17 @@ Core_Nozz.DischargeCoeff.s_rtn = 1.3593;
 Core_Nozz.DischargeCoeff.a_rtn = -0.3503175;
 
 // Duct 15 (duct between splitter and bypass nozzle) design variable values
-Duct15.Fl_O.Aphy = 1887.840489;
+Duct15.Fl_O.Aphy = 1889.02079;
 Duct15.dPqPbase = 0.014892;
 
 // Bypass nozzle design variable values
-Byp_Nozz.ADP_Ath = 1362.49058;
+Byp_Nozz.ADP_Ath = 1366.832684;
 Byp_Nozz.CvScalarLowAlt.s_rtn = 1;
 Byp_Nozz.CvScalarHighAlt.s_rtn = 1;
 Byp_Nozz.DischargeCoeff.s_rtn = 1.7723;
 Byp_Nozz.DischargeCoeff.a_rtn = -0.7529925;
 
-BldSplit.Cool1.fracW = 0.6015683154;
+BldSplit.Cool1.fracW = 0.6028407927;
 
 // Max_T4.eq_rhs = "3300";
 // real Rating = 1;
@@ -202,7 +202,7 @@ BldSplit.Cool1.fracW = 0.6015683154;
 // real Flat_dTs = 27;
 
 // con_maxcontinousT4.eq_rhs = "3153.9";
-// con_maxTOthrust.eq_rhs = "27299.99998";
+// con_maxTOthrust.eq_rhs = "27299.99994";
 // con_T4SLS.eq_rhs = "3300";
 // real tempT4margin = -146.1;
 // real tempMCTT4 = 3153.9;

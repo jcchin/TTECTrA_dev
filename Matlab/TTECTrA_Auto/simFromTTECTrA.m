@@ -38,7 +38,7 @@ function outputs=simFromTTECTrA(inputs)
 %       Maltab(R) control systems toolbox
 % *************************************************************************
 
-DEBUG_FLAG=1;
+DEBUG_FLAG=0;
 
 %----------------------------------------------------
 % Model-specific workspace setup:
@@ -121,9 +121,6 @@ catch
     end
 end
 
-%non-standard parameters:
-
-
 
 if ~exist('outputs')
     try
@@ -172,9 +169,11 @@ if ~exist('outputs')
         outputs.cntrl=y.get('out_ctrl');
                 
         %extra outputs
-        if exist('Abypass')
+        %if exist('Abypass')
+        try
             outputs.Abypass = y.get('Abypass');
             outputs.dAbypass = y.get('dAbypass');
+        catch
         end
         
     catch

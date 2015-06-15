@@ -19,11 +19,6 @@ itemp_tstart_trim2=15;
 itemp_tstart_burst=20.0;
 itemp_tstart_chop=40.0;
 
-%itemp_tstart_trim1=50;
-%itemp_tstart_trim2=70;
-%itemp_tstart_burst=80.0;
-%itemp_tstart_chop=100.0;
-
 %Setup burt and chop test profile
 itemp_t_trim=[itemp_tstart_trim1:  (itemp_tstart_trim2-itemp_tstart_trim1)/3: itemp_tstart_trim2];  %short trimming function
 
@@ -38,14 +33,15 @@ itemp_in.in.FT_dmd=max(min(itemp_in.SP.FT_SP),itemp_profile); %ensure that min t
 itemp_in.in.loop=1;
 
 %define an initial guess at the IWUP gain:
-if strcmpi(itemp_in.controller.CVoutput(1:2),'Nf')
-    itemp_in.controller.IWP_gain=min(itemp_in.SP.Nf_SP)/100;
-elseif strcmpi(itemp_in.controller.CVoutput(1:2),'Nc')
-    itemp_in.controller.IWP_gain=min(itemp_in.SP.Nc_SP)/100;
-elseif strcmpi(itemp_in.controller.CVoutput(1:3),'EPR')
-    itemp_in.controller.IWP_gain=min(itemp_in.SP.EPR_SP)/100;
-end
-itemp_in.controller.IWP_gain
+% if strcmpi(itemp_in.controller.CVoutput(1:2),'Nf')
+%     itemp_in.controller.IWP_gain=min(itemp_in.SP.Nf_SP)/100;
+% elseif strcmpi(itemp_in.controller.CVoutput(1:2),'Nc')
+%     itemp_in.controller.IWP_gain=min(itemp_in.SP.Nc_SP)/100;
+% elseif strcmpi(itemp_in.controller.CVoutput(1:3),'EPR')
+%     itemp_in.controller.IWP_gain=min(itemp_in.SP.EPR_SP)/100;
+% end
+% itemp_in.controller.IWP_gain
+
 
 itemp_in.in.simTime=itemp_in.in.t_vec(end);
 if isfield(itemp_in.in,'PWLM_Flag') && itemp_in.in.PWLM_Flag==1
@@ -166,7 +162,7 @@ while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp
         itemp_IWP_last=itemp_in.controller.IWP_gain;
         itemp_in.controller.IWP_gain = itemp_in.controller.IWP_gain + itemp_fdata(itemp_icount,1)*itemp_IPW_0;
         if itemp_in.controller.IWP_gain<0
-            itemp_in.controller.IWP_gain = itemp_IWP_last + abs(itemp_fdata(itemp_icount,1))*itemp_IPW_0*0.5;
+            itemp_in.controller.IWP_gain = itemp_IWP_last + abs(itemp_fdata(itemp_icount,1))*itemp_IPW_0;
         end
         
         itemp_error1=itemp_fdata(itemp_icount,1);
@@ -204,13 +200,16 @@ while (abs(itemp_error1)>0.002||abs(itemp_error2) > 0.002) && itemp_icount<itemp
         end
         
         %itemp_in.controller.IWP_gain = 4*itemp_in.controller.IWP_gain;
-        if mod(itemp_icount2,2)==1
-            itemp_in.controller.IWP_gain=min(itemp_faildata(:,3))/10;
-        else
-            itemp_in.controller.IWP_gain=max(itemp_faildata(:,3))*10;
-        end
-        itemp_faildata
+        %if mod(itemp_icount2,2)==1
+        %    itemp_in.controller.IWP_gain=min(itemp_faildata(:,3))/10;
+        %else
+        %    itemp_in.controller.IWP_gain=max(itemp_faildata(:,3))*10;
+        %end
         
+        % Increase 
+        itemp_in.controller.IWP_gain=itemp_in.controller.IWP_gain*10;
+        
+        itemp_faildata
         itemp_icount2=itemp_icount2+1;
         itemp_ifail=itemp_ifail+1;
     end
@@ -238,6 +237,7 @@ else
         end
     end
 end
+
 
 
 clear itemp_* itemp_in temp_out
