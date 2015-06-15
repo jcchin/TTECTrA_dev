@@ -58,6 +58,7 @@
 	
 	PC = 50;
 	RunMaxPower();
+	page.display();
 
 	// Setpoint function which creates the Matlab formatted output 
 	SetPoint();

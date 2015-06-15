@@ -29,6 +29,14 @@ RunMaxPower();
 page.display();
 cout << PC << " \t" << FS_2.Pt << " \t" << Perf.myFn << " \t" << Burner.Wfuel << " \t" << LP_Shaft.Nmech << " \t" << HP_Shaft.Nmech << " \t" << Perf.myEPR << " \t" << HPC.Nc << " \t" << FS_3.Ps << " \t" << Burner.FAR << endl;
 
+PC = 40;
+RunMaxPower();
+
+PC = 30;
+RunMaxPower();
+
+PC = 20;
+RunMaxPower();
 //----------------------------------------------------------------------------------
 // Idle at SLS
 //----------------------------------------------------------------------------------
