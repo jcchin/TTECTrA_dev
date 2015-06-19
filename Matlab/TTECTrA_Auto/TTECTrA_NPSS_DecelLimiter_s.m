@@ -21,8 +21,8 @@ dtemp_WfPs3lim=max(min(dtemp_in.SP.WfPs3_SP),dtemp_WfPs3lim);
 % Rewrite simulation information
 minWf=min(ttectra_in.SP.Wf_SP);
 dWf=max(ttectra_in.SP.Wf_SP)-minWf;
-dtemp_in.in.t_vec  = [0,10,10.5,20];
-dtemp_in.in.wf_vec = [0.95,0.95,0.05,0.05]*dWf + minWf;
+dtemp_in.in.t_vec  = [0,8,10,10.5,20];
+dtemp_in.in.wf_vec = [0.3,0.95,0.95,0.05,0.05]*dWf + minWf;
 dtemp_in.in.simTime=20.0;
 dtemp_in.in.loop=3;
 dtemp_in.Limiter.WfPs3lim=dtemp_WfPs3lim;

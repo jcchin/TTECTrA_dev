@@ -9,6 +9,7 @@ solver.maxConvergeFailures = 250;
 
 // Including the flight condition from the file written by TTECTrA
 #include <Sfunction_flight_condition.data>
+#include <view/transientTrace.fnc>
 
 // Turning on the guess logic
 setOption( "switchGuess", "ON" );
@@ -26,8 +27,6 @@ setOption( "switchGuessType", "Wfuel" );
 	#endif
 #endif
 
-// Assigning the initial fuel flow rate from the input signal to the power management variable
-Wfuel = transientDriver_scaled(0.0);
 
 #ifdef GEAREDFAN
 
@@ -46,6 +45,10 @@ Burner.switchBurn = "FUEL";
 // Automatically setting up the solver
 autoSolverSetup();
 
+// Assigning the initial fuel flow rate from the input signal to the power management variable
+Wfuel = transientDriver_scaled(45.0);
+Burner.Wfuel = 1.5; cout << Burner.Wfuel << endl;
+
 // Adding transient demand variable for fuel flow rate to the solver
 solver.addIndependent("trans_indep"); 
 solver.addDependent("trans_Condition");
@@ -61,6 +64,7 @@ solver.addDependent("trans_Condition");
 	#endif
 	
 #endif
+
 
 // Running the model for initialization
 run();
@@ -85,6 +89,14 @@ initializeHistory();
 
 // Setting up the transient simulation time step
 transient.baseTimeStep = 0.01;
+
+void printTime(){
+	cout << "time: " << time << endl;
+	cout << "PC: " << PC << endl;
+	cout << "Wfuel: " << Burner.Wfuel << endl;
+};
+
+solver.postExecutionSequence = {"printTime","transientTrace"}
 
 // Running the model for initialization
 run();

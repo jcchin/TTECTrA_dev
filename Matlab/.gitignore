@@ -10,3 +10,5 @@ hs_err*.log
 /TTECTRA_DEBUG_Accel.mat
 *.mat
 /TTECTrA_Tests_2008a.m
+/TTECTrA_gui2.m
+/TTECTrA_gui1.m
